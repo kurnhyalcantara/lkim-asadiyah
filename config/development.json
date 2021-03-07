@@ -1,16 +1,16 @@
 {
   "basepath": "/",
-  "url": "https://hoverboard-dev.web.app/",
-  "analytics": "UA-43643469-8",
+  "url": "https://lkim-asadiyah.web.app/",
+  "analytics": "",
   "prefix": "/",
   "firebase": {
-    "apiKey": "AIzaSyAKOkGjmfBPTuYlDyPxlrSj7H-1oqWET7E",
-    "appId": "1:1083195713896:web:9aed8296d8d642cb",
-    "authDomain": "hoverboard-dev.web.app",
-    "databaseURL": "https://hoverboard-dev.firebaseio.com",
-    "messagingSenderId": "1083195713896",
-    "projectId": "hoverboard-dev",
-    "storageBucket": "hoverboard-dev.appspot.com"
+    "apiKey": "AIzaSyAyRTnXOg03KvfYSKbcz1F_M3_gb3ESJpU",
+    "appId": "1:122659926458:web:42eb9ab8d2dedc7ee82d83",
+    "authDomain": "lkim-asadiyah.firebaseapp.com",
+    "databaseURL": "https://lkim-asadiyah.firebaseio.com",
+    "messagingSenderId": "122659926458",
+    "projectId": "lkim-asadiyah",
+    "storageBucket": "lkim-asadiyah.appspot.com"
   },
-  "googleMapApiKey": "AIzaSyAKOkGjmfBPTuYlDyPxlrSj7H-1oqWET7E"
+  "googleMapApiKey": "AIzaSyAyRTnXOg03KvfYSKbcz1F_M3_gb3ESJpU"
 }
