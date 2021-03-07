@@ -74,8 +74,8 @@ if (location.hostname === 'localhost') {
   setLegacyWarnings(true);
 }
 
-@customElement('hoverboard-app')
-export class HoverboardApp extends ReduxMixin(PolymerElement) {
+@customElement('lkim-app')
+export class LkimApp extends ReduxMixin(PolymerElement) {
   static get template() {
     return html`
       <style include="shared-styles flex flex-reverse flex-alignment positioning">
@@ -387,7 +387,7 @@ export class HoverboardApp extends ReduxMixin(PolymerElement) {
 
   constructor() {
     super();
-    window.performance && performance.mark && performance.mark('hoverboard-app.created');
+    window.performance && performance.mark && performance.mark('lkim-app.created');
     this._toggleHeaderShadow = this._toggleHeaderShadow.bind(this);
     this._toggleDrawer = this._toggleDrawer.bind(this);
 
@@ -419,7 +419,7 @@ export class HoverboardApp extends ReduxMixin(PolymerElement) {
 
   ready() {
     super.ready();
-    log('Hoverboard is ready!');
+    log('LKIM Web App is ready!');
     this.removeAttribute('unresolved');
     updateUser();
     initializeMessaging().then(() => store.dispatch(getToken()));

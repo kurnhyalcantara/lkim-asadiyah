@@ -20,7 +20,7 @@
     "install:functions": "npm --prefix ./functions ci",
     "postinstall": "npm run install:functions && npm run install:emulator",
     "serve": "npm run build && firebase serve",
-    "start": "npm run clean && NODE_ENV=development npm run watch",
+    "start": "NODE_ENV=development npm run watch",
     "start:emulators": "firebase emulators:start",
     "test": "jest",
     "watch": "concurrently --kill-others npm:watch:*",
