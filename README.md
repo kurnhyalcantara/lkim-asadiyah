@@ -1,20 +1,18 @@
 <p align="center">
-<img width="800px" src="https://user-images.githubusercontent.com/2954281/42683571-55ba6be6-8696-11e8-8ff7-e9acd0db63e8.png">
+<!-- <img width="800px" src="https://raw.githubusercontent.com/kurnhyalcantara/hmiasadiyah/develop-v3/.github/preview/preview-hmi-asadiyah.png"> -->
 </p>
 <p align="center">
-<a href="https://hoverboard-master.web.app" align="center">:zap: Live demo</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="https://lkim-asadiyah.web.app" align="center">:zap: Live demo</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 <a href="#getting-started">:rocket: Get Started</a>
 </p>
 
-[![Build Status](https://github.com/gdg-x/hoverboard/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/gdg-x/hoverboard/actions) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgdg-x%2Fhoverboard.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fgdg-x%2Fhoverboard?ref=badge_shield)[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7973ac656dc94e42858ce640bb02de58)](https://www.codacy.com/app/pamuditha/hoverboard?utm_source=github.com&utm_medium=referral&utm_content=pamuditha/hoverboard&utm_campaign=Badge_Grade)
+[![Build Status](https://github.com/kurnhyalcantara/lkim-asadiyah/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/gdg-x/hoverboard/actions) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgdg-x%2Fhoverboard.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fgdg-x%2Fhoverboard?ref=badge_shield)[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7973ac656dc94e42858ce640bb02de58)](https://www.codacy.com/app/pamuditha/hoverboard?utm_source=github.com&utm_medium=referral&utm_content=pamuditha/hoverboard&utm_campaign=Badge_Grade)
 
 ## Overview
 
-Project Hoverboard is the conference website template that helps you to set up a mobile-first conference website with blog, speaker and schedule management in a few minutes.
+Project LKIM As'adiyah Web App is the organization website for portofolio and user managements. The template is created based on [HMI Asadiyah Web App](https://github.com/kurnhyalcantara/hmiasadiyah) team experience 
 
-The template is created based on 7 years of [GDG Lviv](https://www.meetup.com/GDG-Lviv/) team experience of running conferences and feedback from more than 500 event organizers from all around the world who were using previous Hoverboard versions.
-
-Our goal is to allow event organizers to set up a professional conference website with minimum resources. To get started you need only basic knowledge of web technologies and a free Firebase account.
+Our goal is to allow organizers to set up a professional website with minimum resources. To get started you need only basic knowledge of web technologies and a free Firebase account.
 
 ## Features
 
@@ -39,7 +37,7 @@ Our goal is to allow event organizers to set up a professional conference websit
 Here is a git workflow for updating your fork (or downloaded copy) to the latest version:
 
 ```console
-git remote add upstream https://github.com/gdg-x/hoverboard.git
+git remote add upstream https://github.com/kurnhyalcantara/lkim-asadiyah.git
 git fetch upstream
 git merge upstream/main
 # resolve the merge conflicts in your editor
@@ -70,11 +68,11 @@ Awesome! Contributions of all kinds are greatly appreciated. To help smoothen th
 
 ### Good First Issue
 
-Issues labeled [`good first issue`](https://github.com/gdg-x/hoverboard/labels/good%20first%20issue) are a great way to ease into development on this project.
+Issues labeled [`good first issue`](https://github.com/kurnhyalcantara/lkim-asadiyah/labels/good%20first%20issue) are a great way to ease into development on this project.
 
 ### Help Wanted Label
 
-Any other issue labeled [`help wanted`](https://github.com/gdg-x/hoverboard/labels/help%20wanted) is ready for a PR.
+Any other issue labeled [`help wanted`](https://github.com/kurnhyalcantara/lkim-asadiyah/labels/help%20wanted) is ready for a PR.
 
 ### Using GitHub Issues
 
@@ -96,17 +94,11 @@ Read the full version [Code of Conduct](/.github/CODE_OF_CONDUCT.md).
 
 ## Contributors
 
-**Maintainer:** [Abraham Williams](https://github.com/abraham)
-**Authors:** [Oleh Zasadnyy](https://github.com/ozasadnyy) and [Sophie Huts](https://github.com/sophieH29).
-
-This project exists thanks to all the [people who contribute](https://github.com/gdg-x/hoverboard/graphs/contributors). [[Contribute](/.github/CONTRIBUTING.md)].
-
-<a href="https://github.com/gdg-x/hoverboard/graphs/contributors"><img src="https://opencollective.com/hoverboard/contributors.svg?width=890" /></a>
+**Authors:** [Kurniawan](https://instagram.com/kurnhyalcantara24) (Koord. Divisi Media LKIM)
 
 ## Sponsoring
 
 Most of the core team members, hoverboard contributors and contributors in the ecosystem do this open-source work in their free time. If you like this project and it makes your life easier, please donate.
-<a href="https://opencollective.com/hoverboard#backers" target="_blank"><img src="https://opencollective.com/hoverboard/backers.svg?width=890"></a>
 
 ## License
 
@@ -115,4 +107,3 @@ Most of the core team members, hoverboard contributors and contributors in the e
 The project is published under the [MIT license](/LICENSE.md).
 Feel free to clone and modify repo as you want, but don't forget to add a reference to authors :)
 
-_GDG[x] is not endorsed and/or supported by Google, the corporation._
