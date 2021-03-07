@@ -282,7 +282,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
   }
 
   _scrollToTickets() {
-    const Elements = (window as TempAny).HOVERBOARD.Elements;
+    const Elements = (window as TempAny).LKIMAPP.Elements;
     const toolbarHeight = Elements.HeaderToolbar.getBoundingClientRect().height - 1;
     const ticketsBlockPositionY = Elements.Tickets.getBoundingClientRect().top - toolbarHeight;
     scrollToY(ticketsBlockPositionY, 600, 'easeInOutSine');
