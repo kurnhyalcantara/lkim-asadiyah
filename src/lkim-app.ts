@@ -96,20 +96,66 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
           border-bottom: 1px solid var(--divider-color);
         }
 
-        app-drawer .dates {
-          margin-top: 42px;
-          font-size: 22px;
-          line-height: 0.95;
+        app-drawer a {
+          padding: 8px 24px;
         }
 
-        app-drawer .location {
+        app-toolbar {
+          height: auto;
+        }
+
+        app-drawer .version {
+          margin-top: 42px;
+          font-size: 16px;
+        }
+
+        app-drawer .title {
+          color: var(--default-primary-color);
+          font-weight: 900;
+          font-size: 18px;
+          margin-bottom: 12px;
+        }
+
+        app-drawer .design {
           margin-top: 4px;
-          font-size: 15px;
+          font-size: 12px;
           color: var(--secondary-text-color);
+        }
+
+        .design .by {
+          color: var(--default-primary-color);
+        }
+
+        .drawer-account {
+          margin-top: 12px
+          heigth: 24px;
+        }
+
+        .drawer-account a {
+          width: 50%;
+        }
+
+        .drawer-signup, .drawer-login {
+          text-align: center;
+          color: var(--text-primary-color);
+        }
+
+        .drawer-signup {
+          background-color: var(--focused-color);
+        }
+
+        .drawer-login {
+          background-color: var(--default-primary-color);
+        }
+
+        .drawer-content iron-icon {
+          --iron-icon-width: 24px;
+          margin-right: 24px;
         }
 
         .drawer-list {
           padding: 16px 0;
+          margin:0
           display: block;
         }
 
@@ -119,20 +165,13 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
           outline: 0;
         }
 
-        app-drawer a {
-          padding: 8px 24px;
-        }
-
         .drawer-list a.selected {
-          font-weight: 500;
-        }
-
-        app-toolbar {
-          height: auto;
-        }
-
-        .toolbar-logo {
-          --iron-image-height: 32px;
+          color: var(--default-primary-color);
+          background-color: var(--primary-color-transparent);
+          --iron-icon-fill-color: var(--default-primary-color);
+          border-top-right-radius: 50px;
+          border-bottom-right-radius: 50px;
+          margin-right: 8px;
         }
 
         app-header-layout {
@@ -149,14 +188,13 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
           height: 100%;
         }
 
-        .drawer-content iron-icon {
-          --iron-icon-width: 14px;
-          margin-left: 6px;
-        }
-
         .bottom-drawer-link {
           padding: 16px 24px;
+          font-size: 14px;
           cursor: pointer;
+          display: block;
+          background-color: var(--default-primary-color);
+          color: var(--text-primary-color);
         }
 
         @media (min-width: 640px) {
@@ -191,15 +229,14 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
       <app-drawer-layout drawer-width="300px" force-narrow fullbleed>
         <app-drawer id="drawer" slot="drawer" opened="{{drawerOpened}}" swipe-open>
           <app-toolbar layout vertical start>
-            <plastic-image
-              class="toolbar-logo"
-              srcset="/images/logo-monochrome.svg"
-              alt="{$ title $}"
-            ></plastic-image>
-            <h2 class="dates">{$ dates $}</h2>
-            <h3 class="location">{$ location.short $}</h3>
+            <h2 class="title">{$ title $}</h2>
+            <h2 class="version">{$ version $}</h2>
+            <h3 class="design">{$ design $}<span class="by" on-tap="_openInstaDesigner">{$ by $}</span></h3>
           </app-toolbar>
-
+          <div class="drawer-account" layout horizontal>
+            <a class="drawer-signup" on-click="openSignUpDialog">{$ signUp $}</a>
+            <a class="drawer-login" on-click="openLoginDialog">{$ logIn $}</a>
+          </div>
           <div class="drawer-content" layout vertical justified flex>
             <iron-selector
               class="drawer-list"
@@ -209,36 +246,17 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
               role="navigation"
             >
               {% for nav in navigation %}
-              <a href="{$ nav.permalink $}" path="{$ nav.route $}" on-click="closeDrawer"
-                >{$ nav.label $}</a
-              >
+              <a href="{$ nav.permalink $}" path="{$ nav.route $}" on-click="closeDrawer">
+                <iron-icon icon="icons:{$ nav.icon $}"></iron-icon>
+                <span>{$ nav.label $}</span>
+              </a>
               {% endfor %}
             </iron-selector>
 
             <div>
-              <a
-                class="bottom-drawer-link"
-                on-click="_onaddToHomeScreen"
-                hidden$="[[_isaddToHomeScreenHidden(addToHomeScreen, viewport.isLaptopPlus)]]"
-              >
-                {$ addToHomeScreen.cta $}
-              </a>
-
-              <a
-                class="bottom-drawer-link"
-                href$="[[ticketUrl]]"
-                target="_blank"
-                rel="noopener noreferrer"
-                on-click="closeDrawer"
-                ga-on="click"
-                ga-event-category="ticket button"
-                ga-event-action="buy_click"
-                layout
-                horizontal
-                center
-              >
-                <span>{$ buyTicket $}</span>
-                <iron-icon icon="hoverboard:open-in-new"></iron-icon>
+              <a class="bottom-drawer-link" on-click="_onaddToHomeScreen">
+                <iron-icon icon="icons:add-box"></iron-icon>
+                <span>{$ addToHomeScreen.cta $}</span>
               </a>
             </div>
           </div>
@@ -476,6 +494,10 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
     } else {
       return '';
     }
+  }
+
+  _openInstaDesigner() {
+    window.open('https://www.instagram.com/kurnhyalcantara24', '_blank');
   }
 
   _isaddToHomeScreenHidden(addToHomeScreen, isTabletPlus) {

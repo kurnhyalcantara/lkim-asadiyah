@@ -4,7 +4,11 @@
   "image": "images/social-share.jpg",
   "keywords": "iai, asadiyah, iaia, lkim, ukm, mahasiswa, sengkang, wajo, kajian, ilmiah, tulisan, artikel, puisi, pemikiran, peradaban",
   "loading": "Sedang memuat LKIM IAI Asadiyah Web App",
-  "dates": "October 12-13, 2018",
+  "version": "Versi 0.1.0 beta",
+  "design": "Design by ",
+  "by": "@kurnhyalcantara24",
+  "logIn": "Login",
+  "signUp": "Daftar",
   "partnershipProposition": "https://bit.ly/dfua17-partners",
   "share": "Share",
   "followOur": "Follow our",
@@ -13,7 +17,6 @@
   "partnershipResources": "Partnership Resources",
   "eventResources": "Event Resources",
   "buyTicket": "Buy ticket",
-  "signIn": "Sign in",
   "signOut": "Sign out",
   "viewHighlights": "View Highlights",
   "offlineMessage": "You can still work offline.",
@@ -331,6 +334,6 @@
     "clear": "Clear all"
   },
   "addToHomeScreen": {
-    "cta": "Add to Home Screen"
+    "cta": "Install LKIM IAI Asadiyah"
   }
 }

@@ -21,27 +21,32 @@
     {
       "route": "home",
       "permalink": "/",
-      "label": "Home"
+      "label": "Home",
+      "icon": "home"
     },
     {
       "route": "speakers",
       "permalink": "/speakers/",
-      "label": "Speakers"
+      "label": "Profil",
+      "icon": "work"
     },
     {
       "route": "schedule",
       "permalink": "/schedule/",
-      "label": "Schedule"
+      "label": "Berita",
+      "icon": "chrome-reader-mode"
     },
     {
       "route": "team",
       "permalink": "/team/",
-      "label": "Team"
+      "label": "Opini",
+      "icon": "book"
     },
     {
       "route": "blog",
       "permalink": "/blog/",
-      "label": "Blog"
+      "label": "Agenda",
+      "icon": "date-range"
     }
   ],
   "heroSettings": {

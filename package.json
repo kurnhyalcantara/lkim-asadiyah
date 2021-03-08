@@ -7,7 +7,7 @@
     "node": "12"
   },
   "scripts": {
-    "build": "npm run clean && tsc && NODE_ENV=production rollup --config rollup.config.js",
+    "build": "npm run clean && tsc && cross-env NODE_ENV=production rollup --config rollup.config.js",
     "clean": "rimraf dist out-tsc",
     "deploy": "npm run build && NODE_ENV=production firebase deploy",
     "firestore:copy": "ts-node-script ./scripts/firestore-copy",
@@ -20,7 +20,7 @@
     "install:functions": "npm --prefix ./functions ci",
     "postinstall": "npm run install:functions && npm run install:emulator",
     "serve": "npm run build && firebase serve",
-    "start": "NODE_ENV=development npm run watch",
+    "start": "cross-env NODE_ENV=development npm run watch",
     "start:emulators": "firebase emulators:start",
     "test": "jest",
     "watch": "concurrently --kill-others npm:watch:*",
@@ -79,6 +79,7 @@
     "@typescript-eslint/parser": "^4.15.2",
     "concurrently": "^6.0.0",
     "core-js": "^3.9.0",
+    "cross-env": "^7.0.3",
     "deepmerge": "^4.2.2",
     "es-dev-server": "^2.1.0",
     "eslint": "^7.20.0",
