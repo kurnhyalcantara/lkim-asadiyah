@@ -1,0 +1,83 @@
+import { css, customElement, html } from 'lit-element';
+import { ThemedElement } from './themed-element';
+
+@customElement('about-block')
+export class AboutBlock extends ThemedElement {
+  static get styles() {
+    return [
+      ...super.styles,
+      css`
+        .container {
+          padding-top: 64px;
+        }
+
+        .content {
+          display: grid;
+          grid-gap: 32px;
+          grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 640px) {
+          .content {
+            grid-gap: 64px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+          }
+
+        }
+      `,
+    ];
+  }
+
+  render() {
+    return html`
+      <div class="container">
+        <div class="content">
+          <div>
+            <h1 class="container-title">{$ aboutBlock.title $}</h1>
+            <p>{$ aboutBlock.callToAction.profilOrganisasi.brief $}</p>
+            <a
+              href="{$ aboutBlock.callToAction.profilOrganisasi.link $}"
+              ga-on="click"
+              ga-event-category="link"
+              ga-event-action="profile"
+              ga-event-label="about block - {$ aboutBlock.callToAction.profilOrganisasi.label $}"
+              rel="noopener noreferrer"
+            >
+              <paper-button class="animated icon-right">
+                <span class="cta-label">{$ aboutBlock.callToAction.profilOrganisasi.label $}</span>
+                <iron-icon icon="lkim:arrow-right-circle"></iron-icon>
+              </paper-button>
+            </a>
+            <p>{$ aboutBlock.callToAction.agendaKegiatan.description $}</p>
+            <a
+              href="{$ aboutBlock.callToActions.agendaKegiatan.link $}"
+              ga-on="click"
+              ga-event-category="link"
+              ga-event-action="schedule"
+              ga-event-label="about block - {$ aboutBlock.callToAction.agendaKegiatan.label $}"
+            >
+              <paper-button class="animated icon-right">
+                <span>{$ aboutBlock.callToAction.agendaKegiatan.label $}</span>
+                <iron-icon icon="lkim:arrow-right-circle"></iron-icon>
+              </paper-button>
+            </a>
+          </div>
+          <div layout vertical center-center>
+            <plastic-image
+              srcset="{$ aboutBlock.logo.image $}"
+              lazy-load
+              preload
+              fade
+            ></plastic-image>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'about-block': AboutBlock;
+  }
+}
