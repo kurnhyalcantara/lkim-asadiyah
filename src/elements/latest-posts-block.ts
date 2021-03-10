@@ -28,20 +28,31 @@ export class LatestPostsBlock extends ReduxMixin(PolymerElement) {
           grid-gap: 16px;
         }
 
+        .post {
+          padding: 24px 0;
+          display: block;
+          color: var(--primary-text-color);
+        }
+
+        .post:not(:last-of-type) {
+          border-bottom: 1px solid var(--default-primary-color);
+        }
+
         .image {
-          width: 100%;
-          height: 128px;
-          border-top-left-radius: var(--border-radius);
-          border-top-right-radius: var(--border-radius);
+          margin-right: 24px;
+          width: 64px;
+          height: 64px;
+          border-radius: var(--border-radius);
         }
 
         .details {
-          padding: 16px;
+          height: 100%;
         }
 
         .title {
           font-size: 20px;
           line-height: 1.2;
+          color: var(--default-primary-color);
         }
 
         .description {
@@ -68,6 +79,11 @@ export class LatestPostsBlock extends ReduxMixin(PolymerElement) {
           .post:last-of-type {
             display: none;
           }
+
+          .image {
+            width: 128px;
+            height: 128px;
+          }
         }
 
         @media (min-width: 812px) {
@@ -88,14 +104,13 @@ export class LatestPostsBlock extends ReduxMixin(PolymerElement) {
           <template is="dom-repeat" items="[[latestPosts]]" as="post">
             <a
               href$="/blog/posts/[[post.id]]/"
-              class="post card"
+              class="post"
               ga-on="click"
               ga-event-category="blog"
               ga-event-action="open post"
               ga-event-label$="[[post.title]]"
-              flex
               layout
-              vertical
+              horizontal
             >
               <plastic-image
                 class="image"
@@ -106,18 +121,20 @@ export class LatestPostsBlock extends ReduxMixin(PolymerElement) {
                 preload
                 fade
               ></plastic-image>
-              <div class="details" layout vertical justified flex-auto>
-                <div>
-                  <text-truncate lines="2">
-                    <h3 class="title">[[post.title]]</h3>
-                  </text-truncate>
-                  <text-truncate lines="3">
-                    <marked-element class="description" markdown="[[post.brief]]">
-                      <div slot="markdown-html"></div>
-                    </marked-element>
-                  </text-truncate>
+              <div flex>
+                <div class="details" layout vertical justified>
+                  <div>
+                    <text-truncate lines="2">
+                      <h3 class="title">[[post.title]]</h3>
+                    </text-truncate>
+                    <text-truncate lines="3">
+                      <marked-element class="description" markdown="[[post.brief]]">
+                        <div slot="markdown-html"></div>
+                      </marked-element>
+                    </text-truncate>
+                  </div>
+                  <div class="date">[[getDate(post.published)]]</div>
                 </div>
-                <div class="date">[[getDate(post.published)]]</div>
               </div>
             </a>
           </template>

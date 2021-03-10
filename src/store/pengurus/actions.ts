@@ -24,7 +24,6 @@ export const fetchPengurusList = () => async (dispatch: Dispatch<PengurusActions
       type: FETCH_PENGURUS_SUCCESS,
       payload: await getPengurus(),
     });
-    console.log(getPengurus())
   } catch (error) {
     dispatch({
       type: FETCH_PENGURUS_FAILURE,
