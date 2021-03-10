@@ -7,14 +7,14 @@ import { html, PolymerElement } from '@polymer/polymer';
 import 'plastic-image';
 import { ReduxMixin } from '../mixins/redux-mixin';
 import { RootState, store } from '../store';
-import { fetchBlogList } from '../store/blog/actions';
-import { BlogState, initialBlogState } from '../store/blog/state';
+import { fetchNewsList } from '../store/news/actions';
+import { ArticleState, initialArticleState } from '../store/articles/state';
 import { getDate } from '../utils/functions';
 import './shared-styles';
 import './text-truncate';
 
-@customElement('latest-posts-block')
-export class LatestPostsBlock extends ReduxMixin(PolymerElement) {
+@customElement('article-latest-block')
+export class ArticleLatestBlock extends ReduxMixin(PolymerElement) {
   static get template() {
     return html`
       <style include="shared-styles flex flex-alignment">
@@ -22,31 +22,25 @@ export class LatestPostsBlock extends ReduxMixin(PolymerElement) {
           display: block;
         }
 
-        .posts-wrapper {
+        .container {
+          padding: 24px 24px;
+        }
+
+        .articles-wrapper {
           display: grid;
           grid-template-columns: 1fr;
           grid-gap: 16px;
         }
 
-        .post {
-          padding: 24px 0;
-          display: block;
-          color: var(--primary-text-color);
-        }
-
-        .post:not(:last-of-type) {
-          border-bottom: 1px solid var(--default-primary-color);
-        }
-
         .image {
-          margin-right: 24px;
-          width: 64px;
-          height: 64px;
-          border-radius: var(--border-radius);
+          width: 100%;
+          height: 128px;
+          border-top-left-radius: var(--border-radius);
+          border-top-right-radius: var(--border-radius);
         }
 
         .details {
-          height: 100%;
+          padding: 16px;
         }
 
         .title {
@@ -72,77 +66,69 @@ export class LatestPostsBlock extends ReduxMixin(PolymerElement) {
         }
 
         @media (min-width: 640px) {
-          .posts-wrapper {
+          .articles-wrapper {
             grid-template-columns: repeat(3, 1fr);
           }
 
-          .post:last-of-type {
+          .article:last-of-type {
             display: none;
-          }
-
-          .image {
-            width: 128px;
-            height: 128px;
           }
         }
 
         @media (min-width: 812px) {
-          .posts-wrapper {
+          .articles-wrapper {
             grid-template-columns: repeat(4, 1fr);
           }
 
-          .post:last-of-type {
+          .article:last-of-type {
             display: flex;
           }
         }
       </style>
 
       <div class="container">
-        <h1 class="container-title">{$ latestPostsBlock.title $}</h1>
-
-        <div class="posts-wrapper">
-          <template is="dom-repeat" items="[[latestPosts]]" as="post">
+        <h1 class="container-title">{$ articleLatestBlock.title $}</h1>
+        <div class="articles-wrapper">
+          <template is="dom-repeat" items="[[articlePosts]]" as="article">
             <a
-              href$="/blog/posts/[[post.id]]/"
-              class="post"
+              href$="/articles/post/[[article.id]]/"
+              class="article card"
               ga-on="click"
-              ga-event-category="blog"
-              ga-event-action="open post"
-              ga-event-label$="[[post.title]]"
+              ga-event-category="article"
+              ga-event-action="open article"
+              ga-event-label$="[[article.title]]"
               layout
-              horizontal
+              vertical
             >
               <plastic-image
                 class="image"
-                srcset="[[post.image]]"
-                style$="background-color: [[post.backgroundColor]];"
+                srcset="[[article.image]]"
+                style$="background-color: [[article.backgroundColor]];"
                 sizing="cover"
                 lazy-load
                 preload
                 fade
               ></plastic-image>
-              <div flex>
-                <div class="details" layout vertical justified>
-                  <div>
-                    <text-truncate lines="2">
-                      <h3 class="title">[[post.title]]</h3>
-                    </text-truncate>
-                    <text-truncate lines="3">
-                      <marked-element class="description" markdown="[[post.brief]]">
-                        <div slot="markdown-html"></div>
-                      </marked-element>
-                    </text-truncate>
-                  </div>
-                  <div class="date">[[getDate(post.published)]]</div>
+              <div class="details" layout vertical justified flex-auto>
+                <div>
+                  <text-truncate lines="2">
+                    <h3 class="title">[[article.title]]</h3>
+                  </text-truncate>
+                  <text-truncate lines="3">
+                    <marked-element class="description" markdown="[[article.brief]]">
+                      <div slot="markdown-html"></div>
+                    </marked-element>
+                  </text-truncate>
                 </div>
+                <div class="date">[[getDate(article.published)]]</div>
               </div>
             </a>
           </template>
         </div>
 
-        <a href="{$ latestPostsBlock.callToAction.link $}">
+        <a href="{$ articleLatestBlock.callToAction.link $}">
           <paper-button class="cta-button animated icon-right">
-            <span>{$ latestPostsBlock.callToAction.label $}</span>
+            <span>{$ articleLatestBlock.callToAction.label $}</span>
             <iron-icon icon="lkim:arrow-right-circle"></iron-icon>
           </paper-button>
         </a>
@@ -151,23 +137,23 @@ export class LatestPostsBlock extends ReduxMixin(PolymerElement) {
   }
 
   @property({ type: Object })
-  posts: BlogState = initialBlogState;
+  articles: ArticleState = initialArticleState;
 
   stateChanged(state: RootState) {
-    this.posts = state.blog;
+    this.articles = state.blog;
   }
 
   connectedCallback() {
     super.connectedCallback();
-    if (this.posts instanceof Initialized) {
-      store.dispatch(fetchBlogList());
+    if (this.articles instanceof Initialized) {
+      store.dispatch(fetchNewsList());
     }
   }
 
-  @computed('posts')
-  get latestPosts() {
-    if (this.posts instanceof Success) {
-      return this.posts.data.slice(0, 4);
+  @computed('articles')
+  get articlePosts() {
+    if (this.articles instanceof Success) {
+      return this.articles.data.slice(0, 4);
     } else {
       return [];
     }

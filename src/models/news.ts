@@ -1,6 +1,6 @@
 import { Id } from './types';
 
-export interface PostData {
+export interface NewsData {
   backgroundColor: string;
   brief: string;
   content: string;
@@ -10,4 +10,4 @@ export interface PostData {
   title: string;
 }
 
-export type Post = PostData & Id;
+export type News = NewsData & Id;

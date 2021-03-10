@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { blogReducer } from './blog/reducers';
+import { blogReducer } from './news/reducers';
 import { dialogsReducer } from './dialogs/reducers';
 import { featuredSessionsReducer } from './featured-sessions/reducers';
 import { feedbackReducer } from './feedback/reducers';

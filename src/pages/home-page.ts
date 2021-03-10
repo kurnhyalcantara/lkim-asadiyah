@@ -2,16 +2,12 @@ import { customElement, property } from '@polymer/decorators';
 import '@polymer/iron-icon';
 import { html, PolymerElement } from '@polymer/polymer';
 import '../components/about-block';
-import '../elements/about-organizer-block';
 import '../elements/featured-videos';
-import '../elements/fork-me-block';
 import '../elements/gallery-block';
-import '../elements/latest-posts-block';
-import '../elements/map-block';
-import '../elements/partners-block';
+import '../elements/news-posts-block';
+import '../elements/article-latest-block';
 import '../elements/pengurus-block';
 import '../elements/subscribe-block';
-import '../elements/tickets-block';
 import { ReduxMixin } from '../mixins/redux-mixin';
 import { RootState } from '../store';
 import { toggleVideoDialog } from '../store/ui/actions';
@@ -242,7 +238,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
       <about-block></about-block>
       <pengurus-block></pengurus-block>
       <gallery-block></gallery-block>
-      <latest-posts-block></latest-posts-block>
+      <news-posts-block></news-posts-block>
       <article-latest-block></article-latest-block>
       <featured-videos></featured-videos>
       <subscribe-block></subscribe-block>

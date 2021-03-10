@@ -9,10 +9,10 @@ import '../elements/posts-list';
 import '../elements/shared-styles';
 import '../elements/text-truncate';
 import { ReduxMixin } from '../mixins/redux-mixin';
-import { Post } from '../models/post';
+import { News } from '../models/news';
 import { RootState, store } from '../store';
-import { fetchBlogList } from '../store/blog/actions';
-import { BlogState, initialBlogState } from '../store/blog/state';
+import { fetchNewsList } from '../store/news/actions';
+import { NewsState, initialNewsState } from '../store/news/state';
 import { Viewport } from '../store/ui/types';
 import { getDate } from '../utils/functions';
 
@@ -181,7 +181,7 @@ export class BlogListPage extends ReduxMixin(PolymerElement) {
   @property({ type: Boolean })
   active = false;
   @property({ type: Object })
-  posts: BlogState = initialBlogState;
+  posts: NewsState = initialNewsState;
 
   @property({ type: Object })
   private viewport: Viewport;
@@ -204,12 +204,12 @@ export class BlogListPage extends ReduxMixin(PolymerElement) {
   connectedCallback() {
     super.connectedCallback();
     if (this.posts instanceof Initialized) {
-      store.dispatch(fetchBlogList());
+      store.dispatch(fetchNewsList());
     }
   }
 
   @computed('posts')
-  get featuredPosts(): Post[] {
+  get featuredPosts(): News[] {
     if (this.posts instanceof Success) {
       return this.posts.data.slice(0, 3);
     } else {
@@ -218,7 +218,7 @@ export class BlogListPage extends ReduxMixin(PolymerElement) {
   }
 
   @computed('posts')
-  get remainingPosts(): Post[] {
+  get remainingPosts(): News[] {
     if (this.posts instanceof Success) {
       return this.posts.data.slice(3);
     } else {

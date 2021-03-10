@@ -9,10 +9,10 @@ import 'plastic-image';
 import '../elements/posts-list';
 import '../elements/shared-styles';
 import { ReduxMixin } from '../mixins/redux-mixin';
-import { Post } from '../models/post';
+import { News } from '../models/news';
 import { RootState, store } from '../store';
-import { fetchBlogList } from '../store/blog/actions';
-import { BlogState, initialBlogState } from '../store/blog/state';
+import { fetchNewsList } from '../store/news/actions';
+import { NewsState, initialNewsState } from '../store/news/state';
 import { getDate } from '../utils/functions';
 
 @customElement('post-page')
@@ -22,12 +22,12 @@ export class PostPage extends ReduxMixin(PolymerElement) {
   @property({ type: Object })
   route: object;
   @property({ type: Object })
-  posts: BlogState = initialBlogState;
+  posts: NewsState = initialNewsState;
 
   @property({ type: Object })
-  private post: Post;
+  private post: News;
   @property({ type: Array })
-  private suggestedPosts: Post[] = [];
+  private suggestedPosts: News[] = [];
   @property({ type: String })
   private postContent: string;
   @property({ type: Object })
@@ -147,7 +147,7 @@ export class PostPage extends ReduxMixin(PolymerElement) {
   connectedCallback() {
     super.connectedCallback();
     if (this.posts instanceof Initialized) {
-      store.dispatch(fetchBlogList());
+      store.dispatch(fetchNewsList());
     }
   }
 
@@ -158,7 +158,7 @@ export class PostPage extends ReduxMixin(PolymerElement) {
   }
 
   @observe('postData.id', 'posts')
-  _postDataObserver(postId: string, posts: BlogState) {
+  _postDataObserver(postId: string, posts: NewsState) {
     if (posts instanceof Success) {
       const post = posts.data.find(({ id }) => id === postId);
       this.post = post;
