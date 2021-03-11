@@ -17,7 +17,8 @@ export class FooterSocial extends PolymerElement {
       .title {
         display: inline-block;
         text-transform: uppercase;
-        font-weight: 500;
+        font-weight: 600;
+        font-size
         margin: 0;
         color: var(--footer-text-color);
       }
@@ -57,6 +58,10 @@ export class FooterSocial extends PolymerElement {
 
       .share-facebook {
         color: var(--facebook-color);
+      }
+
+      .share-whatsapp {
+        color: var(--whatsapp-color);
       }
 
       a {
@@ -168,17 +173,18 @@ export class FooterSocial extends PolymerElement {
             ga-event-label="twitter">
           </paper-icon-button>
         </div>
-      </div>
-    </div>
-
-    <div class="social-group blog">
-      <div class="title">
-        {$ followOur $}
-        <a
-          href="{$ organizer.blog $}"
-          {% if organizer.blog.startsWith('http') %} target="_blank" rel="noopener noreferrer" {% endif %}>
-          {$ footer.blog $}
-        </a>
+        <div class="share">
+          <paper-icon-button
+            class="share-whatsapp"
+            icon="lkim:whatsapp"
+            share="whatsapp"
+            on-click="share"
+            ga-on="click"
+            ga-event-category="social"
+            ga-event-action="share"
+            ga-event-label="twitter">
+          </paper-icon-button>
+        </div>
       </div>
     </div>
 
@@ -204,8 +210,7 @@ export class FooterSocial extends PolymerElement {
 
     <div class="social-group email">
       <div class="title">
-        <a aria-label="{$ emailUs $}" href="mailto:{$ mailto $}">{$ emailUs $}</a>
-      </div>
+        <a aria-label="{$ emailUs $}" href="mailto:{$ mailto $}">{$ emailUs $}</a></div>
     </div>
 `;
   }

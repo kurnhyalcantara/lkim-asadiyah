@@ -43,6 +43,11 @@ export class FooterNav extends PolymerElement {
           text-decoration: underline;
         }
 
+        .footer-title {
+          color: var(--default-primary-color);
+          font-weight: 600;
+        }
+
         @media (min-width: 768px) {
           :host {
             margin: 15px 0;
@@ -64,24 +69,15 @@ export class FooterNav extends PolymerElement {
       </style>
 
       <div class="nav-inline" layout flex>
-        <a href="{$ organizer.url $}" target="_blank" rel="noopener noreferrer">
-          <plastic-image
-            class="footer-logo"
-            srcset="../../images/organizer-logo.svg"
-            sizing="contain"
-            alt="{$ organizer.name $}"
-            lazy-load
-          ></plastic-image>
-        </a>
-
         <div class="copyright">
-          Based on
-          <a href="https://github.com/gdg-x/hoverboard" target="_blank" rel="noopener noreferrer"
-            >Project Hoverboard</a
-          >
-          · <a class="coc" href="/coc">{$ codeOfConduct $}</a>
+          Copyright &copy; [[_getYear()]] by Kurniawan Alcantara
+          <div>Koord Divisi Media Dana dan Kerjasama LKIM IAI As'adiyah</div>
         </div>
       </div>
     `;
+  }
+
+  _getYear() {
+    return new Date().getFullYear();
   }
 }
