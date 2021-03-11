@@ -71,7 +71,7 @@ export class FooterNav extends PolymerElement {
       <div class="nav-inline" layout flex>
         <div class="copyright">
           Copyright &copy; [[_getYear()]] by Kurniawan Alcantara
-          <div>Koord Divisi Media Dana dan Kerjasama LKIM IAI As'adiyah</div>
+          <div>Koord Divisi Media Dana dan Kerjasama</div>
         </div>
       </div>
     `;

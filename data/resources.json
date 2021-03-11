@@ -51,14 +51,12 @@
     "title": "Apa itu LKIM?",
     "callToAction": {
       "profilOrganisasi": {
-        "brief": "Lembaga Kajian Ilmiah Mahasiswa (LKIM) IAI As'adiyah merupakah salah satu UKM (Unit Kegiatan Mahasiswa) yang berada di Institut Agama Islam As'adiyah Sengkang. UKM ini dibentuk sebagai wadah pengembangan nalar dan penelitian ilmiah mahasiswa sebagai insan akademis.",
-        "label": "Selengkapnya",
-        "link": "/profile"
+        "brief": "Lembaga Kajian Ilmiah Mahasiswa (LKIM) IAI As'adiyah merupakah salah satu UKM (Unit Kegiatan Mahasiswa) yang berada di Institut Agama Islam As'adiyah Sengkang. UKM ini dibentuk sebagai wadah pengembangan nalar dan penelitian ilmiah mahasiswa sebagai insan akademis."
       },
       "agendaKegiatan": {
         "description": "LKIM sebagaimana maksud dan tujuan dibentuknya menaungi beberapa kegiatan dalam ruang lingkup bidang ilmiah.",
         "label": "Daftar kegiatan",
-        "link": "/schedule"
+        "link": "/schedule/"
       }
     },
     "logo": {

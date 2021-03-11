@@ -35,22 +35,9 @@ export class AboutBlock extends ThemedElement {
           <div>
             <h1 class="container-title">{$ aboutBlock.title $}</h1>
             <p>{$ aboutBlock.callToAction.profilOrganisasi.brief $}</p>
-            <a
-              href="{$ aboutBlock.callToAction.profilOrganisasi.link $}"
-              ga-on="click"
-              ga-event-category="link"
-              ga-event-action="profile"
-              ga-event-label="about block - {$ aboutBlock.callToAction.profilOrganisasi.label $}"
-              rel="noopener noreferrer"
-            >
-              <paper-button class="animated icon-right">
-                <span class="cta-label">{$ aboutBlock.callToAction.profilOrganisasi.label $}</span>
-                <iron-icon icon="lkim:arrow-right-circle"></iron-icon>
-              </paper-button>
-            </a>
             <p>{$ aboutBlock.callToAction.agendaKegiatan.description $}</p>
             <a
-              href="{$ aboutBlock.callToActions.agendaKegiatan.link $}"
+              href="{$ aboutBlock.callToAction.agendaKegiatan.link $}"
               ga-on="click"
               ga-event-category="link"
               ga-event-action="schedule"
