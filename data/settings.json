@@ -36,10 +36,10 @@
       "icon": "chrome-reader-mode"
     },
     {
-      "route": "schedule",
-      "permalink": "/schedule/",
-      "label": "Berita",
-      "icon": "chrome-reader-mode"
+      "route": "article",
+      "permalink": "/article/",
+      "label": "Artikel",
+      "icon": "book"
     },
     {
       "route": "team",
@@ -70,6 +70,15 @@
       "title": "Berita",
       "metaDescription": "Berita agenda dan cerita terbaru LKIM IAI As'adiyah",
       "description": "Berita agenda dan cerita terbaru LKIM IAI As'adiyah",
+      "background": {
+        "color": "#FFF"
+      },
+      "fontColor": "#424242"
+    },
+    "article": {
+      "title": "Artikel",
+      "metaDescription": "Berbagai tulisan berupa artikel dan opini karya anggota dan pengurus LKIM IAI Asadiyah",
+      "description": "Berbagai tulisan berupa artikel dan opini karya anggota dan pengurus LKIM IAI Asadiyah",
       "background": {
         "color": "#FFF"
       },
@@ -195,6 +204,9 @@
       "itemsCount": 2
     },
     "news": {
+      "itemsCount": 3
+    },
+    "article": {
       "itemsCount": 3
     },
     "pengurus": {

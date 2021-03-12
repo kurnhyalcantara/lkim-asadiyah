@@ -176,6 +176,10 @@
     "published": "Dipublikasikan",
     "suggested": "Berita Lainnya"
   },
+  "article": {
+    "published": "Dipublikasikan",
+    "suggested": "Artikel Lainnya"
+  },
   "speakers": {
     "skills": "Skills",
     "previousYears": "Years",

@@ -42,13 +42,14 @@ import './elements/polymer-helmet';
 import './elements/shared-styles';
 import './elements/toast-element';
 import { ReduxMixin } from './mixins/redux-mixin';
+import './pages/home-page';
+import './pages/pengurus-page';
 import './pages/news-page';
+import './pages/article-page';
 import './pages/coc-page';
 import './pages/faq-page';
-import './pages/home-page';
 import './pages/previous-speakers-page';
 import './pages/schedule-page';
-import './pages/pengurus-page';
 import './pages/team-page';
 import { registerServiceWorker } from './service-worker-registration';
 import { RootState, store } from './store';
@@ -280,6 +281,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
             <home-page name="home"></home-page>
             <pengurus-page name="pengurus" route="[[subRoute]]"></pengurus-page>
             <news-page name="news" route="[[subRoute]]"></news-page>
+            <article-page name="article" route="[[subRoute]]"></article-page>
             <schedule-page name="schedule" route="[[subRoute]]"></schedule-page>
             <previous-speakers-page
               name="previous-speakers"
