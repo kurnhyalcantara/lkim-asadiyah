@@ -32,6 +32,7 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
 
         .container {
           display: grid;
+          padding: 24px 24px;'
           grid-template-columns: 1fr;
           grid-gap: 16px;
           min-height: 80%;
