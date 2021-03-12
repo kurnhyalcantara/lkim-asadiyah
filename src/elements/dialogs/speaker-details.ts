@@ -207,7 +207,7 @@ class SpeakerDetails extends SessionsHoC(
   }
 
   _dataUpdate() {
-    if (this.data?.name === DIALOGS.SPEAKER) {
+    if (this.data?.name === DIALOGS.PENGURUS) {
       this.speaker = this.data.data;
     }
   }

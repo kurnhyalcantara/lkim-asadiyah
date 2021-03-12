@@ -11,7 +11,7 @@ export interface DialogForm {
 }
 
 export enum DIALOGS {
-  SPEAKER = 'speaker',
+  PENGURUS = 'pengurus',
   PREVIOUS_SPEAKER = 'previousSpeaker',
   SESSION = 'session',
   FEEDBACK = 'feedback',

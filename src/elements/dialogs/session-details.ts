@@ -237,7 +237,7 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
     const speakerData = this.speakers.find((speaker) => speaker.id === speakerId);
 
     if (!speakerData) return;
-    openDialog(DIALOGS.SPEAKER, speakerData);
+    openDialog(DIALOGS.PENGURUS, speakerData);
   }
 
   _getCloseBtnIcon(isLaptopViewport: boolean) {

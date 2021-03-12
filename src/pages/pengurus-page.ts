@@ -21,8 +21,8 @@ import { PengurusState } from '../store/pengurus/state';
 import { isDialogOpen } from '../utils/dialogs';
 import { generateClassName, parseQueryParamsFilters } from '../utils/functions';
 
-@customElement('speakers-page')
-export class SpeakersPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
+@customElement('pengurus-page')
+export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
   static get template() {
     return html`
       <style include="shared-styles flex flex-alignment positioning">
@@ -113,7 +113,7 @@ export class SpeakersPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
           line-height: 1;
         }
 
-        .origin {
+        .jabatan {
           margin-top: 4px;
           font-size: 14px;
           line-height: 1.1;
@@ -163,33 +163,26 @@ export class SpeakersPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
       </style>
 
       <polymer-helmet
-        title="{$ heroSettings.speakers.title $} | {$ title $}"
-        description="{$ heroSettings.speakers.metaDescription $}"
+        title="{$ heroSettings.pengurus.title $} | {$ title $}"
+        description="{$ heroSettings.pengurus.metaDescription $}"
         active="[[_setHelmetData(active, isSpeakerDialogOpened, isSessionDialogOpened)]]"
       ></polymer-helmet>
 
       <iron-location query="{{queryParams}}"></iron-location>
 
-      <app-route route="[[route]]" pattern="/:speakerId" data="{{routeData}}"></app-route>
+      <app-route route="[[route]]" pattern="/:pengurusId" data="{{routeData}}"></app-route>
 
       <hero-block
-        background-image="{$ heroSettings.speakers.background.image $}"
-        background-color="{$ heroSettings.speakers.background.color $}"
-        font-color="{$ heroSettings.speakers.fontColor $}"
+        background-image="{$ heroSettings.pengurus.background.image $}"
+        background-color="{$ heroSettings.pengurus.background.color $}"
+        font-color="{$ heroSettings.pengurus.fontColor $}"
         active="[[active]]"
       >
-        <div class="hero-title">{$ heroSettings.speakers.title $}</div>
-        <p class="hero-description">{$ heroSettings.speakers.description $}</p>
+        <div class="hero-title">{$ heroSettings.pengurus.title $}</div>
+        <p class="hero-description">{$ heroSettings.pengurus.description $}</p>
       </hero-block>
 
       <paper-progress indeterminate hidden$="[[contentLoaderVisibility]]"></paper-progress>
-
-      <filter-menu
-        filters="[[_filters]]"
-        selected="[[_selectedFilters]]"
-        results-count="[[speakersToRender.length]]"
-      ></filter-menu>
-
       <content-loader
         class="container"
         card-padding="32px"
@@ -199,7 +192,7 @@ export class SpeakersPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
         horizontal-position="50%"
         border-radius="4px"
         box-shadow="var(--box-shadow)"
-        items-count="{$ contentLoaders.speakers.itemsCount $}"
+        items-count="{$ contentLoaders.pengurus.itemsCount $}"
         hidden$="[[contentLoaderVisibility]]"
       ></content-loader>
 
@@ -222,36 +215,11 @@ export class SpeakersPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
                 preload
                 fade
               ></plastic-image>
-              <div class="badges" layout horizontal>
-                <template is="dom-repeat" items="[[speaker.badges]]" as="badge">
-                  <a
-                    class$="badge [[badge.name]]-b"
-                    href$="[[badge.link]]"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title$="[[badge.description]]"
-                    layout
-                    horizontal
-                    center-center
-                  >
-                    <iron-icon class="badge-icon" icon="lkim:[[badge.name]]"></iron-icon>
-                  </a>
-                </template>
-              </div>
             </div>
-
-            <plastic-image
-              class="company-logo"
-              srcset="[[speaker.companyLogoUrl]]"
-              sizing="contain"
-              lazy-load
-              preload
-              fade
-            ></plastic-image>
 
             <div class="description">
               <h2 class="name">[[speaker.name]]</h2>
-              <div class="origin">[[speaker.country]]</div>
+              <div class="jabatan">[[speaker.jabatan]]</div>
 
               <text-truncate lines="5">
                 <div class="bio">[[speaker.bio]]</div>
@@ -272,8 +240,6 @@ export class SpeakersPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
         </template>
       </div>
 
-      <previous-speakers-block></previous-speakers-block>
-
       <footer-block></footer-block>
     `;
   }
@@ -292,43 +258,30 @@ export class SpeakersPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
   private isSessionDialogOpened = false;
   @property({ type: String })
   private contentLoaderVisibility;
-  @property({ type: Object })
-  private filters = {};
-  @property({ type: Object })
-  private _selectedFilters = {};
-  @property({ type: Array })
-  private _filters = [];
   @property({ type: Array })
   private speakersToRender = [];
 
   stateChanged(state: RootState) {
     super.stateChanged(state);
-    this.isSpeakerDialogOpened = isDialogOpen(state.dialogs, DIALOGS.SPEAKER);
+    this.isSpeakerDialogOpened = isDialogOpen(state.dialogs, DIALOGS.PENGURUS);
     this.isSessionDialogOpened = isDialogOpen(state.dialogs, DIALOGS.SESSION);
-    this.filters = state.filters;
   }
 
-  @observe('speakers', '_selectedFilters')
-  _speakersChanged(speakers: PengurusState, selectedFilters) {
-    if (speakers instanceof Success) {
+  @observe('pengurus')
+  _speakersChanged(pengurus: PengurusState) {
+    if (pengurus instanceof Success) {
       this.contentLoaderVisibility = 'hidden';
-      const filters = selectedFilters && selectedFilters.tag ? selectedFilters.tag : [];
-      const updatedSpeakers = this._filterItems(speakers.data, filters).map((speaker) =>
-        Object.assign({}, speaker, {
-          link: `/speakers/${speaker.id}${this.queryParams ? `?${this.queryParams}` : ''}`,
-        })
-      );
-      this.speakersToRender = updatedSpeakers;
+      this.speakersToRender = pengurus.data;
     }
   }
 
-  @observe('active', 'speakers', 'routeData.speakerId')
-  _openSpeakerDetails(active, speakers: PengurusState, id: string) {
-    if (speakers instanceof Success) {
+  @observe('active', 'pengurus', 'routeData.pengurusId')
+  _openSpeakerDetails(active, pengurus: PengurusState, id: string) {
+    if (pengurus instanceof Success) {
       requestAnimationFrame(() => {
         if (active && id) {
-          const speakerData = speakers.data.find((speaker) => speaker.id === id);
-          speakerData && openDialog(DIALOGS.SPEAKER, speakerData);
+          const pengurusData = pengurus.data.find((pengurus) => pengurus.id === id);
+          pengurusData && openDialog(DIALOGS.PENGURUS, pengurusData);
         } else {
           this.isSpeakerDialogOpened && closeDialog();
           this.isSessionDialogOpened && closeDialog();
@@ -339,31 +292,5 @@ export class SpeakersPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
 
   _setHelmetData(active, isSpeakerDialogOpened, isSessionDialogOpened) {
     return active && !isSpeakerDialogOpened && !isSessionDialogOpened;
-  }
-
-  @observe('filters')
-  _onFiltersLoad(filters) {
-    this._filters = [
-      {
-        title: '{$ filters.tags $}',
-        key: 'tag',
-        items: filters.tags,
-      },
-    ];
-  }
-
-  @observe('queryParams')
-  _paramsUpdated(queryParams) {
-    this._selectedFilters = parseQueryParamsFilters(queryParams);
-  }
-
-  _filterItems(speakers, selectedFilters) {
-    return speakers.filter((speaker) => {
-      if (!selectedFilters || !selectedFilters.length) return true;
-      return (
-        speaker.tags &&
-        !!speaker.tags.filter((tag) => selectedFilters.includes(generateClassName(tag))).length
-      );
-    });
   }
 }

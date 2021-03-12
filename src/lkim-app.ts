@@ -48,7 +48,7 @@ import './pages/faq-page';
 import './pages/home-page';
 import './pages/previous-speakers-page';
 import './pages/schedule-page';
-import './pages/speakers-page';
+import './pages/pengurus-page';
 import './pages/team-page';
 import { registerServiceWorker } from './service-worker-registration';
 import { RootState, store } from './store';
@@ -278,9 +278,9 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
             hide-immediately
           >
             <home-page name="home"></home-page>
+            <pengurus-page name="pengurus" route="[[subRoute]]"></pengurus-page>
             <blog-page name="blog" route="[[subRoute]]"></blog-page>
             <schedule-page name="schedule" route="[[subRoute]]"></schedule-page>
-            <speakers-page name="speakers" route="[[subRoute]]"></speakers-page>
             <previous-speakers-page
               name="previous-speakers"
               route="[[subRoute]]"
@@ -394,7 +394,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   stateChanged(state: RootState) {
     this.dialogs = state.dialogs;
     this.isSigninDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SIGNIN);
-    this.isSpeakerDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SPEAKER);
+    this.isSpeakerDialogOpen = isDialogOpen(this.dialogs, DIALOGS.PENGURUS);
     this.isPreviousSpeakerDialogOpen = isDialogOpen(this.dialogs, DIALOGS.PREVIOUS_SPEAKER);
     this.isSessionDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SESSION);
     this.isFeedbackDialogOpen = isDialogOpen(this.dialogs, DIALOGS.FEEDBACK);

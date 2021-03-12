@@ -24,10 +24,10 @@
       "icon": "home"
     },
     {
-      "route": "speakers",
-      "permalink": "/speakers/",
-      "label": "Profil",
-      "icon": "work"
+      "route": "pengurus",
+      "permalink": "/pengurus/",
+      "label": "Pengurus",
+      "icon": "assignment-ind"
     },
     {
       "route": "schedule",
@@ -57,18 +57,18 @@
       },
       "fontColor": "#424242"
     },
-    "blog": {
-      "title": "Blog",
-      "metaDescription": "Read stories from our team",
+    "pengurus": {
+      "title": "Pengurus",
+      "metaDescription": "Mengenal lebih dekat profil Pengurus Lembaga Kajian Ilmiah Mahasiswa (LKIM) IAI Asadiyah masa khidmat 2021-2022",
+      "description": "Mengenal lebih dekat profil Pengurus Lembaga Kajian Ilmiah Mahasiswa (LKIM) IAI Asadiyah masa khidmat 2021-2022",
       "background": {
         "color": "#FFF"
       },
       "fontColor": "#424242"
     },
-    "speakers": {
-      "title": "Speakers",
-      "metaDescription": "Hear from the Googlers, Partners, and Guest Speakers who are building the future of cloud. Check back often as we add more speakers, including our customers and partners.",
-      "description": "Hear from the Googlers, Partners, and Guest Speakers who are building the future of cloud. Check back often as we add more speakers, including our customers and partners.",
+    "blog": {
+      "title": "Blog",
+      "metaDescription": "Read stories from our team",
       "background": {
         "color": "#FFF"
       },
@@ -196,7 +196,7 @@
     "blog": {
       "itemsCount": 3
     },
-    "speakers": {
+    "pengurus": {
       "itemsCount": 4
     },
     "previousSpeakers": {

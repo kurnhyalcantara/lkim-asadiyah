@@ -187,7 +187,7 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
     this.featuredSessions = state.featuredSessions;
     this.filters = state.filters;
     this.isSessionDialogOpened = isDialogOpen(state.dialogs, DIALOGS.SESSION);
-    this.isSpeakerDialogOpened = isDialogOpen(state.dialogs, DIALOGS.SPEAKER);
+    this.isSpeakerDialogOpened = isDialogOpen(state.dialogs, DIALOGS.PENGURUS);
     this.schedule = state.schedule;
     this.subRoute = state.routing.subRoute;
     this.user = state.user;
