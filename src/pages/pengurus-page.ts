@@ -170,7 +170,7 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
 
       <iron-location query="{{queryParams}}"></iron-location>
 
-      <app-route route="[[route]]" pattern="/:pengurusId" data="{{routeData}}"></app-route>
+      <app-route route="[[route]]" pattern="/:speakerId" data="{{routeData}}"></app-route>
 
       <hero-block
         background-image="{$ heroSettings.pengurus.background.image $}"
@@ -258,6 +258,8 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
   private isSessionDialogOpened = false;
   @property({ type: String })
   private contentLoaderVisibility;
+  @property({ type: Object })
+  private _selectedFilters = {};
   @property({ type: Array })
   private speakersToRender = [];
 
@@ -268,14 +270,20 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
   }
 
   @observe('pengurus')
-  _speakersChanged(pengurus: PengurusState) {
+  _speakersChanged(pengurus: PengurusState, selectedFilters) {
     if (pengurus instanceof Success) {
       this.contentLoaderVisibility = 'hidden';
-      this.speakersToRender = pengurus.data;
+      const filters = selectedFilters && selectedFilters.tag ? selectedFilters.tag : [];
+      const updatedSpeakers = this._filterItems(pengurus.data, filters).map((speaker) =>
+        Object.assign({}, speaker, {
+          link: `/pengurus/${speaker.id}${this.queryParams ? `?${this.queryParams}` : ''}`,
+        })
+      );
+      this.speakersToRender = updatedSpeakers;
     }
   }
 
-  @observe('active', 'pengurus', 'routeData.pengurusId')
+  @observe('active', 'pengurus', 'routeData.speakerId')
   _openSpeakerDetails(active, pengurus: PengurusState, id: string) {
     if (pengurus instanceof Success) {
       requestAnimationFrame(() => {
@@ -292,5 +300,20 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
 
   _setHelmetData(active, isSpeakerDialogOpened, isSessionDialogOpened) {
     return active && !isSpeakerDialogOpened && !isSessionDialogOpened;
+  }
+
+  @observe('queryParams')
+  _paramsUpdated(queryParams) {
+    this._selectedFilters = parseQueryParamsFilters(queryParams);
+  }
+
+  _filterItems(speakers, selectedFilters) {
+    return speakers.filter((speaker) => {
+      if (!selectedFilters || !selectedFilters.length) return true;
+      return (
+        speaker.tags &&
+        !!speaker.tags.filter((tag) => selectedFilters.includes(generateClassName(tag))).length
+      );
+    });
   }
 }
