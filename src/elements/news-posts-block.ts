@@ -81,10 +81,10 @@ export class NewsPostsBlock extends ReduxMixin(PolymerElement) {
         <div class="posts-wrapper">
           <template is="dom-repeat" items="[[latestPosts]]" as="post">
             <a
-              href$="/blog/posts/[[post.id]]/"
+              href$="/news/posts/[[post.id]]/"
               class="post card"
               ga-on="click"
-              ga-event-category="blog"
+              ga-event-category="news"
               ga-event-action="open post"
               ga-event-label$="[[post.title]]"
               layout
@@ -145,7 +145,7 @@ export class NewsPostsBlock extends ReduxMixin(PolymerElement) {
   @computed('posts')
   get latestPosts() {
     if (this.posts instanceof Success) {
-      return this.posts.data.slice(0, 4);
+      return this.posts.data.slice(0, 2);
     } else {
       return [];
     }

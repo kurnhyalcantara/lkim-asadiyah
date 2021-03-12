@@ -42,7 +42,7 @@ import './elements/polymer-helmet';
 import './elements/shared-styles';
 import './elements/toast-element';
 import { ReduxMixin } from './mixins/redux-mixin';
-import './pages/blog-page';
+import './pages/news-page';
 import './pages/coc-page';
 import './pages/faq-page';
 import './pages/home-page';
@@ -279,7 +279,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
           >
             <home-page name="home"></home-page>
             <pengurus-page name="pengurus" route="[[subRoute]]"></pengurus-page>
-            <blog-page name="blog" route="[[subRoute]]"></blog-page>
+            <news-page name="news" route="[[subRoute]]"></news-page>
             <schedule-page name="schedule" route="[[subRoute]]"></schedule-page>
             <previous-speakers-page
               name="previous-speakers"

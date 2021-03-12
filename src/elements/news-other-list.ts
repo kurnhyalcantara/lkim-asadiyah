@@ -6,8 +6,8 @@ import { getDate } from '../utils/functions';
 import './shared-styles';
 import './text-truncate';
 
-@customElement('posts-list')
-export class PostsList extends PolymerElement {
+@customElement('news-other-list')
+export class NewsOtherList extends PolymerElement {
   static get template() {
     return html`
       <style include="shared-styles flex flex-alignment positioning">
@@ -19,10 +19,6 @@ export class PostsList extends PolymerElement {
           padding: 24px 0;
           display: block;
           color: var(--primary-text-color);
-        }
-
-        .post:not(:last-of-type) {
-          border-bottom: 1px dotted var(--divider-color);
         }
 
         .image {
@@ -60,7 +56,7 @@ export class PostsList extends PolymerElement {
       </style>
 
       <template is="dom-repeat" items="[[posts]]" as="post">
-        <a href$="/blog/posts/[[post.id]]/" class="post" layout horizontal>
+        <a href$="/news/posts/[[post.id]]/" class="post" layout horizontal>
           <plastic-image
             class="image"
             srcset="[[post.image]]"

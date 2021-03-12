@@ -172,9 +172,9 @@
     },
     "toast": "We will contact you soon!"
   },
-  "blog": {
-    "published": "Published",
-    "suggested": "Up next"
+  "news": {
+    "published": "Dipublikasikan",
+    "suggested": "Berita Lainnya"
   },
   "speakers": {
     "skills": "Skills",

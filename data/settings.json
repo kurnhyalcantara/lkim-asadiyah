@@ -30,6 +30,12 @@
       "icon": "assignment-ind"
     },
     {
+      "route": "news",
+      "permalink": "/news/",
+      "label": "Berita",
+      "icon": "chrome-reader-mode"
+    },
+    {
       "route": "schedule",
       "permalink": "/schedule/",
       "label": "Berita",
@@ -40,12 +46,6 @@
       "permalink": "/team/",
       "label": "Opini",
       "icon": "book"
-    },
-    {
-      "route": "blog",
-      "permalink": "/blog/",
-      "label": "Agenda",
-      "icon": "date-range"
     }
   ],
   "heroSettings": {
@@ -66,9 +66,10 @@
       },
       "fontColor": "#424242"
     },
-    "blog": {
-      "title": "Blog",
-      "metaDescription": "Read stories from our team",
+    "news": {
+      "title": "Berita",
+      "metaDescription": "Berita agenda dan cerita terbaru LKIM IAI As'adiyah",
+      "description": "Berita agenda dan cerita terbaru LKIM IAI As'adiyah",
       "background": {
         "color": "#FFF"
       },
@@ -193,7 +194,7 @@
     "schedule": {
       "itemsCount": 2
     },
-    "blog": {
+    "news": {
       "itemsCount": 3
     },
     "pengurus": {

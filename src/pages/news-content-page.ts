@@ -6,7 +6,7 @@ import '@polymer/marked-element';
 import '@polymer/paper-button';
 import { html, PolymerElement } from '@polymer/polymer';
 import 'plastic-image';
-import '../elements/posts-list';
+import '../elements/news-other-list';
 import '../elements/shared-styles';
 import { ReduxMixin } from '../mixins/redux-mixin';
 import { News } from '../models/news';
@@ -15,8 +15,8 @@ import { fetchNewsList } from '../store/news/actions';
 import { NewsState, initialNewsState } from '../store/news/state';
 import { getDate } from '../utils/functions';
 
-@customElement('post-page')
-export class PostPage extends ReduxMixin(PolymerElement) {
+@customElement('news-content-page')
+export class NewsContentPage extends ReduxMixin(PolymerElement) {
   @property({ type: Boolean })
   active = false;
   @property({ type: Object })
@@ -102,7 +102,7 @@ export class PostPage extends ReduxMixin(PolymerElement) {
         description="[[post.brief]]"
         image="[[post.image]]"
         active="[[active]]"
-        label1="{$ blog.published $}"
+        label1="{$ news.published $}"
         data1="[[published]]"
       ></polymer-helmet>
 
@@ -121,13 +121,13 @@ export class PostPage extends ReduxMixin(PolymerElement) {
         <marked-element class="post" markdown="[[postContent]]">
           <div slot="markdown-html"></div>
         </marked-element>
-        <div class="date">{$ blog.published $}: [[getDate(post.published)]]</div>
+        <div class="date">{$ news.published $}: [[getDate(post.published)]]</div>
       </div>
 
       <div class="suggested-posts">
         <div class="container-narrow">
-          <h3 class="container-title">{$ blog.suggested $}</h3>
-          <posts-list posts="[[suggestedPosts]]"></posts-list>
+          <h3 class="container-title">{$ news.suggested $}</h3>
+          <news-other-list posts="[[suggestedPosts]]"></news-other-list>
         </div>
       </div>
 
