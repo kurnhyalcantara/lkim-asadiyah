@@ -9,7 +9,6 @@ import { html, PolymerElement } from '@polymer/polymer';
 import 'plastic-image';
 import '../elements/content-loader';
 import '../elements/filter-menu';
-import '../elements/previous-speakers-block';
 import '../elements/shared-styles';
 import '../elements/text-truncate';
 import { ReduxMixin } from '../mixins/redux-mixin';
@@ -38,14 +37,14 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
           min-height: 80%;
         }
 
-        .speaker {
+        .pengurus {
           padding: 32px 24px;
           background: var(--primary-background-color);
           text-align: center;
           transition: box-shadow var(--animation);
         }
 
-        .speaker:hover {
+        .pengurus:hover {
           box-shadow: var(--box-shadow);
         }
 
@@ -56,52 +55,6 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
           border-radius: 50%;
           overflow: hidden;
           transform: translateZ(0);
-        }
-
-        .badges {
-          position: absolute;
-          top: 0;
-          left: calc(50% + 32px);
-        }
-
-        .badge {
-          margin-left: -10px;
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          border: 2px solid #fff;
-          transition: transform var(--animation);
-        }
-
-        .badge:hover {
-          transform: scale(1.1);
-        }
-
-        .badge:nth-of-type(2) {
-          transform: translate(25%, 75%);
-        }
-
-        .badge:nth-of-type(2):hover {
-          transform: translate3d(25%, 75%, 20px) scale(1.1);
-        }
-
-        .badge:nth-of-type(3) {
-          transform: translate(10%, 180%);
-        }
-
-        .badge:nth-of-type(3):hover {
-          transform: translate3d(10%, 180%, 20px) scale(1.1);
-        }
-
-        .badge-icon {
-          --iron-icon-width: 12px;
-          --iron-icon-height: 12px;
-          color: #fff;
-        }
-
-        .company-logo {
-          width: 100%;
-          height: 16px;
         }
 
         .description {
@@ -165,12 +118,12 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
       <polymer-helmet
         title="{$ heroSettings.pengurus.title $} | {$ title $}"
         description="{$ heroSettings.pengurus.metaDescription $}"
-        active="[[_setHelmetData(active, isSpeakerDialogOpened, isSessionDialogOpened)]]"
+        active="[[_setHelmetData(active, isPengurusDialogOpened, isSessionDialogOpened)]]"
       ></polymer-helmet>
 
       <iron-location query="{{queryParams}}"></iron-location>
 
-      <app-route route="[[route]]" pattern="/:speakerId" data="{{routeData}}"></app-route>
+      <app-route route="[[route]]" pattern="/:pengurusId" data="{{routeData}}"></app-route>
 
       <hero-block
         background-image="{$ heroSettings.pengurus.background.image $}"
@@ -197,19 +150,19 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
       ></content-loader>
 
       <div class="container">
-        <template is="dom-repeat" items="[[speakersToRender]]" as="speaker">
+        <template is="dom-repeat" items="[[pengurusToRender]]" as="pengurus">
           <a
-            class="speaker card"
-            href$="[[speaker.link]]"
+            class="pengurus card"
+            href$="[[pengurus.link]]"
             ga-on="click"
-            ga-event-category="speaker"
+            ga-event-category="pengurus"
             ga-event-action="open details"
-            ga-event-label$="[[speaker.name]]"
+            ga-event-label$="[[pengurus.name]]"
           >
             <div relative>
               <plastic-image
                 class="photo"
-                srcset="[[speaker.photoUrl]]"
+                srcset="[[pengurus.photoUrl]]"
                 sizing="cover"
                 lazy-load
                 preload
@@ -218,16 +171,16 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
             </div>
 
             <div class="description">
-              <h2 class="name">[[speaker.name]]</h2>
-              <div class="jabatan">[[speaker.jabatan]]</div>
+              <h2 class="name">[[pengurus.name]]</h2>
+              <div class="jabatan">[[pengurus.jabatan]]</div>
 
               <text-truncate lines="5">
-                <div class="bio">[[speaker.bio]]</div>
+                <div class="bio">[[pengurus.bio]]</div>
               </text-truncate>
             </div>
 
             <div class="contacts">
-              <template is="dom-repeat" items="[[speaker.socials]]" as="social">
+              <template is="dom-repeat" items="[[pengurus.socials]]" as="social">
                 <a href$="[[social.link]]" target="_blank" rel="noopener noreferrer">
                   <paper-icon-button
                     class="social-icon"
@@ -253,37 +206,37 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
   @property({ type: Object })
   private queryParams = {};
   @property({ type: Boolean })
-  private isSpeakerDialogOpened = false;
+  private isPengurusDialogOpened = false;
   @property({ type: Boolean })
   private isSessionDialogOpened = false;
   @property({ type: String })
   private contentLoaderVisibility;
   @property({ type: Object })
-  private _selectedFilters = {};
+  private _selectedFilters;
   @property({ type: Array })
-  private speakersToRender = [];
+  private pengurusToRender = [];
 
   stateChanged(state: RootState) {
     super.stateChanged(state);
-    this.isSpeakerDialogOpened = isDialogOpen(state.dialogs, DIALOGS.PENGURUS);
+    this.isPengurusDialogOpened = isDialogOpen(state.dialogs, DIALOGS.PENGURUS);
     this.isSessionDialogOpened = isDialogOpen(state.dialogs, DIALOGS.SESSION);
   }
 
   @observe('pengurus')
-  _speakersChanged(pengurus: PengurusState, selectedFilters) {
+  _pengurusChanged(pengurus: PengurusState, selectedFilters) {
     if (pengurus instanceof Success) {
       this.contentLoaderVisibility = 'hidden';
       const filters = selectedFilters && selectedFilters.tag ? selectedFilters.tag : [];
-      const updatedSpeakers = this._filterItems(pengurus.data, filters).map((speaker) =>
-        Object.assign({}, speaker, {
-          link: `/pengurus/${speaker.id}${this.queryParams ? `?${this.queryParams}` : ''}`,
+      const updatedPengurus = this._filterItems(pengurus.data, filters).map((pengurus) =>
+        Object.assign({}, pengurus, {
+          link: `/pengurus/${pengurus.id}${this.queryParams ? `?${this.queryParams}` : ''}`,
         })
       );
-      this.speakersToRender = updatedSpeakers;
+      this.pengurusToRender = updatedPengurus;
     }
   }
 
-  @observe('active', 'pengurus', 'routeData.speakerId')
+  @observe('active', 'pengurus', 'routeData.pengurusId')
   _openSpeakerDetails(active, pengurus: PengurusState, id: string) {
     if (pengurus instanceof Success) {
       requestAnimationFrame(() => {
@@ -291,15 +244,15 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
           const pengurusData = pengurus.data.find((pengurus) => pengurus.id === id);
           pengurusData && openDialog(DIALOGS.PENGURUS, pengurusData);
         } else {
-          this.isSpeakerDialogOpened && closeDialog();
+          this.isPengurusDialogOpened && closeDialog();
           this.isSessionDialogOpened && closeDialog();
         }
       });
     }
   }
 
-  _setHelmetData(active, isSpeakerDialogOpened, isSessionDialogOpened) {
-    return active && !isSpeakerDialogOpened && !isSessionDialogOpened;
+  _setHelmetData(active, isPengurusDialogOpened, isSessionDialogOpened) {
+    return active && !isPengurusDialogOpened && !isSessionDialogOpened;
   }
 
   @observe('queryParams')
@@ -307,12 +260,12 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
     this._selectedFilters = parseQueryParamsFilters(queryParams);
   }
 
-  _filterItems(speakers, selectedFilters) {
-    return speakers.filter((speaker) => {
+  _filterItems(pengurus, selectedFilters) {
+    return pengurus.filter((pengurus) => {
       if (!selectedFilters || !selectedFilters.length) return true;
       return (
-        speaker.tags &&
-        !!speaker.tags.filter((tag) => selectedFilters.includes(generateClassName(tag))).length
+        pengurus.tags &&
+        !!pengurus.tags.filter((tag) => selectedFilters.includes(generateClassName(tag))).length
       );
     });
   }
