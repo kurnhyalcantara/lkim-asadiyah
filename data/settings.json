@@ -42,10 +42,10 @@
       "icon": "book"
     },
     {
-      "route": "team",
-      "permalink": "/team/",
-      "label": "Opini",
-      "icon": "book"
+      "route": "schedule",
+      "permalink": "/schedule/",
+      "label": "Agenda",
+      "icon": "date-range"
     }
   ],
   "heroSettings": {

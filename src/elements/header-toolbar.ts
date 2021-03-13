@@ -46,6 +46,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
         .toolbar-title {
           color: var(--default-primary-color);
           font-weight: 600;
+          font-size: 14px;
         }
 
         .nav-items {
@@ -125,6 +126,10 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           app-toolbar {
             padding: 0 36px;
             height: initial;
+          }
+
+          .toolbar-title {
+            font-size: 16px;
           }
         }
       </style>

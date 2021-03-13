@@ -9,7 +9,7 @@ import {
 } from './types';
 
 const getSchedule = async (): Promise<Schedule[]> => {
-  const { docs } = await db().collection('generatedSchedule').get();
+  const { docs } = await db().collection('schedule').get();
 
   return docs.map((doc) => doc.data()).sort((a, b) => a.date.localeCompare(b.date));
 };
