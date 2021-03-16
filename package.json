@@ -23,7 +23,7 @@
     "start:emulators": "firebase emulators:start",
     "test": "jest",
     "watch": "concurrently --kill-others npm:watch:*",
-    "watch:es-dev-server": "es-dev-server --watch",
+    "watch:es-dev-server": "es-dev-server --open --watch",
     "watch:tsc": "tsc --watch"
   },
   "dependencies": {

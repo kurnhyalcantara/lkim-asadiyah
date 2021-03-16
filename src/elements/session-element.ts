@@ -26,28 +26,23 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
         :host {
           display: block;
           background-color: var(--primary-background-color);
-          border-bottom: 1px solid var(--border-light-color);
           height: 100%;
-          border-radius: var(--border-radius);
         }
 
         .session {
           height: 100%;
           color: var(--primary-text-color);
           overflow: hidden;
+          border-bottom: 1px solid var(--border-light-color);
         }
 
         .session:hover {
           background-color: var(--additional-background-color);
         }
 
-        .session-icon {
-          --iron-icon-width: 88px;
-          --iron-icon-height: 88px;
-          --iron-icon-fill-color: var(--border-light-color);
-          position: absolute;
-          right: 40px;
-          bottom: -4px;
+        .poster {
+          width: 100%;
+          height: 200px;
         }
 
         .session-header,
@@ -61,6 +56,39 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
           padding-bottom: 8px;
         }
 
+        .icon-details {
+          display: inline-block;
+          --iron-icon-width: 12px;
+          --iron-icon-fill-color: var(--primary-text-color);
+          margin-right: 2px;
+        }
+
+        .pendaftaran,
+        .kategori,
+        .tempat {
+          margin-right: 2px;
+        }
+
+        .tags {
+          font-weight: 600;
+          color: currentColor;
+        }
+
+        .status {
+          display: inline;
+          padding: 0.2em 0.6em 0.3em;
+          font-size: 75%;
+          font-weight: 700;
+          line-height: 1;
+          color: #fff;
+          text-align: center;
+          text-transform: uppercase;
+          white-space: nowrap;
+          vertical-align: baseline;
+          border-radius: 0.25em;
+          background-color: currentColor;
+        }
+
         .language {
           margin-left: 8px;
           font-size: 12px;
@@ -69,8 +97,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
         }
 
         .session-content {
-          padding-top: 0;
-          padding-bottom: 40px;
+          padding-top: 12px;
         }
 
         .bookmark-session,
@@ -92,8 +119,19 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
           line-height: 1.2;
         }
 
+        .session-details,
         .session-description {
+          display: inline-block;
+          color: var(--disabled-text-color);
           margin-top: 8px;
+        }
+
+        .session-description {
+          font-size: 14px;
+        }
+
+        .session-details {
+          font-size: 12px;
         }
 
         .session-meta {
@@ -101,6 +139,11 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
           padding: 0;
           font-size: 12px;
           color: var(--secondary-text-color);
+        }
+
+        .icon-peserta {
+          --iron-icon-width: 12px;
+          --iron-icon-height: 12px;
         }
 
         .session-footer {
@@ -153,77 +196,65 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
         class="session"
         href$="/schedule/[[dayName]]?[[toggleQueryParam(queryParams, 'sessionId', session.id)]]"
         featured$="[[isFeatured]]"
+        flex
         layout
         vertical
-        relative
       >
-        <iron-icon class="session-icon" icon="lkim:[[session.icon]]"></iron-icon>
-
-        <div class="session-header" layout horizontal justified>
+        <plastic-image
+          class="poster"
+          srcset="[[session.poster]]"
+          alt="[[session.title]]"
+          lazy-load
+          preload
+          fade
+        ></plastic-image>
+        <div class="session-header" layout center>
           <div flex>
             <h3 class="session-title">[[session.title]]</h3>
             <text-truncate lines="3">
               <div class="session-description">[[summary]]</div>
+              <div class="session-details">
+                <div class="pendaftaran">
+                  <iron-icon class="icon-details" icon="icons:assignment"></iron-icon>
+                  {$ session.pendaftaran $}
+                  <span
+                    class="status"
+                    style$="background-color: [[_getStatusColor(session.status)]]"
+                    >[[session.status]]</span
+                  >
+                </div>
+                <div class="kategori">
+                  <iron-icon class="icon-details" icon="icons:label"></iron-icon>
+                  {$ session.kategori $}
+                  <template is="dom-repeat" items="[[session.tags]]" as="tag">
+                    <span class="tags" style$="color: [[getVariableColor(tag)]]">[[tag]]</span>
+                  </template>
+                </div>
+                <div class="tempat">
+                  <iron-icon class="icon-details" icon="icons:store"></iron-icon>
+                  <span class="session-city">[[session.city]]</span>
+                  <span class="session-track"> - [[session.address]]</span>
+                </div>
+                <div class="session-date">
+                  <iron-icon class="icon-details" icon="icons:today"></iron-icon>
+                  [[session.dateReadable]], [[session.startTime]] - [[session.endTime]]
+                </div>
+              </div>
             </text-truncate>
           </div>
-          <span class="language">[[slice(session.language, 2)]]</span>
         </div>
 
         <div class="session-content" flex layout horizontal justified>
           <div class="session-meta">
-            <div hidden$="[[!session.complexity]]">[[session.complexity]]</div>
+            <iron-icon class="icon-details" icon="hmi:people"></iron-icon>
+            <span hidden$="[[!session.partisipants]]">[[session.partisipants]]</span>
           </div>
           <div class="session-actions">
             <iron-icon
               class="feedback-action"
-              hidden="[[!_acceptingFeedback()]]"
-              icon="lkim:insert-comment"
+              icon="hmi:insert-comment"
               on-click="_toggleFeedback"
             ></iron-icon>
-            <iron-icon
-              class="bookmark-session"
-              hidden="[[_acceptingFeedback()]]"
-              icon="lkim:[[_getFeaturedSessionIcon(featuredSessions, session.id)]]"
-              on-click="_toggleFeaturedSession"
-            ></iron-icon>
-          </div>
-        </div>
-
-        <div class="session-footer">
-          <div layout horizontal justified center-aligned>
-            <div class="session-meta" flex>
-              <span hidden$="[[!session.duration.hh]]">
-                [[session.duration.hh]] hour[[_getEnding(session.duration.hh)]]
-              </span>
-              <span hidden$="[[!session.duration.mm]]">
-                [[session.duration.mm]] min[[_getEnding(session.duration.mm)]]
-              </span>
-            </div>
-            <div hidden$="[[!session.tags.length]]">
-              <template is="dom-repeat" items="[[session.tags]]" as="tag">
-                <span class="tag" style$="color: [[getVariableColor(tag)]]">[[tag]]</span>
-              </template>
-            </div>
-          </div>
-
-          <div class="speakers" hidden$="[[!session.speakers.length]]">
-            <template is="dom-repeat" items="[[session.speakers]]" as="speaker">
-              <div class="speaker" layout horizontal center>
-                <plastic-image
-                  class="speaker-photo"
-                  srcset="[[speaker.photoUrl]]"
-                  sizing="cover"
-                  lazy-load
-                  preload
-                  fade
-                ></plastic-image>
-
-                <div class="speaker-details" flex>
-                  <div class="speaker-name">[[speaker.name]]</div>
-                  <div class="speaker-title">[[_join(speaker.company, speaker.country)]]</div>
-                </div>
-              </div>
-            </template>
           </div>
         </div>
       </a>
@@ -274,6 +305,16 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
 
   _getFeaturedSessionIcon(featuredSessions, sessionId) {
     return this.isFeatured ? 'bookmark-check' : 'bookmark-plus';
+  }
+
+  _getStatusColor(status) {
+    if (status === 'terbuka') {
+      return 'var(--terbuka);';
+    } else if (status === 'ditutup') {
+      return 'var(--ditutup);';
+    } else {
+      return 'var(--tidak-ada);';
+    }
   }
 
   _toggleFeaturedSession(event) {

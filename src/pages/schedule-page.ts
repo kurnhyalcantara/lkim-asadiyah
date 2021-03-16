@@ -8,7 +8,7 @@ import { html, PolymerElement } from '@polymer/polymer';
 import '../elements/content-loader';
 import '../elements/filter-menu';
 import '../elements/header-bottom-toolbar';
-import '../elements/my-schedule';
+import '../elements/all-schedule';
 import '../elements/schedule-day';
 import '../elements/shared-styles';
 import '../elements/sticky-element';
@@ -80,7 +80,7 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
         query-params="{{nQueryParams}}"
       ></app-route>
 
-      <app-route route="[[route]]" pattern="/:day" data="{{routeData}}"></app-route>
+      <app-route route="[[route]]" pattern="/:month" data="{{routeData}}"></app-route>
 
       <hero-block
         background-image="{$ heroSettings.schedule.background.image $}"
@@ -121,10 +121,10 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
         <iron-pages attr-for-selected="name" selected="[[subRoute]]" selected-attribute="active">
           <template is="dom-if" if="[[schedule.error]]">Error loading schedule.</template>
 
-          <template is="dom-repeat" items="[[schedule.data]]" as="day">
+          <template is="dom-repeat" items="[[schedule.data]]" as="month">
             <schedule-day
-              name$="[[day.date]]"
-              day="[[day]]"
+              name$="[[month.date]]"
+              month="[[month]]"
               user="[[user]]"
               featured-sessions="[[featuredSessions]]"
               selected-filters="[[_selectedFilters]]"
@@ -132,15 +132,15 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
               query-params="[[queryParams]]"
             ></schedule-day>
           </template>
-          <my-schedule
-            name="my-schedule"
-            schedule="[[schedule]]"
+          <all-schedule
+            name="all-schedule"
+            sessions="[[sessions]]"
             user="[[user]]"
             featured-sessions="[[featuredSessions]]"
             selected-filters="[[_selectedFilters]]"
             viewport="[[viewport]]"
             query-params="[[queryParams]]"
-          ></my-schedule>
+          ></all-schedule>
         </iron-pages>
       </div>
 
@@ -222,10 +222,10 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
     }
   }
 
-  @observe('active', 'routeData.day', 'schedule')
-  _setDay(active: boolean, day, schedule: ScheduleState) {
+  @observe('active', 'routeData.month', 'schedule')
+  _setDay(active: boolean, month, schedule: ScheduleState) {
     if (active && schedule instanceof Success) {
-      const selectedDay = day || schedule.data[0].date;
+      const selectedDay = month || schedule.data[0].month;
       setSubRoute(selectedDay);
     }
   }
@@ -258,7 +258,7 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
       },
       {
         title: '{$ filters.complexity $}',
-        key: 'complexity',
+        key: 'partisipants',
         items: filters.complexity,
       },
     ];

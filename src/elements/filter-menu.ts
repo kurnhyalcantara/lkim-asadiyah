@@ -51,6 +51,7 @@ export class FilterMenu extends PolymerElement {
         }
 
         .tag iron-icon {
+          margin-left: 4px;
           --iron-icon-width: 12px;
           --iron-icon-height: 12px;
         }

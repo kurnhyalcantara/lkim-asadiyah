@@ -93,8 +93,9 @@
       "fontColor": "#424242"
     },
     "schedule": {
-      "title": "Schedule",
-      "metaDescription": "Choose your sessions to visit",
+      "title": "Agenda",
+      "metaDescription": "Daftar agenda kegiatan pengurus LKIM IAI Asadiyah masa khidmat 2021-2022",
+      "description": "Daftar agenda kegiatan pengurus LKIM IAI Asadiyah masa khidmat 2021-2022",
       "background": {
         "color": "#fff"
       },
