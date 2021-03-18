@@ -46,11 +46,7 @@ import './pages/home-page';
 import './pages/pengurus-page';
 import './pages/news-page';
 import './pages/article-page';
-import './pages/coc-page';
-import './pages/faq-page';
-import './pages/previous-speakers-page';
 import './pages/schedule-page';
-import './pages/team-page';
 import { registerServiceWorker } from './service-worker-registration';
 import { RootState, store } from './store';
 import { DialogState, initialDialogState } from './store/dialogs/state';
@@ -283,13 +279,6 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
             <news-page name="news" route="[[subRoute]]"></news-page>
             <article-page name="article" route="[[subRoute]]"></article-page>
             <schedule-page name="schedule" route="[[subRoute]]"></schedule-page>
-            <previous-speakers-page
-              name="previous-speakers"
-              route="[[subRoute]]"
-            ></previous-speakers-page>
-            <team-page name="team"></team-page>
-            <faq-page name="faq"></faq-page>
-            <coc-page name="coc"></coc-page>
           </iron-pages>
         </app-header-layout>
       </app-drawer-layout>
