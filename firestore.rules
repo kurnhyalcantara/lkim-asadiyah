@@ -7,7 +7,18 @@ service cloud.firestore {
         && request.resource.data.comment.size() <= 256;
     }
 
-    match /blog/{post} {
+    match /news/{post} {
+      // Applies to single document read requests
+      allow get;
+
+      // Applies to queries and collection read requests
+      allow list;
+
+      // Disallow writes
+      allow write: if false;
+    }
+
+    match /article/{post} {
       // Applies to single document read requests
       allow get;
 

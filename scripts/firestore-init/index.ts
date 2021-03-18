@@ -1,23 +1,19 @@
 import {
-  importBlog,
+  importNews,
+  importArticle,
   importGallery,
   importNotificationsConfig,
-  importPartners,
   importSchedule,
   importPengurus,
-  importTeam,
-  importTickets,
   importVideos,
 } from './utils';
 
-importBlog()
+importNews()
+  .then(() => importArticle())
   .then(() => importGallery())
   .then(() => importNotificationsConfig())
-  .then(() => importPartners())
   .then(() => importSchedule())
   .then(() => importPengurus())
-  .then(() => importTeam())
-  .then(() => importTickets())
   .then(() => importVideos())
   .then(() => {
     console.log('Finished');

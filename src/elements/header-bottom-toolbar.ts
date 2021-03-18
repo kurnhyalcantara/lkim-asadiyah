@@ -80,11 +80,11 @@ export class HeaderBottomToolbar extends ReduxMixin(PolymerElement) {
           hide-scroll-buttons
           noink
         >
-          <paper-tab class="nav-item" sel="all-schedule" link>
+          <!--<paper-tab class="nav-item" sel="all-schedule" link>
             <a href$="[[_addQueryParams('all-schedule', queryParams)]]" layout vertical center-center
               >{$ allSchedule.title $}</a
             >
-          </paper-tab>
+          </paper-tab>-->
           <template is="dom-repeat" items="[[schedule.data]]" as="month">
             <paper-tab class="nav-item" sel="[[month.month]]" link>
               <a href$="[[_addQueryParams(month.month, queryParams)]]" layout vertical center-center

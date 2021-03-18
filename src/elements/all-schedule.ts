@@ -107,14 +107,14 @@ export class AllSchedule extends ReduxMixin(PolymerElement) {
       <div class="grid">
         <template
           is="dom-repeat"
-          items="[[_filterSessions(sessions, selectedFilters)]]"
+          items="[[sessions]]"
           as="subSession"
         >
           <div class="session card" layout vertical>
             <session-element
               class="subsession"
               day-name="[[name]]"
-              session="[[subSession]]"
+              session="[[subSession.timeslots.sessions.items]]"
               user="[[user]]"
               featured-sessions="[[featuredSessions]]"
               query-params="[[queryParams]]"
@@ -126,6 +126,7 @@ export class AllSchedule extends ReduxMixin(PolymerElement) {
               layout
               horizontal
               center-center
+              hidden$="[[onlyFeatured]]"
             >
               <iron-icon class="add-session-icon" icon="hmi:add-circle-outline"></iron-icon>
               <span>{$ schedule.registerSchedule $}</span>
@@ -136,8 +137,8 @@ export class AllSchedule extends ReduxMixin(PolymerElement) {
     `;
   }
 
-  @property({ type: Array })
-  private sessions: [];
+  @property({ type: Object })
+  private sessions: {};
   @property({ type: Array })
   private featuredSchedule = [];
   @property({ type: Object })
@@ -146,6 +147,8 @@ export class AllSchedule extends ReduxMixin(PolymerElement) {
   private selectedFilters = {};
   @property({ type: String })
   private queryParams: string;
+  @property({ type: Boolean })
+  private onlyFeatured = true;
   @property({ type: Object })
   private viewport = {};
   @property({ type: Object })

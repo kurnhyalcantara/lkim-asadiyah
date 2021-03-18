@@ -132,7 +132,7 @@ export class ArticleListPage extends ReduxMixin(PolymerElement) {
 
           <div class="featured-posts-wrapper">
             <template is="dom-if" if="[[failure]]">
-              <p>Error loading posts.</p>
+              <p>Tidak ada postingan.</p>
             </template>
 
             <template is="dom-repeat" items="[[featuredPosts]]" as="post">
@@ -196,7 +196,7 @@ export class ArticleListPage extends ReduxMixin(PolymerElement) {
 
   stateChanged(state: RootState) {
     this.viewport = state.ui.viewport;
-    this.posts = state.blog;
+    this.posts = state.article;
   }
 
   connectedCallback() {

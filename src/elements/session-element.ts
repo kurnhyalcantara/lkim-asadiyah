@@ -218,6 +218,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
                   {$ session.pendaftaran $}
                   <span
                     class="status"
+                    hidden$="[[!session.status]]"
                     style$="background-color: [[_getStatusColor(session.status)]]"
                     >[[session.status]]</span
                   >
@@ -236,7 +237,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
                 </div>
                 <div class="session-date">
                   <iron-icon class="icon-details" icon="icons:today"></iron-icon>
-                  [[session.dateReadable]],
+                  [[session.dateReadable]]
                 </div>
               </div>
             </text-truncate>
@@ -275,7 +276,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
   @property({ type: String })
   private dayName: string;
   @property({ type: String, computed: 'getVariableColor(session.mainTag)' })
-  private sessionCollor: string;
+  private sessionColor: string;
   @property({ type: String, computed: '_isFeatured(featuredSessions, session.id)' })
   private isFeatured: string;
   @property({ type: String, computed: '_summary(session.description)' })

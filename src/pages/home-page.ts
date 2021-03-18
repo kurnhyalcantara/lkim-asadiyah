@@ -158,7 +158,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
               <iron-icon icon="lkim:movie"></iron-icon>
               {$ infoKegiatan $}
             </paper-button>
-            <paper-button
+            <!--<paper-button
               on-click="/team"
               ga-on="click"
               ga-event-category="daftar"
@@ -168,7 +168,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
             >
               <iron-icon icon="lkim:ticket"></iron-icon>
               {$ makeNewAccount $}
-            </paper-button>
+            </paper-button>-->
           </div>
 
           <div class="scroll-down" on-click="_scrollNextBlock">

@@ -132,7 +132,7 @@ export class NewsPostsBlock extends ReduxMixin(PolymerElement) {
   posts: NewsState = initialNewsState;
 
   stateChanged(state: RootState) {
-    this.posts = state.blog;
+    this.posts = state.news;
   }
 
   connectedCallback() {

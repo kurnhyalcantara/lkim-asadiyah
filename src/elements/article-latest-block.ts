@@ -140,7 +140,7 @@ export class ArticleLatestBlock extends ReduxMixin(PolymerElement) {
   articles: ArticleState = initialArticleState;
 
   stateChanged(state: RootState) {
-    this.articles = state.blog;
+    this.articles = state.article;
   }
 
   connectedCallback() {

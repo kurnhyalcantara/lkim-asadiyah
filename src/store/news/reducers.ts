@@ -7,7 +7,7 @@ import {
   FETCH_NEWS_LIST_SUCCESS,
 } from './types';
 
-export const blogReducer = (state = initialNewsState, action: NewsAction): NewsState => {
+export const newsReducer = (state = initialNewsState, action: NewsAction): NewsState => {
   switch (action.type) {
     case FETCH_NEWS_LIST:
       return new Pending();

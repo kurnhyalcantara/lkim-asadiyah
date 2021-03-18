@@ -5,7 +5,6 @@ import {
   initialFeaturedSessionsState,
 } from '../store/featured-sessions/state';
 import { TempAny } from '../temp-any';
-import { generateClassName } from '../utils/functions';
 import { offsetTop, scrollToY } from '../utils/scrolling';
 import './session-element';
 import './shared-styles';
@@ -17,15 +16,6 @@ export class ScheduleDay extends PolymerElement {
       <style include="shared-styles flex flex-alignment positioning">
         :host {
           display: block;
-        }
-
-        .card {
-          box-shadow: 0 1px 5px rgb(0 0 0 / 15%);
-          border-radius: 0;
-        }
-
-        .card:hover {
-          box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
         }
 
         .tanggal-bulan {
@@ -102,52 +92,54 @@ export class ScheduleDay extends PolymerElement {
       </style>
 
       <div class="grid">
-        <template is="dom-repeat" items="[[month.timeslots]]" as="timeslot" index-as="timeslotIndex">
-          <div
-            id$="[[timeslot.dateMonth]]"
-            class="tanggal-bulan"
-            style$="grid-area: [[_getTimePosition(timeslotIndex)]]"
-            hidden$="[[viewport.isTabletPlus]]"
-          >
-            <span class="tanggal">[[_sliceText(timeslot.dateMonth, 0)]]</span>
-            <span class="bulan">[[_sliceText(timeslot.dateMonth, -3)]]</span>
-          </div>
-
-          <template
-            is="dom-repeat"
-            items="[[timeslot.sessions]]"
-            as="session"
-            index-as="sessionIndex"
-          >
-            <div class="session card" layout vertical>
-              <template
-                is="dom-repeat"
-                items="[[session.items]]"
-                as="subSession"
-              >
-                <session-element
-                  class="subsession"
-                  day-name="[[name]]"
-                  session="[[subSession]]"
-                  user="[[user]]"
-                  featured-sessions="[[featuredSessions]]"
-                  query-params="[[queryParams]]"
-                ></session-element>
-                <a
-                  class="add-session"
-                  href$="/schedule/[[month.month]]#[[timeslot.sessions.0.items.id]]"
-                  style$="grid-area: [[timeslot.sessions.0.gridArea]]"
-                  layout
-                  horizontal
-                  center-center
-                >
-                  <iron-icon class="add-session-icon" icon="lkim:add-circle-outline"></iron-icon>
-                  <span>{$ schedule.registerSchedule $}</span>
-                </a>
-              </template>
+        <div class="container">
+          <template is="dom-repeat" items="[[month.timeslots]]" as="timeslot" index-as="timeslotIndex">
+            <div
+              id$="[[timeslot.dateMonth]]"
+              class="tanggal-bulan"
+              style$="grid-area: [[_getTimePosition(timeslotIndex)]]"
+            >
+              <span class="tanggal">[[_sliceText(timeslot.dateMonth, 0)]]</span>
+              <span class="bulan">[[_sliceText(timeslot.dateMonth, -3)]]</span>
             </div>
+
+            <template
+              is="dom-repeat"
+              items="[[timeslot.sessions]]"
+              as="session"
+              index-as="sessionIndex"
+            >
+              <div class="session card" layout vertical>
+                <template
+                  is="dom-repeat"
+                  items="[[session.items]]"
+                  as="subSession"
+                >
+                  <session-element
+                    class="subsession"
+                    day-name="[[name]]"
+                    session="[[subSession]]"
+                    user="[[user]]"
+                    featured-sessions="[[featuredSessions]]"
+                    query-params="[[queryParams]]"
+                  ></session-element>
+                  <a
+                    class="add-session"
+                    href$="/schedule/[[month.month]]#[[timeslot.sessions.0.items.id]]"
+                    style$="grid-area: [[timeslot.sessions.0.gridArea]]"
+                    layout
+                    horizontal
+                    center-center
+                    hidden$="[[onlyFeatured]]"
+                  >
+                    <iron-icon class="add-session-icon" icon="lkim:add-circle-outline"></iron-icon>
+                    <span>{$ schedule.registerSchedule $}</span>
+                  </a>
+                </template>
+              </div>
+            </template>
           </template>
-        </template>
+        </div>
       </div>
     `;
   }
@@ -163,7 +155,7 @@ export class ScheduleDay extends PolymerElement {
   @property({ type: Object })
   private featuredSessions: FeaturedSessionsState = initialFeaturedSessionsState;
   @property({ type: Boolean })
-  private onlyFeatured = false;
+  private onlyFeatured = true;
   @property({ type: Object })
   private viewport: { isTabletPlus?: boolean } = {};
   @property({ type: String })
@@ -199,20 +191,5 @@ export class ScheduleDay extends PolymerElement {
       return text.slice(index);
     }
   }
-
-  _showAddSession(timeslot, onlyFeatured) {
-    return (
-      onlyFeatured &&
-      !timeslot.sessions.reduce(
-        (aggregator, sessionBlock) => aggregator + sessionBlock.items.length,
-        0
-      )
-    );
-  }
-
-  _isNotEmpty(sessionBlock) {
-    return !!sessionBlock.items.length;
-  }
-
 
 }

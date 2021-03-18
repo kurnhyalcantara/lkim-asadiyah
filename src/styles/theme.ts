@@ -50,12 +50,14 @@ export const theme = css`
     --gdg: #00b0ff;
 
     /* Tags */
-    --general: #9e9e9e;
-    --android: #78c257;
-    --web: #2196f3;
-    --cloud: #3f51b5;
-    --community: #e91e63;
-    --design: #e91e63;
+    --umum: #c112fc;
+    --rapat: #f09c1e;
+    --kaderisasi: var(--light-primary-color);
+
+    /* Status */
+    --tidak-ada: #c0c0c0;
+    --terbuka: #00c131;
+    --ditutup: #c0c0c0;
   }
 
   *,

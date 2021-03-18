@@ -253,11 +253,11 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           </div>
         </paper-menu-button>
 
-        <paper-icon-button
+        <!--<paper-icon-button
           icon="lkim:account"
           on-click="signIn"
           hidden$="[[_isAccountIconHidden(user.signedIn, viewport.isLaptopPlus)]]"
-        ></paper-icon-button>
+        ></paper-icon-button>-->
       </app-toolbar>
     `;
   }

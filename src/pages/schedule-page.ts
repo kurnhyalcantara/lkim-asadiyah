@@ -31,7 +31,7 @@ import { isDialogOpen } from '../utils/dialogs';
 import { parseQueryParamsFilters } from '../utils/functions';
 
 @customElement('schedule-page')
-export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElement))) {
+export class SchedulePage extends SessionsHoC(ReduxMixin(PolymerElement)) {
   static get template() {
     return html`
       <style include="shared-styles flex flex-alignment">
@@ -116,7 +116,7 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
         </content-loader>
 
         <iron-pages attr-for-selected="name" selected="[[subRoute]]" selected-attribute="active">
-          <template is="dom-if" if="[[schedule.error]]">Error loading schedule.</template>
+          <template is="dom-if" if="[[schedule.error]]">Tidak ada jadwal yang termuat.</template>
           <template is="dom-repeat" items="[[schedule.data]]" as="month">
             <schedule-day
               name$="[[month.month]]"
@@ -127,15 +127,15 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
               query-params="[[queryParams]]"
             ></schedule-day>
           </template>
-          <all-schedule
+          <!--<all-schedule
             name="all-schedule"
-            sessions="[[sessions]]"
+            sessions="[[schedule.data]]"
             user="[[user]]"
             featured-sessions="[[featuredSessions]]"
             selected-filters="[[_selectedFilters]]"
             viewport="[[viewport]]"
             query-params="[[queryParams]]"
-          ></all-schedule>
+          ></all-schedule>-->
         </iron-pages>
       </div>
 
@@ -163,7 +163,6 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
   @property({ type: Object })
   private viewport = {};
   @property({ type: Object })
-  @property({ type: Object })
   private routeData = {};
   @property({ type: Object })
   private appRoute = {};
@@ -187,7 +186,6 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
     ) {
       store.dispatch(fetchSchedule());
     }
-    console.log(this.schedule)
   }
 
   @computed('schedule')
@@ -196,7 +194,7 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
   }
 
   @observe('active', 'routeData.month', 'schedule')
-  _setDay(active: boolean, month, schedule: ScheduleState) {
+  _setDefault(active: boolean, month, schedule: ScheduleState) {
     if (active && schedule instanceof Success) {
       const selectedDay = month || schedule.data[0].month;
       setSubRoute(selectedDay);

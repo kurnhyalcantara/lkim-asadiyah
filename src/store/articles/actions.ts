@@ -10,8 +10,7 @@ import {
 } from './types';
 
 const getArticle = async (): Promise<Article[]> => {
-  const { docs } = await db().collection('blog').orderBy('published', 'desc').get();
-
+  const { docs } = await db().collection('article').orderBy('published', 'desc').get();
   return docs.map<Article>(mergeId);
 };
 

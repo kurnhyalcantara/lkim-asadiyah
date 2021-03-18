@@ -141,7 +141,7 @@ export class ArticleContentPage extends ReduxMixin(PolymerElement) {
   }
 
   stateChanged(state: RootState) {
-    this.posts = state.blog;
+    this.posts = state.article;
   }
 
   connectedCallback() {
