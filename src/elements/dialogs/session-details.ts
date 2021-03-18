@@ -49,7 +49,7 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
         image="[[session.speakers.0.photoUrl]]"
         active="[[opened]]"
         label1="{$ time $}"
-        data1="[[session.dateReadable]], [[session.startTime]] - [[session.endTime]]"
+        data1="[[session.dateReadable]]"
         label2="{$ sessionDetails.contentLevel $}"
         data2="[[session.complexity]]"
       ></polymer-helmet>
@@ -90,7 +90,7 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
             ></paper-fab>
           </div>
           <h3 class="meta-info" hidden$="[[disabledSchedule]]">
-            [[session.dateReadable]], [[session.startTime]] - [[session.endTime]]
+            [[session.dateReadable]]
           </h3>
           <h3 class="meta-info" hidden$="[[disabledSchedule]]">[[session.track.title]]</h3>
           <h3 class="meta-info" hidden$="[[!session.complexity]]">
@@ -286,10 +286,10 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
   }
 
   _sessionUpdate() {
-    const { day, startTime } = this.session;
-    if (day && startTime) {
+    const { day } = this.session;
+    if (day) {
       const now = new Date();
-      const currentTime = new Date(`${day} ${startTime}`).getTime();
+      const currentTime = new Date(`${day}`).getTime();
       const timezoneOffset = parseInt('{$ timezoneOffset $}') - now.getTimezoneOffset();
       const convertedTimezoneDate = new Date(currentTime + timezoneOffset * ONE_MINUTE_MS);
       const diff = now.getTime() - convertedTimezoneDate.getTime();

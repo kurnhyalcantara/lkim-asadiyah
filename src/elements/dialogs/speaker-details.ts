@@ -137,7 +137,7 @@ class SpeakerDetails extends SessionsHoC(
                   <div class="section-details" flex>
                     <div class="section-primary-text">[[session.title]]</div>
                     <div class="section-secondary-text" hidden$="[[!session.dateReadable]]">
-                      [[session.dateReadable]], [[session.startTime]] - [[session.endTime]]
+                      [[session.dateReadable]]
                     </div>
                     <div class="section-secondary-text" hidden$="[[!session.track.title]]">
                       [[session.track.title]]

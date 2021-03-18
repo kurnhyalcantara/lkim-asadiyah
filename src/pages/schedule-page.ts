@@ -13,8 +13,6 @@ import '../elements/schedule-day';
 import '../elements/shared-styles';
 import '../elements/sticky-element';
 import { ReduxMixin } from '../mixins/redux-mixin';
-import { SessionsHoC } from '../mixins/sessions-hoc';
-import { PengurusHoC } from '../mixins/pengurus-hoc';
 import { RootState, store } from '../store';
 import { closeDialog, openDialog } from '../store/dialogs/actions';
 import { DIALOGS } from '../store/dialogs/types';
@@ -27,12 +25,11 @@ import { setSubRoute } from '../store/routing/actions';
 import { fetchSchedule } from '../store/schedule/actions';
 import { initialScheduleState, ScheduleState } from '../store/schedule/state';
 import { SessionsState } from '../store/sessions/state';
-import { PengurusState } from '../store/pengurus/state';
 import { isDialogOpen } from '../utils/dialogs';
 import { parseQueryParamsFilters } from '../utils/functions';
 
 @customElement('schedule-page')
-export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElement))) {
+export class SchedulePage extends ReduxMixin(PolymerElement) {
   static get template() {
     return html`
       <style include="shared-styles flex flex-alignment">
@@ -67,7 +64,7 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
       <polymer-helmet
         title="{$ heroSettings.schedule.title $} | {$ title $}"
         description="{$ heroSettings.schedule.metaDescription $}"
-        active="[[_setHelmetData(active, isSpeakerDialogOpened, isSessionDialogOpened)]]"
+        active="[[_setHelmetData(active, isSessionDialogOpened)]]"
       ></polymer-helmet>
 
       <iron-location query="{{queryParams}}"></iron-location>
@@ -81,7 +78,7 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
       ></app-route>
 
       <app-route route="[[route]]" pattern="/:month" data="{{routeData}}"></app-route>
-
+        
       <hero-block
         background-image="{$ heroSettings.schedule.background.image $}"
         background-color="{$ heroSettings.schedule.background.color $}"
@@ -164,8 +161,6 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
   @property({ type: Object })
   private subRoute = {};
   @property({ type: Boolean })
-  private isSpeakerDialogOpened = false;
-  @property({ type: Boolean })
   private isSessionDialogOpened = false;
   @property({ type: Object })
   private viewport = {};
@@ -187,19 +182,16 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
     this.featuredSessions = state.featuredSessions;
     this.filters = state.filters;
     this.isSessionDialogOpened = isDialogOpen(state.dialogs, DIALOGS.SESSION);
-    this.isSpeakerDialogOpened = isDialogOpen(state.dialogs, DIALOGS.PENGURUS);
     this.schedule = state.schedule;
     this.subRoute = state.routing.subRoute;
     this.user = state.user;
     this.viewport = state.ui.viewport;
   }
 
-  @observe('sessions', 'speakers')
-  _sessionsAndSpeakersChanged(sessions: SessionsState, speakers: PengurusState) {
+  @observe('sessions')
+  _scheduleChanged() {
     if (
-      this.schedule instanceof Initialized &&
-      sessions instanceof Success &&
-      speakers instanceof Success
+      this.schedule instanceof Initialized 
     ) {
       store.dispatch(fetchSchedule());
     }
@@ -244,8 +236,8 @@ export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElem
     }
   }
 
-  _setHelmetData(active: boolean, isSpeakerDialogOpened: boolean, isSessionDialogOpened: boolean) {
-    return active && !isSpeakerDialogOpened && !isSessionDialogOpened;
+  _setHelmetData(active: boolean, isSessionDialogOpened: boolean) {
+    return active && !isSessionDialogOpened;
   }
 
   @observe('filters')

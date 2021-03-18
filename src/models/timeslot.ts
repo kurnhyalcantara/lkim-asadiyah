@@ -1,7 +1,6 @@
 import { Time } from './time';
 
 export interface Timeslot {
-  endTime: string;
+  dateMonth: string;
   sessions: Time[];
-  startTime: string;
 }

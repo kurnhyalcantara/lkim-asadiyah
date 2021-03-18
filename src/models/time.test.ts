@@ -4,9 +4,9 @@ import { allKeys } from './utils';
 
 describe('time', () => {
   it('matches the shape of the default data', () => {
-    const times: Time[] = data['schedule']['2016-09-09']['timeslots'][3]['sessions'];
-    const keys: Array<keyof Time> = ['extend', 'items'];
-    expect(times).toHaveLength(3);
+    const times: Time[] = data['schedule']['1']['timeslots'][1]['sessions'];
+    const keys: Array<keyof Time> = ['items'];
+    expect(times).toHaveLength(9);
     expect(allKeys(times)).toStrictEqual(keys);
   });
 });

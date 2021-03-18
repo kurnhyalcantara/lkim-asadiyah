@@ -237,7 +237,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
                 </div>
                 <div class="session-date">
                   <iron-icon class="icon-details" icon="icons:today"></iron-icon>
-                  [[session.dateReadable]], [[session.startTime]] - [[session.endTime]]
+                  [[session.dateReadable]],
                 </div>
               </div>
             </text-truncate>
@@ -267,7 +267,6 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
   private session: {
     id: string;
     day: TempAny;
-    startTime: TempAny;
     mainTag: string;
   };
   @property({ type: Object })
@@ -353,7 +352,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
     const ONE_MINUTE_MS = 60 * 1000;
     const now = new Date();
     const convertedTimezoneDate = new Date(
-      new Date(`${this.session.day} ${this.session.startTime}`).getTime() +
+      new Date(`${this.session.day}`).getTime() +
         (parseInt('{$ timezoneOffset $}') - now.getTimezoneOffset()) * ONE_MINUTE_MS
     );
 
