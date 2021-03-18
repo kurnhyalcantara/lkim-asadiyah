@@ -218,6 +218,10 @@
   "schedule": {
     "registerSchedule": "Saya ingin ikuti kegiatan ini"
   },
+  "session": {
+    "pendaftaran": "Registrasi",
+    "kategori": "Kategori"
+  },
   "feedback": {
     "save": "Save",
     "headline": "Review session",

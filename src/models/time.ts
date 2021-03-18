@@ -1,3 +1,3 @@
 export interface Time {
-  items: string[];
+  items: Object[];
 }

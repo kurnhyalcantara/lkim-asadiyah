@@ -11,7 +11,7 @@
     "clean": "rimraf dist out-tsc",
     "deploy": "npm run build && cross-env NODE_ENV=production firebase deploy",
     "firestore:copy": "ts-node-script ./scripts/firestore-copy",
-    "firestore:init": "firebase firestore:delete --recursive --all-collections && firebase deploy --except hosting && ts-node-script ./scripts/firestore-init",
+    "firestore:init": "firebase firestore:delete --recursive --all-collections -y && firebase deploy --except hosting && ts-node-script ./scripts/firestore-init",
     "fix": "concurrently npm:fix:*",
     "fix:eslint": "eslint . --ext .ts --ext .js --fix",
     "fix:prettier": "prettier . --write",

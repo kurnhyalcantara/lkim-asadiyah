@@ -16,6 +16,8 @@ import { ReduxMixin } from '../mixins/redux-mixin';
 import { RootState, store } from '../store';
 import { closeDialog, openDialog } from '../store/dialogs/actions';
 import { DIALOGS } from '../store/dialogs/types';
+import { PengurusHoC } from '../mixins/pengurus-hoc';
+import { SessionsHoC } from '../mixins/sessions-hoc';
 import { fetchUserFeaturedSessions } from '../store/featured-sessions/actions';
 import {
   FeaturedSessionsState,
@@ -29,7 +31,7 @@ import { isDialogOpen } from '../utils/dialogs';
 import { parseQueryParamsFilters } from '../utils/functions';
 
 @customElement('schedule-page')
-export class SchedulePage extends ReduxMixin(PolymerElement) {
+export class SchedulePage extends SessionsHoC(PengurusHoC(ReduxMixin(PolymerElement))) {
   static get template() {
     return html`
       <style include="shared-styles flex flex-alignment">
@@ -94,8 +96,6 @@ export class SchedulePage extends ReduxMixin(PolymerElement) {
 
       <paper-progress indeterminate hidden$="[[!pending]]"></paper-progress>
 
-      <filter-menu filters="[[_filters]]" selected="[[_selectedFilters]]"></filter-menu>
-
       <div class="container">
         <content-loader
           card-padding="15px"
@@ -117,14 +117,12 @@ export class SchedulePage extends ReduxMixin(PolymerElement) {
 
         <iron-pages attr-for-selected="name" selected="[[subRoute]]" selected-attribute="active">
           <template is="dom-if" if="[[schedule.error]]">Error loading schedule.</template>
-
           <template is="dom-repeat" items="[[schedule.data]]" as="month">
             <schedule-day
-              name$="[[month.date]]"
+              name$="[[month.month]]"
               month="[[month]]"
               user="[[user]]"
               featured-sessions="[[featuredSessions]]"
-              selected-filters="[[_selectedFilters]]"
               viewport="[[viewport]]"
               query-params="[[queryParams]]"
             ></schedule-day>
@@ -165,11 +163,6 @@ export class SchedulePage extends ReduxMixin(PolymerElement) {
   @property({ type: Object })
   private viewport = {};
   @property({ type: Object })
-  private filters = {};
-  @property({ type: Array })
-  private _filters = [];
-  @property({ type: Object })
-  private _selectedFilters: { sessionId?: string[] } = {};
   @property({ type: Object })
   private routeData = {};
   @property({ type: Object })
@@ -180,7 +173,6 @@ export class SchedulePage extends ReduxMixin(PolymerElement) {
   stateChanged(state: RootState) {
     super.stateChanged(state);
     this.featuredSessions = state.featuredSessions;
-    this.filters = state.filters;
     this.isSessionDialogOpened = isDialogOpen(state.dialogs, DIALOGS.SESSION);
     this.schedule = state.schedule;
     this.subRoute = state.routing.subRoute;
@@ -188,30 +180,19 @@ export class SchedulePage extends ReduxMixin(PolymerElement) {
     this.viewport = state.ui.viewport;
   }
 
-  @observe('sessions')
+  @observe('schedule')
   _scheduleChanged() {
     if (
       this.schedule instanceof Initialized 
     ) {
       store.dispatch(fetchSchedule());
     }
+    console.log(this.schedule)
   }
 
   @computed('schedule')
   get pending() {
     return this.schedule instanceof Pending;
-  }
-
-  @observe('active', 'sessions', 'user.uid')
-  _fetchFeaturedSessions(active: boolean, sessions: SessionsState, userUid?: string) {
-    if (
-      active &&
-      userUid &&
-      sessions instanceof Success &&
-      this.featuredSessions instanceof Initialized
-    ) {
-      store.dispatch(fetchUserFeaturedSessions(userUid));
-    }
   }
 
   @observe('active', 'routeData.month', 'schedule')
@@ -222,42 +203,7 @@ export class SchedulePage extends ReduxMixin(PolymerElement) {
     }
   }
 
-  @observe('active', 'sessions', '_selectedFilters.sessionId')
-  _openSessionDetails(active: boolean, sessions: SessionsState, ids?: string[]) {
-    if (sessions instanceof Success) {
-      requestAnimationFrame(() => {
-        if (active && ids?.length && sessions instanceof Success) {
-          const session = sessions.data.find((session) => ids.includes(session.id));
-          openDialog(DIALOGS.SESSION, session);
-        } else {
-          this.isSessionDialogOpened && closeDialog();
-        }
-      });
-    }
-  }
-
   _setHelmetData(active: boolean, isSessionDialogOpened: boolean) {
     return active && !isSessionDialogOpened;
-  }
-
-  @observe('filters')
-  _onFiltersLoad(filters) {
-    this._filters = [
-      {
-        title: '{$ filters.tags $}',
-        key: 'tag',
-        items: filters.tags,
-      },
-      {
-        title: '{$ filters.complexity $}',
-        key: 'partisipants',
-        items: filters.complexity,
-      },
-    ];
-  }
-
-  @observe('queryParams')
-  _paramsUpdated(queryParams: string) {
-    this._selectedFilters = parseQueryParamsFilters(queryParams);
   }
 }

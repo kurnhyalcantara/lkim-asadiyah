@@ -118,12 +118,11 @@ export class ScheduleDay extends PolymerElement {
             items="[[timeslot.sessions]]"
             as="session"
             index-as="sessionIndex"
-            filter="_isNotEmpty"
           >
             <div class="session card" layout vertical>
               <template
                 is="dom-repeat"
-                items="[[_filterSessions(session.items, selectedFilters)]]"
+                items="[[session.items]]"
                 as="subSession"
               >
                 <session-element
@@ -142,7 +141,7 @@ export class ScheduleDay extends PolymerElement {
                   horizontal
                   center-center
                 >
-                  <iron-icon class="add-session-icon" icon="hmi:add-circle-outline"></iron-icon>
+                  <iron-icon class="add-session-icon" icon="lkim:add-circle-outline"></iron-icon>
                   <span>{$ schedule.registerSchedule $}</span>
                 </a>
               </template>
@@ -167,8 +166,6 @@ export class ScheduleDay extends PolymerElement {
   private onlyFeatured = false;
   @property({ type: Object })
   private viewport: { isTabletPlus?: boolean } = {};
-  @property({ type: Object })
-  private selectedFilters = {};
   @property({ type: String })
   private queryParams: string;
 
@@ -217,20 +214,5 @@ export class ScheduleDay extends PolymerElement {
     return !!sessionBlock.items.length;
   }
 
-  _filterSessions(sessions, selectedFilters) {
-    if (!selectedFilters) return sessions;
-    return sessions.filter((session) => {
-      return (
-        (!selectedFilters.tag ||
-          !selectedFilters.tag.length ||
-          (session.tags &&
-            !!session.tags.filter((tag) => selectedFilters.tag.includes(generateClassName(tag)))
-              .length)) &&
-        (!selectedFilters.complexity ||
-          !selectedFilters.complexity.length ||
-          (session.complexity &&
-            selectedFilters.complexity.includes(generateClassName(session.complexity))))
-      );
-    });
-  }
+
 }

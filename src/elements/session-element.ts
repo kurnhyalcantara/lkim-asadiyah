@@ -195,7 +195,6 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
       <a
         class="session"
         href$="/schedule/[[dayName]]?[[toggleQueryParam(queryParams, 'sessionId', session.id)]]"
-        featured$="[[isFeatured]]"
         flex
         layout
         vertical
@@ -246,13 +245,13 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
 
         <div class="session-content" flex layout horizontal justified>
           <div class="session-meta">
-            <iron-icon class="icon-details" icon="hmi:people"></iron-icon>
+            <iron-icon class="icon-details" icon="lkim:people"></iron-icon>
             <span hidden$="[[!session.partisipants]]">[[session.partisipants]]</span>
           </div>
           <div class="session-actions">
             <iron-icon
               class="feedback-action"
-              icon="hmi:insert-comment"
+              icon="lkim:insert-comment"
               on-click="_toggleFeedback"
             ></iron-icon>
           </div>
@@ -281,7 +280,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
   private isFeatured: string;
   @property({ type: String, computed: '_summary(session.description)' })
   private summary: string;
-
+  
   _isFeatured(featuredSessions: FeaturedSessionsState, sessionId?: string) {
     if (featuredSessions instanceof Success && sessionId) {
       return featuredSessions.data[sessionId];
