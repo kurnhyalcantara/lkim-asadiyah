@@ -151,7 +151,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
           <div class="action-buttons" layout horizontal center-justified wrap>
             <paper-button
               class="actions-info"
-              href="/schedule"
+              href="/schedule/"
               primary
               stroke
             >
