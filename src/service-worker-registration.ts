@@ -26,34 +26,25 @@ export const registerServiceWorker = () => {
                 }
                 break;
               case 'redundant':
-                throw Error('The installing service worker became redundant.');
+                throw Error('Service worker telah didaftarkan berkali-kali.');
             }
           };
         };
       })
-      .catch((e) => error('Service worker registration failed:', e));
+      .catch((e) => error('Pendaftaran service worker gagal:', e));
   }
 };
 
 if (navigator.serviceWorker && navigator.serviceWorker.controller) {
   navigator.serviceWorker.controller.onstatechange = (event) => {
     if ((event.target as ServiceWorker).state === 'redundant') {
-      const tapHandler = () => {
-        window.location.reload();
-      };
-
       if (showToast) {
         showToast({
           message: '{$ newVersionAvailable $}',
-          action: {
-            title: '{$ refresh $}',
-            callback: tapHandler,
-          },
-          duration: 0,
+          duration: 3000,
         });
-      } else {
-        tapHandler(); // Force reload if user never was shown the toast.
       }
+      window.location.reload();
     }
   };
 }

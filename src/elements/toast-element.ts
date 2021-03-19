@@ -25,6 +25,7 @@ export class ToastElement extends ReduxMixin(PolymerElement) {
           min-width: 0;
           border-radius: 0;
           margin: 0;
+          border-left: 5px solid var(--accent-color);
         }
 
         .toast-action {
