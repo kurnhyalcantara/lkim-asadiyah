@@ -54,8 +54,6 @@ import { DIALOGS } from './store/dialogs/types';
 import { getToken, initializeMessaging } from './store/notifications/actions';
 import { setRoute } from './store/routing/actions';
 import { initialRoutingState, RoutingState } from './store/routing/state';
-import { fetchTickets } from './store/tickets/actions';
-import { initialTicketsState, TicketsState } from './store/tickets/state';
 import { showToast } from './store/toast/actions';
 import { setViewportSize } from './store/ui/actions';
 import { updateUser } from './store/user/actions';
@@ -152,7 +150,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
 
         .drawer-list {
           padding: 16px 0;
-          margin:0
+          margin: 0
           display: block;
         }
 
@@ -192,6 +190,10 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
           display: block;
           background-color: var(--default-primary-color);
           color: var(--text-primary-color);
+        }
+
+        .bottom-drawer-link:hover {
+          background-color: var(--focused-color);
         }
 
         @media (min-width: 640px) {
@@ -337,9 +339,6 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   }
 
   @property({ type: Object })
-  tickets: TicketsState = initialTicketsState;
-
-  @property({ type: Object })
   private ui = {};
   @property({ type: Object })
   private addToHomeScreen: TempAny;
@@ -392,7 +391,6 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
     this.isSubscribeDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SUBSCRIBE);
     this.notifications = state.notifications;
     this.route = state.routing;
-    this.tickets = state.tickets;
     this.ui = state.ui;
     this.user = state.user;
     this.viewport = state.ui.viewport;
@@ -421,7 +419,6 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
         message: '{$ offlineMessage $}',
       });
     });
-    store.dispatch(fetchTickets());
   }
 
   disconnectedCallback() {
@@ -479,16 +476,6 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
 
   _toggleDrawer(e) {
     this.drawerOpened = e.detail.value;
-  }
-
-  @computed('tickets')
-  get ticketUrl(): string {
-    if (this.tickets instanceof Success && this.tickets.data.length > 0) {
-      const availableTicket = this.tickets.data.find((ticket) => ticket.available);
-      return (availableTicket || this.tickets.data[0]).url;
-    } else {
-      return '';
-    }
   }
 
   _openInstaDesigner() {

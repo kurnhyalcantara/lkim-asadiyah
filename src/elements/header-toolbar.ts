@@ -41,12 +41,12 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
         
         .toolbar-logo {
           margin: 0 12px 0 8px;
+          z-index: 1;
         }
 
         .toolbar-title {
           color: var(--default-primary-color);
           font-weight: 600;
-          font-size: 14px;
         }
 
         .nav-items {
@@ -152,7 +152,6 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
             href="/"
             layout
             horizontal
-            title="{$ title $}"
           >{$ title $}</a>
         </div>
 
