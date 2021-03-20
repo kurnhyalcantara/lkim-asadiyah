@@ -149,17 +149,18 @@ export class HomePage extends ReduxMixin(PolymerElement) {
           </div>
 
           <div class="action-buttons" layout horizontal center-justified wrap>
-            <paper-button
-              class="actions-info"
-              href="/schedule/"
-              primary
-              stroke
-            >
-              <iron-icon icon="lkim:movie"></iron-icon>
-              {$ infoKegiatan $}
-            </paper-button>
+            <a href="/schedule/">
+              <paper-button
+                class="actions-info"
+                primary
+                stroke
+              >
+                <iron-icon icon="lkim:work"></iron-icon>
+                {$ infoKegiatan $}
+              </paper-button>
+            </a>
             <!--<paper-button
-              on-click="/team"
+              on-click=""
               ga-on="click"
               ga-event-category="daftar"
               ga-event-action="click"

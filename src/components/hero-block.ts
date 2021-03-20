@@ -98,7 +98,6 @@ export class HeroBlock extends ThemedElement {
         center-justified
       >
         ${this.backgroundImage && this.image}
-        <div class="hero-overlay" ?show="${!!this.backgroundImage}" fit></div>
         <div class="container">
           <div class="hero-content">
             <slot></slot>
