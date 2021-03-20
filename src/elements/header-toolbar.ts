@@ -186,7 +186,6 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           vertical-align="top"
           horizontal-align="right"
           no-animations
-          hidden="true"
         >
           <paper-icon-button
             icon="lkim:[[_getNotificationsIcon(notifications.status)]]"
