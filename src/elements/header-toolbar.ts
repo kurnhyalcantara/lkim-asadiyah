@@ -10,7 +10,6 @@ import { DIALOGS } from '../store/dialogs/types';
 import { requestPermission, unsubscribe } from '../store/notifications/actions';
 import { NOTIFICATIONS_STATUS } from '../store/notifications/types';
 import { initialRoutingState, RoutingState } from '../store/routing/state';
-import { initialTicketsState, TicketsState } from '../store/tickets/state';
 import { signOut } from '../store/user/actions';
 import { TempAny } from '../temp-any';
 import { isDialogOpen } from '../utils/dialogs';
@@ -169,7 +168,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           </paper-tab>
           {% endfor %}
 
-          <a
+          <!--<a
             on-click="signIn" 
             link 
             hidden$="[[user.signedIn]]"
@@ -178,7 +177,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
             ga-event-action="login_click"
           >
             <paper-button class="login-button" primary>{$ logIn $}</paper-button>
-          </a>
+          </a>-->
         </paper-tabs>
 
         <paper-menu-button
@@ -187,6 +186,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           vertical-align="top"
           horizontal-align="right"
           no-animations
+          hidden="true"
         >
           <paper-icon-button
             icon="lkim:[[_getNotificationsIcon(notifications.status)]]"
@@ -266,9 +266,6 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
   @property({ type: Boolean, notify: true })
   drawerOpened: boolean;
   @property({ type: Object })
-  tickets: TicketsState = initialTicketsState;
-
-  @property({ type: Object })
   private viewport = {};
   @property({ type: Object })
   private heroSettings = {};
@@ -286,7 +283,6 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
     this.notifications = state.notifications;
     this.route = state.routing;
     this.user = state.user;
-    this.tickets = state.tickets;
     this.heroSettings = state.ui.heroSettings;
     this.viewport = state.ui.viewport;
   }

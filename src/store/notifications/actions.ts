@@ -30,7 +30,7 @@ export const initializeMessaging = () => {
 };
 
 export const requestPermission = () => (dispatch: Dispatch) => {
-  return messaging
+  return Notification
     .requestPermission()
     .then(() => {
       getToken(true);
