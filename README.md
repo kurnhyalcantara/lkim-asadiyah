@@ -1,12 +1,12 @@
 <p align="center">
-<!-- <img width="800px" src="https://raw.githubusercontent.com/kurnhyalcantara/hmiasadiyah/develop-v3/.github/preview/preview-hmi-asadiyah.png"> -->
+<img width="800px" src="https://raw.githubusercontent.com/kurnhyalcantara/lkim-asadiyah/master/.github/preview/preview.png">
 </p>
 <p align="center">
 <a href="https://lkim-asadiyah.web.app" align="center">:zap: Live demo</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 <a href="#getting-started">:rocket: Get Started</a>
 </p>
 
-[![Build Status](https://github.com/kurnhyalcantara/lkim-asadiyah/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/gdg-x/hoverboard/actions) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgdg-x%2Fhoverboard.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fgdg-x%2Fhoverboard?ref=badge_shield)[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7973ac656dc94e42858ce640bb02de58)](https://www.codacy.com/app/pamuditha/hoverboard?utm_source=github.com&utm_medium=referral&utm_content=pamuditha/hoverboard&utm_campaign=Badge_Grade)
+[![Build Status](https://github.com/kurnhyalcantara/lkim-asadiyah/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/kurnhyalcantara/lkim-asadiyah/actions)[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkurnhyalcantara%2Flkim-asadiyah.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkurnhyalcantara%2Flkim-asadiyah?ref=badge_shield)[![Codacy Badge](https://app.codacy.com/project/badge/Grade/82ca6977e9b149249ad30e92d13aaad7)](https://www.codacy.com/gh/kurnhyalcantara/lkim-asadiyah/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kurnhyalcantara/lkim-asadiyah&amp;utm_campaign=Badge_Grade)
 
 ## Overview
 
@@ -18,15 +18,15 @@ Our goal is to allow organizers to set up a professional website with minimum re
 
 | Feature                              | Description                                                                                                                  |
 | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
-| **Fast and optimized**               | 91/100 PWA on [Lighthouse](https://www.webpagetest.org/lighthouse.php?test=180111_1P_027a041bc5102982f074014807320a86&run=3) |
-| **Works offline**                    | shitty WiFi on the venue is not a problem anymore                                                                            |
+| **Fast and optimized**               | 69/100 PWA on [Lighthouse](https://www.webpagetest.org/result/210430_BiDc1W_ffef92b84ea1fec3eea26584720bdb2f/) |
+| **Works offline**                    | shitty WiFi on the location is not a problem anymore                                                                            |
 | **Mobile-first**                     | layouts optimized for small screens, Hoverboard can be installed as a native app on your phone                               |
 | **Push notifications**               | remind about sessions in My schedule, session feedback or target users with a custom message                                 |
 | **SEO optimized**                    | index all content and get to the top in search results                                                                       |
-| **Speakers and schedule management** | keep and update all information in the Firebase                                                                              |
+| **Pengurus and schedule management** | keep and update all information in the Firebase                                                                              |
 | **My schedule**                      | let attendees save sessions they want to visit                                                                               |
 | **Customizable theme**               | change colors to match your style                                                                                            |
-| **Blog**                             | post announcements, updates and useful information                                                                           |
+| **Blog and News**                             | post announcements, updates and useful information                                                                           |
 
 ## Getting Started
 
@@ -102,7 +102,7 @@ Most of the core team members, hoverboard contributors and contributors in the e
 
 ## License
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgdg-x%2Fhoverboard.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fgdg-x%2Fhoverboard?ref=badge_large)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkurnhyalcantara%2Flkim-asadiyah.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkurnhyalcantara%2Flkim-asadiyah?ref=badge_large)
 
 The project is published under the [MIT license](/LICENSE.md).
 Feel free to clone and modify repo as you want, but don't forget to add a reference to authors :)
