@@ -173,10 +173,7 @@ export class FeaturedVideos extends ReduxMixin(PolymerElement) {
                       fit
                     ></plastic-image>
                     <div class="image-overlay" fit></div>
-                    <paper-icon-button
-                      class="video-play-icon"
-                      icon="lkim:play"
-                    ></paper-icon-button>
+                    <paper-icon-button class="video-play-icon" icon="lkim:play"></paper-icon-button>
                   </div>
                   <h4 class="video-title">[[block.title]]</h4>
                 </div>

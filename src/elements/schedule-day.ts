@@ -93,7 +93,12 @@ export class ScheduleDay extends PolymerElement {
 
       <div class="grid">
         <div class="container">
-          <template is="dom-repeat" items="[[month.timeslots]]" as="timeslot" index-as="timeslotIndex">
+          <template
+            is="dom-repeat"
+            items="[[month.timeslots]]"
+            as="timeslot"
+            index-as="timeslotIndex"
+          >
             <div
               id$="[[timeslot.dateMonth]]"
               class="tanggal-bulan"
@@ -110,11 +115,7 @@ export class ScheduleDay extends PolymerElement {
               index-as="sessionIndex"
             >
               <div class="session card" layout vertical>
-                <template
-                  is="dom-repeat"
-                  items="[[session.items]]"
-                  as="subSession"
-                >
+                <template is="dom-repeat" items="[[session.items]]" as="subSession">
                   <session-element
                     class="subsession"
                     day-name="[[name]]"
@@ -183,7 +184,7 @@ export class ScheduleDay extends PolymerElement {
   _getTimePosition(timeslotIndex) {
     return `${timeslotIndex + 1} / 1`;
   }
-  
+
   _sliceText(text, index) {
     if (index === 0) {
       return text.slice(index, -3);
@@ -191,5 +192,4 @@ export class ScheduleDay extends PolymerElement {
       return text.slice(index);
     }
   }
-
 }

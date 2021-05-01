@@ -59,10 +59,7 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
             ga-event-label="signIn dialog - {$ provider.name $}"
             flex
           >
-            <iron-icon
-              class="icon-{$ provider.name $}"
-              icon="lkim:{$ provider.name $}"
-            ></iron-icon>
+            <iron-icon class="icon-{$ provider.name $}" icon="lkim:{$ provider.name $}"></iron-icon>
             <span provider-url="{$ provider.url $}">{$ provider.label $}</span>
           </paper-button>
           {% endfor %}

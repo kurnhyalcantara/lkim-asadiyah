@@ -66,11 +66,7 @@ export class SubscribeFormFooter extends ReduxMixin(PolymerElement) {
           autocomplete="off"
           disabled="[[subscribed.data]]"
         >
-          <iron-icon
-            icon="lkim:checked"
-            slot="suffix"
-            hidden$="[[!subscribed.data]]"
-          ></iron-icon>
+          <iron-icon icon="lkim:checked" slot="suffix" hidden$="[[!subscribed.data]]"></iron-icon>
         </paper-input>
         <paper-button
           on-click="_subscribe"

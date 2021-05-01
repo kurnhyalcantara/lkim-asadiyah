@@ -18,7 +18,7 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    match /article/{post} {
+    match /articles/{post} {
       // Applies to single document read requests
       allow get;
 
@@ -59,50 +59,6 @@ service cloud.firestore {
 
     match /notificationsUsers/{userId} {
       allow read, write: if request.auth.uid == userId;
-    }
-
-    match /partners/{groupId} {
-      // Applies to single document read requests
-      allow get;
-
-      // Applies to queries and collection read requests
-      allow list;
-
-      // Disallow writes
-      allow write: if false;
-
-      match /items/{itemId} {
-        // Applies to single document read requests
-        allow get;
-
-        // Applies to queries and collection read requests
-        allow list;
-
-        // Disallow writes
-        allow write: if false;
-      }
-    }
-
-    match /potentialPartners/{partnerId} {
-      allow delete: if false;
-
-      allow get;
-      allow list: if false;
-
-      // Applies to document create requests
-      //allow create;
-      allow write;
-    }
-
-    match /previousSpeakers/{speaker} {
-      // Applies to single document read requests
-      allow get;
-
-      // Applies to queries and collection read requests
-      allow list;
-
-      // Disallow writes
-      allow write: if false;
     }
 
     match /schedule/{day} {
@@ -154,7 +110,7 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    match /pengurus/{speaker} {
+    match /pengurus/{pengurusId} {
       // Applies to single document read requests
       allow get;
 
@@ -165,7 +121,7 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    match /generatedSpeakers/{speaker} {
+    match /generatedPengurus/{pengurusId} {
       // Applies to single document read requests
       allow get;
 
@@ -185,39 +141,6 @@ service cloud.firestore {
       // Applies to document create requests
       //allow create;
       allow write;
-    }
-
-    match /team/{teamId} {
-      // Applies to single document read requests
-      allow get;
-
-      // Applies to queries and collection read requests
-      allow list;
-
-      // Disallow writes
-      allow write: if false;
-
-      match /members/{memberId} {
-        // Applies to single document read requests
-        allow get;
-
-        // Applies to queries and collection read requests
-        allow list;
-
-        // Disallow writes
-        allow write: if false;
-      }
-    }
-
-    match /tickets/{ticket} {
-      // Applies to single document read requests
-      allow get;
-
-      // Applies to queries and collection read requests
-      allow list;
-
-      // Disallow writes
-      allow write: if false;
     }
 
     match /users/{userId} {

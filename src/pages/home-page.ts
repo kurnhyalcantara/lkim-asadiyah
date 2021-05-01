@@ -38,7 +38,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
         .info-items {
           margin: 24px auto;
           font-size: 22px;
-          font-weight: 600
+          font-weight: 600;
         }
 
         .info-items > *:not(:first-of-type) {
@@ -150,11 +150,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
 
           <div class="action-buttons" layout horizontal center-justified wrap>
             <a href="/schedule/">
-              <paper-button
-                class="actions-info"
-                primary
-                stroke
-              >
+              <paper-button class="actions-info" primary stroke>
                 <iron-icon icon="lkim:work"></iron-icon>
                 {$ infoKegiatan $}
               </paper-button>

@@ -281,7 +281,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
   private isFeatured: string;
   @property({ type: String, computed: '_summary(session.description)' })
   private summary: string;
-  
+
   _isFeatured(featuredSessions: FeaturedSessionsState, sessionId?: string) {
     if (featuredSessions instanceof Success && sessionId) {
       return featuredSessions.data[sessionId];

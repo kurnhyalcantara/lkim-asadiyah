@@ -203,7 +203,7 @@ export class NewsListPage extends ReduxMixin(PolymerElement) {
   @computed('posts')
   get featuredPosts(): News[] {
     if (this.posts instanceof Success) {
-      return this.posts.data
+      return this.posts.data;
     } else {
       return [];
     }

@@ -65,7 +65,7 @@ export class SubscribeBlock extends ReduxMixin(PolymerElement) {
             ga-event-action="subscribe"
             ga-event-label="subscribe block"
           >
-            <span class="cta-label">{$  subscribeBlock.callToAction.label $}</span>
+            <span class="cta-label">{$ subscribeBlock.callToAction.label $}</span>
             <iron-icon icon="lkim:arrow-right-circle"></iron-icon>
           </paper-button>
         </div>
@@ -90,5 +90,4 @@ export class SubscribeBlock extends ReduxMixin(PolymerElement) {
   _toggleNotifications() {
     store.dispatch(requestPermission());
   }
-
 }

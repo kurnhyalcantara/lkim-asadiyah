@@ -37,7 +37,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           height: auto;
           max-width: var(--max-container-width);
         }
-        
+
         .toolbar-logo {
           margin: 0 12px 0 8px;
           z-index: 1;
@@ -146,12 +146,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
             srcset="/images/logo.png"
             alt="{$ title $}"
           ></plastic-image>
-          <a
-            class="toolbar-title"
-            href="/"
-            layout
-            horizontal
-          >{$ title $}</a>
+          <a class="toolbar-title" href="/" layout horizontal>{$ title $}</a>
         </div>
 
         <paper-tabs

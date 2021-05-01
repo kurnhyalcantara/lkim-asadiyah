@@ -89,9 +89,7 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
               on-click="_toggleFeaturedSession"
             ></paper-fab>
           </div>
-          <h3 class="meta-info" hidden$="[[disabledSchedule]]">
-            [[session.dateReadable]]
-          </h3>
+          <h3 class="meta-info" hidden$="[[disabledSchedule]]">[[session.dateReadable]]</h3>
           <h3 class="meta-info" hidden$="[[disabledSchedule]]">[[session.track.title]]</h3>
           <h3 class="meta-info" hidden$="[[!session.complexity]]">
             {$ sessionDetails.contentLevel $}: [[session.complexity]]

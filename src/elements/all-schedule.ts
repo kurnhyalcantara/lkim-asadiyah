@@ -105,11 +105,7 @@ export class AllSchedule extends ReduxMixin(PolymerElement) {
       </style>
 
       <div class="grid">
-        <template
-          is="dom-repeat"
-          items="[[sessions]]"
-          as="subSession"
-        >
+        <template is="dom-repeat" items="[[sessions]]" as="subSession">
           <div class="session card" layout vertical>
             <session-element
               class="subsession"
@@ -153,5 +149,4 @@ export class AllSchedule extends ReduxMixin(PolymerElement) {
   private viewport = {};
   @property({ type: Object })
   private user = {};
-
 }

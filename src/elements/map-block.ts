@@ -94,10 +94,7 @@ export class MapBlock extends ReduxMixin(PolymerElement) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <paper-icon-button
-                class="directions"
-                icon="lkim:directions"
-              ></paper-icon-button>
+              <paper-icon-button class="directions" icon="lkim:directions"></paper-icon-button>
             </a>
           </div>
         </div>

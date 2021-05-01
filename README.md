@@ -6,27 +6,27 @@
 <a href="#getting-started">:rocket: Get Started</a>
 </p>
 
-[![Build Status](https://github.com/kurnhyalcantara/lkim-asadiyah/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/kurnhyalcantara/lkim-asadiyah/actions)[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkurnhyalcantara%2Flkim-asadiyah.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkurnhyalcantara%2Flkim-asadiyah?ref=badge_shield)[![Codacy Badge](https://app.codacy.com/project/badge/Grade/82ca6977e9b149249ad30e92d13aaad7)](https://www.codacy.com/gh/kurnhyalcantara/lkim-asadiyah/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kurnhyalcantara/lkim-asadiyah&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://github.com/kurnhyalcantara/lkim-asadiyah/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/kurnhyalcantara/lkim-asadiyah/actions)[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkurnhyalcantara%2Flkim-asadiyah.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkurnhyalcantara%2Flkim-asadiyah?ref=badge_shield)[![Codacy Badge](https://app.codacy.com/project/badge/Grade/82ca6977e9b149249ad30e92d13aaad7)](https://www.codacy.com/gh/kurnhyalcantara/lkim-asadiyah/dashboard?utm_source=github.com&utm_medium=referral&utm_content=kurnhyalcantara/lkim-asadiyah&utm_campaign=Badge_Grade)
 
 ## Overview
 
-Project LKIM As'adiyah Web App is the organization website for portofolio and user managements. The template is created based on [HMI Asadiyah Web App](https://github.com/kurnhyalcantara/hmiasadiyah) team experience 
+Project LKIM As'adiyah Web App is the organization website for portofolio and user managements. The template is created based on [HMI Asadiyah Web App](https://github.com/kurnhyalcantara/hmiasadiyah) team experience
 
 Our goal is to allow organizers to set up a professional website with minimum resources. To get started you need only basic knowledge of web technologies and a free Firebase account.
 
 ## Features
 
-| Feature                              | Description                                                                                                                  |
-| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| Feature                              | Description                                                                                                    |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
 | **Fast and optimized**               | 69/100 PWA on [Lighthouse](https://www.webpagetest.org/result/210430_BiDc1W_ffef92b84ea1fec3eea26584720bdb2f/) |
-| **Works offline**                    | shitty WiFi on the location is not a problem anymore                                                                            |
-| **Mobile-first**                     | layouts optimized for small screens, Hoverboard can be installed as a native app on your phone                               |
-| **Push notifications**               | remind about sessions in My schedule, session feedback or target users with a custom message                                 |
-| **SEO optimized**                    | index all content and get to the top in search results                                                                       |
-| **Pengurus and schedule management** | keep and update all information in the Firebase                                                                              |
-| **My schedule**                      | let attendees save sessions they want to visit                                                                               |
-| **Customizable theme**               | change colors to match your style                                                                                            |
-| **Blog and News**                             | post announcements, updates and useful information                                                                           |
+| **Works offline**                    | shitty WiFi on the location is not a problem anymore                                                           |
+| **Mobile-first**                     | layouts optimized for small screens, Hoverboard can be installed as a native app on your phone                 |
+| **Push notifications**               | remind about sessions in My schedule, session feedback or target users with a custom message                   |
+| **SEO optimized**                    | index all content and get to the top in search results                                                         |
+| **Pengurus and schedule management** | keep and update all information in the Firebase                                                                |
+| **My schedule**                      | let attendees save sessions they want to visit                                                                 |
+| **Customizable theme**               | change colors to match your style                                                                              |
+| **Blog and News**                    | post announcements, updates and useful information                                                             |
 
 ## Getting Started
 
@@ -106,4 +106,3 @@ Most of the core team members, hoverboard contributors and contributors in the e
 
 The project is published under the [MIT license](/LICENSE.md).
 Feel free to clone and modify repo as you want, but don't forget to add a reference to authors :)
-

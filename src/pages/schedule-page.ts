@@ -80,7 +80,7 @@ export class SchedulePage extends SessionsHoC(ReduxMixin(PolymerElement)) {
       ></app-route>
 
       <app-route route="[[route]]" pattern="/:month" data="{{routeData}}"></app-route>
-        
+
       <hero-block
         background-image="{$ heroSettings.schedule.background.image $}"
         background-color="{$ heroSettings.schedule.background.color $}"
@@ -181,9 +181,7 @@ export class SchedulePage extends SessionsHoC(ReduxMixin(PolymerElement)) {
 
   @observe('schedule')
   _scheduleChanged() {
-    if (
-      this.schedule instanceof Initialized 
-    ) {
+    if (this.schedule instanceof Initialized) {
       store.dispatch(fetchSchedule());
     }
   }

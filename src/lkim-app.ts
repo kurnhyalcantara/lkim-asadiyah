@@ -234,7 +234,9 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
               alt="{$ title $}"
             ></plastic-image>
             <h2 class="version">{$ version $}</h2>
-            <h3 class="design">{$ design $}<span class="by" on-tap="_openInstaDesigner">{$ by $}</span></h3>
+            <h3 class="design">
+              {$ design $}<span class="by" on-tap="_openInstaDesigner">{$ by $}</span>
+            </h3>
           </app-toolbar>
           <!--<div class="drawer-account" layout horizontal>
             <a class="drawer-signup" on-click="openSignUpDialog">{$ signUp $}</a>

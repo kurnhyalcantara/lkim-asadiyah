@@ -7,7 +7,7 @@ export const theme = css`
     --focused-color: #0b86c1;
     --light-primary-color: #96d9fa;
     --text-primary-color: #ffffff;
-    --accent-color: #E91DA2;
+    --accent-color: #e91da2;
     --primary-background-color: #ffffff;
     --primary-text-color: #424242;
     --secondary-text-color: #757575;
@@ -17,7 +17,7 @@ export const theme = css`
     --footer-text-color: #616161;
     --twitter-color: #4099ff;
     --facebook-color: #3b5998;
-    --whatsapp-color: #128C7E;
+    --whatsapp-color: #128c7e;
     --border-light-color: #e2e2e2;
     --error-color: #e64a19;
 
@@ -106,7 +106,7 @@ export const theme = css`
     padding: 0.7em;
     border-radius: var(--border-radius);
     font-size: 14px;
-    font-family: 'Fira Sans';
+    font-family: var(--font-family);
     font-weight: 600;
     color: var(--default-primary-color);
     transition: background-color var(--animation);
@@ -180,7 +180,7 @@ export const theme = css`
   }
 
   paper-tab {
-    font-family: 'Fira Sans';
+    font-family: var(--font-family);
     font-weight: 600;
   }
 

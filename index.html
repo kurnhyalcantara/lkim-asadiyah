@@ -42,7 +42,7 @@
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta content="images/manifest/icon-144.png" name="msapplication-TileImage" />
-    <meta content="#25AFF3" name="msapplication-TileColor" />
+    <meta content="#25aff3" name="msapplication-TileColor" />
     <meta content="no" name="msapplication-tap-highlight" />
 
     <!-- G+ sharing meta data -->
@@ -55,10 +55,10 @@
     <!-- Facebook sharing meta data -->
     <meta content="{$ title $}" property="og:title" />
     <meta content="{$ title $}" property="og:site_name" />
-    <meta content="website" property="og:type" />
+    <meta content="article" property="og:type" />
     <meta content="{$ url $}" property="og:url" />
     <meta content="{$ description $}" property="og:description" />
-    <meta content="article" property="og:type" />
+    <meta content="{$ fbAppId $}" property="fb:app_id" />
     <meta
       content="{$ image if image.startsWith('http') else (url + image) $}"
       property="og:image"
@@ -163,7 +163,7 @@
       /* styling for render while resources are loading */
       lkim-app[unresolved] {
         min-height: 100%;
-        background-color: #25AFF3;
+        background-color: #25aff3;
         padding: 16px;
         top: 0;
         left: 0;

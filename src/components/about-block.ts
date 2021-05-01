@@ -22,7 +22,6 @@ export class AboutBlock extends ThemedElement {
             grid-gap: 64px;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
           }
-
         }
       `,
     ];
