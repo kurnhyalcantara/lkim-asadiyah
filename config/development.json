@@ -12,5 +12,6 @@
     "projectId": "lkim-asadiyah",
     "storageBucket": "lkim-asadiyah.appspot.com"
   },
-  "fbAppId": "811843096095915"
+  "fbAppId": "811843096095915",
+  "googleMapApiKey": "AIzaSyAyRTnXOg03KvfYSKbcz1F_M3_gb3ESJpU"
 }

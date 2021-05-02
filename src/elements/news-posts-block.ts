@@ -47,6 +47,7 @@ export class NewsPostsBlock extends ReduxMixin(PolymerElement) {
 
         .title {
           font-size: 20px;
+          font-weight: 600;
           line-height: 1.2;
           color: var(--default-primary-color);
         }

@@ -2,11 +2,12 @@ import { customElement, property } from '@polymer/decorators';
 import '@polymer/iron-icon';
 import { html, PolymerElement } from '@polymer/polymer';
 import '../components/about-block';
-import '../elements/featured-videos';
+import '../elements/pengurus-block';
 import '../elements/gallery-block';
 import '../elements/news-posts-block';
 import '../elements/article-latest-block';
-import '../elements/pengurus-block';
+import '../elements/featured-videos';
+import '../elements/map-block'
 import '../elements/subscribe-block';
 import { ReduxMixin } from '../mixins/redux-mixin';
 import { RootState } from '../store';
@@ -46,7 +47,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
         }
 
         .action-buttons {
-          margin: 0 -8px;
+          margin: 22px -8px;
           font-size: 14px;
         }
 
@@ -121,9 +122,8 @@ export class HomePage extends ReduxMixin(PolymerElement) {
           }
 
           .info-items {
-            margin: 48px auto;
+            margin: 24px auto;
             font-size: 28px;
-            line-height: 1.1;
           }
         }
       </style>
@@ -155,7 +155,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
                 {$ infoKegiatan $}
               </paper-button>
             </a>
-            <!--<paper-button
+            <paper-button
               on-click=""
               ga-on="click"
               ga-event-category="daftar"
@@ -164,8 +164,8 @@ export class HomePage extends ReduxMixin(PolymerElement) {
               primary
             >
               <iron-icon icon="lkim:ticket"></iron-icon>
-              {$ makeNewAccount $}
-            </paper-button>-->
+              {$ registerMember $}
+            </paper-button>
           </div>
 
           <div class="scroll-down" on-click="_scrollNextBlock">
@@ -238,7 +238,8 @@ export class HomePage extends ReduxMixin(PolymerElement) {
       <news-posts-block></news-posts-block>
       <article-latest-block></article-latest-block>
       <featured-videos></featured-videos>
-      <subscribe-block></subscribe-block>
+      <map-block></map-block>
+      <!--<subscribe-block></subscribe-block>-->
       <footer-block></footer-block>
     `;
   }

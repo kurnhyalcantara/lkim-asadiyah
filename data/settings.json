@@ -37,7 +37,7 @@
     },
     {
       "route": "article",
-      "permalink": "/article/",
+      "permalink": "/articles/",
       "label": "Artikel",
       "icon": "book"
     },
@@ -102,15 +102,15 @@
     "follow": [
       {
         "name": "facebook",
-        "url": "https://www.facebook.com/lkimasadiyah//"
+        "url": "https://www.facebook.com/lkimasadiyahsengkang/"
       },
       {
         "name": "instagram",
-        "url": "https://www.instagram.com/lkimiasadiyah"
+        "url": "https://www.instagram.com/lkimasadiyah"
       },
       {
         "name": "youtube",
-        "url": "https://www.youtube.com/playlist?list=PLt8lEzcLNl31AouwDkbLbLARlQFwNS2en"
+        "url": "https://www.youtube.com/channel/UC6Yi3Z6frhtW2SnbWo83Nxg/"
       }
     ],
     "share": [
@@ -126,21 +126,21 @@
   },
   "mailto": "lkimiaiasadiyah@gmail.com",
   "location": {
-    "label": "Location",
-    "name": "Planeta kino",
-    "city": "Lviv",
-    "short": "Lviv, Ukraine",
-    "address": "36 Shchyretska St, Lviv, Ukraine",
+    "label": "Alamat",
+    "name": "Sekretariat DEMA IAI As'adiyah Sengkang",
+    "city": "Siengkang",
+    "short": "Siengkang, Kabupaten Wajo",
+    "address": "Jalan Veteran No.46, Siengkang, Kabupaten Wajo, Sulawesi Selatan",
     "pointer": {
-      "latitude": 49.809841,
-      "longitude": 23.972805,
-      "zoom": 5
+      "latitude": -4.127486,
+      "longitude": 120.032045,
+      "zoom": 17
     },
     "mapCenter": {
-      "latitude": 48,
-      "longitude": 8
+      "latitude": -4.127,
+      "longitude": 120.032
     },
-    "description": "Newly built Pivdennyi Expo is a long-awaited exhibition center in Lviv, which can fulfill the needs of the large-scale event"
+    "description": "Sekretariat Bersama (Sekber) DEMA & UKM Lingkup IAI As'adiyah Sengkang"
   },
   "mediaQueries": {
     "xs": {

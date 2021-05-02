@@ -258,8 +258,8 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
               {% endfor %}
             </iron-selector>
 
-            <div>
-              <a class="bottom-drawer-link" on-click="_onaddToHomeScreen">
+            <div hidden="{{isAddToHomeScreen}}">
+              <a class="bottom-drawer-link" on-click="_onAddToHomeScreen">
                 <iron-icon icon="icons:add-box"></iron-icon>
                 <span>{$ addToHomeScreen.cta $}</span>
               </a>
@@ -281,7 +281,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
             <home-page name="home"></home-page>
             <pengurus-page name="pengurus" route="[[subRoute]]"></pengurus-page>
             <news-page name="news" route="[[subRoute]]"></news-page>
-            <article-page name="article" route="[[subRoute]]"></article-page>
+            <article-page name="articles" route="[[subRoute]]"></article-page>
             <schedule-page name="schedule" route="[[subRoute]]"></schedule-page>
           </iron-pages>
         </app-header-layout>
@@ -346,6 +346,8 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   private addToHomeScreen: TempAny;
   @property({ type: Boolean })
   private drawerOpened = false;
+  @property({ type: Boolean })
+  private isAddToHomeScreen = false;
   @property({ type: Object })
   private route: RoutingState = initialRoutingState;
   @property({ type: Object })
@@ -449,7 +451,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
     const hasSubroute = subroutePath !== '' && subroutePath !== '/';
 
     if (!this.route || page !== this.route.route) {
-      !hasSubroute && scrollToY(0, 100);
+      !hasSubroute && scrollToY(0, 600);
       setRoute(page);
       this.$.header.classList.remove('remove-shadow');
     }
@@ -484,11 +486,8 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
     window.open('https://www.instagram.com/kurnhyalcantara24', '_blank');
   }
 
-  _isaddToHomeScreenHidden(addToHomeScreen, isTabletPlus) {
-    return isTabletPlus || !addToHomeScreen;
-  }
 
-  _onaddToHomeScreen() {
+  _onAddToHomeScreen() {
     if (!this.addToHomeScreen) this.closeDrawer();
     this.addToHomeScreen.prompt();
     this.addToHomeScreen.userChoice.then((choiceResult) => {
@@ -498,6 +497,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
         ga('send', 'event', 'add_to_home_screen_prompt', 'dismissed');
       }
       this.addToHomeScreen = null;
+      this.isAddToHomeScreen = true;
       this.closeDrawer();
     });
   }

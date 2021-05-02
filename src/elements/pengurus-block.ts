@@ -26,6 +26,7 @@ export class PengurusBlock extends PengurusHoC(ReduxMixin(PolymerElement)) {
         }
 
         .pengurus {
+          padding: 20px 32px;
           text-align: center;
           cursor: pointer;
         }
@@ -89,7 +90,7 @@ export class PengurusBlock extends PengurusHoC(ReduxMixin(PolymerElement)) {
 
         .origin {
           margin-top: 4px;
-          font-size: 14px;
+          font-size: 12px;
           line-height: 1.1;
         }
 
@@ -104,7 +105,7 @@ export class PengurusBlock extends PengurusHoC(ReduxMixin(PolymerElement)) {
           }
 
           .name {
-            font-size: 24px;
+            font-size: 20px;
           }
         }
 
@@ -155,7 +156,7 @@ export class PengurusBlock extends PengurusHoC(ReduxMixin(PolymerElement)) {
         <div class="pengurus-wrapper">
           <template is="dom-repeat" items="[[featuredPengurus]]" as="pengurus">
             <div
-              class="pengurus"
+              class="pengurus card"
               on-click="_openSpeaker"
               ga-on="click"
               ga-event-category="pengurus"
@@ -176,7 +177,7 @@ export class PengurusBlock extends PengurusHoC(ReduxMixin(PolymerElement)) {
                 <text-truncate lines="1">
                   <h3 class="name">[[pengurus.name]]</h3>
                 </text-truncate>
-                <text-truncate lines="1">
+                <text-truncate lines="2">
                   <div class="origin">[[pengurus.jabatan]]</div>
                 </text-truncate>
               </div>

@@ -4,15 +4,15 @@
   "image": "images/social-share.jpg",
   "keywords": "iai, asadiyah, iaia, lkim, ukm, mahasiswa, sengkang, wajo, kajian, ilmiah, tulisan, artikel, puisi, pemikiran, peradaban",
   "loading": "Sedang memuat LKIM IAI Asadiyah Web App",
-  "version": "Versi 0.1.1 beta",
+  "version": "Versi 0.1.0 alpha",
   "design": "Design by ",
   "by": "@kurnhyalcantara24",
   "logIn": "Login",
   "signUp": "Daftar",
   "infoKegiatan": "Info Kegiatan",
-  "makeNewAccount": "Buat Akun Baru",
+  "registerMember": "Pendaftaran Anggota",
   "partnershipProposition": "https://bit.ly/dfua17-partners",
-  "share": "Share",
+  "share": "Bagikan",
   "followOur": "Follow our",
   "followUs": "Follow Akun",
   "emailUs": "Email kami",
@@ -81,21 +81,21 @@
     "title": "Berita Terbaru",
     "callToAction": {
       "label": "Lihat semua berita",
-      "link": "/blog/"
+      "link": "/news/"
     }
   },
   "articleLatestBlock": {
-    "title": "Goresan Pena",
+    "title": "Artikel & Opini",
     "callToAction": {
       "label": "Lihat semua tulisan",
-      "link": "/blog/"
+      "link": "/articles/"
     }
   },
   "featuredVideos": {
     "title": "Video",
     "callToAction": {
       "label": "Lihat semua video",
-      "link": "https://www.youtube.com/playlist?list=PLt8lEzcLNl31AouwDkbLbLARlQFwNS2en"
+      "link": "https://www.youtube.com/channel/UC6Yi3Z6frhtW2SnbWo83Nxg"
     }
   },
   "footer": {
@@ -191,7 +191,7 @@
     }
   },
   "mapBlock": {
-    "title": "Location"
+    "title": "Alamat"
   },
   "subscribeBlock": {
     "callToAction": {

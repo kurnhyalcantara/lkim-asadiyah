@@ -17,8 +17,6 @@ export class FooterSocial extends PolymerElement {
          .title {
            display: inline-block;
            text-transform: uppercase;
-           font-weight: 600;
-           font-size
            margin: 0;
            color: var(--footer-text-color);
          }
@@ -38,10 +36,6 @@ export class FooterSocial extends PolymerElement {
 
          .nav-inline li {
            display: inline-block;
-         }
-
-        .social-group.share-block {
-           margin-bottom: 17px;
          }
 
          .share {
