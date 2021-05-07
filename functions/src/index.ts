@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { scheduleWrite, sessionsWrite, speakersWrite } from './generate-sessions-speakers-schedule';
+import { scheduleWrite, sessionsWrite, pengurusWrite } from './generate-sessions-pengurus-schedule';
 import { mailchimpSubscribe } from './mailchimp-subscribe';
 import { sendGeneralNotification } from './notifications';
 import { optimizeImages } from './optimize-images';
@@ -22,5 +22,5 @@ export {
   prerender,
   scheduleWrite,
   sessionsWrite,
-  speakersWrite,
+  pengurusWrite,
 };

@@ -4,6 +4,7 @@ import {
   importGallery,
   importNotificationsConfig,
   importSchedule,
+  importSessions,
   importPengurus,
   importVideos,
 } from './utils';
@@ -13,6 +14,7 @@ importNews()
   .then(() => importGallery())
   .then(() => importNotificationsConfig())
   .then(() => importSchedule())
+  .then(() => importSessions())
   .then(() => importPengurus())
   .then(() => importVideos())
   .then(() => {

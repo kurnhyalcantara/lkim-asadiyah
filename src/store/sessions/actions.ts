@@ -11,7 +11,7 @@ import {
 } from './types';
 
 const getSessions = async () => {
-  const { docs } = await db().collection('sessions').get();
+  const { docs } = await db().collection('generatedSessions').get();
   const tagFilters = new Set<string>();
   const complexityFilters = new Set<string>();
   const sessions = docs.map<Session>(mergeId);

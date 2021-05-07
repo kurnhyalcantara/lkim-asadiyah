@@ -5,7 +5,7 @@ import { allKeys } from './utils';
 describe('day', () => {
   it('matches the shape of the default data', () => {
     const days: Day[] = Object.values(data['schedule']);
-    const keys: Array<keyof Day> = ['date', 'month', 'timeslots'];
+    const keys: Array<keyof Day> = ['month', 'timeslots'];
     expect(days).toHaveLength(2);
     expect(allKeys(days)).toStrictEqual(keys);
   });

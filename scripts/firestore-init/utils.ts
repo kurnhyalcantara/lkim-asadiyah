@@ -62,20 +62,20 @@ export const importNews = () => {
 };
 
 export const importArticle = () => {
-  const article: { [key: string]: object } = data.article;
-  if (!Object.keys(article).length) {
+  const articles: { [key: string]: object } = data.articles;
+  if (!Object.keys(articles).length) {
     return Promise.resolve();
   }
-  console.log('Importing article...');
+  console.log('Importing articles...');
 
   const batch = firestore.batch();
 
-  Object.keys(article).forEach((docId: string) => {
-    batch.set(firestore.collection('article').doc(docId), article[docId]);
+  Object.keys(articles).forEach((docId: string) => {
+    batch.set(firestore.collection('articles').doc(docId), articles[docId]);
   });
 
   return batch.commit().then((results) => {
-    console.log('Imported data for', results.length, 'article posts');
+    console.log('Imported data for', results.length, 'articles posts');
   });
 };
 
@@ -118,6 +118,27 @@ export const importSchedule = () => {
 
   return batch.commit().then(() => {
     console.log('Imported data for', Object.keys(docs).length, 'days');
+  });
+};
+
+export const importSessions = () => {
+  const docs: { [key: string]: object } = data.sessions;
+  if (!Object.keys(docs).length) {
+    return Promise.resolve();
+  }
+  console.log('Importing sessions...');
+
+  const batch = firestore.batch();
+
+  Object.keys(docs).forEach((docId) => {
+    batch.set(firestore.collection('sessions').doc(docId), {
+      ...docs[docId],
+      date: docId,
+    });
+  });
+
+  return batch.commit().then(() => {
+    console.log('Imported data for', Object.keys(docs).length, 'sessions');
   });
 };
 

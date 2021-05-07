@@ -8,7 +8,7 @@ import '../elements/content-loader';
 import '../elements/shared-styles';
 import '../elements/text-truncate';
 import { ReduxMixin } from '../mixins/redux-mixin';
-import { Article } from '../models/article';
+import { Article } from '../models/articles';
 import { RootState, store } from '../store';
 import { fetchArticleList } from '../store/articles/actions';
 import { ArticleState, initialArticleState } from '../store/articles/state';
@@ -35,7 +35,7 @@ export class ArticleListPage extends ReduxMixin(PolymerElement) {
           background-color: var(--secondary-background-color);
         }
 
-        .featured-post {
+        .featured-posts {
           display: block;
           color: var(--primary-text-color);
         }
@@ -52,8 +52,8 @@ export class ArticleListPage extends ReduxMixin(PolymerElement) {
         }
 
         .title {
-          font-size: 20px;
           line-height: 1.2;
+          font-weight: 600;
           color: var(--default-primary-color);
         }
 
@@ -92,6 +92,7 @@ export class ArticleListPage extends ReduxMixin(PolymerElement) {
           .featured-posts:last-of-type {
             display: flex;
           }
+        }
       </style>
 
       <polymer-helmet
@@ -137,8 +138,8 @@ export class ArticleListPage extends ReduxMixin(PolymerElement) {
 
             <template is="dom-repeat" items="[[featuredPosts]]" as="post">
               <a
-                href$="/article/posts/[[post.id]]/"
-                class="featured-post card"
+                href$="/articles/posts/[[post.id]]/"
+                class="featured-posts card"
                 ga-on="click"
                 ga-event-category="article"
                 ga-event-action="open post"
@@ -158,7 +159,7 @@ export class ArticleListPage extends ReduxMixin(PolymerElement) {
                 <div class="details" layout vertical justified flex-auto>
                   <div>
                     <text-truncate lines="2">
-                      <h2 class="title">[[post.title]]</h2>
+                      <h3 class="title">[[post.title]]</h3>
                     </text-truncate>
                     <text-truncate lines="3">
                       <marked-element class="description" markdown="[[post.brief]]">

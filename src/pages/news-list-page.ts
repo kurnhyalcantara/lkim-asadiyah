@@ -58,6 +58,7 @@ export class NewsListPage extends ReduxMixin(PolymerElement) {
 
         .title {
           line-height: 1.2;
+          font-weight: 600;
           color: var(--default-primary-color);
         }
 
@@ -151,7 +152,7 @@ export class NewsListPage extends ReduxMixin(PolymerElement) {
                   <div class="details" layout vertical justified>
                     <div>
                       <text-truncate lines="2">
-                        <h2 class="title">[[post.title]]</h2>
+                        <h3 class="title">[[post.title]]</h3>
                       </text-truncate>
                       <text-truncate lines="3">
                         <marked-element class="description" markdown="[[post.brief]]">
@@ -212,13 +213,6 @@ export class NewsListPage extends ReduxMixin(PolymerElement) {
   @computed('posts')
   get contentLoaderVisibility(): boolean {
     return this.posts instanceof Success || this.posts instanceof Failure;
-  }
-
-  _addIfNotPhone(base: number, additional: number) {
-    if (this.viewport.isTabletPlus) {
-      return base + additional;
-    }
-    return base;
   }
 
   getDate(date: Date) {

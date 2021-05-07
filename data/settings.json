@@ -192,5 +192,9 @@
       "itemsCount": 5
     }
   },
+  "pathContent": {
+    "news": "Berita > ",
+    "articles": "Artikel >"
+  },
   "showForkMeBlockForProjectIds": ["hoverboard-master", "hoverboard-dev"]
 }

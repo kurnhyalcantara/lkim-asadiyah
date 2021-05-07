@@ -4,7 +4,7 @@ import { allKeys } from './utils';
 
 describe('post', () => {
   it('matches the shape of the default data', () => {
-    const posts: NewsData[] = Object.values(data['blog']);
+    const posts: NewsData[] = Object.values(data['news']);
     const keys: Array<keyof NewsData> = [
       'backgroundColor',
       'brief',

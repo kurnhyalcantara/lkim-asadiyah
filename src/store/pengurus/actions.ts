@@ -10,7 +10,7 @@ import {
 } from './types';
 
 const getPengurus = async (): Promise<Pengurus[]> => {
-  const { docs } = await db().collection('pengurus').orderBy('order', 'asc').get();
+  const { docs } = await db().collection('generatedPengurus').orderBy('order', 'asc').get();
   return docs.map<Pengurus>(mergeId);
 };
 

@@ -42,7 +42,7 @@
       "title": "Testing News 4"
     }
   },
-  "article": {
+  "articles": {
     "testing-1": {
       "backgroundColor": "#3647a5",
       "brief": "Testing 1 was announced, for the sixth year in a row, the conference will bring together 900 developers, managers and...",

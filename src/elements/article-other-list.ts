@@ -15,25 +15,32 @@ export class ArticleOtherList extends PolymerElement {
           display: block;
         }
 
-        .post {
-          padding: 24px 0;
+        .featured-posts-wrapper {
+          grid-template-columns: 1fr;
+          display: grid;
+          grid-gap: 24px;
+        }
+
+        .featured-posts {
           display: block;
           color: var(--primary-text-color);
         }
 
         .image {
-          margin-right: 24px;
-          width: 64px;
-          height: 64px;
-          border-radius: var(--border-radius);
+          width: 100%;
+          height: 128px;
+          border-top-left-radius: var(--border-radius);
+          border-top-right-radius: var(--border-radius);
         }
 
         .details {
-          height: 100%;
+          padding: 16px;
         }
 
         .title {
           line-height: 1.2;
+          font-weight: 600;
+          color: var(--default-primary-color);
         }
 
         .description {
@@ -48,30 +55,44 @@ export class ArticleOtherList extends PolymerElement {
         }
 
         @media (min-width: 640px) {
-          .image {
-            width: 128px;
-            height: 128px;
+          @media (min-width: 640px) {
+            .featured-posts-wrapper {
+              grid-template-columns: repeat(3, 1fr);
+            }
+  
+            .featured-posts:last-of-type {
+              display: none;
+            }
+          }
+  
+          @media (min-width: 812px) {
+            .featured-posts-wrapper {
+              grid-template-columns: repeat(4, 1fr);
+            }
+  
+            .featured-posts:last-of-type {
+              display: flex;
+            }
           }
         }
       </style>
 
-      <template is="dom-repeat" items="[[posts]]" as="post">
-        <a href$="/article/posts/[[post.id]]/" class="post" layout horizontal>
-          <plastic-image
-            class="image"
-            srcset="[[post.image]]"
-            style$="background-color: [[post.backgroundColor]];"
-            sizing="cover"
-            hidden$="[[!post.image]]"
-            lazy-load
-            preload
-            fade
-          ></plastic-image>
-          <div flex>
-            <div class="details" layout vertical justified>
+      <div class="featured-posts-wrapper">
+        <template is="dom-repeat" items="[[posts]]" as="post">
+          <a href$="/articles/posts/[[post.id]]/" class="featured-posts card" layout vertical>
+            <plastic-image
+              class="image"
+              srcset="[[post.image]]"
+              style$="background-color: [[post.backgroundColor]];"
+              sizing="cover"
+              lazy-load
+              preload
+              fade
+            ></plastic-image>
+            <div class="details" layout vertical justified flex-auto>
               <div>
                 <text-truncate lines="2">
-                  <h2 class="title">[[post.title]]</h2>
+                  <h3 class="title">[[post.title]]</h3>
                 </text-truncate>
                 <text-truncate lines="3">
                   <marked-element class="description" markdown="[[post.brief]]">
@@ -81,9 +102,9 @@ export class ArticleOtherList extends PolymerElement {
               </div>
               <span class="date">[[getDate(post.published)]]</span>
             </div>
-          </div>
-        </a>
-      </template>
+          </a>
+        </template>
+      </div>
     `;
   }
 

@@ -16,6 +16,7 @@ export class NewsOtherList extends PolymerElement {
         }
 
         .post {
+          margin-bottom: 24px;
           padding: 24px 0;
           display: block;
           color: var(--primary-text-color);
@@ -34,6 +35,8 @@ export class NewsOtherList extends PolymerElement {
 
         .title {
           line-height: 1.2;
+          font-weight: 600;
+          color: var(--default-primary-color);
         }
 
         .description {
@@ -56,7 +59,7 @@ export class NewsOtherList extends PolymerElement {
       </style>
 
       <template is="dom-repeat" items="[[posts]]" as="post">
-        <a href$="/news/posts/[[post.id]]/" class="post" layout horizontal>
+        <a href$="/news/posts/[[post.id]]/" class="post card" layout horizontal>
           <plastic-image
             class="image"
             srcset="[[post.image]]"
@@ -71,7 +74,7 @@ export class NewsOtherList extends PolymerElement {
             <div class="details" layout vertical justified>
               <div>
                 <text-truncate lines="2">
-                  <h2 class="title">[[post.title]]</h2>
+                  <h3 class="title">[[post.title]]</h3>
                 </text-truncate>
                 <text-truncate lines="3">
                   <marked-element class="description" markdown="[[post.brief]]">

@@ -14,6 +14,7 @@ import { RootState, store } from '../store';
 import { fetchNewsList } from '../store/news/actions';
 import { NewsState, initialNewsState } from '../store/news/state';
 import { getDate } from '../utils/functions';
+import { share } from '../utils/share';
 
 @customElement('news-content-page')
 export class NewsContentPage extends ReduxMixin(PolymerElement) {
@@ -56,8 +57,63 @@ export class NewsContentPage extends ReduxMixin(PolymerElement) {
           background-color: var(--primary-background-color);
         }
 
+        .hero-title {
+          margin: 12px 0;
+          font-size: 24px;
+          font-weight: 600;
+          line-height: 1.2;
+        }
+
+        .path-content {
+          font-size: 12px;
+          color: var(--default-primary-color);
+        }
+
+        .post-meta {
+          font-size: 12px;
+          color: var(--secondary-text-color);
+        }
+
+        .author-avatar {
+          display: inline-block;
+          float: left;
+          position: relative;
+          z-index: 1;
+          margin-right: 10px;
+        }
+
+        .img-avatar {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          z-index: 1;
+          padding: 3px;
+        }
+
+        .nav-inline {
+          display: contents;
+          margin: 0 55px 0 4px;
+        }
+
+        .share {
+          width: 35px;
+          display: inline-block;
+          margin: 0;
+        }
+
+        .share-twitter {
+          color: var(--twitter-color);
+        }
+
+        .share-facebook {
+          color: var(--facebook-color);
+        }
+
+        .share-whatsapp {
+          color: var(--whatsapp-color);
+        }
+
         [slot='markdown-html'] {
-          font-size: 18px;
           line-height: 1.8;
           color: var(--primary-text-color);
         }
@@ -90,6 +146,10 @@ export class NewsContentPage extends ReduxMixin(PolymerElement) {
             min-height: 400px;
           }
 
+          .hero-title {
+            font-size: 30px;
+          }
+
           .suggested-posts {
             margin-top: 48px;
             padding-bottom: 36px;
@@ -109,12 +169,73 @@ export class NewsContentPage extends ReduxMixin(PolymerElement) {
       <app-route route="[[route]]" pattern="/:id" data="{{postData}}"></app-route>
 
       <hero-block
-        background-image="[[post.image]]"
         background-color="[[post.primaryColor]]"
-        font-color="#fff"
+        font-color="#000"
         active="[[active]]"
       >
-        <div class="hero-title">[[post.title]]</div>
+        <div class="path-content">{$ pathContent.news $}[[post.tag]]</div>
+        <h3 class="hero-title">[[post.title]]</h3>
+        <div class="post-meta" layout horizontal justified flex>
+          <div class="post-author" layout horizontal>
+            <div class="author-avatar">
+              <plastic-image
+                class="img-avatar"
+                srcset="[[post.avatar]]"
+                lazy-load
+                preload
+                fade
+              >
+              </plastic-image>
+            </div>
+            <div class="post-details" layout vertical>
+              <div class="author-name">[[post.author]]</div>
+              <div class="post-published">[[getDate(post.published)]]</div>
+            </div>
+          </div>
+          <div class="share-social">
+            <div class="nav-inline">
+              <div class="share">
+                <paper-icon-button
+                  class="share-facebook"
+                  icon="lkim:facebook"
+                  share="facebook"
+                  on-click="share"
+                  ga-on="click"
+                  ga-event-category="social"
+                  ga-event-action="share"
+                  ga-event-label="facebook"
+                >
+                </paper-icon-button>
+              </div>
+              <div class="share">
+                <paper-icon-button
+                  class="share-twitter"
+                  icon="lkim:twitter"
+                  share="twitter"
+                  on-click="share"
+                  ga-on="click"
+                  ga-event-category="social"
+                  ga-event-action="share"
+                  ga-event-label="twitter"
+                >
+                </paper-icon-button>
+              </div>
+              <div class="share">
+                <paper-icon-button
+                  class="share-whatsapp"
+                  icon="lkim:whatsapp"
+                  share="whatsapp"
+                  on-click="share"
+                  ga-on="click"
+                  ga-event-category="social"
+                  ga-event-action="share"
+                  ga-event-label="twitter"
+                >
+                </paper-icon-button>
+              </div>
+            </div>
+          </div>
+        </div>
       </hero-block>
 
       <div class="container-narrow">
@@ -169,5 +290,9 @@ export class NewsContentPage extends ReduxMixin(PolymerElement) {
 
   getDate(date: Date) {
     return getDate(date);
+  }
+
+  share(e) {
+    return share(e);
   }
 }

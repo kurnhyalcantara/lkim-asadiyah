@@ -1,10 +1,10 @@
 import data from '../../docs/default-firebase-data.json';
-import { ArticleData } from './article';
+import { ArticleData } from './articles';
 import { allKeys } from './utils';
 
 describe('post', () => {
   it('matches the shape of the default data', () => {
-    const posts: ArticleData[] = Object.values(data['blog']);
+    const posts: ArticleData[] = Object.values(data['articles']);
     const keys: Array<keyof ArticleData> = [
       'backgroundColor',
       'brief',

@@ -1,20 +1,20 @@
-import { Article } from '../../models/article';
+import { Article } from '../../models/articles';
 
-export const FETCH_ARTICLE_LIST = 'FETCH_ARTICLE_LIST';
-export const FETCH_ARTICLE_LIST_FAILURE = 'FETCH_ARTICLE_LIST_FAILURE';
-export const FETCH_ARTICLE_LIST_SUCCESS = 'FETCH_ARTICLE_LIST_SUCCESS';
+export const FETCH_ARTICLES_LIST = 'FETCH_ARTICLES_LIST';
+export const FETCH_ARTICLES_LIST_FAILURE = 'FETCH_ARTICLES_LIST_FAILURE';
+export const FETCH_ARTICLES_LIST_SUCCESS = 'FETCH_ARTICLES_LIST_SUCCESS';
 
 interface FetchArticleListAction {
-  type: typeof FETCH_ARTICLE_LIST;
+  type: typeof FETCH_ARTICLES_LIST;
 }
 
 interface FetchArticleListFailureAction {
-  type: typeof FETCH_ARTICLE_LIST_FAILURE;
+  type: typeof FETCH_ARTICLES_LIST_FAILURE;
   payload: Error;
 }
 
 interface FetchArticleListSuccessAction {
-  type: typeof FETCH_ARTICLE_LIST_SUCCESS;
+  type: typeof FETCH_ARTICLES_LIST_SUCCESS;
   payload: Article[];
 }
 
