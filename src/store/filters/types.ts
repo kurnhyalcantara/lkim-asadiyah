@@ -2,7 +2,7 @@ export const SET_FILTERS = 'SET_FILTERS';
 
 export interface FiltersState {
   tags: string[];
-  complexity: string[];
+  partisipants: string[];
 }
 
 interface SetFiltersAction {

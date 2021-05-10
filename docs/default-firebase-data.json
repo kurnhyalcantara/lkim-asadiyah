@@ -139,24 +139,27 @@
   },
   "sessions": {
     "101": {
-      "partisipants": "Pengurus",
-      "description": "Pelaksanaan Rapat Kerja Pengurus Lembaga Kajian Ilmiah Mahasiswa (LKIM) IAI Asadiyah masa khidmat 2021-2022",
-      "status": "tertutup",
-      "tags": ["Internal"],
       "title": "Rapat Kerja Pengurus",
+      "tanggal": "2021-03-04",
+      "time": "08.00 - 11.00",
+      "description": "Pelaksanaan Rapat Kerja Pengurus Lembaga Kajian Ilmiah Mahasiswa (LKIM) IAI Asadiyah masa khidmat 2021-2022",
+      "partisipants": "Pengurus",
+      "tags": ["Internal"],
       "city": "Sengkang",
       "address": "Warkop Acci Sengkang",
       "poster": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/gallery%2Fimage2.jpg?alt=media&token=163f6b14-c33f-4e60-a074-ef80db10dc9b"
     },
     "102": {
-      "partisipants": "Mahasiswa IAI",
-      "description": "Open Recruitment anggota baru LKIM IAI As'adiyah",
-      "status": "terbuka",
-      "tags": ["Kaderisasi"],
       "title": "Open Recruitment Anggota Baru",
+      "description": "Open Recruitment anggota baru LKIM IAI As'adiyah",
+      "partisipants": "Mahasiswa IAI",
+      "registration": "terbuka",
+      "until": "2021-09-16",
+      "tags": ["Kaderisasi"],
       "city": "Sengkang",
-      "address": "Gedung IAI Asadiyah",
-      "poster": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/gallery%2Fimage2.jpg?alt=media&token=163f6b14-c33f-4e60-a074-ef80db10dc9b"
+      "address": "Sekret UKM IAI Asadiyah",
+      "poster": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/gallery%2Fimage2.jpg?alt=media&token=163f6b14-c33f-4e60-a074-ef80db10dc9b",
+      "featured": true
     }
   },
   "pengurus": {

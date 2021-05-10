@@ -14,7 +14,7 @@ import {
 } from '../store/featured-sessions/state';
 import { showToast } from '../store/toast/actions';
 import { TempAny } from '../temp-any';
-import { getVariableColor, toggleQueryParam } from '../utils/functions';
+import { getVariableColor, toggleQueryParam, getDate } from '../utils/functions';
 import './shared-styles';
 import './text-truncate';
 
@@ -37,7 +37,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
         }
 
         .session:hover {
-          background-color: var(--additional-background-color);
+          background-color: var(--secondary-background-color);
         }
 
         .poster {
@@ -58,7 +58,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
 
         .icon-details {
           display: inline-block;
-          --iron-icon-width: 12px;
+          --iron-icon-width: 16px;
           --iron-icon-fill-color: var(--primary-text-color);
           margin-right: 2px;
         }
@@ -116,6 +116,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
 
         .session-title {
           font-size: 20px;
+          font-weight: 600;
           line-height: 1.2;
         }
 
@@ -183,12 +184,17 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
             border: 1px solid var(--border-light-color);
             border-top: 0;
           }
+
+          .poster {
+            min-width: 60%;
+          }
         }
 
         @media (min-width: 812px) {
           :host {
             border: 1px solid var(--border-light-color);
           }
+
         }
       </style>
 
@@ -213,15 +219,15 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
             <text-truncate lines="3">
               <div class="session-description">[[summary]]</div>
               <div class="session-details">
-                <div class="pendaftaran">
+                <div class="pendaftaran" hidden$="[[!session.registration]]">
                   <iron-icon class="icon-details" icon="icons:assignment"></iron-icon>
                   {$ session.pendaftaran $}
                   <span
                     class="status"
-                    hidden$="[[!session.status]]"
-                    style$="background-color: [[_getStatusColor(session.status)]]"
-                    >[[session.status]]</span
+                    style$="background-color: [[_getStatusColor(session.registration)]]"
+                    >[[session.registration]]</span
                   >
+                  <span class="until" hidden$="[[isClosedRegistration(session.registration)]]">{$ session.untilRegistration $} [[getDate(session.until)]]</span>
                 </div>
                 <div class="kategori">
                   <iron-icon class="icon-details" icon="icons:label"></iron-icon>
@@ -235,9 +241,9 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
                   <span class="session-city">[[session.city]]</span>
                   <span class="session-track"> - [[session.address]]</span>
                 </div>
-                <div class="session-date">
+                <div class="session-date" hidden$="[[!session.tanggal]]">
                   <iron-icon class="icon-details" icon="icons:today"></iron-icon>
-                  [[session.dateReadable]]
+                  <span class="date">[[getDate(session.tanggal)]], [[session.time]]</span>
                 </div>
               </div>
             </text-truncate>
@@ -287,10 +293,6 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
       return featuredSessions.data[sessionId];
     }
     return false;
-  }
-
-  _getEnding(number) {
-    return number > 1 ? 's' : '';
   }
 
   _summary(description = '') {
@@ -375,4 +377,15 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
   slice(text, number) {
     return text && text.slice(0, number);
   }
+
+  getDate(date) {
+    return getDate(date);
+  }
+
+  isClosedRegistration(registration) {
+    if (registration === 'ditutup') {
+      return true;
+    }
+  }
+  
 }

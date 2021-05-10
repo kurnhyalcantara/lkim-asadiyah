@@ -11,18 +11,18 @@ import {
 } from './types';
 
 const getSessions = async () => {
-  const { docs } = await db().collection('generatedSessions').get();
+  const { docs } = await db().collection('generatedSessions').orderBy('id', 'desc').get();
   const tagFilters = new Set<string>();
-  const complexityFilters = new Set<string>();
+  const partisipantsFilters = new Set<string>();
   const sessions = docs.map<Session>(mergeId);
 
   sessions.forEach((session) => {
     (session.tags || []).map((tag) => tagFilters.add(tag.trim()));
-    session.complexity && complexityFilters.add(session.complexity.trim());
+    session.partisipants && partisipantsFilters.add(session.partisipants.trim());
   });
 
   return {
-    complexityFilters,
+    partisipantsFilters,
     sessions,
     tagFilters,
   };
@@ -34,7 +34,7 @@ export const fetchSessions = () => async (dispatch: Dispatch<SessionsActions | F
   });
 
   try {
-    const { complexityFilters, sessions, tagFilters } = await getSessions();
+    const { partisipantsFilters, sessions, tagFilters } = await getSessions();
 
     dispatch({
       type: FETCH_SESSIONS_SUCCESS,
@@ -44,7 +44,7 @@ export const fetchSessions = () => async (dispatch: Dispatch<SessionsActions | F
       type: SET_FILTERS,
       payload: {
         tags: [...tagFilters].sort(),
-        complexity: [...complexityFilters],
+        partisipants: [...partisipantsFilters],
       },
     });
   } catch (error) {

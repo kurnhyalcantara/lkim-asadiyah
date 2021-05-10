@@ -217,7 +217,8 @@
     "registerSchedule": "Saya ingin ikuti kegiatan ini"
   },
   "session": {
-    "pendaftaran": "Registrasi",
+    "pendaftaran": "Pendaftaran",
+    "untilRegistration": "s/d",
     "kategori": "Kategori"
   },
   "feedback": {
@@ -255,7 +256,7 @@
     "title": "Filter",
     "results": "Hasil",
     "tags": "Jenis",
-    "complexity": "Peserta",
+    "partisipants": "Peserta",
     "clear": "Hapus semua"
   },
   "addToHomeScreen": {

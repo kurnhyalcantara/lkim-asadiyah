@@ -6,7 +6,7 @@ describe('session', () => {
   it('matches the shape of the default data', () => {
     const sessions: SessionData[] = Object.values(data['sessions']);
     const keys: Array<keyof SessionData> = [
-      'complexity',
+      'partisipants',
       'description',
       'extend',
       'icon',

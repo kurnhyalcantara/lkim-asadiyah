@@ -25,8 +25,9 @@ import {
 } from '../store/featured-sessions/state';
 import { setSubRoute } from '../store/routing/actions';
 import { fetchSchedule } from '../store/schedule/actions';
+import { fetchSessions } from '../store/sessions/actions';
 import { initialScheduleState, ScheduleState } from '../store/schedule/state';
-import { SessionsState } from '../store/sessions/state';
+import { SessionsState, initialSessionsState } from '../store/sessions/state';
 import { isDialogOpen } from '../utils/dialogs';
 import { parseQueryParamsFilters } from '../utils/functions';
 
@@ -96,6 +97,8 @@ export class SchedulePage extends SessionsHoC(ReduxMixin(PolymerElement)) {
 
       <paper-progress indeterminate hidden$="[[!pending]]"></paper-progress>
 
+      <filter-menu filters="[[_filters]]" selected="[[_selectedFilters]]"></filter-menu>
+
       <div class="container">
         <content-loader
           card-padding="15px"
@@ -123,19 +126,20 @@ export class SchedulePage extends SessionsHoC(ReduxMixin(PolymerElement)) {
               month="[[month]]"
               user="[[user]]"
               featured-sessions="[[featuredSessions]]"
+              selected-filters="[[_selectedFilters]]"
               viewport="[[viewport]]"
               query-params="[[queryParams]]"
             ></schedule-day>
           </template>
-          <!--<all-schedule
+          <all-schedule
             name="all-schedule"
-            sessions="[[schedule.data]]"
+            sessions="[[sessions.data]]"
             user="[[user]]"
             featured-sessions="[[featuredSessions]]"
             selected-filters="[[_selectedFilters]]"
             viewport="[[viewport]]"
             query-params="[[queryParams]]"
-          ></all-schedule>-->
+          ></all-schedule>
         </iron-pages>
       </div>
 
@@ -145,7 +149,8 @@ export class SchedulePage extends SessionsHoC(ReduxMixin(PolymerElement)) {
 
   @property({ type: Object })
   schedule: ScheduleState = initialScheduleState;
-
+  @property({ type: Object })
+  sessions: SessionsState = initialSessionsState;
   @property({ type: Object })
   private route = {};
   @property({ type: Object })
@@ -158,6 +163,12 @@ export class SchedulePage extends SessionsHoC(ReduxMixin(PolymerElement)) {
   private user = {};
   @property({ type: Object })
   private subRoute = {};
+  @property({ type: Object })
+  private filters = {};
+  @property({ type: Array })
+  private _filters = [];
+  @property({ type: Object })
+  private _selectedFilters: { sessionId?: string[] } = {};
   @property({ type: Boolean })
   private isSessionDialogOpened = false;
   @property({ type: Object })
@@ -172,8 +183,10 @@ export class SchedulePage extends SessionsHoC(ReduxMixin(PolymerElement)) {
   stateChanged(state: RootState) {
     super.stateChanged(state);
     this.featuredSessions = state.featuredSessions;
+    this.filters = state.filters;
     this.isSessionDialogOpened = isDialogOpen(state.dialogs, DIALOGS.SESSION);
     this.schedule = state.schedule;
+    this.sessions = state.sessions;
     this.subRoute = state.routing.subRoute;
     this.user = state.user;
     this.viewport = state.ui.viewport;
@@ -194,12 +207,47 @@ export class SchedulePage extends SessionsHoC(ReduxMixin(PolymerElement)) {
   @observe('active', 'routeData.month', 'schedule')
   _setDefault(active: boolean, month, schedule: ScheduleState) {
     if (active && schedule instanceof Success) {
-      const selectedDay = month || schedule.data[0].month;
+      const selectedDay = month || 'all-schedule';
       setSubRoute(selectedDay);
     }
   }
 
+  @observe('active', 'sessions', '_selectedFilters.sessionId')
+  _openSessionDetails(active: boolean, sessions: SessionsState, ids?: string[]) {
+    if (sessions instanceof Success) {
+      requestAnimationFrame(() => {
+        if (active && ids?.length && sessions instanceof Success) {
+          const session = sessions.data.find((session) => ids.includes(session.id));
+          openDialog(DIALOGS.SESSION, session);
+        } else {
+          this.isSessionDialogOpened && closeDialog();
+        }
+      });
+    }
+  }
+
+  @observe('filters')
+  _onFiltersLoad(filters) {
+    this._filters = [
+      {
+        title: '{$ filters.tags $}',
+        key: 'tag',
+        items: filters.tags,
+      },
+      {
+        title: '{$ filters.partisipants $}',
+        key: 'partisipants',
+        items: filters.partisipants,
+      },
+    ];
+  }
+
   _setHelmetData(active: boolean, isSessionDialogOpened: boolean) {
     return active && !isSessionDialogOpened;
+  }
+
+  @observe('queryParams')
+  _paramsUpdated(queryParams: string) {
+    this._selectedFilters = parseQueryParamsFilters(queryParams);
   }
 }

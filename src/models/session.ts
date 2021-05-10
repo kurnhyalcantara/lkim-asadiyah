@@ -1,7 +1,7 @@
 import { Id } from './types';
 
 export interface SessionData {
-  complexity?: string;
+  partisipants?: string;
   description: string;
   extend?: number;
   icon?: string;

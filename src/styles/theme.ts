@@ -51,7 +51,7 @@ export const theme = css`
 
     /* Tags */
     --umum: #c112fc;
-    --rapat: #f09c1e;
+    --internal: #f09c1e;
     --kaderisasi: var(--light-primary-color);
 
     /* Status */

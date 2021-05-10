@@ -17,7 +17,7 @@ export class ScheduleDay extends PolymerElement {
         :host {
           display: block;
         }
-
+        
         .tanggal-bulan {
           margin-top: 16px;
           color: var(--secondary-text-color);
@@ -60,6 +60,11 @@ export class ScheduleDay extends PolymerElement {
             margin-left: auto;
             display: block;
             max-width: calc(100% - 64px);
+          }
+
+          
+          .session {
+            width: 578px;
           }
 
           .grid {
@@ -126,12 +131,12 @@ export class ScheduleDay extends PolymerElement {
                   ></session-element>
                   <a
                     class="add-session"
-                    href$="/schedule/[[month.month]]#[[timeslot.sessions.0.items.id]]"
+                    href$="[[subSession.link]]"
                     style$="grid-area: [[timeslot.sessions.0.gridArea]]"
                     layout
                     horizontal
                     center-center
-                    hidden$="[[onlyFeatured]]"
+                    hidden$="[[!subSession.featured]]"
                   >
                     <iron-icon class="add-session-icon" icon="lkim:add-circle-outline"></iron-icon>
                     <span>{$ schedule.registerSchedule $}</span>

@@ -12,7 +12,7 @@ export class FilterMenu extends PolymerElement {
         :host {
           display: block;
           width: 100%;
-          border-bottom: 1px solid var(--divider-color);
+          border: 1px solid var(--divider-color);
           position: relative;
         }
 
@@ -179,6 +179,7 @@ export class FilterMenu extends PolymerElement {
     const filterKey = e.currentTarget.getAttribute('filter-key');
     const filter = generateClassName(e.currentTarget.getAttribute('filter-value').trim());
     this.queryParams = toggleQueryParam(this.queryParams, filterKey, filter);
+    this._openedBoard = false;
   }
 
   @computed('selected', 'filters')
