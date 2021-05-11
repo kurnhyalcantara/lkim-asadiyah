@@ -9,22 +9,20 @@ export const sessionsWrite = functions.firestore
     return generateAndSaveData();
   });
 
-export const scheduleWrite = functions.firestore
-  .document('schedule/{day}')
-  .onWrite(async () => {
-    const scheduleConfig = functions.config().schedule;
-    if (!scheduleConfig || typeof scheduleConfig.enabled === 'undefined') {
-      console.error(
-        // eslint-disable-next-line
-        'Schedule config is NOT set! Run `firebase functions:config:set schedule.enabled=true`, redeploy functions and try again.'
-      );
-      return null;
-    }
-    if (scheduleConfig.enabled === 'true') {
-      return generateAndSaveData();
-    }
+export const scheduleWrite = functions.firestore.document('schedule/{day}').onWrite(async () => {
+  const scheduleConfig = functions.config().schedule;
+  if (!scheduleConfig || typeof scheduleConfig.enabled === 'undefined') {
+    console.error(
+      // eslint-disable-next-line
+      'Schedule config is NOT set! Run `firebase functions:config:set schedule.enabled=true`, redeploy functions and try again.'
+    );
     return null;
-  });
+  }
+  if (scheduleConfig.enabled === 'true') {
+    return generateAndSaveData();
+  }
+  return null;
+});
 
 export const pengurusWrite = functions.firestore
   .document('pengurus/{pengurusId}')

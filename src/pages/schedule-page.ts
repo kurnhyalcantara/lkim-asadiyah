@@ -16,16 +16,13 @@ import { ReduxMixin } from '../mixins/redux-mixin';
 import { RootState, store } from '../store';
 import { closeDialog, openDialog } from '../store/dialogs/actions';
 import { DIALOGS } from '../store/dialogs/types';
-import { PengurusHoC } from '../mixins/pengurus-hoc';
 import { SessionsHoC } from '../mixins/sessions-hoc';
-import { fetchUserFeaturedSessions } from '../store/featured-sessions/actions';
 import {
   FeaturedSessionsState,
   initialFeaturedSessionsState,
 } from '../store/featured-sessions/state';
 import { setSubRoute } from '../store/routing/actions';
 import { fetchSchedule } from '../store/schedule/actions';
-import { fetchSessions } from '../store/sessions/actions';
 import { initialScheduleState, ScheduleState } from '../store/schedule/state';
 import { SessionsState, initialSessionsState } from '../store/sessions/state';
 import { isDialogOpen } from '../utils/dialogs';

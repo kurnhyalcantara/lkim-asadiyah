@@ -194,7 +194,6 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
           :host {
             border: 1px solid var(--border-light-color);
           }
-
         }
       </style>
 
@@ -227,7 +226,9 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
                     style$="background-color: [[_getStatusColor(session.registration)]]"
                     >[[session.registration]]</span
                   >
-                  <span class="until" hidden$="[[isClosedRegistration(session.registration)]]">{$ session.untilRegistration $} [[getDate(session.until)]]</span>
+                  <span class="until" hidden$="[[isClosedRegistration(session.registration)]]"
+                    >{$ session.untilRegistration $} [[getDate(session.until)]]</span
+                  >
                 </div>
                 <div class="kategori">
                   <iron-icon class="icon-details" icon="icons:label"></iron-icon>
@@ -387,5 +388,4 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
       return true;
     }
   }
-  
 }

@@ -164,23 +164,13 @@ export class ArticleContentPage extends ReduxMixin(PolymerElement) {
 
       <app-route route="[[route]]" pattern="/:id" data="{{postData}}"></app-route>
 
-      <hero-block
-        background-color="[[post.primaryColor]]"
-        font-color="#000"
-        active="[[active]]"
-      >
+      <hero-block background-color="[[post.primaryColor]]" font-color="#000" active="[[active]]">
         <div class="path-content">{$ pathContent.news $}[[post.tag]]</div>
         <h3 class="hero-title">[[post.title]]</h3>
         <div class="post-meta" layout horizontal justified flex>
           <div class="post-author" layout horizontal>
             <div class="author-avatar">
-              <plastic-image
-                class="img-avatar"
-                srcset="[[post.avatar]]"
-                lazy-load
-                preload
-                fade
-              >
+              <plastic-image class="img-avatar" srcset="[[post.avatar]]" lazy-load preload fade>
               </plastic-image>
             </div>
             <div class="post-details" layout vertical>

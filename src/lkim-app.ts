@@ -6,7 +6,7 @@ import '@polymer/app-layout/app-header/app-header';
 import '@polymer/app-layout/app-toolbar/app-toolbar';
 import '@polymer/app-route/app-location';
 import '@polymer/app-route/app-route';
-import { computed, customElement, observe, property } from '@polymer/decorators';
+import { customElement, observe, property } from '@polymer/decorators';
 import '@polymer/iron-dropdown/iron-dropdown-scroll-manager';
 import '@polymer/iron-icon';
 import '@polymer/iron-media-query';
@@ -485,7 +485,6 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   _openInstaDesigner() {
     window.open('https://www.instagram.com/kurnhyalcantara24', '_blank');
   }
-
 
   _onAddToHomeScreen() {
     if (!this.addToHomeScreen) this.closeDrawer();

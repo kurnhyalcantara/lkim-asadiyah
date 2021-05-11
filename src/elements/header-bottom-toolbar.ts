@@ -81,7 +81,11 @@ export class HeaderBottomToolbar extends ReduxMixin(PolymerElement) {
           noink
         >
           <paper-tab class="nav-item" sel="all-schedule" link>
-            <a href$="[[_addQueryParams('all-schedule', queryParams)]]" layout vertical center-center
+            <a
+              href$="[[_addQueryParams('all-schedule', queryParams)]]"
+              layout
+              vertical
+              center-center
               >{$ allSchedule.title $}</a
             >
           </paper-tab>

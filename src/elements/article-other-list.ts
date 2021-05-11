@@ -59,17 +59,17 @@ export class ArticleOtherList extends PolymerElement {
             .featured-posts-wrapper {
               grid-template-columns: repeat(3, 1fr);
             }
-  
+
             .featured-posts:last-of-type {
               display: none;
             }
           }
-  
+
           @media (min-width: 812px) {
             .featured-posts-wrapper {
               grid-template-columns: repeat(4, 1fr);
             }
-  
+
             .featured-posts:last-of-type {
               display: flex;
             }

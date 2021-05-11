@@ -1,5 +1,4 @@
-import { Success } from '@abraham/remotedata';
-import { computed, customElement, observe, property } from '@polymer/decorators';
+import { customElement, observe, property } from '@polymer/decorators';
 import { PaperMenuButton } from '@polymer/paper-menu-button';
 import { html, PolymerElement } from '@polymer/polymer';
 import { ReduxMixin } from '../mixins/redux-mixin';

@@ -7,13 +7,11 @@ import '../elements/gallery-block';
 import '../elements/news-posts-block';
 import '../elements/article-latest-block';
 import '../elements/featured-videos';
-import '../elements/map-block'
+import '../elements/map-block';
 import '../elements/subscribe-block';
 import { ReduxMixin } from '../mixins/redux-mixin';
 import { RootState } from '../store';
-import { toggleVideoDialog } from '../store/ui/actions';
 import { Viewport } from '../store/ui/types';
-import { TempAny } from '../temp-any';
 import { scrollToY } from '../utils/scrolling';
 
 @customElement('home-page')

@@ -1,15 +1,10 @@
-import { Success } from '@abraham/remotedata';
-import { computed, customElement, property } from '@polymer/decorators';
+import { customElement, property } from '@polymer/decorators';
 import '@polymer/iron-icon';
 import '@polymer/paper-button';
 import { html, PolymerElement } from '@polymer/polymer';
 import { ReduxMixin } from '../mixins/redux-mixin';
 import { RootState, store } from '../store';
-import { openDialog } from '../store/dialogs/actions';
-import { DialogForm, DIALOGS } from '../store/dialogs/types';
 import { requestPermission } from '../store/notifications/actions';
-import { initialNotificationState } from '../store/notifications/state';
-import { NOTIFICATIONS_STATUS } from '../store/notifications/types';
 import './lkim-icons';
 import './shared-styles';
 

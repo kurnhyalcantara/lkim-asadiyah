@@ -12,7 +12,7 @@ export function sessionsPengurusMap(sessionsRaw, pengurusRaw) {
       currentSession.pengurus.forEach((pengurusId) => {
         if (!pengurusRaw[pengurusId]) return;
         sessionPengurus.push({ id: pengurusId, ...pengurusRaw[pengurusId] });
-  
+
         const generatedPengurus = pengurus[pengurusId];
         const sessionByPengurus = {
           id: sessionId,

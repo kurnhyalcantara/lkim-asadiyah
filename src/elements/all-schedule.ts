@@ -1,8 +1,6 @@
-import { Success } from '@abraham/remotedata';
 import { customElement, observe, property } from '@polymer/decorators';
 import { html, PolymerElement } from '@polymer/polymer';
 import { ReduxMixin } from '../mixins/redux-mixin';
-import { Schedule } from '../models/schedule';
 import {
   FeaturedSessionsState,
   initialFeaturedSessionsState,
@@ -73,7 +71,7 @@ export class AllSchedule extends ReduxMixin(PolymerElement) {
 
       <div class="grid">
         <template is="dom-repeat" items="[[sessions]]" as="subSession">
-          <div class="session card" layout vertical> 
+          <div class="session card" layout vertical>
             <session-element
               class="subsession"
               day-name="[[name]]"

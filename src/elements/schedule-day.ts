@@ -17,7 +17,7 @@ export class ScheduleDay extends PolymerElement {
         :host {
           display: block;
         }
-        
+
         .tanggal-bulan {
           margin-top: 16px;
           color: var(--secondary-text-color);
@@ -62,7 +62,6 @@ export class ScheduleDay extends PolymerElement {
             max-width: calc(100% - 64px);
           }
 
-          
           .session {
             width: 578px;
           }
