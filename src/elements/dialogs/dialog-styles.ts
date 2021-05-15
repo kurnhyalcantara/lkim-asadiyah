@@ -12,7 +12,7 @@ documentContainer.innerHTML = `<dom-module id="dialog-styles">
         width: 100%;
         background: #fff;
         color: var(--primary-text-color);
-        box-shadow: var(--box-shadow);
+        box-shadow: var(--box-shadow-header);
       }
 
       app-header {
@@ -50,6 +50,7 @@ documentContainer.innerHTML = `<dom-module id="dialog-styles">
 
       .name {
         line-height: 1.2;
+        font-weight: 600;
       }
 
       .tag {
@@ -70,10 +71,6 @@ documentContainer.innerHTML = `<dom-module id="dialog-styles">
 
       .meta-info {
         line-height: 1.6;
-      }
-
-      .description {
-        margin: 24px 0 32px;
       }
 
       .action {

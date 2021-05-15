@@ -28,10 +28,9 @@ import 'plastic-image';
 import './components/hero-block';
 import { log } from './console';
 import './elements/dialogs/feedback-dialog';
-import './elements/dialogs/previous-speaker-details';
 import './elements/dialogs/session-details';
 import './elements/dialogs/signin-dialog';
-import './elements/dialogs/speaker-details';
+import './elements/dialogs/pengurus-details';
 import './elements/dialogs/subscribe-dialog';
 import './elements/dialogs/video-dialog';
 import './elements/footer-block';
@@ -258,7 +257,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
               {% endfor %}
             </iron-selector>
 
-            <div hidden="{{isAddToHomeScreen}}">
+            <div>
               <a class="bottom-drawer-link" on-click="_onAddToHomeScreen">
                 <iron-icon icon="icons:add-box"></iron-icon>
                 <span>{$ addToHomeScreen.cta $}</span>
@@ -298,19 +297,12 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
         fixed-top
       ></video-dialog>
 
-      <speaker-details
+      <pengurus-details
         opened="[[isSpeakerDialogOpen]]"
         data="[[dialogs.data]]"
         with-backdrop="[[viewport.isTabletPlus]]"
         no-cancel-on-outside-click="[[viewport.isPhone]]"
-      ></speaker-details>
-
-      <previous-speaker-details
-        opened="[[isPreviousSpeakerDialogOpen]]"
-        data="[[dialogs.data]]"
-        with-backdrop="[[viewport.isTabletPlus]]"
-        no-cancel-on-outside-click="[[viewport.isPhone]]"
-      ></previous-speaker-details>
+      ></pengurus-details>
 
       <session-details
         opened="[[isSessionDialogOpen]]"
@@ -346,8 +338,6 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   private addToHomeScreen: TempAny;
   @property({ type: Boolean })
   private drawerOpened = false;
-  @property({ type: Boolean })
-  private isAddToHomeScreen = false;
   @property({ type: Object })
   private route: RoutingState = initialRoutingState;
   @property({ type: Object })
@@ -487,7 +477,10 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   }
 
   _onAddToHomeScreen() {
-    if (!this.addToHomeScreen) this.closeDrawer();
+    if (!this.addToHomeScreen) {
+      this.closeDrawer();
+      showToast({ message: '{$ addToHomeScreen.installed $}',});
+    }
     this.addToHomeScreen.prompt();
     this.addToHomeScreen.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === 'accepted') {
@@ -496,7 +489,6 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
         ga('send', 'event', 'add_to_home_screen_prompt', 'dismissed');
       }
       this.addToHomeScreen = null;
-      this.isAddToHomeScreen = true;
       this.closeDrawer();
     });
   }

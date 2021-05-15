@@ -174,10 +174,10 @@ export class PengurusBlock extends PengurusHoC(ReduxMixin(PolymerElement)) {
                 ></plastic-image>
               </div>
               <div class="description">
-                <text-truncate lines="1">
+                <text-truncate lines="2">
                   <h3 class="name">[[pengurus.name]]</h3>
                 </text-truncate>
-                <text-truncate lines="2">
+                <text-truncate lines="1">
                   <div class="origin">[[pengurus.jabatan]]</div>
                 </text-truncate>
               </div>

@@ -2,7 +2,7 @@
   "title": "LKIM IAI Asadiyah",
   "description": "Official Website UKM Lembaga Kajian Ilmiah Mahasiswa (LKIM) IAI Asadiyah Sengkang dengan menyajikan profil organisasi, berita faktual, artikel karya anggota, dan agenda kegiatan",
   "image": "images/social-share.jpg",
-  "keywords": "iai, asadiyah, iaia, lkim, ukm, mahasiswa, sengkang, wajo, kajian, ilmiah, tulisan, artikel, puisi, pemikiran, peradaban",
+  "keywords": "lkim, asadiyah, iai, iaia, ukm, mahasiswa, sengkang, wajo, kajian, ilmiah, tulisan, artikel, puisi, pemikiran, peradaban",
   "loading": "Sedang memuat LKIM IAI Asadiyah Web App",
   "version": "Versi 0.1.0 alpha",
   "design": "Design by ",
@@ -29,7 +29,7 @@
   "refresh": "Refresh",
   "position": "Position",
   "country": "Country",
-  "time": "Time",
+  "tanggal": "Tanggal",
   "timezoneOffset": "-180",
   "notifications": {
     "default": "Dapatkan berita dan update kegiatan terbaru dari kami",
@@ -236,10 +236,11 @@
     "sessionClosed": "Session reviews are not open"
   },
   "sessionDetails": {
-    "contentLevel": "Content level",
+    "pesertaKegiatan": "Peserta",
     "viewPresentation": "View presentation",
     "viewVideo": "View video",
-    "speakers": "Speakers"
+    "speakers": "Speakers",
+    "detail": "Detail Kegiatan"
   },
   "speakerDetails": {
     "sessions": "Sessions"
@@ -260,6 +261,7 @@
     "clear": "Hapus semua"
   },
   "addToHomeScreen": {
-    "cta": "Install LKIM IAI Asadiyah"
+    "cta": "Install LKIM IAI Asadiyah",
+    "installed": "LKIM Asadiyah telah ada"
   }
 }

@@ -20,7 +20,7 @@ import {
 } from '../../store/featured-sessions/state';
 import { showToast } from '../../store/toast/actions';
 import { toggleVideoDialog } from '../../store/ui/actions';
-import { getVariableColor } from '../../utils/functions';
+import { getVariableColor, getDate } from '../../utils/functions';
 import '../feedback-block';
 import '../shared-styles';
 import '../text-truncate';
@@ -37,6 +37,35 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
           cursor: pointer;
         }
 
+        .tags {
+          margin-top: 12px;
+        }
+
+        .status {
+          display: inline;
+          padding: 0.2em 0.6em 0.3em;
+          font-size: 75%;
+          font-weight: 700;
+          line-height: 1;
+          color: #fff;
+          text-align: center;
+          text-transform: uppercase;
+          white-space: nowrap;
+          vertical-align: baseline;
+          border-radius: 0.25em;
+          background-color: currentColor;
+        }
+
+        .pendaftaran, .date,
+        .tempat {
+          font-size: 14px;
+          margin: 12px 0;
+        }
+
+        .details {
+          font-weight: 600;
+        }
+
         .star-rating {
           display: inline-block;
           vertical-align: middle;
@@ -46,12 +75,12 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
       <polymer-helmet
         title="[[session.title]] | {$ title $}"
         description="[[session.description]]"
-        image="[[session.speakers.0.photoUrl]]"
+        image="[[session.poster]]"
         active="[[opened]]"
-        label1="{$ time $}"
-        data1="[[session.dateReadable]]"
-        label2="{$ sessionDetails.contentLevel $}"
-        data2="[[session.complexity]]"
+        label1="{$ tanggal $}"
+        data1="[[session.tanggal]]"
+        label2="{$ sessionDetails.pesertaKegiatan $}"
+        data2="[[session.partisipants]]"
       ></polymer-helmet>
 
       <app-header-layout has-scrolling-region>
@@ -62,12 +91,28 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
             on-click="_close"
           ></iron-icon>
           <app-toolbar>
-            <div class="dialog-container header-content" layout vertical end-justified>
+            <div class="dialog-container header-content" layout vertical>
+              <div class="pendaftaran" hidden$="[[!session.registration]]">
+                <span
+                  class="status"
+                  style$="background-color: [[_getStatusColor(session.registration)]]"
+                  >[[session.registration]]</span
+                >
+                <span class="until" hidden$="[[isClosedRegistration(session.registration)]]"
+                  >{$ session.untilRegistration $} [[getDate(session.until)]]</span
+                >
+              </div>
+              <div class="date" hidden$="[[!session.tanggal]]">[[getDate(session.tanggal)]], <span class="clock">[[session.time]]</span></div>
               <h2 class="name">[[session.title]]</h2>
               <div class="tags" hidden$="[[!session.tags.length]]">
                 <template is="dom-repeat" items="[[session.tags]]" as="tag">
                   <span class="tag" style$="color: [[getVariableColor(tag)]]">[[tag]]</span>
                 </template>
+              </div>
+              <div class="tempat">
+                <iron-icon class="icon-details" icon="lkim:location"></iron-icon>
+                <span class="session-city">[[session.city]]</span>
+                <span class="session-track"> - [[session.address]]</span>
               </div>
 
               <div class="float-button">
@@ -81,7 +126,7 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
           </app-toolbar>
         </app-header>
 
-        <div class="dialog-container content">
+        <div class="dialog-container content" >
           <div class="float-button">
             <paper-fab
               icon="lkim:[[_getFeaturedSessionIcon(featuredSessions, session.id)]]"
@@ -89,70 +134,13 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
               on-click="_toggleFeaturedSession"
             ></paper-fab>
           </div>
-          <h3 class="meta-info" hidden$="[[disabledSchedule]]">[[session.dateReadable]]</h3>
-          <h3 class="meta-info" hidden$="[[disabledSchedule]]">[[session.track.title]]</h3>
-          <h3 class="meta-info" hidden$="[[!session.complexity]]">
-            {$ sessionDetails.contentLevel $}: [[session.complexity]]
-          </h3>
 
+          <div class="details">{$ sessionDetails.detail $}</div>
           <marked-element class="description" markdown="[[session.description]]">
             <div slot="markdown-html"></div>
           </marked-element>
 
-          <div class="actions" layout horizontal>
-            <a
-              class="action"
-              href$="[[session.presentation]]"
-              hidden$="[[!session.presentation]]"
-              target="_blank"
-              rel="noopener noreferrer"
-              layout
-              horizontal
-              center
-            >
-              <iron-icon icon="lkim:presentation"></iron-icon>
-              <span>{$ sessionDetails.viewPresentation $}</span>
-            </a>
-            <div
-              class="action"
-              hidden$="[[!session.videoId]]"
-              on-click="_openVideo"
-              layout
-              horizontal
-              center
-            >
-              <iron-icon icon="lkim:video"></iron-icon>
-              {$ sessionDetails.viewVideo $}
-            </div>
-          </div>
-
-          <div class="additional-sections" hidden$="[[!session.speakers.length]]">
-            <h3>{$ sessionDetails.speakers $}</h3>
-
-            <template is="dom-repeat" items="[[session.speakers]]" as="speaker">
-              <div class="section" on-click="_openSpeaker" speaker-id$="[[speaker.id]]">
-                <div layout horizontal center>
-                  <plastic-image
-                    class="section-photo"
-                    srcset="[[speaker.photoUrl]]"
-                    sizing="cover"
-                    lazy-load
-                    preload
-                    fade
-                  ></plastic-image>
-
-                  <div class="section-details" flex>
-                    <div class="section-primary-text">[[speaker.name]]</div>
-                    <div class="section-secondary-text">
-                      [[speaker.company]] / [[speaker.country]]
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </template>
-          </div>
-
-          <div id="feedback" class="additional-sections">
+          <!--<div id="feedback" class="additional-sections">
             <h3>{$ feedback.headline $}</h3>
 
             <auth-required hidden="[[!acceptingFeedback]]">
@@ -161,7 +149,7 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
             </auth-required>
 
             <p hidden="[[acceptingFeedback]]">{$ feedback.sessionClosed $}</p>
-          </div>
+          </div>-->
         </div>
       </app-header-layout>
     `;
@@ -230,25 +218,28 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
     history.back();
   }
 
-  _openSpeaker(event: Event & { currentTarget: HTMLElement }) {
-    const speakerId = event.currentTarget.getAttribute('speaker-id');
-    const speakerData = this.speakers.find((speaker) => speaker.id === speakerId);
-
-    if (!speakerData) return;
-    openDialog(DIALOGS.PENGURUS, speakerData);
-  }
-
   _getCloseBtnIcon(isLaptopViewport: boolean) {
     return isLaptopViewport ? 'close' : 'arrow-left';
   }
 
-  _openVideo() {
-    toggleVideoDialog({
-      title: this.session.title,
-      youtubeId: this.session.videoId,
-      disableControls: true,
-      opened: true,
-    });
+  _getStatusColor(status) {
+    if (status === 'terbuka') {
+      return 'var(--terbuka);';
+    } else if (status === 'ditutup') {
+      return 'var(--ditutup);';
+    } else {
+      return 'var(--tidak-ada);';
+    }
+  }
+
+  getDate(date) {
+    return getDate(date);
+  }
+
+  isClosedRegistration(registration) {
+    if (registration === 'ditutup') {
+      return true;
+    }
   }
 
   _toggleFeaturedSession(event: Event) {

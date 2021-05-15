@@ -15,7 +15,8 @@ class VideoDialog extends ReduxMixin(mixinBehaviors([PaperDialogBehavior], Polym
         :host {
           margin: 0;
           padding: 0;
-          background: var(--primary-background-color);
+          background-color: #000;
+          opacity: 0.8;
         }
 
         .video-wrapper {

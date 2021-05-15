@@ -19,7 +19,7 @@ import { Session } from '../../models/session';
 import { SessionsState } from '../../store/sessions/state';
 import { Success } from '@abraham/remotedata';
 
-class SpeakerDetails extends SessionsHoC(
+class PengurusDetails extends SessionsHoC(
   ReduxMixin(mixinBehaviors([IronOverlayBehavior], PolymerElement))
 ) {
   static get template() {
@@ -64,14 +64,14 @@ class SpeakerDetails extends SessionsHoC(
       </style>
 
       <polymer-helmet
-        title="[[speaker.name]] | {$ title $}"
-        description="[[speaker.bio]]"
-        image="[[speaker.photoUrl]]"
+        title="[[pengurus.name]] | {$ title $}"
+        description="[[pengurus.bio]]"
+        image="[[pengurus.photoUrl]]"
         active="[[opened]]"
         label1="{$ position $}"
-        data1="[[speaker.title]], [[speaker.company]]"
+        data1="[[pengurus.title]], [[pengurus.company]]"
         label2="{$ country $}"
-        data2="[[speaker.country]]"
+        data2="[[pengurus.country]]"
       ></polymer-helmet>
 
       <app-header-layout has-scrolling-region>
@@ -86,15 +86,15 @@ class SpeakerDetails extends SessionsHoC(
             <div class="dialog-container header-content" layout horizontal center>
               <plastic-image
                 class="photo"
-                srcset="[[speaker.photoUrl]]"
+                srcset="[[pengurus.photoUrl]]"
                 sizing="cover"
                 lazy-load
                 preload
                 fade
               ></plastic-image>
               <div>
-                <h2 class="name" flex>[[speaker.name]]</h2>
-                <div class="subtitle">[[subtitle]]</div>
+                <h2 class="name" flex>[[pengurus.name]]</h2>
+                <div class="subtitle">[[pengurus.jabatan]]</div>
               </div>
             </div>
           </app-toolbar>
@@ -102,8 +102,8 @@ class SpeakerDetails extends SessionsHoC(
 
         <div class="dialog-container content">
           <h3 class="meta-info">[[companyInfo]]</h3>
-          <h3 class="meta-info" hidden$="[[isEmpty(speaker.badges)]]">
-            <template is="dom-repeat" items="[[speaker.badges]]" as="badge">
+          <h3 class="meta-info" hidden$="[[isEmpty(pengurus.badges)]]">
+            <template is="dom-repeat" items="[[pengurus.badges]]" as="badge">
               <a
                 class="badge"
                 href$="[[badge.link]]"
@@ -116,22 +116,22 @@ class SpeakerDetails extends SessionsHoC(
             </template>
           </h3>
 
-          <marked-element class="description" markdown="[[speaker.bio]]">
+          <marked-element class="description" markdown="[[pengurus.bio]]">
             <div slot="markdown-html"></div>
           </marked-element>
 
           <div class="actions" layout horizontal>
-            <template is="dom-repeat" items="[[speaker.socials]]" as="social">
+            <template is="dom-repeat" items="[[pengurus.socials]]" as="social">
               <a class="action" href$="[[social.link]]" target="_blank" rel="noopener noreferrer">
                 <iron-icon icon="lkim:[[social.icon]]"></iron-icon>
               </a>
             </template>
           </div>
 
-          <div class="additional-sections" hidden$="[[!speaker.sessions.length]]">
-            <h3>{$ speakerDetails.sessions $}</h3>
+          <div class="additional-sections" hidden$="[[!pengurus.sessions.length]]">
+            <h3>{$ pengurusDetails.sessions $}</h3>
 
-            <template is="dom-repeat" items="[[speaker.sessions]]" as="session">
+            <template is="dom-repeat" items="[[pengurus.sessions]]" as="session">
               <div on-click="_openSession" session-id$="[[session.id]]" class="section">
                 <div layout horizontal center>
                   <div class="section-details" flex>
@@ -158,7 +158,7 @@ class SpeakerDetails extends SessionsHoC(
   }
 
   static get is() {
-    return 'speaker-details';
+    return 'pengurus-details';
   }
 
   static get properties() {
@@ -168,7 +168,7 @@ class SpeakerDetails extends SessionsHoC(
         type: Object,
         observer: '_dataUpdate',
       },
-      speaker: {
+      pengurus: {
         type: Object,
       },
       viewport: {
@@ -180,11 +180,11 @@ class SpeakerDetails extends SessionsHoC(
       },
       companyInfo: {
         type: String,
-        computed: '_computeCompanyInfo(speaker.title, speaker.company)',
+        computed: '_computeCompanyInfo(pengurus.title, pengurus.company)',
       },
       subtitle: {
         type: String,
-        computed: '_computeJoin(speaker.country, speaker.pronouns)',
+        computed: '_computeJoin(pengurus.country, pengurus.pronouns)',
       },
     };
   }
@@ -208,7 +208,7 @@ class SpeakerDetails extends SessionsHoC(
 
   _dataUpdate() {
     if (this.data?.name === DIALOGS.PENGURUS) {
-      this.speaker = this.data.data;
+      this.pengurus = this.data.data;
     }
   }
 
@@ -245,4 +245,4 @@ class SpeakerDetails extends SessionsHoC(
   }
 }
 
-window.customElements.define(SpeakerDetails.is, SpeakerDetails);
+window.customElements.define(PengurusDetails.is, PengurusDetails);

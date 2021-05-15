@@ -8,7 +8,7 @@ declare global {
 
 export const getDate = (date) => {
   return new Date(date).toLocaleString('{$ dateFormat.locale $}', {
-    month: 'short',
+    month: 'long',
     day: 'numeric',
     year: 'numeric',
   });

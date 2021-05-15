@@ -238,7 +238,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
                   </template>
                 </div>
                 <div class="tempat">
-                  <iron-icon class="icon-details" icon="icons:store"></iron-icon>
+                  <iron-icon class="icon-details" icon="lkim:location"></iron-icon>
                   <span class="session-city">[[session.city]]</span>
                   <span class="session-track"> - [[session.address]]</span>
                 </div>

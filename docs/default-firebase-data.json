@@ -171,7 +171,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -183,7 +202,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -195,7 +233,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -207,7 +264,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -219,7 +295,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -231,7 +326,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -243,7 +357,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -255,7 +388,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -267,7 +419,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -279,7 +450,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -291,7 +481,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -303,7 +512,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -315,7 +543,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -327,7 +574,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -339,7 +605,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -351,7 +636,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -363,7 +667,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -375,7 +698,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -387,7 +729,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -399,7 +760,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     },
@@ -411,7 +791,26 @@
       "photoUrl": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
       "pronouns": "he/him",
       "shortBio": "",
-      "socials": [],
+      "socials": [{
+        "icon": "twitter",
+        "link": "",
+        "name": "Twitter"
+      },
+      {
+        "icon": "facebook",
+        "link": "",
+        "name": "Facebook"
+      },
+      {
+        "icon": "linkedin",
+        "link": "",
+        "name": "LinkedIn"
+      },
+      {
+        "icon": "instagram",
+        "link": "",
+        "name": "Google+"
+      }],
       "order": 0,
       "title": ""
     }
