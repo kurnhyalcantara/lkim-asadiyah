@@ -35,7 +35,6 @@ import './elements/dialogs/subscribe-dialog';
 import './elements/dialogs/video-dialog';
 import './elements/footer-block';
 import './elements/header-toolbar';
-import './elements/lkim-analytics';
 import './elements/lkim-icons';
 import './elements/polymer-helmet';
 import './elements/shared-styles';
@@ -325,9 +324,11 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
       >
       </subscribe-dialog>
 
-      <signin-dialog opened="[[isSigninDialogOpen]]" with-backdrop></signin-dialog>
+      <signin-dialog 
+        opened="[[isSigninDialogOpen]]" 
+        with-backdrop
+      ></signin-dialog>
 
-      <lkim-analytics></lkim-analytics>
       <toast-element></toast-element>
     `;
   }
