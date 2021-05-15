@@ -19,7 +19,6 @@ import {
   initialFeaturedSessionsState,
 } from '../../store/featured-sessions/state';
 import { showToast } from '../../store/toast/actions';
-import { toggleVideoDialog } from '../../store/ui/actions';
 import { getVariableColor, getDate } from '../../utils/functions';
 import '../feedback-block';
 import '../shared-styles';
@@ -56,7 +55,8 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
           background-color: currentColor;
         }
 
-        .pendaftaran, .date,
+        .pendaftaran,
+        .date,
         .tempat {
           font-size: 14px;
           margin: 12px 0;
@@ -102,7 +102,9 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
                   >{$ session.untilRegistration $} [[getDate(session.until)]]</span
                 >
               </div>
-              <div class="date" hidden$="[[!session.tanggal]]">[[getDate(session.tanggal)]], <span class="clock">[[session.time]]</span></div>
+              <div class="date" hidden$="[[!session.tanggal]]">
+                [[getDate(session.tanggal)]], <span class="clock">[[session.time]]</span>
+              </div>
               <h2 class="name">[[session.title]]</h2>
               <div class="tags" hidden$="[[!session.tags.length]]">
                 <template is="dom-repeat" items="[[session.tags]]" as="tag">
@@ -126,7 +128,7 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
           </app-toolbar>
         </app-header>
 
-        <div class="dialog-container content" >
+        <div class="dialog-container content">
           <div class="float-button">
             <paper-fab
               icon="lkim:[[_getFeaturedSessionIcon(featuredSessions, session.id)]]"

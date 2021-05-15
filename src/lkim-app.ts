@@ -324,10 +324,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
       >
       </subscribe-dialog>
 
-      <signin-dialog 
-        opened="[[isSigninDialogOpen]]" 
-        with-backdrop
-      ></signin-dialog>
+      <signin-dialog opened="[[isSigninDialogOpen]]" with-backdrop></signin-dialog>
 
       <toast-element></toast-element>
     `;
@@ -480,7 +477,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   _onAddToHomeScreen() {
     if (!this.addToHomeScreen) {
       this.closeDrawer();
-      showToast({ message: '{$ addToHomeScreen.installed $}',});
+      showToast({ message: '{$ addToHomeScreen.installed $}' });
     }
     this.addToHomeScreen.prompt();
     this.addToHomeScreen.userChoice.then((choiceResult) => {
