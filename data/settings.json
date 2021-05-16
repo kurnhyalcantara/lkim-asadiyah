@@ -4,8 +4,6 @@
     "twitter": "lkimasadiyah",
     "url": "http://lkim-asadiyah"
   },
-  "startDate": "2017-10-013T09:00:00+03:00",
-  "endDate": "2017-10-14T19:00:00+03:00",
   "webapp": {
     "shortName": "LKIM Asadiyah",
     "themeColor": "#25AFF3",
@@ -14,7 +12,7 @@
   "dateFormat": {
     "locale": "id-ID"
   },
-  "hashtag": "DevFest",
+  "hashtag": "LkimAsadiyah",
   "disabledSchedule": false,
   "navigation": [
     {
@@ -185,16 +183,9 @@
     "pengurus": {
       "itemsCount": 4
     },
-    "previousSpeakers": {
-      "itemsCount": 6
-    },
-    "tickets": {
-      "itemsCount": 5
-    }
   },
   "pathContent": {
     "news": "Berita > ",
     "articles": "Artikel >"
   },
-  "showForkMeBlockForProjectIds": ["hoverboard-master", "hoverboard-dev"]
 }

@@ -377,7 +377,6 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
     this.dialogs = state.dialogs;
     this.isSigninDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SIGNIN);
     this.isSpeakerDialogOpen = isDialogOpen(this.dialogs, DIALOGS.PENGURUS);
-    this.isPreviousSpeakerDialogOpen = isDialogOpen(this.dialogs, DIALOGS.PREVIOUS_SPEAKER);
     this.isSessionDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SESSION);
     this.isFeedbackDialogOpen = isDialogOpen(this.dialogs, DIALOGS.FEEDBACK);
     this.isSubscribeDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SUBSCRIBE);

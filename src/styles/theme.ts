@@ -52,10 +52,12 @@ export const theme = css`
     /* Tags */
     --umum: #c112fc;
     --internal: #f09c1e;
-    --kaderisasi: var(--light-primary-color);
+    --open-recruitment: var(--light-primary-color);
+    --pelatihan: #0606d0;
+    --follow-up: #a3e30d;
+    --aktualisasi-diri: #9603ed;
 
     /* Status */
-    --tidak-ada: #c0c0c0;
     --terbuka: #00c131;
     --ditutup: #c0c0c0;
   }
@@ -246,6 +248,10 @@ export const theme = css`
     cursor: pointer;
   }
 
+  .card:hover {
+    background-color: var(--additional-background-color);
+  }
+
   .tag {
     height: 32px;
     padding: 8px 12px;
@@ -264,10 +270,6 @@ export const theme = css`
 
     .container-title {
       font-size: 32px;
-    }
-
-    .card:hover {
-      box-shadow: var(--box-shadow);
     }
   }
 `;

@@ -6,8 +6,6 @@ Configuration data is split into two files:
 ```json
   "organizer": {..},
   "url": "..",
-  "startDate": "..",
-  "endDate": "..",
   "webapp": {..},
   "hashtag": "..",
   "navigation": [..],
@@ -25,45 +23,74 @@ Disable, reorder or modify blocks for individual pages inside their individual f
 The top block (aka 'hero') view of the page can be adjusted via `heroSettings` in `data/settings.json`
 
 ```json
-"heroSettings": {
-  "home": {
-    "description": "Join the commuity, learn new things!",
-    "background": {
-      "color": "#673ab7",
-      "image": "/images/backgrounds/home.jpg"
+  "heroSettings": {
+    "home": {
+      "description1": "Selamat Datang di Portal",
+      "description2": "LKIM IAI Asadiyah Web App",
+      "background": {
+        "color": "#FFF"
+      },
+      "fontColor": "#424242"
     },
-    "fontColor": "#FFF"
+    "pengurus": {
+      "title": "Pengurus",
+      "metaDescription": "Mengenal lebih dekat profil Pengurus Lembaga Kajian Ilmiah Mahasiswa (LKIM) IAI Asadiyah masa khidmat 2021-2022",
+      "description": "Mengenal lebih dekat profil Pengurus Lembaga Kajian Ilmiah Mahasiswa (LKIM) IAI Asadiyah masa khidmat 2021-2022",
+      "background": {
+        "color": "#FFF",
+        "image": "/images/backgrounds/bg1.svg"
+      },
+      "fontColor": "#424242"
+    },
+    "news": {
+      "title": "Berita",
+      "metaDescription": "Berita agenda dan cerita terbaru LKIM IAI As'adiyah",
+      "description": "Berita agenda dan cerita terbaru LKIM IAI As'adiyah",
+      "background": {
+        "color": "#FFF",
+        "image": "/images/backgrounds/bg1.svg"
+      },
+      "fontColor": "#424242"
+    },
+    "article": {
+      "title": "Artikel",
+      "metaDescription": "Berbagai tulisan berupa artikel dan opini karya anggota dan pengurus LKIM IAI Asadiyah",
+      "description": "Berbagai tulisan berupa artikel dan opini karya anggota dan pengurus LKIM IAI Asadiyah",
+      "background": {
+        "color": "#FFF",
+        "image": "/images/backgrounds/bg1.svg"
+      },
+      "fontColor": "#424242"
+    },
+    "schedule": {
+      "title": "Agenda",
+      "metaDescription": "Daftar agenda kegiatan pengurus LKIM IAI Asadiyah masa khidmat 2021-2022",
+      "description": "Daftar agenda kegiatan pengurus LKIM IAI Asadiyah masa khidmat 2021-2022",
+      "background": {
+        "color": "#fff",
+        "image": "/images/backgrounds/bg1.svg"
+      },
+      "fontColor": "#424242"
+    }
   },
-  "blog": {
-    "title": "Blog",
-    "metaDescription": "Read stories from our team",
-    "background": {
-      "color": "#FFF"
-    },
-    "fontColor": "#424242"
-  },
-  "speakers": {
-    "title": "Speakers",
-    "metaDescription": "Hear from the Googlers, Partners, and Guest Speakers who are building the future of the cloud. Check back often as we add more speakers, including our customers and partners.",
-    "description": "Hear from the Googlers, Partners, and Guest Speakers who are building the future of the cloud. Check back often as we add more speakers, including our customers and partners.",
-    "background": {
-      "color": "#FFF"
-    },
-    "fontColor": "#424242"
-  }
-  ...
- }
 ```
 
 If you don't need some pages, don't forget to remove them (or comment out)
-in `hoverboard-app.html`
+in `lkim-app.ts`
 
 ```html
-<iron-pages>
-  <home-page data-route="home"></home-page>
-  <blog-page data-route="blog" route="[[subRoute]]"></blog-page>
-  <speakers-page data-route="speakers" route="[[subRoute]]"></speakers-page>
-</iron-pages>
+  <iron-pages
+    attr-for-selected="name"
+    selected="[[route.route]]"
+    selected-attribute="active"
+    hide-immediately
+  >
+    <home-page name="home"></home-page>
+    <pengurus-page name="pengurus" route="[[subRoute]]"></pengurus-page>
+    <news-page name="news" route="[[subRoute]]"></news-page>
+    <article-page name="articles" route="[[subRoute]]"></article-page>
+    <schedule-page name="schedule" route="[[subRoute]]"></schedule-page>
+  </iron-pages>
 ```
 
 ### Toolbar Navigation
@@ -75,24 +102,22 @@ Define a page's label and url in `navigation` in `data/settings.json`
   {
     "route": "home",
     "permalink": "/",
-    "label": "Home"
+    "label": "Home",
+    "icon": "home"
   },
   {
-    "route": "speakers",
-    "permalink": "/speakers/",
-    "label": "Speakers"
+    "route": "pengurus",
+    "permalink": "/pengurus/",
+    "label": "Pengurus",
+    "icon": "assignment-ind"
   },
   ...
 ]
 ```
 
-### "Become a partner" - how it works?
-
-`Become a partner` button opens a form with `company name`, `name` and `email` fields. After a user (potential partner) filled a form, this data is saved into Firestore DB, `potentialPartners` node. It gives the possibility to contact back those people who are interested to be a partner with you and collaborate earlier.
-
 # Next steps
 
-Now your Hoverboard is configured, learn how to integrate [firebase][firebase] with, [style][style app] and [deploy][deploy] your app.
+Now your Web App is configured, learn how to integrate [firebase][firebase] with, [style][style app] and [deploy][deploy] your app.
 
 [style app]: 03-styling.md
 [deploy]: 04-deploy.md

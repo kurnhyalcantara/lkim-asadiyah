@@ -1,7 +1,6 @@
 {
   "basepath": "/",
   "url": "https://lkim-asadiyah.web.app/",
-  "analytics": "",
   "prefix": "/",
   "firebase": {
     "apiKey": "AIzaSyAyRTnXOg03KvfYSKbcz1F_M3_gb3ESJpU",

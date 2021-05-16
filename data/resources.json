@@ -16,19 +16,15 @@
   "followOur": "Follow our",
   "followUs": "Follow Akun",
   "emailUs": "Email kami",
-  "address": "Jl. Veteran No. 46 Sengkang - 90911",
-  "phone": "Tlp. 00000000 Fax. 00000000",
   "subscribe": "Subscribe",
-  "partnershipResources": "Partnership Resources",
-  "eventResources": "Event Resources",
   "buyTicket": "Buy ticket",
   "signOut": "Sign out",
-  "offlineMessage": "You can still work offline.",
+  "offlineMessage": "Anda masih mengakses web ini meskipun offline",
   "cachingComplete": "Caching selesai! anda bisa menginstall web app ini di bagian menu.",
   "newVersionAvailable": "Versi terbaru aplikasi ini telah tersedia.",
   "refresh": "Refresh",
-  "position": "Position",
-  "country": "Country",
+  "position": "Posisi",
+  "country": "Negara",
   "tanggal": "Tanggal",
   "timezoneOffset": "-180",
   "notifications": {
@@ -98,13 +94,6 @@
       "link": "https://www.youtube.com/channel/UC6Yi3Z6frhtW2SnbWo83Nxg"
     }
   },
-  "footer": {
-    "blog": "Blog"
-  },
-  "allSchedule": {
-    "title": "Semua Jadwal",
-    "browseSession": "Browse sessions"
-  },
   "footerRelBlock": [
     {
       "title": "Link terkait",
@@ -126,50 +115,27 @@
       "links": [
         {
           "name": "Kepustakaan",
-          "url": "#",
+          "url": "/library",
           "newTab": true
         },
         {
           "name": "Surat Edaran",
-          "url": "#",
+          "url": "/announcement",
           "newTab": true
         },
         {
           "name": "Resources",
-          "url": "#",
+          "url": "/resources",
           "newTab": true
         }
       ]
     }
   ],
+  "allSchedule": {
+    "title": "Semua Jadwal",
+    "browseSession": "Browse sessions"
+  },
   "subscribeNote": "Dapatkan update terbaru dari kami melalui email",
-  "codeOfConduct": "Code of Conduct",
-  "codeOfConductBlock": {
-    "organization": "DevFest",
-    "form": "https://bit.ly/2RstTJ8",
-    "contacts": [
-      "Organizer Oleh Zasadnyy, [+38 093 486 6460](tel:+380934866460), o.zasadnyy@gdg.org.ua",
-      "Organizer Sofiya Huts, [+38 093 486 1425](tel:+380934861425), s.huts@gdg.org.ua"
-    ]
-  },
-  "ticketsBlock": {
-    "title": "Tickets",
-    "ticketsDetails": "Tickets grant access to all conference sections, coffee breaks, lunch and party. Accommodation is NOT included in the ticket price.",
-    "soldOut": "You missed it!",
-    "notAvailableYet": "Not available yet",
-    "save": "Save ${discount}% today"
-  },
-  "partnersBlock": {
-    "title": "Partners",
-    "button": "Become a partner",
-    "form": {
-      "title": "Become a partner!",
-      "submitLabel": "Submit",
-      "fullName": "Full Name",
-      "companyName": "Company Name"
-    },
-    "toast": "We will contact you soon!"
-  },
   "news": {
     "published": "Dipublikasikan",
     "suggested": "Berita Lainnya"
@@ -177,18 +143,6 @@
   "article": {
     "published": "Dipublikasikan",
     "suggested": "Artikel Lainnya"
-  },
-  "speakers": {
-    "skills": "Skills",
-    "previousYears": "Years",
-    "previousYear": "Year"
-  },
-  "previousSpeakersBlock": {
-    "title": "Previous speakers",
-    "callToAction": {
-      "label": "View all",
-      "link": "/previous-speakers/"
-    }
   },
   "mapBlock": {
     "title": "Alamat"
@@ -209,9 +163,6 @@
     "close": "Close",
     "generalError": "An error has occurred. Please, try again later.",
     "toast": "Successfully subscribed!"
-  },
-  "team": {
-    "description": "Google is known all around the world. Everyone is 'googling', checking on 'maps' and communicating in 'gmail'. For simple users, they are services that just works, but not for us. Developers see much more: APIs, scalability issues, complex technology stacks. And that is what GDG is about.<br><br> [Google Developers Group (GDG) Lviv](http://lviv.gdg.org.ua/) - is open and volunteer geek community who create exciting projects and share experience about Google technologies with a passion.<br><br> Our goal is to organize space to connect the best industry experts with Ukrainian audience to boost development of IT."
   },
   "schedule": {
     "registerSchedule": "Saya ingin ikuti kegiatan ini"
