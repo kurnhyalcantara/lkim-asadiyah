@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { store } from '../';
 import { db } from '../db';
 import { openDialog } from '../dialogs/actions';
-import { DialogForm, DIALOGS } from '../dialogs/types';
+import { SignUpForm, DIALOGS } from '../dialogs/types';
 import { showToast } from '../toast/actions';
 import {
   SUBSCRIBE,
@@ -12,7 +12,7 @@ import {
   SUBSCRIBE_SUCCESS,
 } from './types';
 
-const setSubscribe = async (data: DialogForm): Promise<true> => {
+const setSubscribe = async (data: SignUpForm): Promise<true> => {
   const id = data.email.replace(/[^\w\s]/gi, '');
   const subscriber = {
     email: data.email,
@@ -25,7 +25,7 @@ const setSubscribe = async (data: DialogForm): Promise<true> => {
   return true;
 };
 
-export const subscribe = (data: DialogForm) => async (dispatch: Dispatch<SubscribeActions>) => {
+export const subscribe = (data: SignUpForm) => async (dispatch: Dispatch<SubscribeActions>) => {
   dispatch({
     type: SUBSCRIBE,
   });

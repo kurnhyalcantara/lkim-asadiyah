@@ -4,10 +4,18 @@ export const OPEN_DIALOG = 'OPEN_DIALOG';
 export const CLOSE_DIALOG = 'CLOSE_DIALOG';
 export const SET_DIALOG_ERROR = 'SET_DIALOG_ERROR';
 
-export interface DialogForm {
+export interface SignUpForm {
   email: string;
   firstFieldValue?: string;
   secondFieldValue?: string;
+  thirdFieldValue?: string;
+  fourthFieldValue?: string;
+  fifthFieldValue?: string;
+  sixthFieldValue?: string;
+  seventhFieldValue?: string;
+  eighthFieldValue?: string;
+  ninethFieldValue?: string;
+  tenthFieldValue?: string;
 }
 
 export enum DIALOGS {

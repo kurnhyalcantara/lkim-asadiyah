@@ -10,25 +10,18 @@ import 'plastic-image';
 import { html, PolymerElement } from '@polymer/polymer';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import { ReduxMixin } from '../../mixins/redux-mixin';
-import { RootState } from '../../store';
+import { RootState, store } from '../../store';
 import { closeDialog } from '../../store/dialogs/actions';
 import { daftar } from '../../store/signup/actions';
 import '../lkim-icons';
 import '../shared-styles';
-
+import './dialog-styles'
 class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], PolymerElement)) {
   static get template() {
     return html`
-      <style include="shared-styles flex flex-alignment">
+      <style include="shared-styles dialog-styles flex flex-alignment">
         :host {
-          margin: 0;
           padding: 0;
-          display: block;
-          height: 100%;
-          width: 100%;
-          background: var(--primary-background-color);
-          color: var(--primary-text-color);
-          box-shadow: var(--box-shadow);
           --paper-input-container-focus-color: var(--default-primary-color);
           --paper-input-container-color: var(--disabled-text-color);
           --paper-input-container-label: {
@@ -37,6 +30,10 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
             font-weight: 600;
           };
           --paper-input-container-font-family: var(--font-family);
+        }
+
+        app-header {
+          background-color: var(--primary-background-color);
         }
 
         .dialog-header {
@@ -110,12 +107,27 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
           margin: 32px 24px 24px;
         }
 
+        .action-buttons paper-button {
+          width: 100%;
+        }
+
+        .close-button {
+          margin-top: 16px;
+        }
+
         .general-error {
           margin: 18px 0;
           text-align: center;
           font-size: 14px;
           color: var(--error-color);
         }
+
+        @media (min-width: 812px) {
+          .action-buttons paper-button {
+            width: 60%;
+          }
+        }
+
       </style>
 
       <app-header-layout has-scrolling-region>
@@ -126,7 +138,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
           <div class="dialog-header" layout vertical center>
             <plastic-image
               class="header-logo"
-              srcset="{$ daftarProvider.logo $}"
+              srcset="{$ daftarProviders.logo $}"
               alt="{$ daftarProviders.header $}"
             ></plastic-image>
             <div class="container-title" layout vertical center>{$ daftarProviders.header $}</div>
@@ -289,7 +301,6 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
               minlength="6"
               auto-validate$="[[validate]]"
               error-message="{$ daftarProviders.input.password.errorOccured $}"
-              value="{{passwordValue}}"
               autocomplete="off"
               type="password"
               always-float-label
@@ -299,10 +310,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
           <div class="general-error" hidden$="[[!errorOccurred]]">
             [[errorMessage]]
           </div>
-          <div class="action-buttons" layout horizontal justified>
-            <paper-button class="close-button" on-click="_closeDialog"
-              >{$ daftarProviders.cancel $}
-            </paper-button>
+          <div class="action-buttons" layout vertical center>
             <paper-button
               on-click="_daftar"
               ga-on="click"
@@ -311,7 +319,10 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
               ga-event-label="daftar block"
               primary
             >
-              {$ daftarProviders.submit $}
+              [[submitLabel]]
+            </paper-button>
+            <paper-button class="close-button" on-click="_closeDialog"
+              >{$ daftarProviders.cancel $}
             </paper-button>
           </div>
         </div>
@@ -331,7 +342,6 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
   private instagramValue: string;
   private semesterValue: string;
   private emailValue: string;
-  private passwordValue: string;
 
   static get properties() {
     return {
@@ -355,6 +365,10 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       errorMessage: {
         type: String,
       },
+      submitLabel: {
+        type: String,
+        value: '{$ daftarProviders.submit $}'
+      },
       keyboardOpened: {
         type: Boolean,
         value: false,
@@ -374,7 +388,6 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       jurusanValue: String,
       semesterValue: String,
       emailValue: String,
-      passwordValue: String,
     };
   }
 
@@ -393,17 +406,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
   ready() {
     super.ready();
     this.initialHeight = window.innerHeight;
-  }
-
-  constructor() {
-    super();
-    this.addEventListener('iron-overlay-canceled', this._close);
     this.addEventListener('iron-resize', this._resize);
-    window.addEventListener('resize', this._windowResize.bind(this));
-  }
-
-  _close() {
-    closeDialog();
   }
 
   _handleTerdaftar(signup) {
@@ -432,35 +435,54 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
   }
 
   _daftar() {
+    this.errorOccurred = false;
+    const namaLengkapInput = this.shadowRoot.querySelector('#namaLengkap');
     const jenisKelaminInput = this.shadowRoot.querySelector('#jenisKelaminDrop');
+    const tanggalLahirInput = this.shadowRoot.querySelector('#tanggalLahir');
+    const tempatLahirInput = this.shadowRoot.querySelector('#tempatLahir');
+    const alamatSekarangInput = this.shadowRoot.querySelector('#alamatSekarang');
+    const noWaInput = this.shadowRoot.querySelector('#noWa');
+    const instagramInput = this.shadowRoot.querySelector('#instagram');
     const fakultasInput = this.shadowRoot.querySelector('#fakultasDrop');
     const jurusanInput = this.shadowRoot.querySelector('#jurusanDrop');
+    const semesterInput = this.shadowRoot.querySelector('#semester');
+    const emailInput = this.shadowRoot.querySelector('#emailUser');
+    
+    if (!namaLengkapInput.validate() || !tanggalLahirInput.validate() || !tempatLahirInput.validate() || !alamatSekarangInput.validate() || !noWaInput.validate() || !instagramInput.validate() || !semesterInput.validate()) {
+      this.errorOccurred = true;
+      this.errorMessage = 'Harap periksa kembali data anda';
+      return;
+    }
 
+    if (!emailInput.validate() || !this._validateEmail(emailInput.value)) {
+      emailInput.invalid = true;
+      this.errorOccurred = true;
+      this.errorMessage = 'Format email salah!';
+      return;
+    }
+
+    this.submitLabel = 'Memproses...';
     this._submit({
-      namaLengkapValue: this.namaLengkapValue,
-      jenisKelaminValue: jenisKelaminInput.value,
-      tanggalLahirValue: this.tanggalLahirValue,
-      tempatLahirValue: this.tempatLahirValue,
-      alamatSekarangValue: this.alamatSekarangValue,
-      noWaValue: this.noWaValue,
-      instagramValue: this.instagramValue,
-      fakultasValue: fakultasInput.value,
-      jurusanValue: jurusanInput.value,
-      semesterValue: this.semesterValue,
-      emailValue: this.emailValue,
+      firstFieldValue: this.namaLengkapValue,
+      secondFieldValue: jenisKelaminInput.value,
+      thirdFieldValue: this.tanggalLahirValue,
+      fourthFieldValue: this.tempatLahirValue,
+      fifthFieldValue: this.alamatSekarangValue,
+      sixthFieldValue: this.noWaValue,
+      seventhFieldValue: this.instagramValue,
+      eighthFieldValue: fakultasInput.value,
+      ninethFieldValue: jurusanInput.value,
+      tenthFieldValue: this.semesterValue,
+      email: this.emailValue
     });
   }
 
-  _submit(data) {
-    daftar(data);
+  _submit(userData) {
+    store.dispatch(daftar(userData));
   }
 
   _focus(e) {
     e.target.focus();
-  }
-
-  _windowResize() {
-    this.keyboardOpened = this.ui.viewport.isPhone && window.innerHeight < this.initialHeight - 100;
   }
 
   _resize(e) {

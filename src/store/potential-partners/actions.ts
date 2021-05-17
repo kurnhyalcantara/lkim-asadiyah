@@ -1,13 +1,13 @@
 import { Dispatch } from 'redux';
 import { db } from '../db';
-import { DialogForm } from '../dialogs/types';
+import { SignUpForm } from '../dialogs/types';
 import {
   ADD_POTENTIAL_PARTNER,
   ADD_POTENTIAL_PARTNER_FAILURE,
   ADD_POTENTIAL_PARTNER_SUCCESS,
 } from './types';
 
-export const addPotentialPartner = (data: DialogForm) => (dispatch: Dispatch) => {
+export const addPotentialPartner = (data: SignUpForm) => (dispatch: Dispatch) => {
   dispatch({
     type: ADD_POTENTIAL_PARTNER,
     payload: data,

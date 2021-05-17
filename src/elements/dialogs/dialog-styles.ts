@@ -124,9 +124,7 @@ documentContainer.innerHTML = `<dom-module id="dialog-styles">
 
         .close-icon {
           margin: 16px;
-          position: absolute;
-          top: -8px;
-          right: -48px;
+          background-color: var(--additional-background-color);
           --iron-icon-fill-color: #fff;
         }
 
