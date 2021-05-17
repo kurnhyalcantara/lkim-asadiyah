@@ -8,6 +8,5 @@ declare global {
 
 export const db = () => {
   const db = window.firebase.firestore();
-
   return db;
 };

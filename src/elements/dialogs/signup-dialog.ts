@@ -12,10 +12,11 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import { ReduxMixin } from '../../mixins/redux-mixin';
 import { RootState, store } from '../../store';
 import { closeDialog } from '../../store/dialogs/actions';
-import { daftar } from '../../store/signup/actions';
+import { daftar, daftarUser } from '../../store/signup/actions';
 import '../lkim-icons';
 import '../shared-styles';
 import './dialog-styles'
+import { showToast } from '../../store/toast/actions';
 class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], PolymerElement)) {
   static get template() {
     return html`
@@ -300,6 +301,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
               placeholder="{$ daftarProviders.input.password.placeholder $}"
               minlength="6"
               auto-validate$="[[validate]]"
+              value="{{passwordValue}}"
               error-message="{$ daftarProviders.input.password.errorOccured $}"
               autocomplete="off"
               type="password"
@@ -342,6 +344,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
   private instagramValue: string;
   private semesterValue: string;
   private emailValue: string;
+  private passwordValue: string;
 
   static get properties() {
     return {
@@ -388,6 +391,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       jurusanValue: String,
       semesterValue: String,
       emailValue: String,
+      passwordValue: String
     };
   }
 
@@ -447,6 +451,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
     const jurusanInput = this.shadowRoot.querySelector('#jurusanDrop');
     const semesterInput = this.shadowRoot.querySelector('#semester');
     const emailInput = this.shadowRoot.querySelector('#emailUser');
+    const passwordInput = this.shadowRoot.querySelector('#passwordUser');
     
     if (!namaLengkapInput.validate() || !tanggalLahirInput.validate() || !tempatLahirInput.validate() || !alamatSekarangInput.validate() || !noWaInput.validate() || !instagramInput.validate() || !semesterInput.validate()) {
       this.errorOccurred = true;
@@ -461,7 +466,13 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       return;
     }
 
-    this.submitLabel = 'Memproses...';
+    if (!passwordInput.validate()) {
+      this.errorOccurred = true;
+      this.errorMessage = 'Password minimal 6 karakter';
+      return;
+    }
+
+    showToast({ message: 'Memproses...'});
     this._submit({
       firstFieldValue: this.namaLengkapValue,
       secondFieldValue: jenisKelaminInput.value,
@@ -473,16 +484,13 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       eighthFieldValue: fakultasInput.value,
       ninethFieldValue: jurusanInput.value,
       tenthFieldValue: this.semesterValue,
-      email: this.emailValue
+      email: this.emailValue,
+      pass: this.passwordValue,
     });
   }
 
   _submit(userData) {
     store.dispatch(daftar(userData));
-  }
-
-  _focus(e) {
-    e.target.focus();
   }
 
   _resize(e) {

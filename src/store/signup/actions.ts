@@ -3,7 +3,7 @@ import { store } from '..';
 import { db } from '../db';
 import { openDialog } from '../dialogs/actions';
 import { SignUpForm, DIALOGS } from '../dialogs/types';
-import { showToast } from '../toast/actions';
+import { hideToast, showToast } from '../toast/actions';
 import {
   DAFTAR,
   DaftarActions,
@@ -12,9 +12,8 @@ import {
   DAFTAR_SUCCESS,
 } from './types';
 
-const setDaftar = async (data: SignUpForm): Promise<true> => {
+const setDaftar = async (data: SignUpForm) => {
   const id = data.email.replace(/[^\w\s]/gi, '');
-  console.log(id)
   const userData = {
     nama_lengkap: data.firstFieldValue,
     jenis_kelamin: data.secondFieldValue,
@@ -30,7 +29,6 @@ const setDaftar = async (data: SignUpForm): Promise<true> => {
   };
 
   await db().collection('users').doc(id).set(userData);
-  return true;
 };
 
 export const daftar = (data: SignUpForm) => async (dispatch: Dispatch<DaftarActions>) => {
@@ -41,16 +39,18 @@ export const daftar = (data: SignUpForm) => async (dispatch: Dispatch<DaftarActi
   try {
     dispatch({
       type: DAFTAR_SUCCESS,
-      payload: await setDaftar(data),
+      payload: await daftarUser(data.email, data.pass)
     });
-    showToast({ message: '{$ subscribeBlock.toast $}' });
+    setDaftar(data);
   } catch (error) {
     dispatch({
       type: DAFTAR_FAILURE,
       payload: error,
     });
-    console.log(error)
-    openDialog(DIALOGS.SIGNUP, { ...data, errorOccurred: true });
+    hideToast()
+    if (error.code === 'auth/email-already-in-use') {
+      openDialog(DIALOGS.SIGNUP, { errorOccurred: true, errorMessage: 'Email telah digunakan orang lain'})
+    }
   }
 };
 
@@ -59,3 +59,12 @@ export const resetDaftar = () => {
     type: DAFTAR_RESET,
   });
 };
+
+export const daftarUser = (emailUser: string, passUser: string) => {
+  return window.firebase
+    .auth()
+    .createUserWithEmailAndPassword(emailUser, passUser)
+    .then(() => {
+      showToast({ message: 'Pembuatan akun berhasil dan anda telah login otomatis'});
+    })
+}

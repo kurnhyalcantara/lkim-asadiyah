@@ -88,6 +88,8 @@ export class SubscribeFormFooter extends ReduxMixin(PolymerElement) {
   subscribed: SubscribeState = initialSubscribeState;
   @property({ type: String })
   email = '';
+  @property({ type: String })
+  pass = '';
 
   @property({ type: Boolean })
   private validate = false;
@@ -101,7 +103,7 @@ export class SubscribeFormFooter extends ReduxMixin(PolymerElement) {
     const emailInput = this.shadowRoot.querySelector<PaperInputElement>('#emailInput');
 
     if ((this.initialized || this.failure) && emailInput.validate()) {
-      store.dispatch(subscribe({ email: this.email }));
+      store.dispatch(subscribe({ email: this.email, pass: this.pass }));
     }
   }
 

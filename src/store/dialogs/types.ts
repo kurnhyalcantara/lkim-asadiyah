@@ -6,6 +6,7 @@ export const SET_DIALOG_ERROR = 'SET_DIALOG_ERROR';
 
 export interface SignUpForm {
   email: string;
+  pass: string;
   firstFieldValue?: string;
   secondFieldValue?: string;
   thirdFieldValue?: string;
