@@ -15,6 +15,7 @@ export enum DIALOGS {
   SESSION = 'session',
   FEEDBACK = 'feedback',
   SUBSCRIBE = 'subscribe',
+  SIGNUP = 'signup',
   SIGNIN = 'signin',
 }
 

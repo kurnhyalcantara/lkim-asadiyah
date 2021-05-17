@@ -32,6 +32,7 @@ import './elements/dialogs/session-details';
 import './elements/dialogs/signin-dialog';
 import './elements/dialogs/pengurus-details';
 import './elements/dialogs/subscribe-dialog';
+import './elements/dialogs/signup-dialog';
 import './elements/dialogs/video-dialog';
 import './elements/footer-block';
 import './elements/header-toolbar';
@@ -58,6 +59,7 @@ import { updateUser } from './store/user/actions';
 import { TempAny } from './temp-any';
 import { isDialogOpen } from './utils/dialogs';
 import { scrollToY } from './utils/scrolling';
+import { openDialog } from './store/dialogs/actions';
 
 setFastDomIf(true);
 setPassiveTouchGestures(true);
@@ -131,14 +133,11 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
         .drawer-signup, .drawer-login {
           text-align: center;
           color: var(--text-primary-color);
-        }
-
-        .drawer-signup {
-          background-color: var(--focused-color);
-        }
-
-        .drawer-login {
           background-color: var(--default-primary-color);
+        }
+
+        .drawer-signup:hover, .drawer-login:hover {
+          background-color: var(--focused-color);
         }
 
         .drawer-content iron-icon {
@@ -236,10 +235,10 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
               {$ design $}<span class="by" on-tap="_openInstaDesigner">{$ by $}</span>
             </h3>
           </app-toolbar>
-          <!--<div class="drawer-account" layout horizontal>
-            <a class="drawer-signup" on-click="openSignUpDialog">{$ signUp $}</a>
+          <div class="drawer-account" layout horizontal>
+            <a class="drawer-signup" on-click="_openSignUpDialog">{$ signUp $}</a>
             <a class="drawer-login" on-click="openLoginDialog">{$ logIn $}</a>
-          </div>-->
+          </div>
           <div class="drawer-content" layout vertical justified flex>
             <iron-selector
               class="drawer-list"
@@ -324,6 +323,14 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
       >
       </subscribe-dialog>
 
+      <signup-dialog
+        opened="[[isSignupDialogOpen]]"
+        data="[[dialogs.data.data]]"
+        with-backdrop
+        no-cancel-on-outside-click="[[viewport.isPhone]]"
+      >
+      </signup-dialog>
+
       <signin-dialog opened="[[isSigninDialogOpen]]" with-backdrop></signin-dialog>
 
       <toast-element></toast-element>
@@ -363,6 +370,8 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   @property({ type: Boolean })
   private isSigninDialogOpen = false;
   @property({ type: Boolean })
+  private isSignupDialogOpen = false;
+  @property({ type: Boolean })
   private isSpeakerDialogOpen = false;
   @property({ type: Boolean })
   private isPreviousSpeakerDialogOpen = false;
@@ -376,6 +385,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   stateChanged(state: RootState) {
     this.dialogs = state.dialogs;
     this.isSigninDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SIGNIN);
+    this.isSignupDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SIGNUP);
     this.isSpeakerDialogOpen = isDialogOpen(this.dialogs, DIALOGS.PENGURUS);
     this.isSessionDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SESSION);
     this.isFeedbackDialogOpen = isDialogOpen(this.dialogs, DIALOGS.FEEDBACK);
@@ -488,5 +498,9 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
       this.addToHomeScreen = null;
       this.closeDrawer();
     });
+  }
+
+  _openSignUpDialog() {
+    openDialog(DIALOGS.SIGNUP);
   }
 }

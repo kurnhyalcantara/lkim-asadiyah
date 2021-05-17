@@ -162,7 +162,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
               primary
             >
               <iron-icon icon="lkim:ticket"></iron-icon>
-              {$ registerMember $}
+              {$ registerNewAccount $}
             </paper-button>
           </div>
 

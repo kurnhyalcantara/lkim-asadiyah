@@ -92,7 +92,7 @@ export class ArticleLatestBlock extends ReduxMixin(PolymerElement) {
         <div class="articles-wrapper">
           <template is="dom-repeat" items="[[articlePosts]]" as="article">
             <a
-              href$="/articles/post/[[article.id]]/"
+              href$="/articles/posts/[[article.id]]/"
               class="article card"
               ga-on="click"
               ga-event-category="article"

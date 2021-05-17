@@ -15,6 +15,7 @@ import { scheduleReducer } from './schedule/reducers';
 import { sessionsReducer } from './sessions/reducers';
 import { pengurusReducer } from './pengurus/reducers';
 import { subscribeReducer } from './subscribe/reducers';
+import { signupReducer } from './signup/reducers';
 import { teamReducer } from './team/reducers';
 import { ticketsReducer } from './tickets/reducers';
 import { toastReducer } from './toast/reducers';
@@ -39,6 +40,7 @@ const rootReducer = {
   sessions: sessionsReducer,
   pengurus: pengurusReducer,
   subscribed: subscribeReducer,
+  signup: signupReducer,
   team: teamReducer,
   tickets: ticketsReducer,
   toast: toastReducer,
