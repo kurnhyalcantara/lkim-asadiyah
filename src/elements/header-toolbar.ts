@@ -215,7 +215,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           </div>
         </paper-menu-button>
 
-        <paper-menu-button
+        <!--<paper-menu-button
           class="auth-menu"
           hidden$="[[!user.signedIn]]"
           vertical-align="top"
@@ -243,7 +243,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
               <span class="profile-action" role="button" on-click="_signOut">{$ signOut $}</span>
             </div>
           </div>
-        </paper-menu-button>
+        </paper-menu-button>-->
 
         <!--<paper-icon-button
           icon="lkim:account"

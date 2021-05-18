@@ -3,92 +3,164 @@ import { html, PolymerElement } from '@polymer/polymer';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import { ReduxMixin } from '../../mixins/redux-mixin';
 import { RootState } from '../../store';
+import 'plastic-image';
+import '@polymer/paper-input/paper-input';
+import '@polymer/iron-icon';
+import '@polymer/app-layout/app-header-layout/app-header-layout';
+import '@polymer/app-layout/app-toolbar/app-toolbar';
 import { closeDialog, openDialog } from '../../store/dialogs/actions';
 import { DIALOGS } from '../../store/dialogs/types';
-import { mergeAccounts, signIn } from '../../store/user/actions';
-import { getProviderCompanyName } from '../../utils/providers';
+import { signIn } from '../../store/user/actions';
 import '../lkim-icons';
 import '../shared-styles';
 
 class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], PolymerElement)) {
   static get template() {
     return html`
-      <style include="shared-styles flex flex-alignment">
+      <style include="shared-styles dialog-styles flex flex-alignment">
         :host {
-          margin: 0 auto;
-          display: block;
-          padding: 24px 32px;
-          background: var(--primary-background-color);
-          box-shadow: var(--box-shadow);
+          --paper-input-container-underline: {
+            display: none;
+            height: 0;
+          }
+          --paper-input-container-underline-focus: {
+            display: none;
+            height: 0;
+          }
+        }
+        
+        app-header {
+          background-color: var(--primary-background-color);
+        }
+
+        .dialog-header {
+          text-align: center;
+        }
+
+        app-toolbar,
+        .dialog-content {
+          padding: 12px 0;
+        }
+
+        .header-logo {
+          margin-bottom: 12px;
+        }
+
+        .container-title {
+          font-size: 22px;
+          color: var(--primary-text-color);
+          text-align: center;
+        }
+
+        .container-title::after {
+          height: 3px;
+          width: 50px;
         }
 
         .dialog-content {
-          margin: 0 auto;
+          margin: 0 24px;
         }
 
-        .sign-in-button {
-          margin: 16px 0;
-          display: block;
-          color: var(--primary-text-color);
+        .action-input {
+          padding: 16px 16px;
+          box-shadow: 1px 1px 1px var(--default-primary-color),
+            -1px -1px 2px var(--default-primary-color);
+          border-radius: 12px;
         }
 
-        .merge-content .subtitle,
-        .merge-content .explanation {
-          margin-bottom: 16px;
+        .action-button {
+          margin-top: 22px;
         }
 
-        .icon-twitter {
-          color: var(--twitter-color);
+        paper-input:not(:last-of-type) {
+          margin-bottom: 18px;
         }
 
-        .icon-facebook {
-          color: var(--facebook-color);
+        .action-login {
+          min-width: 75%;
+          margin-bottom: 48px;
+        }
+
+        .action-register {
+          margin-top: 14px;
+        }
+
+        .action-input iron-icon {
+          margin-right: 12px;
+          --iron-icon-width: 24px;
+          --iron-icon-height: 24px;
+        }
+
+        .action-button iron-icon {
+          margin-left: 8px;
+        }
+
+        .general-error {
+          margin: 18px 0;
+          text-align: center;
+          font-size: 14px;
+          color: var(--error-color);
         }
       </style>
 
-      <div class="dialog-content">
-        <div class="initial-signin" hidden$="[[isMergeState]]">
-          {% for provider in signInProviders.providersData %}
-          <paper-button
-            class="sign-in-button"
-            on-click="_signIn"
-            provider-url="{$ provider.url $}"
-            ga-on="click"
-            ga-event-category="attendees"
-            ga-event-action="sign-in"
-            ga-event-label="signIn dialog - {$ provider.name $}"
-            flex
-          >
-            <iron-icon class="icon-{$ provider.name $}" icon="lkim:{$ provider.name $}"></iron-icon>
-            <span provider-url="{$ provider.url $}">{$ provider.label $}</span>
-          </paper-button>
-          {% endfor %}
-        </div>
-        <div class="merge-content" hidden$="[[!isMergeState]]">
-          <h3 class="subtitle">{$ signInDialog.alreadyHaveAccount $}</h3>
-          <div class="explanation">
-            <div class="row-1">{$ signInDialog.alreadyUsed $} <b>[[email]]</b>.</div>
-            <div class="row-2">
-              {$ signInDialog.signInToContinue.part1 $} [[providerCompanyName]] {$
-              signInDialog.signInToContinue.part2 $}
+      <app-header-layout has-scrolling-region>
+        <app-header slot="header" class="header" fixed="[[viewport.isTabletPlus]]">
+          <iron-icon class="close-icon" icon="lkim:close" on-tap="_close"></iron-icon>
+        </app-header>
+        <app-toolbar layout vertical center>
+          <div class="dialog-header" layout vertical center>
+            <plastic-image
+              class="header-logo"
+              srcset="{$ signInProviders.logo $}"
+              alt="{$ signInProviders.title $}"
+            ></plastic-image>
+            <div class="container-title" layout vertical center>{$ signInProviders.title $}</div>
+            <div class="general-error" hidden$="[[!errorOccurred]]">
+              [[errorMessage]]
             </div>
           </div>
-
-          <div class="action-button" layout horizontal end-justified>
+        </app-toolbar>
+        <div class="dialog-content" layout vertical justified>
+          <div class="action-input">
+            <paper-input
+              id="email"
+              label="{$ signInProviders.input.email $}"
+              value="{{emailValue}}"
+              no-label-float
+            >
+              <iron-icon icon="icons:mail" slot="prefix"></iron-icon>
+            </paper-input>
+            <paper-input
+              id="password"
+              label="{$ signInProviders.input.password $}"
+              value="{{passValue}}"
+              type="password"
+              no-label-float
+            >
+              <iron-icon icon="icons:lock" slot="prefix"></iron-icon>
+              <iron-icon icon="icons:visibility" slot="suffix" on-tap="_showPassword"></iron-icon>
+            </paper-input>
+          </div>
+          <div class="action-button" layout vertical center>
             <paper-button
-              class="merge-button"
-              on-click="_mergeAccounts"
+              class="action-login"
+              on-click="_signIn"
               ga-on="click"
-              ga-event-category="attendees"
-              ga-event-action="merge account"
-              ga-event-label$="signIn merge account dialog -[[providerCompanyName]]"
+              ga-event-category="portal"
+              ga-event-action="klik login"
+              ga-event-label="login block"
               primary
             >
-              <span>{$ signInDialog.signInToContinue.part1 $} [[providerCompanyName]]</span>
+              {$ signInProviders.actions.login $}
+            </paper-button>
+            <div>{$ signInProviders.info.p1 $}</div>
+            <paper-button class="action-register" on-click="_newRegister" stroke>
+              <span>{$ signInProviders.actions.newRegister $}</span>
+              <iron-icon icon="lkim:arrow-right-circle"></iron-icon>
             </paper-button>
           </div>
         </div>
-      </div>
+      </app-header-layout>
     `;
   }
 
@@ -98,22 +170,43 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
 
   static get properties() {
     return {
+      ui: {
+        type: Object,
+      },
+      viewport: {
+        type: Object,
+      },
       user: {
         type: Object,
       },
-      isMergeState: {
+      errorOccurred: {
         type: Boolean,
         value: false,
       },
-      email: String,
-      providerCompanyName: String,
+      errorMessage: {
+        type: String,
+      },
+      data: {
+        type: Object,
+      },
+      initialHeight: Number,
+      emailValue: String,
+      passValue: String,
     };
   }
 
   stateChanged(state: RootState) {
     this.setProperties({
       user: state.user,
+      ui: state.ui,
+      viewport: state.ui.viewport
     });
+  }
+
+  ready() {
+    super.ready();
+    this.initialHeight = window.innerHeight;
+    this.addEventListener('iron-resize', this._resize);
   }
 
   constructor() {
@@ -122,35 +215,45 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
   }
 
   static get observers() {
-    return ['_userChanged(user)'];
+    return ['_handleDialogToggled(opened, data)', '_userChanged(user)'];
   }
 
   _userChanged(user) {
-    closeDialog();
-    if (!user.signedIn) {
-      if (user.initialProviderId && user.pendingCredential) {
-        this.isMergeState = true;
-        this.email = user.email;
-        this.providerCompanyName = getProviderCompanyName(user.initialProviderId);
-        openDialog(DIALOGS.SIGNIN);
-      }
+    if (user.signedIn) {
+      this._clear();
+      closeDialog();
     }
   }
 
-  _mergeAccounts() {
-    mergeAccounts(this.user.initialProviderId, this.user.pendingCredential);
-    closeDialog();
-    this.isMergeState = false;
+  _handleDialogToggled(opened, data) {
+    if (data) {
+      this.errorOccurred = data.errorOccurred;
+      this.errorMessage = data.errorMessage;
+    } else {
+      data = {};
+    }
   }
 
   _close() {
-    this.isMergeState = false;
     closeDialog();
   }
 
-  _signIn(event) {
-    const providerUrl = event.target.getAttribute('provider-url');
-    signIn(providerUrl);
+  _showPassword() {
+    const passField = this.shadowRoot.querySelector('#password');
+    passField.setAttribute('type', 'text');
+  }
+
+  _newRegister() {
+    openDialog(DIALOGS.SIGNUP);
+  }
+
+  _signIn() {
+    signIn(this.emailValue, this.passValue);
+  }
+
+  _clear() {
+    this.emailValue = '';
+    this.passValue = '';
   }
 }
 

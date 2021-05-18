@@ -55,7 +55,7 @@ import { setRoute } from './store/routing/actions';
 import { initialRoutingState, RoutingState } from './store/routing/state';
 import { showToast } from './store/toast/actions';
 import { setViewportSize } from './store/ui/actions';
-import { updateUser } from './store/user/actions';
+import { signOut, updateUser } from './store/user/actions';
 import { TempAny } from './temp-any';
 import { isDialogOpen } from './utils/dialogs';
 import { scrollToY } from './utils/scrolling';
@@ -130,6 +130,23 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
           width: 50%;
         }
 
+        .drawer-signedin {
+          width: 100%;
+          padding: 8px 0;
+          background-color: var(--default-primary-color);
+        }
+
+        .drawer-profile {
+          display: inline-block;
+          color: var(--text-primary-color);
+        }
+
+        .profile-icon {
+          --iron-icon-width: 24px;
+          --iron-icon-heigth: 24px;
+          margin-right: 12px;
+        }
+
         .drawer-signup, .drawer-login {
           text-align: center;
           color: var(--text-primary-color);
@@ -138,6 +155,10 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
 
         .drawer-signup:hover, .drawer-login:hover {
           background-color: var(--focused-color);
+        }
+
+        .drawer-signup {
+          border-right: 1px solid #fff;
         }
 
         .drawer-content iron-icon {
@@ -235,9 +256,15 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
               {$ design $}<span class="by" on-tap="_openInstaDesigner">{$ by $}</span>
             </h3>
           </app-toolbar>
-          <div class="drawer-account" layout horizontal>
+          <div class="drawer-account" layout horizontal hidden$="[[user.signedIn]]">
             <a class="drawer-signup" on-click="_openSignUpDialog">{$ signUp $}</a>
-            <a class="drawer-login" on-click="openLoginDialog">{$ logIn $}</a>
+            <a class="drawer-login" on-click="_openSignInDialog">{$ logIn $}</a>
+          </div>
+          <div class="drawer-signedin" hidden$="[[!user.signedIn]]">
+            <a class="drawer-profile" on-click="_openProfileDialog">
+              <iron-icon class="profile-icon" icon="lkim:account"></iron-icon>
+              <span class="profile-name">Hai! [[user.displayName]]</span>
+            </a>
           </div>
           <div class="drawer-content" layout vertical justified flex>
             <iron-selector
@@ -331,7 +358,12 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
       >
       </signup-dialog>
 
-      <signin-dialog opened="[[isSigninDialogOpen]]" with-backdrop></signin-dialog>
+      <signin-dialog 
+        opened="[[isSigninDialogOpen]]" 
+        data="[[dialogs.data.data]]"
+        with-backdrop
+        no-cancel-on-outside-click="[[viewport.isPhone]]"
+      ></signin-dialog>
 
       <toast-element></toast-element>
     `;
@@ -503,5 +535,14 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   _openSignUpDialog() {
     this.drawerOpened = false;
     openDialog(DIALOGS.SIGNUP);
+  }
+
+  _openSignInDialog() {
+    this.drawerOpened = false;
+    openDialog(DIALOGS.SIGNIN, {});
+  }
+
+  _openProfileDialog() {
+    signOut();
   }
 }

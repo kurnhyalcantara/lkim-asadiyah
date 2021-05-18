@@ -1,57 +1,38 @@
 import { store } from '..';
-import { getFederatedProvider, PROVIDERS } from '../../utils/providers';
+import { openDialog } from '../dialogs/actions';
+import { DIALOGS } from '../dialogs/types';
 import { WIPE_PREVIOUS_FEEDBACK } from '../feedback/types';
 import { getToken } from '../notifications/actions';
 import { resetSubscribed } from '../subscribe/actions';
+import { showToast } from '../toast/actions';
 import { SIGN_IN } from './types';
 
-export const signIn = (providerName: PROVIDERS) => {
-  const firebaseProvider = getFederatedProvider(providerName);
-
+export const signIn = (emailUser: string, passUser: string) => {
   return window.firebase
     .auth()
-    .signInWithPopup(firebaseProvider)
-    .then((signInObject) => {
-      storeUser(signInObject.user);
+    .signInWithEmailAndPassword(emailUser, passUser)
+    .then((userCredential) => {
+      console.log(userCredential)
       getToken(true);
+      showToast({ message: 'Login Berhasil'});
     })
     .catch((error) => {
       if (
-        error.code === 'auth/account-exists-with-different-credential' ||
-        error.code === 'auth/email-already-in-use'
+        error.code === 'auth/user-not-found' ||
+        error.code === 'auth/invalid-email'
       ) {
-        window.firebase
-          .auth()
-          .fetchSignInMethodsForEmail(error.email)
-          .then((providers: PROVIDERS[]) => {
-            storeUser({
-              signedIn: false,
-              initialProviderId: providers[0],
-              email: error.email,
-              pendingCredential: error.credential,
-            });
-          });
+        openDialog(DIALOGS.SIGNIN, { errorOccurred: true, errorMessage: 'Akun tidak ditemukan'});
+      } 
+      
+      if (error.code === 'auth/wrong-password') {
+        openDialog(DIALOGS.SIGNIN, { errorOccurred: true, errorMessage: 'Password salah'});
       }
     });
 };
 
-export const mergeAccounts = (
-  initialProviderId: PROVIDERS,
-  pendingCredential: firebase.auth.AuthCredential
-) => {
-  const firebaseProvider = getFederatedProvider(initialProviderId);
-
-  return window.firebase
-    .auth()
-    .signInWithPopup(firebaseProvider)
-    .then((result) => {
-      result.user.linkWithCredential(pendingCredential);
-    })
-    .catch(() => {});
-};
-
 export const updateUser = () => {
   window.firebase.auth().onAuthStateChanged((user) => {
+    console.log(user)
     storeUser(user);
   });
 };

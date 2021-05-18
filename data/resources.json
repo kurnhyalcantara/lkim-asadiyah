@@ -10,7 +10,7 @@
   "logIn": "Login",
   "signUp": "Buat Akun",
   "infoKegiatan": "Info Kegiatan",
-  "registerNewAccount": "Buat Akun Baru",
+  "registerNewAccount": "Pendaftaran Anggota",
   "partnershipProposition": "https://bit.ly/dfua17-partners",
   "share": "Bagikan",
   "followOur": "Follow our",
@@ -299,6 +299,30 @@
     "submit": "Daftar",
     "generalError": "Terjadi masalah, harap coba lagi nanti :(",
     "success": "Pembuatan akun berhasil dan telah login otomatis, silahkan lanjutkan pendaftaran kegiatan"
+  },
+
+  "signInProviders": {
+    "logo": "/images/manifest/icon-114.png",
+    "title": "Login Portal Aktivis",
+    "input": {
+      "email": "Email",
+      "password": "Kata Sandi"
+    },
+    "actions": {
+      "login": "Login",
+      "newRegister": "Buat akun baru"
+    },
+    "info": {
+      "p1": "Belum punya akun?"
+    },
+    "description": "Login dan anda dapat mengatur jadwal dan agenda yang anda ingin ikuti dan dapatkan pemberitahuannya",
+    "providersData": {
+      "name": "google",
+      "label": "Login dengan akun google",
+      "url": "https://accounts.google.com"
+    },
+    "allowedProvidersUrl": "https://accounts.google.com",
+    "successSignedIn": "Login Sukses :)"
   },
 
   "addToHomeScreen": {

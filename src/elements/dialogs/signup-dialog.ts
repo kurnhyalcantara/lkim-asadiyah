@@ -493,6 +493,18 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
     store.dispatch(daftar(userData));
   }
 
+  _clear() {
+    this.namaLengkapValue = '';
+    this.tanggalLahirValue = '';
+    this.tempatLahirValue = '';
+    this.alamatSekarangValue = '';
+    this.noWaValue = '';
+    this.instagramValue = '';
+    this.semesterValue = '';
+    this.emailValue = '';
+    this.passwordValue = '';
+  }
+
   _resize(e) {
     if (this.keyboardOpened) {
       const header = this.shadowRoot.querySelector('.dialog-header');

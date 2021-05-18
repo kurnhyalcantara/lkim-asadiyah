@@ -156,20 +156,6 @@
       "min": "1024px"
     }
   },
-  "signInProviders": {
-    "providersData": [
-      {
-        "name": "google",
-        "label": "Sign in with Google",
-        "url": "https://accounts.google.com"
-      }
-    ],
-    "allowedProvidersUrl": [
-      "https://accounts.google.com",
-      "https://www.facebook.com",
-      "https://twitter.com"
-    ]
-  },
   "contentLoaders": {
     "schedule": {
       "itemsCount": 2
