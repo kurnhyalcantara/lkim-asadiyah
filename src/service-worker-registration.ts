@@ -41,10 +41,10 @@ if (navigator.serviceWorker && navigator.serviceWorker.controller) {
       if (showToast) {
         showToast({
           message: '{$ newVersionAvailable $}',
-          duration: 3000,
+          duration: 5000,
         });
+        window.location.reload();
       }
-      window.location.reload();
     }
   };
 }
