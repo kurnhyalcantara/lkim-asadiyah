@@ -271,6 +271,9 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
               value="{{semesterValue}}"
               autocomplete="on"
               always-float-label
+              required
+              pattern="[0-9]*"
+              auto-validate$="[[validate]]"
             >
             </paper-input>
           </div>

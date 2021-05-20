@@ -107,12 +107,12 @@ export class HeaderBottomToolbar extends ReduxMixin(PolymerElement) {
   @property({ type: Object })
   private route: RoutingState = initialRoutingState;
   @property({ type: Object })
-  private user = {};
+  private credential = {};
 
   stateChanged(state: RootState) {
     this.route = state.routing;
     this.schedule = state.schedule;
-    this.user = state.user;
+    this.credential = state.credential;
   }
 
   connectedCallback() {

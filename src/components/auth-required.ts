@@ -27,7 +27,7 @@ export class AuthRequired extends ReduxMixin(ThemedElement) {
   }
 
   stateChanged(state: RootState) {
-    this.signedIn = state.user.signedIn;
+    this.signedIn = state.credential.signedIn;
   }
 
   private signIn() {

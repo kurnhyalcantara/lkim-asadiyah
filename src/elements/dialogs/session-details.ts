@@ -183,7 +183,7 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
       viewport: {
         type: Object,
       },
-      user: {
+      credential: {
         type: Object,
       },
       featuredSessions: {
@@ -205,7 +205,7 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
     this.setProperties({
       featuredSessions: state.featuredSessions,
       currentSpeaker: state.routing.subRoute,
-      user: state.user,
+      credential: state.credential,
       viewport: state.ui.viewport,
     });
   }
@@ -247,7 +247,7 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
   _toggleFeaturedSession(event: Event) {
     event.preventDefault();
     event.stopPropagation();
-    if (!this.user.signedIn) {
+    if (!this.credential.signedIn) {
       showToast({
         message: '{$ schedule.saveSessionsSignedOut $}',
         action: {
@@ -261,7 +261,7 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
       [this.session.id]: !this.featuredSessions.data[this.session.id] ? true : null,
     });
 
-    store.dispatch(setUserFeaturedSessions(this.user.uid, sessions));
+    store.dispatch(setUserFeaturedSessions(this.credential.uid, sessions));
   }
 
   _getFeaturedSessionIcon(featuredSessions: FeaturedSessionsState, sessionId?: string) {

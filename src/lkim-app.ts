@@ -55,11 +55,14 @@ import { setRoute } from './store/routing/actions';
 import { initialRoutingState, RoutingState } from './store/routing/state';
 import { showToast } from './store/toast/actions';
 import { setViewportSize } from './store/ui/actions';
-import { signOut, updateUser } from './store/user/actions';
+import { signOut, updateUser } from './store/credential/actions';
 import { TempAny } from './temp-any';
 import { isDialogOpen } from './utils/dialogs';
 import { scrollToY } from './utils/scrolling';
 import { openDialog } from './store/dialogs/actions';
+import { fetchUser } from './store/users/actions';
+import { createEmitAndSemanticDiagnosticsBuilderProgram } from 'typescript';
+import { split } from '@polymer/polymer/lib/utils/path';
 
 setFastDomIf(true);
 setPassiveTouchGestures(true);
@@ -256,14 +259,14 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
               {$ design $}<span class="by" on-tap="_openInstaDesigner">{$ by $}</span>
             </h3>
           </app-toolbar>
-          <div class="drawer-account" layout horizontal hidden$="[[user.signedIn]]">
+          <div class="drawer-account" layout horizontal hidden$="[[credential.signedIn]]">
             <a class="drawer-signup" on-click="_openSignUpDialog">{$ signUp $}</a>
             <a class="drawer-login" on-click="_openSignInDialog">{$ logIn $}</a>
           </div>
-          <div class="drawer-signedin" hidden$="[[!user.signedIn]]">
+          <div class="drawer-signedin" hidden$="[[!credential.signedIn]]">
             <a class="drawer-profile" on-click="_openProfileDialog">
               <iron-icon class="profile-icon" icon="lkim:account"></iron-icon>
-              <span class="profile-name">Hai! [[user.displayName]]</span>
+              <span class="profile-name">Hai! [[user.nama_lengkap]]</span>
             </a>
           </div>
           <div class="drawer-content" layout vertical justified flex>
@@ -386,6 +389,8 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   @property({ type: Boolean })
   private _openedDialog = false;
   @property({ type: Object })
+  private credential: { uid?: string, signedIn?: boolean } = {};
+  @property({ type: Object })
   private user = {};
   @property({ type: Array })
   private providerUrls = '{$ signInProviders.allowedProvidersUrl $}'.split(',');
@@ -426,6 +431,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
     this.route = state.routing;
     this.ui = state.ui;
     this.user = state.user;
+    this.credential = state.credential;
     this.viewport = state.ui.viewport;
   }
 
@@ -470,6 +476,13 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
 
   closeDrawer() {
     this.drawerOpened = false;
+  }
+
+  @observe('credential')
+  _userChanged(credential) {
+    if (credential.signedIn) {
+      store.dispatch(fetchUser(credential.uid));
+    }
   }
 
   @observe('routeData.page', 'subRoute.path')

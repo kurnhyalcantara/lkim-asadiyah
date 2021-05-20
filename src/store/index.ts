@@ -20,7 +20,8 @@ import { teamReducer } from './team/reducers';
 import { ticketsReducer } from './tickets/reducers';
 import { toastReducer } from './toast/reducers';
 import { uiReducer } from './ui/reducers';
-import { userReducer } from './user/reducers';
+import { credentialReducer } from './credential/reducers';
+import { userReducer } from './users/reducers'
 import { videosReducer } from './videos/reducers';
 
 const rootReducer = {
@@ -45,6 +46,7 @@ const rootReducer = {
   tickets: ticketsReducer,
   toast: toastReducer,
   ui: uiReducer,
+  credential: credentialReducer,
   user: userReducer,
   videos: videosReducer,
 };

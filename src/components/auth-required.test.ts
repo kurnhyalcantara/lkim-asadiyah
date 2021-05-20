@@ -4,7 +4,7 @@ import { mocked } from 'ts-jest/utils';
 import { fixture } from '../../__tests__/helpers/fixtures';
 import { openDialog } from '../store/dialogs/actions';
 import { store } from '../store';
-import { SIGN_IN } from '../store/user/types';
+import { SIGN_IN } from '../store/credential/types';
 import './auth-required';
 import { AuthRequired } from './auth-required';
 import { DIALOGS } from '../store/dialogs/types';

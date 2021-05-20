@@ -55,7 +55,7 @@ export const getToken = (subscribe = false) => (dispatch: Dispatch, getState) =>
         const subscribersRef = db().collection('notificationsSubscribers').doc(currentToken);
         const subscribersPromise = subscribersRef.get();
 
-        const userUid = state.user && (state.user.uid || null);
+        const userUid = state.credential && (state.credential.uid || null);
 
         let userSubscriptionsPromise = Promise.resolve(null);
         let userSubscriptionsRef;

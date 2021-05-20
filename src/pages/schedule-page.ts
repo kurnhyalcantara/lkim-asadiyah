@@ -121,7 +121,7 @@ export class SchedulePage extends SessionsHoC(ReduxMixin(PolymerElement)) {
             <schedule-day
               name$="[[month.month]]"
               month="[[month]]"
-              user="[[user]]"
+              user="[[credential]]"
               featured-sessions="[[featuredSessions]]"
               selected-filters="[[_selectedFilters]]"
               viewport="[[viewport]]"
@@ -131,7 +131,7 @@ export class SchedulePage extends SessionsHoC(ReduxMixin(PolymerElement)) {
           <all-schedule
             name="all-schedule"
             sessions="[[sessions.data]]"
-            user="[[user]]"
+            user="[[credential]]"
             featured-sessions="[[featuredSessions]]"
             selected-filters="[[_selectedFilters]]"
             viewport="[[viewport]]"
@@ -157,7 +157,7 @@ export class SchedulePage extends SessionsHoC(ReduxMixin(PolymerElement)) {
   @property({ type: Object })
   private featuredSessions: FeaturedSessionsState = initialFeaturedSessionsState;
   @property({ type: Object })
-  private user = {};
+  private credential = {};
   @property({ type: Object })
   private subRoute = {};
   @property({ type: Object })
@@ -185,7 +185,7 @@ export class SchedulePage extends SessionsHoC(ReduxMixin(PolymerElement)) {
     this.schedule = state.schedule;
     this.sessions = state.sessions;
     this.subRoute = state.routing.subRoute;
-    this.user = state.user;
+    this.credential = state.credential;
     this.viewport = state.ui.viewport;
   }
 

@@ -1,23 +1,14 @@
-export interface UnauthenticatedUser {
-  signedIn: false;
-}
-
-export interface AuthenticatedUser {
-  displayName: string;
+export interface UserData {
+  alamat_sekarang: string;
   email: string;
-  initialProviderId: string;
-  photoURL: string;
-  refreshToken: string;
-  signedIn: true;
-  uid: string;
+  fakultas: string;
+  instagram_id: string;
+  jenis_kelamin: string;
+  jurusan: string;
+  no_whatsapp: string;
+  semester: string;
+  tanggal_lahir: string;
+  tempat_lahir: string;
 }
 
-export type User = UnauthenticatedUser | AuthenticatedUser;
-
-export const isAuthenticated = (user: User): user is AuthenticatedUser => {
-  return user.signedIn;
-};
-
-export const isUnauthenticated = (user: User): user is UnauthenticatedUser => {
-  return !user.signedIn;
-};
+export type User = UserData;

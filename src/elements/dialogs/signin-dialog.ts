@@ -10,7 +10,7 @@ import '@polymer/app-layout/app-header-layout/app-header-layout';
 import '@polymer/app-layout/app-toolbar/app-toolbar';
 import { closeDialog, openDialog } from '../../store/dialogs/actions';
 import { DIALOGS } from '../../store/dialogs/types';
-import { signIn } from '../../store/user/actions';
+import { signIn } from '../../store/credential/actions';
 import '../lkim-icons';
 import '../shared-styles';
 
@@ -151,7 +151,7 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
               ga-event-label="login block"
               primary
             >
-              {$ signInProviders.actions.login $}
+              [[submitLogin]]
             </paper-button>
             <div>{$ signInProviders.info.p1 $}</div>
             <paper-button class="action-register" on-click="_newRegister" stroke>
@@ -176,7 +176,7 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       viewport: {
         type: Object,
       },
-      user: {
+      credential: {
         type: Object,
       },
       errorOccurred: {
@@ -185,6 +185,13 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       },
       errorMessage: {
         type: String,
+      },
+      user: {
+        type: Object,
+      },
+      submitLogin: {
+        type: String,
+        value: 'Login'
       },
       data: {
         type: Object,
@@ -197,7 +204,7 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
 
   stateChanged(state: RootState) {
     this.setProperties({
-      user: state.user,
+      credential: state.credential,
       ui: state.ui,
       viewport: state.ui.viewport
     });
@@ -215,11 +222,11 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
   }
 
   static get observers() {
-    return ['_handleDialogToggled(opened, data)', '_userChanged(user)'];
+    return ['_handleDialogToggled(opened, data)', '_credentialChanged(credential)'];
   }
 
-  _userChanged(user) {
-    if (user.signedIn) {
+  _credentialChanged(credential) {
+    if (credential.signedIn) {
       this._clear();
       closeDialog();
     }

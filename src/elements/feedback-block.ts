@@ -112,7 +112,7 @@ export class Feedback extends ReduxMixin(PolymerElement) {
   @property({ type: String })
   private sessionId: string;
   @property({ type: Object })
-  private user: { uid?: string; signedIn?: boolean } = {};
+  private credential: { uid?: string; signedIn?: boolean } = {};
   @property({ type: Object })
   private previousFeedback: { comment?: string; styleRating?: number; contentRating?: number } = {};
   @property({ type: Boolean, observer: Feedback.prototype._feedbackAddingChanged })
@@ -137,7 +137,7 @@ export class Feedback extends ReduxMixin(PolymerElement) {
     this.feedbackAdding = state.feedback.adding;
     this.feedbackAddingError = state.feedback.addingError;
     this.feedbackFetching = state.feedback.fetching;
-    this.user = state.user;
+    this.credential = state.credential;
   }
 
   @observe('feedbackState')
@@ -149,7 +149,7 @@ export class Feedback extends ReduxMixin(PolymerElement) {
     }
   }
 
-  @observe('user')
+  @observe('credential')
   _userChanged(newUser) {
     if (newUser.signedIn) {
       if (this.sessionId && !this.feedbackFetching) this._dispatchPreviousFeedback();
@@ -174,7 +174,7 @@ export class Feedback extends ReduxMixin(PolymerElement) {
       this._updateFeedbackState(this.feedbackState);
       this._previousFeedbackChanged(this.previousFeedback);
 
-      if (this.user.signedIn && !this.feedbackFetching && this.previousFeedback === undefined) {
+      if (this.credential.signedIn && !this.feedbackFetching && this.previousFeedback === undefined) {
         this._dispatchPreviousFeedback();
       }
     }
@@ -198,7 +198,7 @@ export class Feedback extends ReduxMixin(PolymerElement) {
   _dispatchSendFeedback() {
     store.dispatch(
       addComment({
-        userId: this.user.uid,
+        userId: this.credential.uid,
         sessionId: this.sessionId,
         contentRating: this.contentRating,
         styleRating: this.styleRating,
@@ -211,7 +211,7 @@ export class Feedback extends ReduxMixin(PolymerElement) {
     store.dispatch(
       checkPreviousFeedback({
         sessionId: this.sessionId,
-        userId: this.user.uid,
+        userId: this.credential.uid,
       })
     );
   }
@@ -220,7 +220,7 @@ export class Feedback extends ReduxMixin(PolymerElement) {
     store.dispatch(
       deleteFeedback({
         sessionId: this.sessionId,
-        userId: this.user.uid,
+        userId: this.credential.uid,
       })
     );
   }

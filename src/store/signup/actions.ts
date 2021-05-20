@@ -12,8 +12,8 @@ import {
   DAFTAR_SUCCESS,
 } from './types';
 
-const setDaftar = async (data: SignUpForm) => {
-  const id = data.email.replace(/[^\w\s]/gi, '');
+const storeData = async (data: SignUpForm, uid: string | undefined) => {
+  const id = uid;
   const userData = {
     nama_lengkap: data.firstFieldValue,
     jenis_kelamin: data.secondFieldValue,
@@ -31,6 +31,16 @@ const setDaftar = async (data: SignUpForm) => {
   await db().collection('users').doc(id).set(userData);
 };
 
+export const daftarUser = (data: SignUpForm) => {
+  return window.firebase
+    .auth()
+    .createUserWithEmailAndPassword(data.email, data.pass)
+    .then((credential) => {
+      storeData(data, credential.user?.uid)
+      showToast({ message: 'Pembuatan akun berhasil dan anda telah login otomatis'});
+    })
+}
+
 export const daftar = (data: SignUpForm) => async (dispatch: Dispatch<DaftarActions>) => {
   dispatch({
     type: DAFTAR,
@@ -39,9 +49,8 @@ export const daftar = (data: SignUpForm) => async (dispatch: Dispatch<DaftarActi
   try {
     dispatch({
       type: DAFTAR_SUCCESS,
-      payload: await daftarUser(data.email, data.pass)
+      payload: await daftarUser(data)
     });
-    setDaftar(data);
   } catch (error) {
     dispatch({
       type: DAFTAR_FAILURE,
@@ -60,11 +69,3 @@ export const resetDaftar = () => {
   });
 };
 
-export const daftarUser = (emailUser: string, passUser: string) => {
-  return window.firebase
-    .auth()
-    .createUserWithEmailAndPassword(emailUser, passUser)
-    .then(() => {
-      showToast({ message: 'Pembuatan akun berhasil dan anda telah login otomatis'});
-    })
-}

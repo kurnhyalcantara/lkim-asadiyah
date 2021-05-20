@@ -9,7 +9,7 @@ import { DIALOGS } from '../store/dialogs/types';
 import { requestPermission, unsubscribe } from '../store/notifications/actions';
 import { NOTIFICATIONS_STATUS } from '../store/notifications/types';
 import { initialRoutingState, RoutingState } from '../store/routing/state';
-import { signOut } from '../store/user/actions';
+import { signOut } from '../store/credential/actions';
 import { TempAny } from '../temp-any';
 import { isDialogOpen } from '../utils/dialogs';
 import './shared-styles';
@@ -165,7 +165,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           <!--<a
             on-click="signIn" 
             link 
-            hidden$="[[user.signedIn]]"
+            hidden$="[[credential.signedIn]]"
             ga-on="click"
             ga-event-category="login button"
             ga-event-action="login_click"
@@ -217,7 +217,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
 
         <!--<paper-menu-button
           class="auth-menu"
-          hidden$="[[!user.signedIn]]"
+          hidden$="[[!credential.signedIn]]"
           vertical-align="top"
           horizontal-align="right"
           no-animations
@@ -228,18 +228,18 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           <div
             class="profile-image"
             slot="dropdown-trigger"
-            style$="background-image: url('[[user.photoURL]]')"
+            style$="background-image: url('[[credential.photoURL]]')"
           ></div>
           <div class="dropdown-panel profile-details" slot="dropdown-content" layout horizontal>
             <div
               class="profile-image"
               slot="dropdown-trigger"
               self-center
-              style$="background-image: url('[[user.photoURL]]')"
+              style$="background-image: url('[[credential.photoURL]]')"
             ></div>
             <div layout vertical center-justified>
-              <span class="profile-name">[[user.displayName]]</span>
-              <span class="profile-email">[[user.email]]</span>
+              <span class="profile-name">[[credential.displayName]]</span>
+              <span class="profile-email">[[credential.email]]</span>
               <span class="profile-action" role="button" on-click="_signOut">{$ signOut $}</span>
             </div>
           </div>
@@ -248,7 +248,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
         <!--<paper-icon-button
           icon="lkim:account"
           on-click="signIn"
-          hidden$="[[_isAccountIconHidden(user.signedIn, viewport.isLaptopPlus)]]"
+          hidden$="[[_isAccountIconHidden(credential.signedIn, viewport.isLaptopPlus)]]"
         ></paper-icon-button>-->
       </app-toolbar>
     `;
@@ -267,7 +267,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
   @property({ type: Object })
   private notifications: { token?: string; status?: string } = {};
   @property({ type: Object })
-  private user = {};
+  private credential = {};
   @property({ type: Boolean, reflectToAttribute: true })
   private transparent = false;
 
@@ -275,7 +275,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
     this.dialogs = state.dialogs;
     this.notifications = state.notifications;
     this.route = state.routing;
-    this.user = state.user;
+    this.credential = state.credential;
     this.heroSettings = state.ui.heroSettings;
     this.viewport = state.ui.viewport;
   }
@@ -309,7 +309,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
     this.transparent = document.documentElement.scrollTop === 0;
   }
 
-  @observe('user.signedIn')
+  @observe('credential.signedIn')
   _authStatusChanged(_signedIn) {
     if (isDialogOpen(this.dialogs, DIALOGS.SIGNIN)) {
       closeDialog();
@@ -342,8 +342,8 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
     (this.$.notificationsMenu as PaperMenuButton).close();
   }
 
-  _isAccountIconHidden(userSignedIn, isTabletPlus) {
-    return userSignedIn || isTabletPlus;
+  _isAccountIconHidden(credentialSignedIn, isTabletPlus) {
+    return credentialSignedIn || isTabletPlus;
   }
 
   @observe('heroSettings')

@@ -72,13 +72,13 @@ export class SubscribeBlock extends ReduxMixin(PolymerElement) {
   private notifications: { token?: string; status?: string } = {};
 
   @property({ type: Object })
-  private user: { signedIn?: boolean; email?: string; displayName?: string } = {};
+  private credential: { signedIn?: boolean; email?: string; displayName?: string } = {};
   @property({ type: Object })
   private viewport = {};
 
   stateChanged(state: RootState) {
     this.notifications = state.notifications;
-    this.user = state.user;
+    this.credential = state.credential;
     this.viewport = state.ui.viewport;
   }
 

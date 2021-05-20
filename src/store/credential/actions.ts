@@ -11,8 +11,7 @@ export const signIn = (emailUser: string, passUser: string) => {
   return window.firebase
     .auth()
     .signInWithEmailAndPassword(emailUser, passUser)
-    .then((userCredential) => {
-      console.log(userCredential)
+    .then(() => {
       getToken(true);
       showToast({ message: 'Login Berhasil'});
     })
@@ -32,7 +31,6 @@ export const signIn = (emailUser: string, passUser: string) => {
 
 export const updateUser = () => {
   window.firebase.auth().onAuthStateChanged((user) => {
-    console.log(user)
     storeUser(user);
   });
 };
@@ -47,23 +45,21 @@ export const signOut = () => {
     });
 };
 
-const storeUser = (user?: any) => {
-  let userToStore: any = { signedIn: false };
+const storeUser = (credential?: any) => {
+  let credentialToStore: any = { signedIn: false };
 
-  if (user) {
-    const { uid, displayName, photoURL, refreshToken, actualProvider, pendingCredential } = user;
+  if (credential) {
+    const { uid, refreshToken, actualProvider, pendingCredential } = credential;
 
-    const email = user.email || (user.providerData && user.providerData[0].email);
+    const email = credential.email || (credential.providerData && credential.providerData[0].email);
     const initialProviderId =
-      (user.providerData && user.providerData[0].providerId) || user.initialProviderId;
-    const signedIn = (user.uid && true) || user.signedIn;
+      (credential.providerData && credential.providerData[0].providerId) || credential.initialProviderId;
+    const signedIn = (credential.uid && true) || credential.signedIn;
 
-    userToStore = {
+    credentialToStore = {
       signedIn,
       uid,
       email,
-      displayName,
-      photoURL,
       refreshToken,
       initialProviderId,
       actualProvider,
@@ -73,8 +69,8 @@ const storeUser = (user?: any) => {
 
   store.dispatch({
     type: SIGN_IN,
-    user: userToStore,
+    credential: credentialToStore,
   });
 
-  if (!userToStore.signedIn) store.dispatch({ type: WIPE_PREVIOUS_FEEDBACK });
+  if (!credentialToStore.signedIn) store.dispatch({ type: WIPE_PREVIOUS_FEEDBACK });
 };
