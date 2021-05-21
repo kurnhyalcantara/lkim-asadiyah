@@ -325,6 +325,15 @@
     "successSignedIn": "Login Sukses :)"
   },
 
+  "profile": {
+    "profileImage": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/people%2Ficon.png?alt=media&token=adad3f19-fc47-4915-80e5-86e5d7d10e05",
+    "actions": {
+      "changeData": "Ubah Data",
+      "changePassword": "Ganti Password",
+      "logout": "Keluar"
+    }
+  },
+
   "addToHomeScreen": {
     "cta": "Install LKIM IAI Asadiyah",
     "installed": "LKIM Asadiyah telah ada"

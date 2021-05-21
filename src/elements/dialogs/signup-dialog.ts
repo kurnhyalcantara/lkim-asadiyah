@@ -104,6 +104,10 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
           padding: 0 0 0 52px;
         }
 
+        .section-title-label {
+          font-weight: 600;
+        }
+
         .action-buttons {
           margin: 32px 24px 24px;
         }
@@ -418,7 +422,8 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
 
   _handleTerdaftar(signup) {
     if (signup) {
-      this._closeDialog();
+      this._clear();
+      closeDialog();
     }
   }
 

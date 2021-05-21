@@ -42,6 +42,7 @@ export const signOut = () => {
     .then(() => {
       storeUser();
       resetSubscribed();
+      showToast({ message: 'Logout berhasil' })
     });
 };
 

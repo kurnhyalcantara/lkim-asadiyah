@@ -33,6 +33,7 @@ import './elements/dialogs/signin-dialog';
 import './elements/dialogs/pengurus-details';
 import './elements/dialogs/subscribe-dialog';
 import './elements/dialogs/signup-dialog';
+import './elements/dialogs/profile-dialog';
 import './elements/dialogs/video-dialog';
 import './elements/footer-block';
 import './elements/header-toolbar';
@@ -61,8 +62,6 @@ import { isDialogOpen } from './utils/dialogs';
 import { scrollToY } from './utils/scrolling';
 import { openDialog } from './store/dialogs/actions';
 import { fetchUser } from './store/users/actions';
-import { createEmitAndSemanticDiagnosticsBuilderProgram } from 'typescript';
-import { split } from '@polymer/polymer/lib/utils/path';
 
 setFastDomIf(true);
 setPassiveTouchGestures(true);
@@ -372,6 +371,13 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
         no-cancel-on-outside-click="[[viewport.isPhone]]"
       ></signin-dialog>
 
+      <profile-dialog 
+        opened="[[isProfileDialogOpen]]" 
+        data="[[dialogs.data.data]]"
+        with-backdrop
+        no-cancel-on-outside-click="[[viewport.isPhone]]"
+      ></profile-dialog>
+
       <toast-element></toast-element>
     `;
   }
@@ -411,6 +417,8 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   @property({ type: Boolean })
   private isSigninDialogOpen = false;
   @property({ type: Boolean })
+  private isProfileDialogOpen = false;
+  @property({ type: Boolean })
   private isSignupDialogOpen = false;
   @property({ type: Boolean })
   private isSpeakerDialogOpen = false;
@@ -426,6 +434,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   stateChanged(state: RootState) {
     this.dialogs = state.dialogs;
     this.isSigninDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SIGNIN);
+    this.isProfileDialogOpen = isDialogOpen(this.dialogs, DIALOGS.PROFILE);
     this.isSignupDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SIGNUP);
     this.isSpeakerDialogOpen = isDialogOpen(this.dialogs, DIALOGS.PENGURUS);
     this.isSessionDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SESSION);
@@ -558,6 +567,8 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   }
 
   _openProfileDialog() {
-    signOut();
+    this.drawerOpened = false;
+    openDialog(DIALOGS.PROFILE, {});
+    // signOut();
   }
 }

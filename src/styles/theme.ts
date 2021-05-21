@@ -156,6 +156,17 @@ export const theme = css`
     color: var(--default-primary-color);
   }
 
+  paper-button[danger] {
+    background-color: var(--error-color);
+    color: var(--text-primary-color);
+  }
+
+  paper-button[danger]:hover {
+    background-color: var(--error-color);
+    opacity: 0.8;
+    color: var(--text-primary-color);
+  }
+
   paper-button iron-icon {
     --iron-icon-height: 20px;
     --iron-icon-width: 20px;

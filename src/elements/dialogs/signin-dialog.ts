@@ -262,6 +262,20 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
     this.emailValue = '';
     this.passValue = '';
   }
+
+  _resize(e) {
+    if (this.keyboardOpened) {
+      const header = this.shadowRoot.querySelector('.dialog-header');
+      const headerHeight = header.offsetHeight;
+
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          this.style.maxHeight = `${this.initialHeight}px`;
+          this.style.top = `-${headerHeight}px`;
+        });
+      }, 10);
+    }
+  }
 }
 
 window.customElements.define(SigninDialog.is, SigninDialog);
