@@ -162,7 +162,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           </paper-tab>
           {% endfor %}
 
-          <!--<a
+          <a
             on-click="signIn" 
             link 
             hidden$="[[credential.signedIn]]"
@@ -171,7 +171,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
             ga-event-action="login_click"
           >
             <paper-button class="login-button" primary>{$ logIn $}</paper-button>
-          </a>-->
+          </a>
         </paper-tabs>
 
         <paper-menu-button
@@ -215,41 +215,11 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           </div>
         </paper-menu-button>
 
-        <!--<paper-menu-button
-          class="auth-menu"
-          hidden$="[[!credential.signedIn]]"
-          vertical-align="top"
-          horizontal-align="right"
-          no-animations
-          layout
-          horizontal
-          center-center
-        >
-          <div
-            class="profile-image"
-            slot="dropdown-trigger"
-            style$="background-image: url('[[credential.photoURL]]')"
-          ></div>
-          <div class="dropdown-panel profile-details" slot="dropdown-content" layout horizontal>
-            <div
-              class="profile-image"
-              slot="dropdown-trigger"
-              self-center
-              style$="background-image: url('[[credential.photoURL]]')"
-            ></div>
-            <div layout vertical center-justified>
-              <span class="profile-name">[[credential.displayName]]</span>
-              <span class="profile-email">[[credential.email]]</span>
-              <span class="profile-action" role="button" on-click="_signOut">{$ signOut $}</span>
-            </div>
-          </div>
-        </paper-menu-button>-->
-
-        <!--<paper-icon-button
+        <paper-icon-button
           icon="lkim:account"
           on-click="signIn"
-          hidden$="[[_isAccountIconHidden(credential.signedIn, viewport.isLaptopPlus)]]"
-        ></paper-icon-button>-->
+          hidden$="[[viewport.isPhone]]"
+        ></paper-icon-button>
       </app-toolbar>
     `;
   }
@@ -340,10 +310,6 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
   _closeNotificationMenu() {
     // TODO: Remove type cast
     (this.$.notificationsMenu as PaperMenuButton).close();
-  }
-
-  _isAccountIconHidden(credentialSignedIn, isTabletPlus) {
-    return credentialSignedIn || isTabletPlus;
   }
 
   @observe('heroSettings')

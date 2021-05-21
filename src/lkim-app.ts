@@ -213,6 +213,10 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
           color: var(--text-primary-color);
         }
 
+        .profile-name {
+          font-size: 14px;
+        }
+
         .bottom-drawer-link:hover {
           background-color: var(--focused-color);
         }
@@ -480,9 +484,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
 
   @observe('credential')
   _userChanged(credential) {
-    if (credential.signedIn) {
-      store.dispatch(fetchUser(credential.uid));
-    }
+    store.dispatch(fetchUser(credential.uid));
   }
 
   @observe('routeData.page', 'subRoute.path')
