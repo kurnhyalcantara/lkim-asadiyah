@@ -26,7 +26,8 @@ export enum DIALOGS {
   SUBSCRIBE = 'subscribe',
   SIGNUP = 'signup',
   SIGNIN = 'signin',
-  PROFILE = 'profile'
+  PROFILE = 'profile',
+  CHANGEPASS = 'changepass'
 }
 
 interface OpenDialogAction {

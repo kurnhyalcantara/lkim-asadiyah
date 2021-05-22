@@ -46,6 +46,22 @@ export const signOut = () => {
     });
 };
 
+export const updateUserPassword = (email: string, oldPass:string, newPass: string) => {
+  const currentUser = window.firebase.auth().currentUser;
+  const credential = window.firebase.auth.EmailAuthProvider.credential(email, oldPass);
+  return currentUser?.reauthenticateWithCredential(credential)
+    .then(() => {
+      currentUser?.updatePassword(newPass)
+      openDialog(DIALOGS.PROFILE);
+      showToast({ message: 'Password telah diupdate'});
+    })
+    .catch((error) => {
+      if ( error.code === 'auth/wrong-password') {
+        openDialog(DIALOGS.CHANGEPASS, { errorOccurred: true, errorMessage: "Password lama salah"})
+      }
+    })
+}
+
 const storeUser = (credential?: any) => {
   let credentialToStore: any = { signedIn: false };
 

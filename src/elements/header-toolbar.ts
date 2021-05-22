@@ -163,7 +163,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           {% endfor %}
 
           <a
-            on-click="signIn" 
+            on-click="_signIn" 
             link 
             hidden$="[[credential.signedIn]]"
             ga-on="click"
@@ -217,7 +217,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
 
         <paper-icon-button
           icon="lkim:account"
-          on-click="signIn"
+          on-click="_openDialogProfile"
           hidden$="[[viewport.isPhone]]"
         ></paper-icon-button>
       </app-toolbar>
@@ -237,7 +237,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
   @property({ type: Object })
   private notifications: { token?: string; status?: string } = {};
   @property({ type: Object })
-  private credential = {};
+  private credential: { signedIn?: boolean } = { };
   @property({ type: Boolean, reflectToAttribute: true })
   private transparent = false;
 
@@ -267,12 +267,19 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
     this.drawerOpened = true;
   }
 
-  signIn() {
-    openDialog(DIALOGS.SIGNIN);
+  _openDialogProfile() {
+    if (!this.credential.signedIn) {
+      return;
+    }
+    openDialog(DIALOGS.PROFILE);
   }
 
   _signOut() {
     signOut();
+  }
+
+  _signIn() {
+    openDialog(DIALOGS.SIGNIN);
   }
 
   _onScroll() {

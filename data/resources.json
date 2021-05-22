@@ -19,6 +19,7 @@
   "subscribe": "Subscribe",
   "buyTicket": "Buy ticket",
   "signOut": "Sign out",
+  "cancel": "Batal",
   "offlineMessage": "Anda masih mengakses web ini meskipun offline",
   "cachingComplete": "Caching selesai! anda bisa menginstall web app ini di bagian menu.",
   "newVersionAvailable": "Versi terbaru aplikasi ini telah tersedia.",
@@ -331,6 +332,19 @@
       "changeData": "Ubah Data",
       "changePassword": "Ganti Password",
       "logout": "Keluar"
+    }
+  },
+
+  "changePassword": {
+    "title": "Ubah Password",
+    "input": {
+      "oldPasswordLabel": "Password Lama",
+      "newPasswordLabel": "Password Baru",
+      "newPasswordPlaceholder": "Minimal 6 karakter",
+      "repeatPasswordLabel": "Ulangi Password Baru"
+    },
+    "action": {
+      "submit": "Simpan"
     }
   },
 

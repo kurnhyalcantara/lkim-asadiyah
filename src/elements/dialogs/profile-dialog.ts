@@ -301,7 +301,7 @@ class ProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Pol
   }
 
   _changePassword() {
-
+    openDialog(DIALOGS.CHANGEPASS, {});
   }
 
   _changeData() {
