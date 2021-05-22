@@ -27,7 +27,8 @@ export enum DIALOGS {
   SIGNUP = 'signup',
   SIGNIN = 'signin',
   PROFILE = 'profile',
-  CHANGEPASS = 'changepass'
+  CHANGEPASS = 'changepass',
+  EDITPROFILE = 'editprofile'
 }
 
 interface OpenDialogAction {

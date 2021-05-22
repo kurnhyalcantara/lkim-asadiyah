@@ -63,6 +63,33 @@ export const daftar = (data: SignUpForm) => async (dispatch: Dispatch<DaftarActi
   }
 };
 
+export const updateDataUser = (data: SignUpForm, uid: string | undefined) => {
+  const id = uid;
+  const userData = {
+    nama_lengkap: data.firstFieldValue,
+    jenis_kelamin: data.secondFieldValue,
+    tanggal_lahir: data.thirdFieldValue,
+    tempat_lahir: data.fourthFieldValue,
+    alamat_sekarang: data.fifthFieldValue,
+    no_whatsapp: data.sixthFieldValue,
+    instagram_id: data.seventhFieldValue,
+    fakultas: data.eighthFieldValue,
+    jurusan: data.ninethFieldValue,
+    semester: data.tenthFieldValue,
+    email: data.email
+  };
+
+  db().collection('users').doc(id).set(userData)
+    .then(() => {
+      window.location.reload()
+      openDialog(DIALOGS.PROFILE)
+      showToast({ message: 'Data berhasil diupdate'});
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
 export const resetDaftar = () => {
   store.dispatch({
     type: DAFTAR_RESET,

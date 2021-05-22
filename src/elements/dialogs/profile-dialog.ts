@@ -305,7 +305,19 @@ class ProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Pol
   }
 
   _changeData() {
-
+    openDialog(DIALOGS.EDITPROFILE, {
+      email: this.user.email,
+      namaLengkap: this.user.nama_lengkap,
+      tanggalLahir: this.user.tanggal_lahir,
+      tempatLahir: this.user.tempat_lahir,
+      alamatSekarang: this.user.alamat_sekarang,
+      jenisKelamin: this.user.jenis_kelamin,
+      noWa: this.user.no_whatsapp,
+      instagram: this.user.instagram_id,
+      fakultas: this.user.fakultas,
+      jurusan: this.user.jurusan,
+      semester: this.user.semester
+    });
   }
 
   _resize(e) {

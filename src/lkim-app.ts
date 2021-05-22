@@ -34,6 +34,7 @@ import './elements/dialogs/pengurus-details';
 import './elements/dialogs/subscribe-dialog';
 import './elements/dialogs/signup-dialog';
 import './elements/dialogs/profile-dialog';
+import './elements/dialogs/editprofile-dialog';
 import './elements/dialogs/changepass-dialog';
 import './elements/dialogs/video-dialog';
 import './elements/footer-block';
@@ -385,7 +386,14 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
         with-backdrop
         no-cancel-on-outside-click="[[viewport.isPhone]]"
       ></changepass-dialog>
-
+      
+      <editprofile-dialog 
+        opened="[[isEditProfileDialogOpen]]" 
+        data="[[dialogs.data.data]]"
+        with-backdrop
+        no-cancel-on-outside-click="[[viewport.isPhone]]"
+      ></editprofile-dialog>
+      
       <toast-element></toast-element>
     `;
   }
@@ -429,6 +437,8 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   @property({ type: Boolean })
   private isChangePassDialogOpen = false;
   @property({ type: Boolean })
+  private isEditProfileDialogOpen = false;
+  @property({ type: Boolean })
   private isSignupDialogOpen = false;
   @property({ type: Boolean })
   private isSpeakerDialogOpen = false;
@@ -445,6 +455,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
     this.dialogs = state.dialogs;
     this.isSigninDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SIGNIN);
     this.isProfileDialogOpen = isDialogOpen(this.dialogs, DIALOGS.PROFILE);
+    this.isEditProfileDialogOpen = isDialogOpen(this.dialogs, DIALOGS.EDITPROFILE);
     this.isChangePassDialogOpen = isDialogOpen(this.dialogs, DIALOGS.CHANGEPASS);
     this.isSignupDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SIGNUP);
     this.isSpeakerDialogOpen = isDialogOpen(this.dialogs, DIALOGS.PENGURUS);

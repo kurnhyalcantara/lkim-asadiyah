@@ -348,6 +348,13 @@
     }
   },
 
+  "editDataProviders": {
+    "title": "Edit Data Profil",
+    "action": {
+      "submit": "Simpan"
+    }
+  },
+
   "addToHomeScreen": {
     "cta": "Install LKIM IAI Asadiyah",
     "installed": "LKIM Asadiyah telah ada"
