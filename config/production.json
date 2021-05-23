@@ -8,7 +8,8 @@
     "authDomain": "lkim-asadiyah.firebaseapp.com",
     "messagingSenderId": "122659926458",
     "projectId": "lkim-asadiyah",
-    "storageBucket": "lkim-asadiyah.appspot.com"
+    "storageBucket": "lkim-asadiyah.appspot.com",
+    "measurementId": "G-6C5J2Z2RM1"
   },
   "fbAppId": "811843096095915",
   "googleMapApiKey": "AIzaSyAyRTnXOg03KvfYSKbcz1F_M3_gb3ESJpU"
