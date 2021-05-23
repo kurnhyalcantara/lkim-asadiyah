@@ -21,7 +21,7 @@ import { ticketsReducer } from './tickets/reducers';
 import { toastReducer } from './toast/reducers';
 import { uiReducer } from './ui/reducers';
 import { credentialReducer } from './credential/reducers';
-import { userReducer } from './users/reducers'
+import { userReducer } from './users/reducers';
 import { videosReducer } from './videos/reducers';
 
 const rootReducer = {

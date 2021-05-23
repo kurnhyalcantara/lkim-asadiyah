@@ -4,13 +4,7 @@ import { db } from '../db';
 import { openDialog } from '../dialogs/actions';
 import { SignUpForm, DIALOGS } from '../dialogs/types';
 import { hideToast, showToast } from '../toast/actions';
-import {
-  DAFTAR,
-  DaftarActions,
-  DAFTAR_FAILURE,
-  DAFTAR_RESET,
-  DAFTAR_SUCCESS,
-} from './types';
+import { DAFTAR, DaftarActions, DAFTAR_FAILURE, DAFTAR_RESET, DAFTAR_SUCCESS } from './types';
 
 const storeData = async (data: SignUpForm, uid: string | undefined) => {
   const id = uid;
@@ -25,7 +19,7 @@ const storeData = async (data: SignUpForm, uid: string | undefined) => {
     fakultas: data.eighthFieldValue,
     jurusan: data.ninethFieldValue,
     semester: data.tenthFieldValue,
-    email: data.email
+    email: data.email,
   };
 
   await db().collection('users').doc(id).set(userData);
@@ -36,10 +30,10 @@ export const daftarUser = (data: SignUpForm) => {
     .auth()
     .createUserWithEmailAndPassword(data.email, data.pass)
     .then((credential) => {
-      storeData(data, credential.user?.uid)
-      showToast({ message: 'Pembuatan akun berhasil dan anda telah login otomatis'});
-    })
-}
+      storeData(data, credential.user?.uid);
+      showToast({ message: 'Pembuatan akun berhasil dan anda telah login otomatis' });
+    });
+};
 
 export const daftar = (data: SignUpForm) => async (dispatch: Dispatch<DaftarActions>) => {
   dispatch({
@@ -49,16 +43,19 @@ export const daftar = (data: SignUpForm) => async (dispatch: Dispatch<DaftarActi
   try {
     dispatch({
       type: DAFTAR_SUCCESS,
-      payload: await daftarUser(data)
+      payload: await daftarUser(data),
     });
   } catch (error) {
     dispatch({
       type: DAFTAR_FAILURE,
       payload: error,
     });
-    hideToast()
+    hideToast();
     if (error.code === 'auth/email-already-in-use') {
-      openDialog(DIALOGS.SIGNUP, { errorOccurred: true, errorMessage: 'Email telah digunakan orang lain'})
+      openDialog(DIALOGS.SIGNUP, {
+        errorOccurred: true,
+        errorMessage: 'Email telah digunakan orang lain',
+      });
     }
   }
 };
@@ -76,13 +73,16 @@ export const updateDataUser = (data: SignUpForm, uid: string | undefined) => {
     fakultas: data.eighthFieldValue,
     jurusan: data.ninethFieldValue,
     semester: data.tenthFieldValue,
-    email: data.email
+    email: data.email,
   };
 
-  db().collection('users').doc(id).set(userData)
+  db()
+    .collection('users')
+    .doc(id)
+    .set(userData)
     .then(() => {
-      openDialog(DIALOGS.PROFILE)
-      showToast({ message: 'Data berhasil diupdate'});
+      openDialog(DIALOGS.PROFILE);
+      showToast({ message: 'Data berhasil diupdate' });
     })
     .catch((e) => {
       console.log(e);
@@ -94,4 +94,3 @@ export const resetDaftar = () => {
     type: DAFTAR_RESET,
   });
 };
-

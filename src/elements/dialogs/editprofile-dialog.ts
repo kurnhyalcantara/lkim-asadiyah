@@ -10,12 +10,12 @@ import 'plastic-image';
 import { html, PolymerElement } from '@polymer/polymer';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import { ReduxMixin } from '../../mixins/redux-mixin';
-import { RootState, store } from '../../store';
+import { RootState } from '../../store';
 import { closeDialog } from '../../store/dialogs/actions';
 import { updateDataUser } from '../../store/signup/actions';
 import '../lkim-icons';
 import '../shared-styles';
-import './dialog-styles'
+import './dialog-styles';
 import { showToast } from '../../store/toast/actions';
 class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], PolymerElement)) {
   static get template() {
@@ -29,7 +29,7 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
             padding: 4px 0;
             background: #fff;
             font-weight: 600;
-          };
+          }
           --paper-input-container-font-family: var(--font-family);
         }
 
@@ -99,7 +99,7 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
           --iron-icon-width: 24px;
           margin-right: 24px;
         }
-        
+
         .section-input {
           padding: 0 0 0 52px;
         }
@@ -132,7 +132,6 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
             width: 60%;
           }
         }
-
       </style>
 
       <app-header-layout has-scrolling-region>
@@ -296,9 +295,7 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
             >
             </paper-input>
           </div>
-          <div class="general-error" hidden$="[[!errorOccurred]]">
-            [[errorMessage]]
-          </div>
+          <div class="general-error" hidden$="[[!errorOccurred]]">[[errorMessage]]</div>
           <div class="action-buttons" layout vertical center>
             <paper-button
               on-click="_saveData"
@@ -310,9 +307,7 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
             >
               {$ editDataProviders.action.submit $}
             </paper-button>
-            <paper-button class="close-button" on-click="_closeDialog"
-              >{$ cancel $}
-            </paper-button>
+            <paper-button class="close-button" on-click="_closeDialog">{$ cancel $} </paper-button>
           </div>
         </div>
       </app-header-layout>
@@ -380,7 +375,7 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
     this.setProperties({
       credential: state.credential,
       ui: state.ui,
-      viewport: state.ui.viewport
+      viewport: state.ui.viewport,
     });
   }
 
@@ -411,7 +406,7 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
       this.emailValue = data.email;
       jurusanInput.value = data.jurusan;
       fakultasInput.value = data.fakultas;
-      jenisKelaminInput.value = data.jenisKelamin
+      jenisKelaminInput.value = data.jenisKelamin;
     } else {
       data = {};
     }
@@ -440,8 +435,16 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
     const jurusanInput = this.shadowRoot.querySelector('#jurusanDrop');
     const semesterInput = this.shadowRoot.querySelector('#semester');
     const emailInput = this.shadowRoot.querySelector('#emailUser');
-    
-    if (!namaLengkapInput.validate() || !tanggalLahirInput.validate() || !tempatLahirInput.validate() || !alamatSekarangInput.validate() || !noWaInput.validate() || !instagramInput.validate() || !semesterInput.validate()) {
+
+    if (
+      !namaLengkapInput.validate() ||
+      !tanggalLahirInput.validate() ||
+      !tempatLahirInput.validate() ||
+      !alamatSekarangInput.validate() ||
+      !noWaInput.validate() ||
+      !instagramInput.validate() ||
+      !semesterInput.validate()
+    ) {
       this.errorOccurred = true;
       this.errorMessage = 'Harap periksa kembali data anda';
       return;
@@ -454,7 +457,7 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
       return;
     }
 
-    showToast({ message: 'Memproses...'});
+    showToast({ message: 'Memproses...' });
     this._submit({
       firstFieldValue: this.namaLengkapValue,
       secondFieldValue: jenisKelaminInput.value,

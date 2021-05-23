@@ -14,7 +14,7 @@ describe('pengurus', () => {
         no_whatsapp: '123',
         semester: '7',
         tanggal_lahir: '12',
-        tempat_lahir: 'lapao'
+        tempat_lahir: 'lapao',
       },
     ];
     const keys: Array<keyof UserData> = [

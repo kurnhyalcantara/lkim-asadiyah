@@ -14,7 +14,7 @@ import {
 const getFeaturedSessions = async (userId: string): Promise<FeaturedSessions> => {
   const doc = await db().collection('featuredSessions').doc(userId).get();
 
-  return doc.data() || {}
+  return doc.data() || {};
 };
 
 export const fetchUserFeaturedSessions = (userId: string) => async (

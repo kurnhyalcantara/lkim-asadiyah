@@ -58,7 +58,7 @@ import { setRoute } from './store/routing/actions';
 import { initialRoutingState, RoutingState } from './store/routing/state';
 import { showToast } from './store/toast/actions';
 import { setViewportSize } from './store/ui/actions';
-import { signOut, updateUser } from './store/credential/actions';
+import { updateUser } from './store/credential/actions';
 import { TempAny } from './temp-any';
 import { isDialogOpen } from './utils/dialogs';
 import { scrollToY } from './utils/scrolling';
@@ -104,15 +104,8 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
         }
 
         app-drawer .version {
+          font-size: 14px;
           margin-top: 42px;
-          font-size: 16px;
-        }
-
-        app-drawer .title {
-          color: var(--default-primary-color);
-          font-weight: 900;
-          font-size: 18px;
-          margin-bottom: 12px;
         }
 
         app-drawer .design {
@@ -210,13 +203,14 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
           color: var(--text-primary-color);
         }
 
+        .bottom-drawer-link:hover {
+          background-color: var(--primary-color-light);
+        }
+
         .profile-name {
           font-size: 14px;
         }
 
-        .bottom-drawer-link:hover {
-          background-color: var(--focused-color);
-        }
 
         @media (min-width: 640px) {
           app-toolbar {
@@ -255,16 +249,20 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
               srcset="/images/manifest/icon-144.png"
               alt="{$ title $}"
             ></plastic-image>
-            <h2 class="version">{$ version $}</h2>
-            <h3 class="design">
+            <div class="version">{$ version $}</div>
+            <div class="design">
               {$ design $}<span class="by" on-tap="_openInstaDesigner">{$ by $}</span>
-            </h3>
+            </div>
           </app-toolbar>
           <div class="drawer-account" layout horizontal hidden$="[[credential.signedIn]]">
             <div class="action-account" on-click="_openSignUpDialog">{$ signUp $}</div>
             <div class="action-account" on-click="_openSignInDialog">{$ logIn $}</div>
           </div>
-          <div class="drawer-signedin" on-click="_openProfileDialog" hidden$="[[!credential.signedIn]]">
+          <div
+            class="drawer-signedin"
+            on-click="_openProfileDialog"
+            hidden$="[[!credential.signedIn]]"
+          >
             <iron-icon class="profile-icon" icon="lkim:account"></iron-icon>
             <span class="profile-name">Hai! [[user.nama_lengkap]]</span>
           </div>
@@ -277,7 +275,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
               role="navigation"
             >
               {% for nav in navigation %}
-              <a href="{$ nav.permalink $}" path="{$ nav.route $}" on-click="closeDrawer">
+              <a href="{$ nav.permalink $}" path="{$ nav.route $}" on-click="_closeDrawer">
                 <iron-icon icon="icons:{$ nav.icon $}"></iron-icon>
                 <span>{$ nav.label $}</span>
               </a>
@@ -360,34 +358,34 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
       >
       </signup-dialog>
 
-      <signin-dialog 
-        opened="[[isSigninDialogOpen]]" 
+      <signin-dialog
+        opened="[[isSigninDialogOpen]]"
         data="[[dialogs.data.data]]"
         with-backdrop
         no-cancel-on-outside-click="[[viewport.isPhone]]"
       ></signin-dialog>
 
-      <profile-dialog 
-        opened="[[isProfileDialogOpen]]" 
+      <profile-dialog
+        opened="[[isProfileDialogOpen]]"
         data="[[dialogs.data.data]]"
         with-backdrop
         no-cancel-on-outside-click="[[viewport.isPhone]]"
       ></profile-dialog>
 
-      <changepass-dialog 
-        opened="[[isChangePassDialogOpen]]" 
+      <changepass-dialog
+        opened="[[isChangePassDialogOpen]]"
         data="[[dialogs.data.data]]"
         with-backdrop
         no-cancel-on-outside-click="[[viewport.isPhone]]"
       ></changepass-dialog>
-      
-      <editprofile-dialog 
-        opened="[[isEditProfileDialogOpen]]" 
+
+      <editprofile-dialog
+        opened="[[isEditProfileDialogOpen]]"
         data="[[dialogs.data.data]]"
         with-backdrop
         no-cancel-on-outside-click="[[viewport.isPhone]]"
       ></editprofile-dialog>
-      
+
       <toast-element></toast-element>
     `;
   }
@@ -409,7 +407,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   @property({ type: Boolean })
   private _openedDialog = false;
   @property({ type: Object })
-  private credential: { uid?: string, signedIn?: boolean } = {};
+  private credential: { uid?: string; signedIn?: boolean } = {};
   @property({ type: Object })
   private user = {};
   @property({ type: Array })
@@ -503,7 +501,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
     initializeMessaging().then(() => store.dispatch(getToken()));
   }
 
-  closeDrawer() {
+  _closeDrawer() {
     this.drawerOpened = false;
   }
 
@@ -557,7 +555,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
 
   _onAddToHomeScreen() {
     if (!this.addToHomeScreen) {
-      this.closeDrawer();
+      this._closeDrawer();
       showToast({ message: '{$ addToHomeScreen.installed $}' });
     }
     this.addToHomeScreen.prompt();
@@ -568,7 +566,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
         ga('send', 'event', 'add_to_home_screen_prompt', 'dismissed');
       }
       this.addToHomeScreen = null;
-      this.closeDrawer();
+      this._closeDrawer();
     });
   }
 

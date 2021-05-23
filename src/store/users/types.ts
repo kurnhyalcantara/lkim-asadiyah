@@ -18,7 +18,4 @@ interface FetchUserSuccessAction {
   payload: User;
 }
 
-export type UserActions =
-  | FetchUserAction
-  | FetchUserFailureAction
-  | FetchUserSuccessAction;
+export type UserActions = FetchUserAction | FetchUserFailureAction | FetchUserSuccessAction;

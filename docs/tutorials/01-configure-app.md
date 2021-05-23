@@ -79,18 +79,18 @@ If you don't need some pages, don't forget to remove them (or comment out)
 in `lkim-app.ts`
 
 ```html
-  <iron-pages
-    attr-for-selected="name"
-    selected="[[route.route]]"
-    selected-attribute="active"
-    hide-immediately
-  >
-    <home-page name="home"></home-page>
-    <pengurus-page name="pengurus" route="[[subRoute]]"></pengurus-page>
-    <news-page name="news" route="[[subRoute]]"></news-page>
-    <article-page name="articles" route="[[subRoute]]"></article-page>
-    <schedule-page name="schedule" route="[[subRoute]]"></schedule-page>
-  </iron-pages>
+<iron-pages
+  attr-for-selected="name"
+  selected="[[route.route]]"
+  selected-attribute="active"
+  hide-immediately
+>
+  <home-page name="home"></home-page>
+  <pengurus-page name="pengurus" route="[[subRoute]]"></pengurus-page>
+  <news-page name="news" route="[[subRoute]]"></news-page>
+  <article-page name="articles" route="[[subRoute]]"></article-page>
+  <schedule-page name="schedule" route="[[subRoute]]"></schedule-page>
+</iron-pages>
 ```
 
 ### Toolbar Navigation

@@ -9,7 +9,6 @@ import { DIALOGS } from '../store/dialogs/types';
 import { requestPermission, unsubscribe } from '../store/notifications/actions';
 import { NOTIFICATIONS_STATUS } from '../store/notifications/types';
 import { initialRoutingState, RoutingState } from '../store/routing/state';
-import { signOut } from '../store/credential/actions';
 import { TempAny } from '../temp-any';
 import { isDialogOpen } from '../utils/dialogs';
 import './shared-styles';
@@ -54,15 +53,15 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           }
         }
 
-        .login-button {
-          margin-top: 12px;
-          padding: 10px 24px;
-        }
-
         .nav-item a {
           padding: 0 14px;
           color: inherit;
           text-transform: uppercase;
+        }
+
+        .login-button {
+          margin-top: 12px;
+          padding: 10px 24px;
         }
 
         .profile-image {
@@ -116,10 +115,6 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           --iron-icon-fill-color: var(--hero-font-color);
         }
 
-        .buy-button {
-          margin-top: 12px;
-        }
-
         @media (min-width: 640px) {
           app-toolbar {
             padding: 0 36px;
@@ -162,14 +157,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
           </paper-tab>
           {% endfor %}
 
-          <a
-            on-click="_signIn" 
-            link 
-            hidden$="[[credential.signedIn]]"
-            ga-on="click"
-            ga-event-category="login button"
-            ga-event-action="login_click"
-          >
+          <a on-click="_signIn" link hidden$="[[credential.signedIn]]">
             <paper-button class="login-button" primary>{$ logIn $}</paper-button>
           </a>
         </paper-tabs>
@@ -237,7 +225,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
   @property({ type: Object })
   private notifications: { token?: string; status?: string } = {};
   @property({ type: Object })
-  private credential: { signedIn?: boolean } = { };
+  private credential: { signedIn?: boolean } = {};
   @property({ type: Boolean, reflectToAttribute: true })
   private transparent = false;
 
@@ -272,10 +260,6 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
       return;
     }
     openDialog(DIALOGS.PROFILE);
-  }
-
-  _signOut() {
-    signOut();
   }
 
   _signIn() {

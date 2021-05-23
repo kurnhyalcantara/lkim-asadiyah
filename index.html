@@ -115,7 +115,7 @@
         messagingSenderId: '{$ firebase.messagingSenderId $}',
         projectId: '{$ firebase.projectId $}',
         storageBucket: '{$ firebase.storageBucket $}',
-        measurementId: '{$ firebase.measurementId $}'
+        measurementId: '{$ firebase.measurementId $}',
       });
 
       firebase.performance();
@@ -210,17 +210,26 @@
       }
 
       @-webkit-keyframes sk-bouncedelay {
-        0%, 80%, 100% { -webkit-transform: scale(0) }
-        40% { -webkit-transform: scale(1.0) }
+        0%,
+        80%,
+        100% {
+          -webkit-transform: scale(0);
+        }
+        40% {
+          -webkit-transform: scale(1);
+        }
       }
 
       @keyframes sk-bouncedelay {
-        0%, 80%, 100% { 
+        0%,
+        80%,
+        100% {
           -webkit-transform: scale(0);
           transform: scale(0);
-        } 40% { 
-          -webkit-transform: scale(1.0);
-          transform: scale(1.0);
+        }
+        40% {
+          -webkit-transform: scale(1);
+          transform: scale(1);
         }
       }
     </style>
@@ -244,8 +253,9 @@
         const indexRenderTime = window.measureDuration && window.measureDuration('index.html');
         if (indexRenderTime) {
           gtag('event', 'timing', {
-            'page':'index.html', 
-            'renderTime': indexRenderTime});
+            page: 'index.html',
+            renderTime: indexRenderTime,
+          });
         }
       };
     </script>

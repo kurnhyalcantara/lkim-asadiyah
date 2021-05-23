@@ -2,14 +2,13 @@ import { IronOverlayBehavior } from '@polymer/iron-overlay-behavior';
 import { html, PolymerElement } from '@polymer/polymer';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import { ReduxMixin } from '../../mixins/redux-mixin';
-import { RootState, store } from '../../store';
+import { RootState } from '../../store';
 import 'plastic-image';
 import '@polymer/paper-input/paper-input';
 import '@polymer/iron-icon';
 import '@polymer/app-layout/app-header-layout/app-header-layout';
 import '@polymer/app-layout/app-toolbar/app-toolbar';
-import { closeDialog, openDialog } from '../../store/dialogs/actions';
-import { DIALOGS } from '../../store/dialogs/types';
+import { closeDialog } from '../../store/dialogs/actions';
 import { updateUserPassword } from '../../store/credential/actions';
 import '../lkim-icons';
 import '../shared-styles';
@@ -32,7 +31,7 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
             padding: 4px 0;
             background: #fff;
             font-weight: 600;
-          };
+          }
           --paper-input-container-font-family: var(--font-family);
         }
 
@@ -54,7 +53,7 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
         .action-button {
           margin: 12px 0;
         }
-        
+
         .general-error {
           margin: 18px 0;
           text-align: center;
@@ -107,15 +106,9 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
             <iron-icon icon="icons:visibility" slot="suffix" on-tap="_showPassword"></iron-icon>
           </paper-input>
         </div>
-        <div class="general-error" hidden$="[[!errorOccurred]]">
-          [[errorMessage]]
-        </div>
+        <div class="general-error" hidden$="[[!errorOccurred]]">[[errorMessage]]</div>
         <div class="action-button" layout horizontal justified>
-          <paper-button
-            class="cancel-button" 
-            on-click="_close"
-            primary-text
-          >
+          <paper-button class="cancel-button" on-click="_close" primary-text>
             {$ cancel $}
           </paper-button>
           <paper-button
@@ -161,7 +154,7 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
       },
       oldPassValue: String,
       newPassValue: String,
-      repeatPassValue: String
+      repeatPassValue: String,
     };
   }
 
@@ -170,7 +163,7 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
       credential: state.credential,
       ui: state.ui,
       user: state.user,
-      viewport: state.ui.viewport
+      viewport: state.ui.viewport,
     });
   }
 
@@ -202,7 +195,7 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
     closeDialog();
   }
 
-  _submit() { 
+  _submit() {
     if (this.newPassValue !== this.repeatPassValue) {
       this.errorOccurred = true;
       this.errorMessage = 'Password tidak cocok';

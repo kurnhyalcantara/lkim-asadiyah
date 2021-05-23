@@ -13,18 +13,15 @@ export const signIn = (emailUser: string, passUser: string) => {
     .signInWithEmailAndPassword(emailUser, passUser)
     .then(() => {
       getToken(true);
-      showToast({ message: 'Login Berhasil'});
+      showToast({ message: 'Login Berhasil' });
     })
     .catch((error) => {
-      if (
-        error.code === 'auth/user-not-found' ||
-        error.code === 'auth/invalid-email'
-      ) {
-        openDialog(DIALOGS.SIGNIN, { errorOccurred: true, errorMessage: 'Akun tidak ditemukan'});
-      } 
-      
+      if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-email') {
+        openDialog(DIALOGS.SIGNIN, { errorOccurred: true, errorMessage: 'Akun tidak ditemukan' });
+      }
+
       if (error.code === 'auth/wrong-password') {
-        openDialog(DIALOGS.SIGNIN, { errorOccurred: true, errorMessage: 'Password salah'});
+        openDialog(DIALOGS.SIGNIN, { errorOccurred: true, errorMessage: 'Password salah' });
       }
     });
 };
@@ -42,25 +39,29 @@ export const signOut = () => {
     .then(() => {
       storeUser();
       resetSubscribed();
-      showToast({ message: 'Logout berhasil' })
+      showToast({ message: 'Logout berhasil' });
     });
 };
 
-export const updateUserPassword = (email: string, oldPass:string, newPass: string) => {
+export const updateUserPassword = (email: string, oldPass: string, newPass: string) => {
   const currentUser = window.firebase.auth().currentUser;
   const credential = window.firebase.auth.EmailAuthProvider.credential(email, oldPass);
-  return currentUser?.reauthenticateWithCredential(credential)
+  return currentUser
+    ?.reauthenticateWithCredential(credential)
     .then(() => {
-      currentUser?.updatePassword(newPass)
+      currentUser?.updatePassword(newPass);
       openDialog(DIALOGS.PROFILE);
-      showToast({ message: 'Password telah diupdate'});
+      showToast({ message: 'Password telah diupdate' });
     })
     .catch((error) => {
-      if ( error.code === 'auth/wrong-password') {
-        openDialog(DIALOGS.CHANGEPASS, { errorOccurred: true, errorMessage: "Password lama salah"})
+      if (error.code === 'auth/wrong-password') {
+        openDialog(DIALOGS.CHANGEPASS, {
+          errorOccurred: true,
+          errorMessage: 'Password lama salah',
+        });
       }
-    })
-}
+    });
+};
 
 const storeUser = (credential?: any) => {
   let credentialToStore: any = { signedIn: false };
@@ -70,7 +71,8 @@ const storeUser = (credential?: any) => {
 
     const email = credential.email || (credential.providerData && credential.providerData[0].email);
     const initialProviderId =
-      (credential.providerData && credential.providerData[0].providerId) || credential.initialProviderId;
+      (credential.providerData && credential.providerData[0].providerId) ||
+      credential.initialProviderId;
     const signedIn = (credential.uid && true) || credential.signedIn;
 
     credentialToStore = {

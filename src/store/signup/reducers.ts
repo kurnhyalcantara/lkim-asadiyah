@@ -1,17 +1,8 @@
-import {
-  DAFTAR,
-  DaftarActions,
-  DAFTAR_FAILURE,
-  DAFTAR_RESET,
-  DAFTAR_SUCCESS,
-} from './types';
+import { DAFTAR, DaftarActions, DAFTAR_FAILURE, DAFTAR_RESET, DAFTAR_SUCCESS } from './types';
 import { initialDaftarState, DaftarState } from './state';
 import { Failure, Initialized, Pending, Success } from '@abraham/remotedata';
 
-export const signupReducer = (
-  state = initialDaftarState,
-  action: DaftarActions
-): DaftarState => {
+export const signupReducer = (state = initialDaftarState, action: DaftarActions): DaftarState => {
   switch (action.type) {
     case DAFTAR:
       return new Pending();

@@ -40,57 +40,18 @@ export class PengurusBlock extends PengurusHoC(ReduxMixin(PolymerElement)) {
           transform: translateZ(0);
         }
 
-        .badges {
-          position: absolute;
-          top: 0;
-          left: calc(50% + 24px);
-        }
-
-        .badge {
-          margin-left: -10px;
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          border: 2px solid #fff;
-          transition: transform var(--animation);
-        }
-
-        .badge:hover {
-          transform: scale(1.1);
-        }
-
-        .badge:nth-of-type(2) {
-          transform: translate(0, 100%);
-        }
-
-        .badge:nth-of-type(2):hover {
-          transform: translate3d(0, 100%, 20px) scale(1.1);
-        }
-
-        .badge-icon {
-          --iron-icon-width: 12px;
-          --iron-icon-height: 12px;
-          color: #fff;
-        }
-
-        .company-logo {
-          margin-top: 6px;
-          width: 100%;
-          height: 16px;
-        }
-
         .description {
           color: var(--primary-text-color);
         }
 
         .name {
           margin-top: 8px;
-          line-height: 1.1;
+          font-weight: 600;
         }
 
-        .origin {
+        .jabatan {
           margin-top: 4px;
-          font-size: 12px;
+          font-size: 14px;
           line-height: 1.1;
         }
 
@@ -103,10 +64,6 @@ export class PengurusBlock extends PengurusHoC(ReduxMixin(PolymerElement)) {
             width: 128px;
             height: 128px;
           }
-
-          .name {
-            font-size: 20px;
-          }
         }
 
         @media (min-width: 812px) {
@@ -116,26 +73,6 @@ export class PengurusBlock extends PengurusHoC(ReduxMixin(PolymerElement)) {
 
           .pengurus:last-of-type {
             display: none;
-          }
-
-          .badges {
-            left: calc(50% + 32px);
-          }
-
-          .badge:nth-of-type(2) {
-            transform: translate(25%, 75%);
-          }
-
-          .badge:nth-of-type(2):hover {
-            transform: translate3d(25%, 75%, 20px) scale(1.1);
-          }
-
-          .badge:nth-of-type(3) {
-            transform: translate(10%, 180%);
-          }
-
-          .badge:nth-of-type(3):hover {
-            transform: translate3d(10%, 180%, 20px) scale(1.1);
           }
         }
 
@@ -155,14 +92,7 @@ export class PengurusBlock extends PengurusHoC(ReduxMixin(PolymerElement)) {
 
         <div class="pengurus-wrapper">
           <template is="dom-repeat" items="[[featuredPengurus]]" as="pengurus">
-            <div
-              class="pengurus card"
-              on-click="_openSpeaker"
-              ga-on="click"
-              ga-event-category="pengurus"
-              ga-event-action="open details"
-              ga-event-label$="[[pengurus.name]]"
-            >
+            <div class="pengurus card" on-click="_openSpeaker">
               <div relative>
                 <plastic-image
                   class="photo"
@@ -175,10 +105,10 @@ export class PengurusBlock extends PengurusHoC(ReduxMixin(PolymerElement)) {
               </div>
               <div class="description">
                 <text-truncate lines="2">
-                  <h3 class="name">[[pengurus.name]]</h3>
+                  <div class="name">[[pengurus.name]]</div>
                 </text-truncate>
                 <text-truncate lines="1">
-                  <div class="origin">[[pengurus.jabatan]]</div>
+                  <div class="jabatan">[[pengurus.jabatan]]</div>
                 </text-truncate>
               </div>
             </div>

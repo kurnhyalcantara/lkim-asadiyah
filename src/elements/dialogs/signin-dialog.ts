@@ -28,7 +28,7 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
             height: 0;
           }
         }
-        
+
         app-header {
           background-color: var(--primary-background-color);
         }
@@ -115,9 +115,7 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
               alt="{$ signInProviders.title $}"
             ></plastic-image>
             <div class="container-title" layout vertical center>{$ signInProviders.title $}</div>
-            <div class="general-error" hidden$="[[!errorOccurred]]">
-              [[errorMessage]]
-            </div>
+            <div class="general-error" hidden$="[[!errorOccurred]]">[[errorMessage]]</div>
           </div>
         </app-toolbar>
         <div class="dialog-content" layout vertical justified>
@@ -191,7 +189,7 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       },
       submitLogin: {
         type: String,
-        value: 'Login'
+        value: 'Login',
       },
       data: {
         type: Object,
@@ -206,7 +204,7 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
     this.setProperties({
       credential: state.credential,
       ui: state.ui,
-      viewport: state.ui.viewport
+      viewport: state.ui.viewport,
     });
   }
 

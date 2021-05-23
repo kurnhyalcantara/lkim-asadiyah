@@ -46,7 +46,6 @@ export class HomePage extends ReduxMixin(PolymerElement) {
 
         .action-buttons {
           margin: 22px -8px;
-          font-size: 14px;
         }
 
         .action-buttons paper-button {

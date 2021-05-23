@@ -174,7 +174,11 @@ export class Feedback extends ReduxMixin(PolymerElement) {
       this._updateFeedbackState(this.feedbackState);
       this._previousFeedbackChanged(this.previousFeedback);
 
-      if (this.credential.signedIn && !this.feedbackFetching && this.previousFeedback === undefined) {
+      if (
+        this.credential.signedIn &&
+        !this.feedbackFetching &&
+        this.previousFeedback === undefined
+      ) {
         this._dispatchPreviousFeedback();
       }
     }

@@ -16,6 +16,8 @@ export const isAuthenticated = (credential: Credential): credential is Authentic
   return credential.signedIn;
 };
 
-export const isUnauthenticated = (credential: Credential): credential is UnauthenticatedCredential => {
+export const isUnauthenticated = (
+  credential: Credential
+): credential is UnauthenticatedCredential => {
   return !credential.signedIn;
 };

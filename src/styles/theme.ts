@@ -260,7 +260,7 @@ export const theme = css`
   }
 
   .card:hover {
-    background-color: var(--additional-background-color);
+    background-color: var(--secondary-background-color);
   }
 
   .tag {

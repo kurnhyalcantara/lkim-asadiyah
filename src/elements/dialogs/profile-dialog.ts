@@ -28,7 +28,7 @@ class ProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Pol
             height: 0;
           }
         }
-        
+
         app-header {
           background-color: var(--primary-background-color);
         }
@@ -88,7 +88,7 @@ class ProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Pol
 
         .content-value {
           font-size: 14px;
-        } 
+        }
 
         .section-value:not(:last-of-type) {
           margin-bottom: 18px;
@@ -97,7 +97,7 @@ class ProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Pol
         .action-button {
           padding: 10px 16px;
         }
-        
+
         .action-button paper-button {
           margin-bottom: 12px;
           min-width: 75%;
@@ -258,7 +258,7 @@ class ProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Pol
       credential: state.credential,
       ui: state.ui,
       user: state.user,
-      viewport: state.ui.viewport
+      viewport: state.ui.viewport,
     });
   }
 
@@ -316,7 +316,7 @@ class ProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Pol
       instagram: this.user.instagram_id,
       fakultas: this.user.fakultas,
       jurusan: this.user.jurusan,
-      semester: this.user.semester
+      semester: this.user.semester,
     });
   }
 
