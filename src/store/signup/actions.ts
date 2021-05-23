@@ -81,7 +81,6 @@ export const updateDataUser = (data: SignUpForm, uid: string | undefined) => {
 
   db().collection('users').doc(id).set(userData)
     .then(() => {
-      window.location.reload()
       openDialog(DIALOGS.PROFILE)
       showToast({ message: 'Data berhasil diupdate'});
     })

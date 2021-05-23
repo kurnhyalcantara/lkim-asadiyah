@@ -125,24 +125,30 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
           color: var(--default-primary-color);
         }
 
-        .drawer-account {
-          margin-top: 12px
-          heigth: 24px;
+        .drawer-account .action-account {
+          width: 50%;
+          padding: 12px;
         }
 
-        .drawer-account a {
-          width: 50%;
+        .action-account {
+          text-align: center;
+          color: var(--text-primary-color);
+          background-color: var(--default-primary-color);
+        }
+
+        .action-account:hover {
+          background-color: var(--primary-color-light);
         }
 
         .drawer-signedin {
           width: 100%;
-          padding: 8px 0;
+          padding: 8px 16px;
           background-color: var(--default-primary-color);
+          color: var(--text-primary-color);
         }
 
-        .drawer-profile {
-          display: inline-block;
-          color: var(--text-primary-color);
+        .drawer-signedin:hover {
+          background-color: var(--primary-color-light);
         }
 
         .profile-icon {
@@ -151,17 +157,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
           margin-right: 12px;
         }
 
-        .drawer-signup, .drawer-login {
-          text-align: center;
-          color: var(--text-primary-color);
-          background-color: var(--default-primary-color);
-        }
-
-        .drawer-signup:hover, .drawer-login:hover {
-          background-color: var(--focused-color);
-        }
-
-        .drawer-signup {
+        .action-account:not(:last-of-type) {
           border-right: 1px solid #fff;
         }
 
@@ -265,14 +261,12 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
             </h3>
           </app-toolbar>
           <div class="drawer-account" layout horizontal hidden$="[[credential.signedIn]]">
-            <a class="drawer-signup" on-click="_openSignUpDialog">{$ signUp $}</a>
-            <a class="drawer-login" on-click="_openSignInDialog">{$ logIn $}</a>
+            <div class="action-account" on-click="_openSignUpDialog">{$ signUp $}</div>
+            <div class="action-account" on-click="_openSignInDialog">{$ logIn $}</div>
           </div>
-          <div class="drawer-signedin" hidden$="[[!credential.signedIn]]">
-            <a class="drawer-profile" on-click="_openProfileDialog">
-              <iron-icon class="profile-icon" icon="lkim:account"></iron-icon>
-              <span class="profile-name">Hai! [[user.nama_lengkap]]</span>
-            </a>
+          <div class="drawer-signedin" on-click="_openProfileDialog" hidden$="[[!credential.signedIn]]">
+            <iron-icon class="profile-icon" icon="lkim:account"></iron-icon>
+            <span class="profile-name">Hai! [[user.nama_lengkap]]</span>
           </div>
           <div class="drawer-content" layout vertical justified flex>
             <iron-selector
