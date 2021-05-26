@@ -132,10 +132,6 @@ export class NewsListPage extends ReduxMixin(PolymerElement) {
               <a
                 href$="/news/posts/[[post.id]]/"
                 class="featured-post card"
-                ga-on="click"
-                ga-event-category="news"
-                ga-event-action="open post"
-                ga-event-label$="[[post.title]]"
                 layout
                 horizontal
               >

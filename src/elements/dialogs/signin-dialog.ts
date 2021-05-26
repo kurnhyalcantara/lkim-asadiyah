@@ -136,17 +136,13 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
               no-label-float
             >
               <iron-icon icon="icons:lock" slot="prefix"></iron-icon>
-              <iron-icon icon="icons:visibility" slot="suffix" on-tap="_showPassword"></iron-icon>
+              <iron-icon icon="icons:[[visibilityPassword]]" slot="suffix" on-tap="_showPassword"></iron-icon>
             </paper-input>
           </div>
           <div class="action-button" layout vertical center>
             <paper-button
               class="action-login"
               on-click="_signIn"
-              ga-on="click"
-              ga-event-category="portal"
-              ga-event-action="klik login"
-              ga-event-label="login block"
               primary
             >
               [[submitLogin]]
@@ -191,6 +187,14 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
         type: String,
         value: 'Login',
       },
+      visibilityPassword: {
+        type: String,
+        value: 'visibility-off'
+      },
+      visibility: {
+        type: Boolean, 
+        value: false
+      },
       data: {
         type: Object,
       },
@@ -234,6 +238,7 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
     if (data) {
       this.errorOccurred = data.errorOccurred;
       this.errorMessage = data.errorMessage;
+      this.submitLogin = data.submitLogin;
     } else {
       data = {};
     }
@@ -245,7 +250,15 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
 
   _showPassword() {
     const passField = this.shadowRoot.querySelector('#password');
-    passField.setAttribute('type', 'text');
+    if (!this.visibility) {
+      this.visibility = true;
+      this.visibilityPassword = 'visibility';
+      passField.setAttribute('type', 'text');
+    } else {
+      this.visibility = false;
+      this.visibilityPassword = 'visibility-off';
+      passField.setAttribute('type', 'password');
+    }
   }
 
   _newRegister() {
@@ -253,6 +266,8 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
   }
 
   _signIn() {
+    this.errorOccurred = false;
+    this.submitLogin = 'Memproses...';
     signIn(this.emailValue, this.passValue);
   }
 

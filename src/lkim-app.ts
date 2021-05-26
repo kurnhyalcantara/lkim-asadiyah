@@ -31,7 +31,6 @@ import './elements/dialogs/feedback-dialog';
 import './elements/dialogs/session-details';
 import './elements/dialogs/signin-dialog';
 import './elements/dialogs/pengurus-details';
-import './elements/dialogs/subscribe-dialog';
 import './elements/dialogs/signup-dialog';
 import './elements/dialogs/profile-dialog';
 import './elements/dialogs/editprofile-dialog';
@@ -342,14 +341,6 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
         with-backdrop
       ></feedback-dialog>
 
-      <subscribe-dialog
-        opened="[[isSubscribeDialogOpen]]"
-        data="[[dialogs.data.data]]"
-        with-backdrop
-        no-cancel-on-outside-click="[[viewport.isPhone]]"
-      >
-      </subscribe-dialog>
-
       <signup-dialog
         opened="[[isSignupDialogOpen]]"
         data="[[dialogs.data.data]]"
@@ -440,8 +431,6 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   private isSessionDialogOpen = false;
   @property({ type: Boolean })
   private isFeedbackDialogOpen = false;
-  @property({ type: Boolean })
-  private isSubscribeDialogOpen = false;
 
   stateChanged(state: RootState) {
     this.dialogs = state.dialogs;
@@ -453,7 +442,6 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
     this.isSpeakerDialogOpen = isDialogOpen(this.dialogs, DIALOGS.PENGURUS);
     this.isSessionDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SESSION);
     this.isFeedbackDialogOpen = isDialogOpen(this.dialogs, DIALOGS.FEEDBACK);
-    this.isSubscribeDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SUBSCRIBE);
     this.notifications = state.notifications;
     this.route = state.routing;
     this.ui = state.ui;
@@ -572,17 +560,17 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
 
   _openSignUpDialog() {
     this.drawerOpened = false;
-    openDialog(DIALOGS.SIGNUP);
+    openDialog(DIALOGS.SIGNUP, { submitLabel: 'Buat Akun'});
   }
 
   _openSignInDialog() {
     this.drawerOpened = false;
-    openDialog(DIALOGS.SIGNIN, {});
+    openDialog(DIALOGS.SIGNIN, { submitLogin: 'Login'});
   }
 
   _openProfileDialog() {
     this.drawerOpened = false;
-    openDialog(DIALOGS.PROFILE, {});
+    openDialog(DIALOGS.PROFILE);
     // signOut();
   }
 }

@@ -50,17 +50,17 @@ export const daftar = (data: SignUpForm) => async (dispatch: Dispatch<DaftarActi
       type: DAFTAR_FAILURE,
       payload: error,
     });
-    hideToast();
     if (error.code === 'auth/email-already-in-use') {
       openDialog(DIALOGS.SIGNUP, {
         errorOccurred: true,
         errorMessage: 'Email telah digunakan orang lain',
+        submitLabel: 'Daftar'
       });
     }
   }
 };
 
-export const updateDataUser = (data: SignUpForm, uid: string | undefined) => {
+export const updateDataUser = async (data: SignUpForm, uid: string | undefined) => {
   const id = uid;
   const userData = {
     nama_lengkap: data.firstFieldValue,
@@ -76,13 +76,14 @@ export const updateDataUser = (data: SignUpForm, uid: string | undefined) => {
     email: data.email,
   };
 
-  db()
+  await db()
     .collection('users')
     .doc(id)
     .set(userData)
     .then(() => {
-      openDialog(DIALOGS.PROFILE);
-      showToast({ message: 'Data berhasil diupdate' });
+      hideToast();
+      showToast({ message: 'Data berhasil diupdate, sedang memuat ulang data...' });
+      window.location.reload();
     })
     .catch((e) => {
       console.log(e);

@@ -190,10 +190,6 @@ export class NewsContentPage extends ReduxMixin(PolymerElement) {
                   icon="lkim:facebook"
                   share="facebook"
                   on-click="share"
-                  ga-on="click"
-                  ga-event-category="social"
-                  ga-event-action="share"
-                  ga-event-label="facebook"
                 >
                 </paper-icon-button>
               </div>
@@ -203,10 +199,6 @@ export class NewsContentPage extends ReduxMixin(PolymerElement) {
                   icon="lkim:twitter"
                   share="twitter"
                   on-click="share"
-                  ga-on="click"
-                  ga-event-category="social"
-                  ga-event-action="share"
-                  ga-event-label="twitter"
                 >
                 </paper-icon-button>
               </div>
@@ -216,10 +208,6 @@ export class NewsContentPage extends ReduxMixin(PolymerElement) {
                   icon="lkim:whatsapp"
                   share="whatsapp"
                   on-click="share"
-                  ga-on="click"
-                  ga-event-category="social"
-                  ga-event-action="share"
-                  ga-event-label="twitter"
                 >
                 </paper-icon-button>
               </div>

@@ -17,6 +17,7 @@ import '../lkim-icons';
 import '../shared-styles';
 import './dialog-styles';
 import { showToast } from '../../store/toast/actions';
+import { Success } from '@abraham/remotedata';
 class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], PolymerElement)) {
   static get template() {
     return html`
@@ -74,7 +75,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
 
         .info-register {
           padding: 18px 24px;
-          background: var(--focused-color);
+          background: var(--primary-color-light);
           border-radius: 12px;
           border: 1px solid var(--default-primary-color);
           font-size: 14px;
@@ -166,7 +167,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
               autocomplete="on"
               always-float-label
               required
-              auto-validate
+              auto-validate$="[[validate]]"
             >
             </paper-input>
             <paper-dropdown-menu
@@ -269,6 +270,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
             </paper-dropdown-menu>
             <paper-input
               id="semester"
+              type="number"
               label="{$ daftarProviders.input.semester.label $}"
               placeholder="{$ daftarProviders.input.semester.placeholder $}"
               value="{{semesterValue}}"
@@ -313,16 +315,13 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
               type="password"
               always-float-label
             >
+              <iron-icon icon="icons:[[visibilityPassword]]" slot="suffix" on-tap="_showPassword"></iron-icon>
             </paper-input>
           </div>
           <div class="general-error" hidden$="[[!errorOccurred]]">[[errorMessage]]</div>
           <div class="action-buttons" layout vertical center>
             <paper-button
               on-click="_daftar"
-              ga-on="click"
-              ga-event-category="pendaftaran"
-              ga-event-action="klik daftar"
-              ga-event-label="daftar block"
               primary
             >
               [[submitLabel]]
@@ -359,7 +358,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
         type: Object,
       },
       signup: {
-        type: Boolean,
+        type: Object,
       },
       validate: {
         type: Boolean,
@@ -375,6 +374,14 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       submitLabel: {
         type: String,
         value: '{$ daftarProviders.submit $}',
+      },
+      visibilityPassword: {
+        type: String,
+        value: 'visibility-off',
+      },
+      visibility: {
+        type: Boolean,
+        value: false
       },
       keyboardOpened: {
         type: Boolean,
@@ -418,7 +425,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
   }
 
   _handleTerdaftar(signup) {
-    if (signup) {
+    if (signup instanceof Success) {
       this._clear();
       closeDialog();
     }
@@ -428,6 +435,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
     if (data) {
       this.errorOccurred = data.errorOccurred;
       this.errorMessage = data.errorMessage;
+      this.submitLabel = data.submitLabel;
     } else {
       data = {};
     }
@@ -441,6 +449,19 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
 
   _closeDialog() {
     closeDialog();
+  }
+
+  _showPassword() {
+    const passField = this.shadowRoot.querySelector('#passwordUser');
+    if (!this.visibility) {
+      this.visibility = true;
+      this.visibilityPassword = 'visibility';
+      passField.setAttribute('type', 'text');
+    } else {
+      this.visibility = false;
+      this.visibilityPassword = 'visibility-off';
+      passField.setAttribute('type', 'password');
+    }
   }
 
   _daftar() {
@@ -468,7 +489,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       !semesterInput.validate()
     ) {
       this.errorOccurred = true;
-      this.errorMessage = 'Harap periksa kembali data anda';
+      this.errorMessage = 'Harap isi data dengan benar!';;
       return;
     }
 
@@ -485,7 +506,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       return;
     }
 
-    showToast({ message: 'Memproses...' });
+    this.submitLabel = 'Memproses...';
     this._submit({
       firstFieldValue: this.namaLengkapValue,
       secondFieldValue: jenisKelaminInput.value,

@@ -29,7 +29,7 @@ export class NewsPostsBlock extends ReduxMixin(PolymerElement) {
         .posts-wrapper {
           display: grid;
           grid-template-columns: 1fr;
-          grid-gap: 16px;
+          grid-gap: 24px;
         }
 
         .post {
@@ -84,10 +84,6 @@ export class NewsPostsBlock extends ReduxMixin(PolymerElement) {
             <a
               href$="/news/posts/[[post.id]]/"
               class="post card"
-              ga-on="click"
-              ga-event-category="news"
-              ga-event-action="open post"
-              ga-event-label$="[[post.title]]"
               layout
               horizontal
             >

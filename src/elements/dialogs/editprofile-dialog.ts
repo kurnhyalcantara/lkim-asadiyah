@@ -11,12 +11,13 @@ import { html, PolymerElement } from '@polymer/polymer';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import { ReduxMixin } from '../../mixins/redux-mixin';
 import { RootState } from '../../store';
-import { closeDialog } from '../../store/dialogs/actions';
+import { openDialog } from '../../store/dialogs/actions';
 import { updateDataUser } from '../../store/signup/actions';
 import '../lkim-icons';
 import '../shared-styles';
 import './dialog-styles';
 import { showToast } from '../../store/toast/actions';
+import { DIALOGS } from '../../store/dialogs/types';
 class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], PolymerElement)) {
   static get template() {
     return html`
@@ -299,10 +300,6 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
           <div class="action-buttons" layout vertical center>
             <paper-button
               on-click="_saveData"
-              ga-on="click"
-              ga-event-category="pendaftaran"
-              ga-event-action="klik daftar"
-              ga-event-label="daftar block"
               primary
             >
               {$ editDataProviders.action.submit $}
@@ -419,7 +416,7 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
   }
 
   _closeDialog() {
-    closeDialog();
+    openDialog(DIALOGS.PROFILE)
   }
 
   _saveData() {
@@ -446,7 +443,7 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
       !semesterInput.validate()
     ) {
       this.errorOccurred = true;
-      this.errorMessage = 'Harap periksa kembali data anda';
+      this.errorMessage = 'Harap isi data dengan benar';
       return;
     }
 

@@ -57,7 +57,6 @@ export class SubscribeFormFooter extends ReduxMixin(PolymerElement) {
       <div class="form-content" layout vertical center>
         <paper-input
           id="emailInput"
-          on-touchend="_focus"
           label="{$ subscribeBlock.yourEmail $}"
           value="{{email}}"
           required
@@ -72,9 +71,6 @@ export class SubscribeFormFooter extends ReduxMixin(PolymerElement) {
           on-click="_subscribe"
           ga-on="click"
           disabled="[[disabled]]"
-          ga-event-category="attendees"
-          ga-event-action="subscribe"
-          ga-event-label="subscribe footer"
           layout
           self-end
         >
@@ -90,7 +86,6 @@ export class SubscribeFormFooter extends ReduxMixin(PolymerElement) {
   email = '';
   @property({ type: String })
   pass = '';
-
   @property({ type: Boolean })
   private validate = false;
 

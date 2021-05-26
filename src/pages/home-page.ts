@@ -154,10 +154,6 @@ export class HomePage extends ReduxMixin(PolymerElement) {
             </a>
             <paper-button
               on-click=""
-              ga-on="click"
-              ga-event-category="daftar"
-              ga-event-action="click"
-              ga-event-label="hero block - daftar action"
               primary
             >
               <iron-icon icon="lkim:ticket"></iron-icon>
@@ -236,7 +232,6 @@ export class HomePage extends ReduxMixin(PolymerElement) {
       <article-latest-block></article-latest-block>
       <featured-videos></featured-videos>
       <map-block></map-block>
-      <!--<subscribe-block></subscribe-block>-->
       <footer-block></footer-block>
     `;
   }

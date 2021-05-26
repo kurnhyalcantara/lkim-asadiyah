@@ -5,6 +5,7 @@ import { WIPE_PREVIOUS_FEEDBACK } from '../feedback/types';
 import { getToken } from '../notifications/actions';
 import { resetSubscribed } from '../subscribe/actions';
 import { showToast } from '../toast/actions';
+import { fetchUser } from '../users/actions';
 import { SIGN_IN } from './types';
 
 export const signIn = (emailUser: string, passUser: string) => {
@@ -17,11 +18,11 @@ export const signIn = (emailUser: string, passUser: string) => {
     })
     .catch((error) => {
       if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-email') {
-        openDialog(DIALOGS.SIGNIN, { errorOccurred: true, errorMessage: 'Akun tidak ditemukan' });
+        openDialog(DIALOGS.SIGNIN, { errorOccurred: true, errorMessage: 'Akun tidak ditemukan', submitLogin: 'Login' });
       }
 
       if (error.code === 'auth/wrong-password') {
-        openDialog(DIALOGS.SIGNIN, { errorOccurred: true, errorMessage: 'Password salah' });
+        openDialog(DIALOGS.SIGNIN, { errorOccurred: true, errorMessage: 'Password salah', submitLogin: 'Login' });
       }
     });
 };
@@ -84,6 +85,8 @@ const storeUser = (credential?: any) => {
       actualProvider,
       pendingCredential,
     };
+
+    store.dispatch(fetchUser(credentialToStore.uid));
   }
 
   store.dispatch({

@@ -136,7 +136,7 @@
     "title": "Semua Jadwal",
     "browseSession": "Browse sessions"
   },
-  "subscribeNote": "Dapatkan update terbaru dari kami melalui email",
+  "subscribeNote": "Dapatkan info terbaru dari kami melalui email",
   "news": {
     "published": "Dipublikasikan",
     "suggested": "Berita Lainnya"
@@ -153,12 +153,12 @@
       "description": "Dapatkan pemberitahuan dan update terbaru tentang kegiatan kami",
       "label": "Subscribe"
     },
-    "yourEmail": "Your email",
+    "yourEmail": "Email anda",
     "emailAddress": "Email Address",
     "firstName": "First Name",
     "lastName": "Last Name",
     "formTitle": "Get the latest updates, insights and news about GDG DevFest Ukraine sent to your inbox.",
-    "emailRequired": "Please enter a valid email address.",
+    "emailRequired": "Masukkan email yang valid",
     "subscribe": "Subscribe",
     "subscribed": "Subscribed",
     "close": "Close",
@@ -297,7 +297,7 @@
       }
     },
     "cancel": "Batal",
-    "submit": "Daftar",
+    "submit": "Buat Akun",
     "generalError": "Terjadi masalah, harap coba lagi nanti :(",
     "success": "Pembuatan akun berhasil dan telah login otomatis, silahkan lanjutkan pendaftaran kegiatan"
   },

@@ -8,10 +8,11 @@ import '@polymer/paper-input/paper-input';
 import '@polymer/iron-icon';
 import '@polymer/app-layout/app-header-layout/app-header-layout';
 import '@polymer/app-layout/app-toolbar/app-toolbar';
-import { closeDialog } from '../../store/dialogs/actions';
+import { closeDialog, openDialog } from '../../store/dialogs/actions';
 import { updateUserPassword } from '../../store/credential/actions';
 import '../lkim-icons';
 import '../shared-styles';
+import { DIALOGS } from '../../store/dialogs/types';
 
 class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], PolymerElement)) {
   static get template() {
@@ -74,7 +75,7 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
             auto-validate$="[[validate]]"
           >
             <iron-icon icon="icons:lock" slot="prefix"></iron-icon>
-            <iron-icon icon="icons:visibility" slot="suffix" on-tap="_showPassword"></iron-icon>
+            <iron-icon icon="icons:visibility" slot="suffix" on-tap="_showOldPassword"></iron-icon>
           </paper-input>
           <paper-input
             id="newPassword"
@@ -89,7 +90,7 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
             auto-validate$="[[validate]]"
           >
             <iron-icon icon="icons:lock" slot="prefix"></iron-icon>
-            <iron-icon icon="icons:visibility" slot="suffix" on-tap="_showPassword"></iron-icon>
+            <iron-icon icon="icons:visibility" slot="suffix" on-tap="_showNewPassword"></iron-icon>
           </paper-input>
           <paper-input
             id="repeatPassword"
@@ -103,7 +104,7 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
             auto-validate$="[[validate]]"
           >
             <iron-icon icon="icons:lock" slot="prefix"></iron-icon>
-            <iron-icon icon="icons:visibility" slot="suffix" on-tap="_showPassword"></iron-icon>
+            <iron-icon icon="icons:visibility" slot="suffix" on-tap="_showRepeatPassword"></iron-icon>
           </paper-input>
         </div>
         <div class="general-error" hidden$="[[!errorOccurred]]">[[errorMessage]]</div>
@@ -114,10 +115,6 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
           <paper-button
             class="submit-button"
             on-click="_submit"
-            ga-on="click"
-            ga-event-category="profile"
-            ga-event-action="submit changePassword"
-            ga-event-label="changePassword dialog"
             primary
           >
             {$ changePassword.action.submit $}
@@ -192,11 +189,13 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
   }
 
   _close() {
-    closeDialog();
+    openDialog(DIALOGS.PROFILE);
   }
 
   _submit() {
+    const repeatPasswordInput = this.shadowRoot.querySelector('#repeatPassword');
     if (this.newPassValue !== this.repeatPassValue) {
+      repeatPasswordInput.invalid = true;
       this.errorOccurred = true;
       this.errorMessage = 'Password tidak cocok';
       return;
@@ -204,8 +203,21 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
     updateUserPassword(this.user.email, this.oldPassValue, this.newPassValue);
   }
 
-  _showPassword() {
-    const passField = this.shadowRoot.querySelector('#password');
+  _showOldPassword() {
+    const passField = this.shadowRoot.querySelector('#oldPassword');
+    console.log(passField);
+    passField.setAttribute('type', 'text');
+  }
+
+  _showNewPassword() {
+    const passField = this.shadowRoot.querySelector('#newPassword');
+    console.log(passField);
+    passField.setAttribute('type', 'text');
+  }
+
+  _showRepeatPassword() {
+    const passField = this.shadowRoot.querySelector('#repeatPassword');
+    console.log(passField);
     passField.setAttribute('type', 'text');
   }
 

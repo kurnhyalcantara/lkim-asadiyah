@@ -155,10 +155,6 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
           <a
             class="pengurus card"
             href$="[[pengurus.link]]"
-            ga-on="click"
-            ga-event-category="pengurus"
-            ga-event-action="open details"
-            ga-event-label$="[[pengurus.name]]"
           >
             <div relative>
               <plastic-image

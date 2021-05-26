@@ -140,10 +140,6 @@ export class ArticleListPage extends ReduxMixin(PolymerElement) {
               <a
                 href$="/articles/posts/[[post.id]]/"
                 class="featured-posts card"
-                ga-on="click"
-                ga-event-category="article"
-                ga-event-action="open post"
-                ga-event-label$="[[post.title]]"
                 layout
                 vertical
               >

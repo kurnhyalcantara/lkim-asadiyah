@@ -136,10 +136,6 @@ export class FeaturedVideos extends ReduxMixin(PolymerElement) {
             class="last-video slide-icon"
             icon="lkim:chevron-left"
             on-click="shiftContentLeft"
-            ga-on="click"
-            ga-event-category="video-list-arrow"
-            ga-event-action="click"
-            ga-event-label="left"
             hidden$="[[_leftArrowHidden]]"
           ></paper-icon-button>
           <div id="videoList" class="video-list" layout flex horizontal>
@@ -156,10 +152,6 @@ export class FeaturedVideos extends ReduxMixin(PolymerElement) {
                 <div
                   class="video-item"
                   on-click="playVideo"
-                  ga-on="click"
-                  ga-event-category="video"
-                  ga-event-action="watch"
-                  ga-event-label$="[[block.title]]"
                 >
                   <div class="thumbnail" relative layout horizontal center-center>
                     <plastic-image
@@ -184,10 +176,6 @@ export class FeaturedVideos extends ReduxMixin(PolymerElement) {
             class="next-video slide-icon"
             icon="lkim:chevron-right"
             on-click="shiftContentRight"
-            ga-on="click"
-            ga-event-category="video-list-arrow"
-            ga-event-action="click"
-            ga-event-label="right"
             hidden$="[[_rightArrowHidden]]"
           >
             &gt;</paper-icon-button

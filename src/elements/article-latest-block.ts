@@ -29,7 +29,7 @@ export class ArticleLatestBlock extends ReduxMixin(PolymerElement) {
         .articles-wrapper {
           display: grid;
           grid-template-columns: 1fr;
-          grid-gap: 16px;
+          grid-gap: 24px;
         }
 
         .image {
@@ -94,10 +94,6 @@ export class ArticleLatestBlock extends ReduxMixin(PolymerElement) {
             <a
               href$="/articles/posts/[[article.id]]/"
               class="article card"
-              ga-on="click"
-              ga-event-category="article"
-              ga-event-action="open article"
-              ga-event-label$="[[article.title]]"
               layout
               vertical
             >

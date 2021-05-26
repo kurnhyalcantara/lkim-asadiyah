@@ -193,9 +193,6 @@ class ProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Pol
             class="button-change-data"
             on-click="_changeData"
             ga-on="click"
-            ga-event-category="profile"
-            ga-event-action="klik changeData"
-            ga-event-label="changeData block"
             primary
           >
             {$ profile.actions.changeData $}
@@ -203,10 +200,6 @@ class ProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Pol
           <paper-button
             class="button-change-password"
             on-click="_changePassword"
-            ga-on="click"
-            ga-event-category="profile"
-            ga-event-action="klik changePassword"
-            ga-event-label="changePassword block"
             primary
             stroke
           >
@@ -215,10 +208,6 @@ class ProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Pol
           <paper-button
             class="button-logout"
             on-click="_logout"
-            ga-on="click"
-            ga-event-category="profile"
-            ga-event-action="klik logout"
-            ga-event-label="logout block"
             danger
           >
             {$ profile.actions.logout $}
@@ -239,6 +228,9 @@ class ProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Pol
       },
       viewport: {
         type: Object,
+      },
+      credential: {
+        type: Object
       },
       errorOccurred: {
         type: Boolean,

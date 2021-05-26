@@ -101,20 +101,6 @@ class PengurusDetails extends SessionsHoC(
         </app-header>
 
         <div class="dialog-container content">
-          <h3 class="meta-info">[[companyInfo]]</h3>
-          <h3 class="meta-info" hidden$="[[isEmpty(pengurus.badges)]]">
-            <template is="dom-repeat" items="[[pengurus.badges]]" as="badge">
-              <a
-                class="badge"
-                href$="[[badge.link]]"
-                target="_blank"
-                rel="noopener noreferrer"
-                title$="[[badge.description]]"
-              >
-                [[badge.description]]
-              </a>
-            </template>
-          </h3>
 
           <marked-element class="description" markdown="[[pengurus.bio]]">
             <div slot="markdown-html"></div>
@@ -128,30 +114,6 @@ class PengurusDetails extends SessionsHoC(
             </template>
           </div>
 
-          <div class="additional-sections" hidden$="[[!pengurus.sessions.length]]">
-            <h3>{$ pengurusDetails.sessions $}</h3>
-
-            <template is="dom-repeat" items="[[pengurus.sessions]]" as="session">
-              <div on-click="_openSession" session-id$="[[session.id]]" class="section">
-                <div layout horizontal center>
-                  <div class="section-details" flex>
-                    <div class="section-primary-text">[[session.title]]</div>
-                    <div class="section-secondary-text" hidden$="[[!session.dateReadable]]">
-                      [[session.dateReadable]]
-                    </div>
-                    <div class="section-secondary-text" hidden$="[[!session.track.title]]">
-                      [[session.track.title]]
-                    </div>
-                    <div class="tags" hidden$="[[!session.tags.length]]">
-                      <template is="dom-repeat" items="[[session.tags]]" as="tag">
-                        <span class="tag" style$="color: [[getVariableColor(tag)]]">[[tag]]</span>
-                      </template>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </template>
-          </div>
         </div>
       </app-header-layout>
     `;
@@ -173,18 +135,6 @@ class PengurusDetails extends SessionsHoC(
       },
       viewport: {
         type: Object,
-      },
-      disabledSchedule: {
-        type: Boolean,
-        value: () => JSON.parse('{$ disabledSchedule $}'),
-      },
-      companyInfo: {
-        type: String,
-        computed: '_computeCompanyInfo(pengurus.title, pengurus.company)',
-      },
-      subtitle: {
-        type: String,
-        computed: '_computeJoin(pengurus.country, pengurus.pronouns)',
       },
     };
   }
@@ -212,37 +162,10 @@ class PengurusDetails extends SessionsHoC(
     }
   }
 
-  _openSession(e: MouseEvent & { currentTarget: HTMLLIElement }) {
-    const sessionId = e.currentTarget.getAttribute('session-id');
-    const sessions: SessionsState = this.sessions;
-    if (sessions instanceof Success) {
-      const session = sessions.data.find((session: Session) => session.id === sessionId);
-      if (session) {
-        openDialog(DIALOGS.SESSION, session);
-      }
-    }
-    // TODO: handle error case
-  }
-
   _getCloseBtnIcon(isLaptopViewport: boolean) {
     return isLaptopViewport ? 'close' : 'arrow-left';
   }
 
-  _computeCompanyInfo(title: string, company: string) {
-    return [title, company].filter(Boolean).join(', ');
-  }
-
-  _computeJoin(...values: string[]) {
-    return values.filter(Boolean).join(' • ');
-  }
-
-  isEmpty(array: unknown[]) {
-    return isEmpty(array);
-  }
-
-  getVariableColor(value: string) {
-    return getVariableColor(this, value);
-  }
 }
 
 window.customElements.define(PengurusDetails.is, PengurusDetails);
