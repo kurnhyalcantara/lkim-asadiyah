@@ -91,12 +91,7 @@ export class ArticleLatestBlock extends ReduxMixin(PolymerElement) {
         <h1 class="container-title">{$ articleLatestBlock.title $}</h1>
         <div class="articles-wrapper">
           <template is="dom-repeat" items="[[articlePosts]]" as="article">
-            <a
-              href$="/articles/posts/[[article.id]]/"
-              class="article card"
-              layout
-              vertical
-            >
+            <a href$="/articles/posts/[[article.id]]/" class="article card" layout vertical>
               <plastic-image
                 class="image"
                 srcset="[[article.image]]"

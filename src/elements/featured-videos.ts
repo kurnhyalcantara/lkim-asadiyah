@@ -149,10 +149,7 @@ export class FeaturedVideos extends ReduxMixin(PolymerElement) {
               </template>
 
               <template is="dom-repeat" items="[[videos.data]]" as="block" index-as="index">
-                <div
-                  class="video-item"
-                  on-click="playVideo"
-                >
+                <div class="video-item" on-click="playVideo">
                   <div class="thumbnail" relative layout horizontal center-center>
                     <plastic-image
                       id="image[[index]]"

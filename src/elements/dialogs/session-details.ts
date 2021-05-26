@@ -278,15 +278,15 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
 
   _sessionUpdate() {
     const { day } = this.session;
-    console.log(day)
+    console.log(day);
     if (day) {
       const now = new Date();
       const currentTime = new Date(`${day}`).getTime();
       const timezoneOffset = parseInt('{$ timezoneOffset $}') - now.getTimezoneOffset();
-      console.log(now.getTimezoneOffset())
+      console.log(now.getTimezoneOffset());
       const convertedTimezoneDate = new Date(currentTime + timezoneOffset * ONE_MINUTE_MS);
       const diff = now.getTime() - convertedTimezoneDate.getTime();
-      console.log(diff)
+      console.log(diff);
       this.acceptingFeedback = diff > 0 && diff < ONE_WEEK_MS;
     } else {
       this.acceptingFeedback = false;

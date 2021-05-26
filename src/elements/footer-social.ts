@@ -177,11 +177,7 @@ export class FooterSocial extends PolymerElement {
         <ul class="nav-inline">
           {% for socFollow in socialNetwork.follow %}
           <li>
-            <a
-              href="{$ socFollow.url $}"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="{$ socFollow.url $}" target="_blank" rel="noopener noreferrer">
               <paper-icon-button icon="lkim:{$ socFollow.name $}"></paper-icon-button>
             </a>
           </li>

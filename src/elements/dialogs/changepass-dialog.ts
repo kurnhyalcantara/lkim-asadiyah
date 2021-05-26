@@ -104,7 +104,11 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
             auto-validate$="[[validate]]"
           >
             <iron-icon icon="icons:lock" slot="prefix"></iron-icon>
-            <iron-icon icon="icons:visibility" slot="suffix" on-tap="_showRepeatPassword"></iron-icon>
+            <iron-icon
+              icon="icons:visibility"
+              slot="suffix"
+              on-tap="_showRepeatPassword"
+            ></iron-icon>
           </paper-input>
         </div>
         <div class="general-error" hidden$="[[!errorOccurred]]">[[errorMessage]]</div>
@@ -112,11 +116,7 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
           <paper-button class="cancel-button" on-click="_close" primary-text>
             {$ cancel $}
           </paper-button>
-          <paper-button
-            class="submit-button"
-            on-click="_submit"
-            primary
-          >
+          <paper-button class="submit-button" on-click="_submit" primary>
             {$ changePassword.action.submit $}
           </paper-button>
         </div>

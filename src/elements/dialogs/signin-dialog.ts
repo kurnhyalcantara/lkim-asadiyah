@@ -136,15 +136,15 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
               no-label-float
             >
               <iron-icon icon="icons:lock" slot="prefix"></iron-icon>
-              <iron-icon icon="icons:[[visibilityPassword]]" slot="suffix" on-tap="_showPassword"></iron-icon>
+              <iron-icon
+                icon="icons:[[visibilityPassword]]"
+                slot="suffix"
+                on-tap="_showPassword"
+              ></iron-icon>
             </paper-input>
           </div>
           <div class="action-button" layout vertical center>
-            <paper-button
-              class="action-login"
-              on-click="_signIn"
-              primary
-            >
+            <paper-button class="action-login" on-click="_signIn" primary>
               [[submitLogin]]
             </paper-button>
             <div>{$ signInProviders.info.p1 $}</div>
@@ -189,11 +189,11 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       },
       visibilityPassword: {
         type: String,
-        value: 'visibility-off'
+        value: 'visibility-off',
       },
       visibility: {
-        type: Boolean, 
-        value: false
+        type: Boolean,
+        value: false,
       },
       data: {
         type: Object,

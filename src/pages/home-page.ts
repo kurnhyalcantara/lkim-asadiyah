@@ -152,10 +152,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
                 {$ infoKegiatan $}
               </paper-button>
             </a>
-            <paper-button
-              on-click=""
-              primary
-            >
+            <paper-button on-click="" primary>
               <iron-icon icon="lkim:ticket"></iron-icon>
               {$ registerNewAccount $}
             </paper-button>

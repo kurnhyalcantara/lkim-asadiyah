@@ -81,12 +81,7 @@ export class NewsPostsBlock extends ReduxMixin(PolymerElement) {
 
         <div class="posts-wrapper">
           <template is="dom-repeat" items="[[latestPosts]]" as="post">
-            <a
-              href$="/news/posts/[[post.id]]/"
-              class="post card"
-              layout
-              horizontal
-            >
+            <a href$="/news/posts/[[post.id]]/" class="post card" layout horizontal>
               <plastic-image
                 class="image"
                 srcset="[[post.image]]"

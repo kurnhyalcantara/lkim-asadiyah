@@ -129,12 +129,7 @@ export class NewsListPage extends ReduxMixin(PolymerElement) {
             </template>
 
             <template is="dom-repeat" items="[[featuredPosts]]" as="post">
-              <a
-                href$="/news/posts/[[post.id]]/"
-                class="featured-post card"
-                layout
-                horizontal
-              >
+              <a href$="/news/posts/[[post.id]]/" class="featured-post card" layout horizontal>
                 <plastic-image
                   class="image"
                   srcset="[[post.image]]"

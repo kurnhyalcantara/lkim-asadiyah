@@ -315,17 +315,16 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
               type="password"
               always-float-label
             >
-              <iron-icon icon="icons:[[visibilityPassword]]" slot="suffix" on-tap="_showPassword"></iron-icon>
+              <iron-icon
+                icon="icons:[[visibilityPassword]]"
+                slot="suffix"
+                on-tap="_showPassword"
+              ></iron-icon>
             </paper-input>
           </div>
           <div class="general-error" hidden$="[[!errorOccurred]]">[[errorMessage]]</div>
           <div class="action-buttons" layout vertical center>
-            <paper-button
-              on-click="_daftar"
-              primary
-            >
-              [[submitLabel]]
-            </paper-button>
+            <paper-button on-click="_daftar" primary> [[submitLabel]] </paper-button>
             <paper-button class="close-button" on-click="_closeDialog"
               >{$ daftarProviders.cancel $}
             </paper-button>
@@ -381,7 +380,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       },
       visibility: {
         type: Boolean,
-        value: false
+        value: false,
       },
       keyboardOpened: {
         type: Boolean,
@@ -489,7 +488,7 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
       !semesterInput.validate()
     ) {
       this.errorOccurred = true;
-      this.errorMessage = 'Harap isi data dengan benar!';;
+      this.errorMessage = 'Harap isi data dengan benar!';
       return;
     }
 

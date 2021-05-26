@@ -152,10 +152,7 @@ export class PengurusPage extends PengurusHoC(ReduxMixin(PolymerElement)) {
 
       <div class="container">
         <template is="dom-repeat" items="[[pengurusToRender]]" as="pengurus">
-          <a
-            class="pengurus card"
-            href$="[[pengurus.link]]"
-          >
+          <a class="pengurus card" href$="[[pengurus.link]]">
             <div relative>
               <plastic-image
                 class="photo"

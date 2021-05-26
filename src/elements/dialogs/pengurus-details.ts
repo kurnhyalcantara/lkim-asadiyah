@@ -101,7 +101,6 @@ class PengurusDetails extends SessionsHoC(
         </app-header>
 
         <div class="dialog-container content">
-
           <marked-element class="description" markdown="[[pengurus.bio]]">
             <div slot="markdown-html"></div>
           </marked-element>
@@ -113,7 +112,6 @@ class PengurusDetails extends SessionsHoC(
               </a>
             </template>
           </div>
-
         </div>
       </app-header-layout>
     `;
@@ -165,7 +163,6 @@ class PengurusDetails extends SessionsHoC(
   _getCloseBtnIcon(isLaptopViewport: boolean) {
     return isLaptopViewport ? 'close' : 'arrow-left';
   }
-
 }
 
 window.customElements.define(PengurusDetails.is, PengurusDetails);

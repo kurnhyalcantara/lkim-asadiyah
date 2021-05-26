@@ -67,13 +67,7 @@ export class SubscribeFormFooter extends ReduxMixin(PolymerElement) {
         >
           <iron-icon icon="lkim:checked" slot="suffix" hidden$="[[!subscribed.data]]"></iron-icon>
         </paper-input>
-        <paper-button
-          on-click="_subscribe"
-          ga-on="click"
-          disabled="[[disabled]]"
-          layout
-          self-end
-        >
+        <paper-button on-click="_subscribe" ga-on="click" disabled="[[disabled]]" layout self-end>
           [[ctaLabel]]
         </paper-button>
       </div>

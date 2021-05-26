@@ -560,12 +560,12 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
 
   _openSignUpDialog() {
     this.drawerOpened = false;
-    openDialog(DIALOGS.SIGNUP, { submitLabel: 'Buat Akun'});
+    openDialog(DIALOGS.SIGNUP, { submitLabel: 'Buat Akun' });
   }
 
   _openSignInDialog() {
     this.drawerOpened = false;
-    openDialog(DIALOGS.SIGNIN, { submitLogin: 'Login'});
+    openDialog(DIALOGS.SIGNIN, { submitLogin: 'Login' });
   }
 
   _openProfileDialog() {

@@ -18,11 +18,19 @@ export const signIn = (emailUser: string, passUser: string) => {
     })
     .catch((error) => {
       if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-email') {
-        openDialog(DIALOGS.SIGNIN, { errorOccurred: true, errorMessage: 'Akun tidak ditemukan', submitLogin: 'Login' });
+        openDialog(DIALOGS.SIGNIN, {
+          errorOccurred: true,
+          errorMessage: 'Akun tidak ditemukan',
+          submitLogin: 'Login',
+        });
       }
 
       if (error.code === 'auth/wrong-password') {
-        openDialog(DIALOGS.SIGNIN, { errorOccurred: true, errorMessage: 'Password salah', submitLogin: 'Login' });
+        openDialog(DIALOGS.SIGNIN, {
+          errorOccurred: true,
+          errorMessage: 'Password salah',
+          submitLogin: 'Login',
+        });
       }
     });
 };

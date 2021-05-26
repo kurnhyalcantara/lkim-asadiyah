@@ -298,10 +298,7 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
           </div>
           <div class="general-error" hidden$="[[!errorOccurred]]">[[errorMessage]]</div>
           <div class="action-buttons" layout vertical center>
-            <paper-button
-              on-click="_saveData"
-              primary
-            >
+            <paper-button on-click="_saveData" primary>
               {$ editDataProviders.action.submit $}
             </paper-button>
             <paper-button class="close-button" on-click="_closeDialog">{$ cancel $} </paper-button>
@@ -416,7 +413,7 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
   }
 
   _closeDialog() {
-    openDialog(DIALOGS.PROFILE)
+    openDialog(DIALOGS.PROFILE);
   }
 
   _saveData() {
