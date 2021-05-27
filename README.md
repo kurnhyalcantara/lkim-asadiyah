@@ -10,7 +10,7 @@
 
 ## Overview
 
-Project LKIM As'adiyah Web App is the organization website for portofolio and user managements. The template is created based on [HMI Asadiyah Web App](https://github.com/kurnhyalcantara/hmiasadiyah) team experience
+Project LKIM As'adiyah Web App is the organization website for portofolio and user managements. The template is created based on [Hoverboard Project](https://github.com/gdg-x/hoverboard) team experience
 
 Our goal is to allow organizers to set up a professional website with minimum resources. To get started you need only basic knowledge of web technologies and a free Firebase account.
 
@@ -18,7 +18,7 @@ Our goal is to allow organizers to set up a professional website with minimum re
 
 | Feature                              | Description                                                                                                    |
 | ------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
-| **Fast and optimized**               | 69/100 PWA on [Lighthouse](https://www.webpagetest.org/result/210430_BiDc1W_ffef92b84ea1fec3eea26584720bdb2f/) |
+| **Fast and optimized**               | 99/100 PWA on [Lighthouse](https://www.webpagetest.org/result/210430_BiDc1W_ffef92b84ea1fec3eea26584720bdb2f/) |
 | **Works offline**                    | shitty WiFi on the location is not a problem anymore                                                           |
 | **Mobile-first**                     | layouts optimized for small screens, Hoverboard can be installed as a native app on your phone                 |
 | **Push notifications**               | remind about sessions in My schedule, session feedback or target users with a custom message                   |
