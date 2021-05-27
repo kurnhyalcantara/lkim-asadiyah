@@ -75,9 +75,8 @@ class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
 
         .info-register {
           padding: 18px 24px;
-          background: var(--primary-color-light);
+          background: var(--default-primary-color);
           border-radius: 12px;
-          border: 1px solid var(--default-primary-color);
           font-size: 14px;
           color: var(--text-primary-color);
         }
