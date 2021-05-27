@@ -145,7 +145,7 @@ export class FeaturedVideos extends ReduxMixin(PolymerElement) {
               </template>
 
               <template is="dom-if" if="[[failure]]">
-                <p>Error loading videos.</p>
+                <p>Tidak ada video</p>
               </template>
 
               <template is="dom-repeat" items="[[videos.data]]" as="block" index-as="index">
