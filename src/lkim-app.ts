@@ -245,7 +245,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
           <app-toolbar layout vertical start>
             <plastic-image
               class="toolbar-logo"
-              srcset="https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/logo%2Ficon-144.png?alt=media&token=d7217861-d044-40ee-a771-7595ed7ac790"
+              srcset="{$ toolbarLogo $}"
               alt="{$ title $}"
             ></plastic-image>
             <div class="version">{$ version $}</div>

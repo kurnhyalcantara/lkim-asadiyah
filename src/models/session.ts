@@ -1,17 +1,18 @@
 import { Id } from './types';
 
 export interface SessionData {
-  partisipants?: string;
+  address: string;
+  city: string;
   description: string;
-  extend?: number;
-  icon?: string;
-  image?: string;
-  language?: string;
-  presentation?: string;
-  speakers?: string[];
-  tags?: string[];
+  featured?: boolean;
+  partisipants: string;
+  poster: string;
+  registration?: string;
+  tags: string[];
+  tanggal?: string;
+  time?: string;
   title: string;
-  videoId?: string;
+  until?: string;
 }
 
 export type Session = Id & SessionData;

@@ -7,8 +7,8 @@ describe('pengurus', () => {
     const pengurus: PengurusData[] = Object.values(data['pengurus']);
     const keys: Array<keyof PengurusData> = [
       'bio',
-      'jabatan',
       'featured',
+      'jabatan',
       'name',
       'order',
       'photoUrl',

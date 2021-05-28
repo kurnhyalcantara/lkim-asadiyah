@@ -8,17 +8,12 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import 'plastic-image';
 import { ReduxMixin } from '../../mixins/redux-mixin';
 import { SessionsHoC } from '../../mixins/sessions-hoc';
-import { closeDialog, openDialog } from '../../store/dialogs/actions';
+import { closeDialog } from '../../store/dialogs/actions';
 import { DIALOGS } from '../../store/dialogs/types';
 import { RootState } from '../../store';
-import { getVariableColor, isEmpty } from '../../utils/functions';
 import '../shared-styles';
 import '../text-truncate';
 import './dialog-styles';
-import { Session } from '../../models/session';
-import { SessionsState } from '../../store/sessions/state';
-import { Success } from '@abraham/remotedata';
-
 class PengurusDetails extends SessionsHoC(
   ReduxMixin(mixinBehaviors([IronOverlayBehavior], PolymerElement))
 ) {

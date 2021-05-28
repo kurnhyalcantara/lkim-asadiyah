@@ -6,19 +6,20 @@ describe('session', () => {
   it('matches the shape of the default data', () => {
     const sessions: SessionData[] = Object.values(data['sessions']);
     const keys: Array<keyof SessionData> = [
-      'partisipants',
+      'address',
+      'city',
       'description',
-      'extend',
-      'icon',
-      'image',
-      'language',
-      'presentation',
-      'speakers',
+      'featured',
+      'partisipants',
+      'poster',
+      'registration',
       'tags',
+      'tanggal',
+      'time',
       'title',
-      'videoId',
+      'until',
     ];
-    expect(sessions).toHaveLength(40);
+    expect(sessions).toHaveLength(2);
     expect(allKeys(sessions)).toStrictEqual(keys);
   });
 });

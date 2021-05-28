@@ -1,6 +1,8 @@
 import { Id } from './types';
 
 export interface ArticleData {
+  author: string;
+  avatar: string;
   backgroundColor: string;
   brief: string;
   content: string;

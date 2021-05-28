@@ -1,14 +1,14 @@
 export interface UserData {
-  alamat_sekarang: string;
+  alamatSekarang: string;
   email: string;
   fakultas: string;
-  instagram_id: string;
-  jenis_kelamin: string;
+  instagram: string;
+  jenisKelamin: string;
   jurusan: string;
-  no_whatsapp: string;
   semester: string;
-  tanggal_lahir: string;
-  tempat_lahir: string;
+  tanggalLahir: string;
+  tempatLahir: string;
+  whatsapp: string;
 }
 
 export type User = UserData;

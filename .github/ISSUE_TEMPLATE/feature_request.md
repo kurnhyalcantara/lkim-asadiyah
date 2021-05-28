@@ -1,19 +1,13 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
+name: Saran Fitur
+about: Memberikan saran untuk fitur baru di projek ini
 title: ''
-labels: enhancement, discussion
-assignees: ''
+labels: peningkatan, diskusi
+assignees: 'kurnhyalcantara'
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Apakah fitur baru terkait dengan bug yang ada di aplikasi?**
+Jelaskan secara rinci alasan yang memungkin untuk menambahkan fitur baru
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
-
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**Jelaskan deskripsi fitur baru yang anda inginkan**
+Jelaskan secara rinci fitur baru yang anda inginkan.

@@ -3,8 +3,8 @@ import { Id } from './types';
 
 export interface PengurusData {
   bio: string;
-  jabatan: string;
   featured: boolean;
+  jabatan: string;
   name: string;
   order: number;
   photoUrl: string;

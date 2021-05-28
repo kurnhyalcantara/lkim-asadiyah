@@ -16,7 +16,6 @@ import { daftar } from '../../store/signup/actions';
 import '../lkim-icons';
 import '../shared-styles';
 import './dialog-styles';
-import { showToast } from '../../store/toast/actions';
 import { Success } from '@abraham/remotedata';
 class SignUpDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], PolymerElement)) {
   static get template() {

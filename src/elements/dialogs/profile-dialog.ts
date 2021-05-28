@@ -139,23 +139,23 @@ class ProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Pol
           </div>
           <div class="section-value">
             <div class="title-value">{$ daftarProviders.input.jenisKelamin.placeholder $}</div>
-            <div class="content-value">[[user.jenis_kelamin]]</div>
+            <div class="content-value">[[user.jenisKelamin]]</div>
           </div>
           <div class="section-value">
             <div class="title-value">{$ daftarProviders.input.tanggalLahir.label $}</div>
-            <div class="content-value">[[user.tanggal_lahir]]</div>
+            <div class="content-value">[[user.tanggalLahir]]</div>
           </div>
           <div class="section-value">
             <div class="title-value">{$ daftarProviders.input.alamatSekarang.label $}</div>
-            <div class="content-value">[[user.alamat_sekarang]]</div>
+            <div class="content-value">[[user.alamatSekarang]]</div>
           </div>
           <div class="section-value">
             <div class="title-value">{$ daftarProviders.input.noWa.label $}</div>
-            <div class="content-value">[[user.no_whatsapp]]</div>
+            <div class="content-value">[[user.whatsapp]]</div>
           </div>
           <div class="section-value">
             <div class="title-value">{$ daftarProviders.input.instagram.label $}</div>
-            <div class="content-value">[[user.instagram_id]]</div>
+            <div class="content-value">[[user.instagram]]</div>
           </div>
           <div class="section-title">
             <iron-icon
@@ -286,12 +286,12 @@ class ProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Pol
     openDialog(DIALOGS.EDITPROFILE, {
       email: this.user.email,
       namaLengkap: this.user.nama_lengkap,
-      tanggalLahir: this.user.tanggal_lahir,
-      tempatLahir: this.user.tempat_lahir,
-      alamatSekarang: this.user.alamat_sekarang,
-      jenisKelamin: this.user.jenis_kelamin,
-      noWa: this.user.no_whatsapp,
-      instagram: this.user.instagram_id,
+      tanggalLahir: this.user.tanggalLahir,
+      tempatLahir: this.user.tempatLahir,
+      alamatSekarang: this.user.alamatSekarang,
+      jenisKelamin: this.user.jenisKelamin,
+      noWa: this.user.whatsapp,
+      instagram: this.user.instagram,
       fakultas: this.user.fakultas,
       jurusan: this.user.jurusan,
       semester: this.user.semester,

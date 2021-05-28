@@ -1,40 +1,40 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Pelaporan Bug
+about: Melaporkan error/bug agar kita bisa mengatasinya
 title: ''
 labels: bug
-assignees: ''
+assignees: 'kurnhyalcantara'
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Deskripsi Bug**
+Jelaskan secara rinci bagaimana bugnya muncul
 
-**To Reproduce**
-Steps to reproduce the behavior:
+**Mereproduksi Bug**
+Langkah-langkah untuk memunculkan bug:
 
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+1.
+2.
+3.
+4. Lihat errornya
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Kejadian yang ingin diharapkan**
+Apa yang sebenarnya diharapkan setelah kita menjalankan fitur yang ada bugnya itu
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Screenshot**
+Jika ada, tambahkan screenshot
 
-**Desktop (please complete the following information):**
+**Desktop (Lengkapi informasi berikut):**
 
-- OS: [e.g. iOS]
-- Browser [e.g. chrome, safari]
-- Version [e.g. 22]
+- OS: [contoh. iOS, Windows]
+- Browser [contoh. chrome, mozilla, safari]
+- Versi [contoh. 22]
 
-**Smartphone (please complete the following information):**
+**Smartphone (Lengkapi informasi berikut):**
 
-- Device: [e.g. iPhone6]
-- OS: [e.g. iOS8.1]
-- Browser [e.g. stock browser, safari]
-- Version [e.g. 22]
+- Device: [contoh. iPhone6, Samsung]
+- OS: [contoh. iOS8.1, android 11]
+- Browser [contoh. chrome, stock browser, safari]
+- Versi [contoh. 22]
 
-**Additional context**
-Add any other context about the problem here.
+**Penjelasan tambahan**
+Jika ada, jelaskan informasi sesuai konteks
