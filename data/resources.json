@@ -11,7 +11,6 @@
   "signUp": "Buat Akun",
   "infoKegiatan": "Info Kegiatan",
   "registerNewAccount": "Pendaftaran Anggota",
-  "partnershipProposition": "https://bit.ly/dfua17-partners",
   "share": "Bagikan",
   "followOur": "Follow our",
   "followUs": "Follow Akun",
@@ -133,8 +132,7 @@
     }
   ],
   "allSchedule": {
-    "title": "Semua Jadwal",
-    "browseSession": "Browse sessions"
+    "title": "Semua Jadwal"
   },
   "subscribeNote": "Dapatkan info terbaru dari kami melalui email",
   "news": {
@@ -189,21 +187,7 @@
   },
   "sessionDetails": {
     "pesertaKegiatan": "Peserta",
-    "viewPresentation": "View presentation",
-    "viewVideo": "View video",
-    "speakers": "Speakers",
     "detail": "Detail Kegiatan"
-  },
-  "speakerDetails": {
-    "sessions": "Sessions"
-  },
-  "signInDialog": {
-    "alreadyHaveAccount": "You already have an account",
-    "alreadyUsed": "You've already used",
-    "signInToContinue": {
-      "part1": "Sign in with",
-      "part2": "to continue."
-    }
   },
   "filters": {
     "title": "Filter",
@@ -357,6 +341,6 @@
 
   "addToHomeScreen": {
     "cta": "Install LKIM IAI Asadiyah",
-    "installed": "LKIM Asadiyah telah ada"
+    "installed": "LKIM Asadiyah telah terpasang"
   }
 }

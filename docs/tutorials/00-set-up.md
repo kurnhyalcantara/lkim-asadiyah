@@ -1,11 +1,11 @@
 # Set up
 
 Follow the instructions below to install, build, and run the
-Project Hoverboard locally in less than 15 minutes.
+Web App locally in less than 15 minutes.
 
 ## Install the Hoverboard and dependencies
 
-1. [Fork repository](https://github.com/gdg-x/hoverboard/fork) and clone your fork locally
+1. [Fork repository](https://github.com/kurnhyalcantara/lkim-asadiyah/fork) and clone your fork locally
 1. Install [Node.js (v12+)](https://nodejs.org/en/download/)
 1. Install project dependencies: `npm ci` (`yarn` should work but it's not officially supported)
 1. Create [Firebase account](https://console.firebase.google.com) and login into [Firebase CLI](https://firebase.google.com/docs/cli/): `npx firebase login`

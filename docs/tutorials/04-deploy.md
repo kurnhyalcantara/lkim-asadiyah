@@ -28,13 +28,13 @@
 
 ### Continuous integration with Github Actions
 
-In the [`.github/workflows`](.github/workflows) folder, you can find two workflows to help you develop and deploy Hoverboard to Firebase:
+In the [`.github/workflows`](.github/workflows) folder, you can find two workflows to help you develop and deploy your Web App to Firebase:
 
 - [`pre-merge.yaml`](.github/workflows/pre-merge.yaml) Builds the project, runs the linter and the tests on every Pull Request.
 - [`firebase-hosting-pull-request.yaml`](.github/workflows/firebase-hosting-pull-request.yaml) Deploys a preview of the project to Firebase after every push to a pull request.
 - [`firebase-hosting-push.yaml`](.github/workflows/firebase-hosting-push.yaml) Deploys the project to Firebase after every merge to `main`.
 
-The `pre-merge` workflow is already configured and will work out of the box, once you fork the hoverboard repo.
+The `pre-merge` workflow is already configured and will work out of the box, once you fork the your Web App repo.
 To run the two `firebase-hosting-*` action on your instance, you need to do a couple of small setup:
 
 #### Deploying to Firebase wiht Github Actions
@@ -55,7 +55,7 @@ This will open GitHub in the browser were you should authorize Firebase CLI acce
 
 > For which GitHub repository would you like to set up a GitHub workflow?
 
-The username and reponame on GitHub. E.g. `gdg-x/hoverboard`
+The username and reponame on GitHub. E.g. `kurnhyalcantara/lkim-asadiyah`
 
 > Set up the workflow to run a build script before every deploy?
 
