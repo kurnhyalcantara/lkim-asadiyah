@@ -22,9 +22,6 @@ export const initializeMessaging = () => {
         },
       });
     });
-    messaging.onTokenRefresh(() => {
-      getToken(true);
-    });
     resolve(messaging);
   });
 };
@@ -32,7 +29,14 @@ export const initializeMessaging = () => {
 export const requestPermission = () => (dispatch: Dispatch) => {
   return Notification.requestPermission()
     .then(() => {
-      getToken(true);
+      dispatch({
+        type: UPDATE_NOTIFICATIONS_STATUS,
+        status: NOTIFICATIONS_STATUS.GRANTED,
+      });
+      return new Notification('Notifikasi diaktifkan', {
+        body: '{$ notifications.enabled $}',
+        image: '{$ notifications.banner $}',
+      });
     })
     .catch(() => {
       dispatch({
@@ -42,7 +46,7 @@ export const requestPermission = () => (dispatch: Dispatch) => {
     });
 };
 
-export const getToken = (subscribe = false) => (dispatch: Dispatch, getState) => {
+export const getToken = (subscribe = false) => (dispatch: Dispatch, getState: any) => {
   if (!subscribe && Notification.permission !== 'granted') {
     return;
   }
@@ -127,8 +131,8 @@ export const getToken = (subscribe = false) => (dispatch: Dispatch, getState) =>
     });
 };
 
-export const unsubscribe = (token) => (dispatch: Dispatch) => {
-  return messaging.deleteToken(token).then(() => {
+export const unsubscribe = () => (dispatch: Dispatch) => {
+  return messaging.deleteToken().then(() => {
     dispatch({
       type: UPDATE_NOTIFICATIONS_STATUS,
       status: NOTIFICATIONS_STATUS.DEFAULT,

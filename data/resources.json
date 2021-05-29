@@ -29,7 +29,7 @@
   "timezoneOffset": "-180",
   "notifications": {
     "default": "Dapatkan berita dan update kegiatan terbaru dari kami",
-    "enabled": "Terima kasih telah subscribe Web App kami",
+    "enabled": "Terima kasih telah mengaktifkan notifikasi Web App kami",
     "blocked": "Kami tidak bisa mengirimkan pemberitahuan, Aktifkan pemberitahuan di browser anda",
     "subscribe": "Subscribe",
     "unsubscribe": "Unsubscribe",
@@ -39,7 +39,8 @@
     },
     "toast": {
       "title": "Buka"
-    }
+    },
+    "banner": "https://firebasestorage.googleapis.com/v0/b/lkim-asadiyah.appspot.com/o/logo%2Ficon-512.png?alt=media&token=067df503-01ac-4048-a7ad-1847749a84dc"
   },
   "aboutBlock": {
     "title": "Apa itu LKIM?",
