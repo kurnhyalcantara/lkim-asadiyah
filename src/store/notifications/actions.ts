@@ -6,7 +6,7 @@ import { NOTIFICATIONS_STATUS, UPDATE_NOTIFICATIONS_STATUS } from './types';
 
 // TODO: Refactor this file
 
-let messaging: firebase.default.messaging.Messaging;
+let messaging: firebase.messaging.Messaging;
 
 export const initializeMessaging = () => {
   return new Promise((resolve) => {
