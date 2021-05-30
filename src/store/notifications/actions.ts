@@ -33,9 +33,10 @@ export const requestPermission = () => (dispatch: Dispatch) => {
   return Notification.requestPermission()
     .then(() => {
       getToken(true);
-      return new Notification('Notifikasi diaktifkan', {
-        body: '{$ notifications.enabled $}',
-      });
+      new Notification('Notifikasi LKIM IAI Asadiyah diaktifkan',
+        {
+          body: '{$ notification.enabled $}'
+        })
     })
     .catch(() => {
       dispatch({
@@ -50,7 +51,7 @@ export const getToken = (subscribe = false) => (dispatch: Dispatch, getState) =>
     return;
   }
   messaging
-    .getToken({ vapidKey: '{$ vapidKeyFcm $}' })
+    .getToken()
     .then((currentToken) => {
       if (currentToken) {
         const state = getState();
@@ -105,6 +106,11 @@ export const getToken = (subscribe = false) => (dispatch: Dispatch, getState) =>
                   { merge: true }
                 );
               }
+              dispatch({
+                type: UPDATE_NOTIFICATIONS_STATUS,
+                status: NOTIFICATIONS_STATUS.GRANTED,
+                token: currentToken,
+              });
             }
           }
         );
