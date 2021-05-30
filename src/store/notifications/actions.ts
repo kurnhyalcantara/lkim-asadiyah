@@ -33,10 +33,6 @@ export const requestPermission = () => (dispatch: Dispatch) => {
   return Notification.requestPermission()
     .then(() => {
       getToken(true);
-      new Notification('Notifikasi LKIM IAI Asadiyah diaktifkan',
-        {
-          body: '{$ notification.enabled $}'
-        })
     })
     .catch(() => {
       dispatch({
