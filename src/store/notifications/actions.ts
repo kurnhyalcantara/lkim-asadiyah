@@ -22,6 +22,9 @@ export const initializeMessaging = () => {
         },
       });
     });
+    messaging.onTokenRefresh(() => {
+      getToken(true);
+    });
     resolve(messaging);
   });
 };
@@ -29,13 +32,9 @@ export const initializeMessaging = () => {
 export const requestPermission = () => (dispatch: Dispatch) => {
   return Notification.requestPermission()
     .then(() => {
-      dispatch({
-        type: UPDATE_NOTIFICATIONS_STATUS,
-        status: NOTIFICATIONS_STATUS.GRANTED,
-      });
+      getToken(true);
       return new Notification('Notifikasi diaktifkan', {
         body: '{$ notifications.enabled $}',
-        image: '{$ notifications.banner $}',
       });
     })
     .catch(() => {
@@ -46,12 +45,12 @@ export const requestPermission = () => (dispatch: Dispatch) => {
     });
 };
 
-export const getToken = (subscribe = false) => (dispatch: Dispatch, getState: any) => {
+export const getToken = (subscribe = false) => (dispatch: Dispatch, getState) => {
   if (!subscribe && Notification.permission !== 'granted') {
     return;
   }
   messaging
-    .getToken()
+    .getToken({ vapidKey: '{$ vapidKeyFcm $}' })
     .then((currentToken) => {
       if (currentToken) {
         const state = getState();
@@ -106,11 +105,6 @@ export const getToken = (subscribe = false) => (dispatch: Dispatch, getState: an
                   { merge: true }
                 );
               }
-              dispatch({
-                type: UPDATE_NOTIFICATIONS_STATUS,
-                status: NOTIFICATIONS_STATUS.GRANTED,
-                token: currentToken,
-              });
             }
           }
         );
@@ -131,8 +125,8 @@ export const getToken = (subscribe = false) => (dispatch: Dispatch, getState: an
     });
 };
 
-export const unsubscribe = () => (dispatch: Dispatch) => {
-  return messaging.deleteToken().then(() => {
+export const unsubscribe = (token) => (dispatch: Dispatch) => {
+  return messaging.deleteToken(token).then(() => {
     dispatch({
       type: UPDATE_NOTIFICATIONS_STATUS,
       status: NOTIFICATIONS_STATUS.DEFAULT,

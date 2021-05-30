@@ -280,7 +280,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
   _toggleNotifications() {
     this._closeNotificationMenu();
     if (this.notifications.status === NOTIFICATIONS_STATUS.GRANTED) {
-      store.dispatch(unsubscribe());
+      store.dispatch(unsubscribe(this.notifications.token));
       return;
     }
     store.dispatch(requestPermission());

@@ -2,7 +2,7 @@ import { store } from '..';
 import { openDialog } from '../dialogs/actions';
 import { DIALOGS } from '../dialogs/types';
 import { WIPE_PREVIOUS_FEEDBACK } from '../feedback/types';
-import { requestPermission } from '../notifications/actions';
+import { getToken } from '../notifications/actions';
 import { resetSubscribed } from '../subscribe/actions';
 import { showToast } from '../toast/actions';
 import { fetchUser } from '../users/actions';
@@ -13,7 +13,7 @@ export const signIn = (emailUser: string, passUser: string) => {
     .auth()
     .signInWithEmailAndPassword(emailUser, passUser)
     .then(() => {
-      store.dispatch(requestPermission());
+      getToken(true);
       showToast({ message: 'Login Berhasil' });
     })
     .catch((error) => {

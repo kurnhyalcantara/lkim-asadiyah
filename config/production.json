@@ -12,5 +12,6 @@
     "measurementId": "G-6C5J2Z2RM1"
   },
   "fbAppId": "811843096095915",
-  "googleMapApiKey": "AIzaSyAyRTnXOg03KvfYSKbcz1F_M3_gb3ESJpU"
+  "googleMapApiKey": "AIzaSyAyRTnXOg03KvfYSKbcz1F_M3_gb3ESJpU",
+  "vapidKeyFcm": "BM9glCscEYYyfvDTojjm15sx5Y-6svvW82gRej2Stj-ksOcR006gkymnvqO3jzEA9rrQuOumMW4ZmLPFEDviC78"
 }
