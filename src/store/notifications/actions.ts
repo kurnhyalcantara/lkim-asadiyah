@@ -34,8 +34,7 @@ export const requestPermission = () => (dispatch: Dispatch) => {
     .then(() => {
       getToken(true);
       return new Notification('Notifikasi diaktifkan', {
-        body: '{$ notifications.enabled $}',
-        icon: '{$ notifications.icon $}',
+        body: '{$ notifications.enabled $}'
       });
     })
     .catch(() => {
@@ -53,11 +52,6 @@ export const getToken = (subscribe = false) => (dispatch: Dispatch, getState) =>
   messaging
     .getToken({ vapidKey: '{$ vapidKeyFcm $}' })
     .then((currentToken) => {
-      dispatch({
-        type: UPDATE_NOTIFICATIONS_STATUS,
-        status: NOTIFICATIONS_STATUS.GRANTED,
-        token: currentToken,
-      });
       if (currentToken) {
         const state = getState();
 
@@ -88,6 +82,11 @@ export const getToken = (subscribe = false) => (dispatch: Dispatch, getState) =>
             );
 
             if (isDeviceSubscribed) {
+              dispatch({
+                type: UPDATE_NOTIFICATIONS_STATUS,
+                status: NOTIFICATIONS_STATUS.GRANTED,
+                token: currentToken,
+              });
               if (userUid && !isUserSubscribed) {
                 userSubscriptionsRef.set(
                   {
