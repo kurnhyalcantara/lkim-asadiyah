@@ -34,7 +34,7 @@ export const requestPermission = () => (dispatch: Dispatch) => {
     .then(() => {
       getToken(true);
       return new Notification('Notifikasi diaktifkan', {
-        body: '{$ notifications.enabled $}'
+        body: '{$ notifications.enabled $}',
       });
     })
     .catch(() => {
