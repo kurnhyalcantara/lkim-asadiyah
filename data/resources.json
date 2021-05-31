@@ -340,6 +340,14 @@
     }
   },
 
+  "forgotPasswordDialog": {
+    "title": "Lupa Password?",
+    "info": "Untuk mendapatkan password baru, masukkan email yang Anda gunakan saat pendaftaran akun",
+    "submit": "Ubah Password",
+    "yourEmail": "Email anda",
+    "successInfo": "Periksa email Anda dan ikuti petunjuk untuk mengubah password yang terdaftar didalamnya."
+  },
+
   "addToHomeScreen": {
     "cta": "Install LKIM IAI Asadiyah",
     "installed": "LKIM Asadiyah telah terpasang"
