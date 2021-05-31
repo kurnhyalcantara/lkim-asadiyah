@@ -60,3 +60,8 @@ export const toggleQueryParam = (currentQueryParams: string | null, key: string,
     : currentKeyValuePairs.concat(keyValue);
   return resultArray.join('&');
 };
+
+export const validateEmail = (email: string) => {
+  const emailRegularExpression = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+  return emailRegularExpression.test(email);
+};
