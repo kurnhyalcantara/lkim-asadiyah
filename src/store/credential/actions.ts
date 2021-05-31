@@ -74,19 +74,24 @@ export const updateUserPassword = (email: string, oldPass: string, newPass: stri
 
 export const sendEmailForgotPassword = (email: string) => {
   const optionUri = {
-    url: `https://lkim-asadiyah.web.app/?email=${email}`
-  }
-  return window.firebase.auth()
+    url: `https://lkim-asadiyah.web.app/?email=${email}`,
+  };
+  return window.firebase
+    .auth()
     .sendPasswordResetEmail(email, optionUri)
     .then(() => {
-      openDialog(DIALOGS.FORGOTPASS, { sendEmailSuccess: true, closeLabel: 'Tutup'})
+      openDialog(DIALOGS.FORGOTPASS, { sendEmailSuccess: true, closeLabel: 'Tutup' });
     })
     .catch((error) => {
       if (error.code === 'auth/user-not-found') {
-        openDialog(DIALOGS.FORGOTPASS, { errorOccurred: true, errorMessage: 'Akun tidak ditemukan', closeLabel: 'Tutup'})
+        openDialog(DIALOGS.FORGOTPASS, {
+          errorOccurred: true,
+          errorMessage: 'Akun tidak ditemukan',
+          closeLabel: 'Tutup',
+        });
       }
-    })
-}
+    });
+};
 
 const storeUser = (credential?: any) => {
   let credentialToStore: any = { signedIn: false };

@@ -45,7 +45,8 @@ class ForgotPassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
           font-size: 22px;
         }
 
-        .info-container, .info-success {
+        .info-container,
+        .info-success {
           margin: 16px 0;
         }
 
@@ -78,8 +79,12 @@ class ForgotPassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
       <div class="dialog-content-input">
         <div class="container-title-dialog">
           <div class="container-title" layout vertical center>{$ forgotPasswordDialog.title $}</div>
-          <p class="info-container" hidden$="[[sendEmailSuccess]]">{$ forgotPasswordDialog.info $}</p>
-          <p class="success-container" hidden$="[[!sendEmailSuccess]]">{$ forgotPasswordDialog.successInfo $}</p>
+          <p class="info-container" hidden$="[[sendEmailSuccess]]">
+            {$ forgotPasswordDialog.info $}
+          </p>
+          <p class="success-container" hidden$="[[!sendEmailSuccess]]">
+            {$ forgotPasswordDialog.successInfo $}
+          </p>
         </div>
         <div class="action-input" hidden$="[[sendEmailSuccess]]">
           <paper-input
@@ -95,7 +100,12 @@ class ForgotPassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
         </div>
         <div class="general-error" hidden$="[[!errorOccurred]]">[[errorMessage]]</div>
         <div class="action-button" layout vertical center>
-          <paper-button class="submit-button" on-click="_changePassword" hidden$="[[sendEmailSuccess]]" primary>
+          <paper-button
+            class="submit-button"
+            on-click="_changePassword"
+            hidden$="[[sendEmailSuccess]]"
+            primary
+          >
             {$ forgotPasswordDialog.submit $}
           </paper-button>
           <paper-button class="cancel-button" on-click="_close" primary-text>
@@ -127,11 +137,11 @@ class ForgotPassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
       },
       sendEmailSuccess: {
         type: Boolean,
-        value: false
+        value: false,
       },
       closeLabel: {
         type: String,
-        value: '{$ cancel $}'
+        value: '{$ cancel $}',
       },
       user: {
         type: Object,
@@ -175,7 +185,7 @@ class ForgotPassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
   }
 
   _close() {
-    openDialog(DIALOGS.SIGNIN, { submitLogin: 'Login'});
+    openDialog(DIALOGS.SIGNIN, { submitLogin: 'Login' });
   }
 
   _changePassword() {
@@ -188,7 +198,7 @@ class ForgotPassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
       return;
     }
 
-    sendEmailForgotPassword(emailInput.value); 
+    sendEmailForgotPassword(emailInput.value);
   }
 
   _resize(e) {

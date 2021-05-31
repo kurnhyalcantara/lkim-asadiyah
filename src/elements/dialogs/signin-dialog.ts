@@ -76,7 +76,8 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
           margin-bottom: 18px;
         }
 
-        .action-login, .action-forgot-password {
+        .action-login,
+        .action-forgot-password {
           min-width: 75%;
         }
 
@@ -153,7 +154,7 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
             <paper-button class="action-forgot-password" on-click="_forgotPassword" primary stroke>
               <span>Lupa Password</span>
               <iron-icon icon="icons:help"></iron-icon>
-            </paper-button> 
+            </paper-button>
             <div class="info-providers">{$ signInProviders.info.p1 $}</div>
             <paper-button class="action-register" on-click="_newRegister">
               <span>{$ signInProviders.actions.newRegister $}</span>
@@ -273,7 +274,7 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
   }
 
   _forgotPassword() {
-    openDialog(DIALOGS.FORGOTPASS, { sendEmailSuccess: false, closeLabel: 'Batal'});
+    openDialog(DIALOGS.FORGOTPASS, { sendEmailSuccess: false, closeLabel: 'Batal' });
   }
 
   _signIn() {
