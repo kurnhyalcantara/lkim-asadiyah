@@ -146,6 +146,18 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
       errorMessage: {
         type: String,
       },
+      visibilityOldPassword: {
+        type: Boolean,
+        value: false,
+      },
+      visibilityNewPassword: {
+        type: Boolean,
+        value: false,
+      },
+      visibilityRepeatPassword: {
+        type: Boolean,
+        value: false,
+      },
       user: {
         type: Object,
       },
@@ -193,6 +205,7 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
   }
 
   _submit() {
+    this.errorOccurred = false;
     const repeatPasswordInput = this.shadowRoot.querySelector('#repeatPassword');
     if (this.newPassValue !== this.repeatPassValue) {
       repeatPasswordInput.invalid = true;
@@ -204,21 +217,36 @@ class ChangePassDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], 
   }
 
   _showOldPassword() {
-    const passField = this.shadowRoot.querySelector('#oldPassword');
-    console.log(passField);
-    passField.setAttribute('type', 'text');
+    const passOldField = this.shadowRoot.querySelector('#oldPassword');
+    if (!this.visibilityOldPassword) {
+      this.visibilityOldPassword = true;
+      passOldField.setAttribute('type', 'text');
+    } else {
+      this.visibilityOldPassword = false;
+      passOldField.setAttribute('type', 'password');
+    }
   }
 
   _showNewPassword() {
-    const passField = this.shadowRoot.querySelector('#newPassword');
-    console.log(passField);
-    passField.setAttribute('type', 'text');
+    const passNewField = this.shadowRoot.querySelector('#newPassword');
+    if (!this.visibilityNewPassword) {
+      this.visibilityNewPassword = true;
+      passNewField.setAttribute('type', 'text');
+    } else {
+      this.visibilityNewPassword = false;
+      passNewField.setAttribute('type', 'password');
+    }
   }
 
   _showRepeatPassword() {
-    const passField = this.shadowRoot.querySelector('#repeatPassword');
-    console.log(passField);
-    passField.setAttribute('type', 'text');
+    const passRepeatField = this.shadowRoot.querySelector('#repeatPassword');
+    if (!this.visibilityRepeatPassword) {
+      this.visibilityRepeatPassword = true;
+      passRepeatField.setAttribute('type', 'text');
+    } else {
+      this.visibilityRepeatPassword = false;
+      passRepeatField.setAttribute('type', 'password');
+    }
   }
 
   _resize(e) {

@@ -263,7 +263,7 @@ export class HeaderToolbar extends ReduxMixin(PolymerElement) {
   }
 
   _signIn() {
-    openDialog(DIALOGS.SIGNIN);
+    openDialog(DIALOGS.SIGNIN, { submitLogin: 'Login' });
   }
 
   _onScroll() {

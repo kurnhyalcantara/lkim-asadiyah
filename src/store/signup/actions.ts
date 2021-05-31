@@ -54,7 +54,7 @@ export const daftar = (data: SignUpForm) => async (dispatch: Dispatch<DaftarActi
       openDialog(DIALOGS.SIGNUP, {
         errorOccurred: true,
         errorMessage: 'Email telah digunakan orang lain',
-        submitLabel: 'Daftar',
+        submitLabel: 'Buat akun',
       });
     }
   }

@@ -262,7 +262,7 @@ class SigninDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Poly
   }
 
   _newRegister() {
-    openDialog(DIALOGS.SIGNUP);
+    openDialog(DIALOGS.SIGNUP, { submitLabel: 'Buat akun' });
   }
 
   _signIn() {

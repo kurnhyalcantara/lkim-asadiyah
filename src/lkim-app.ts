@@ -571,6 +571,5 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   _openProfileDialog() {
     this.drawerOpened = false;
     openDialog(DIALOGS.PROFILE);
-    // signOut();
   }
 }
