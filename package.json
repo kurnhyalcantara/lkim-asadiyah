@@ -79,7 +79,7 @@
     "@types/jest-dev-server": "^4.2.0",
     "@types/node": "^15.14.0",
     "@types/polymer": "^1.2.11",
-    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.1",
     "concurrently": "^6.0.0",
     "core-js": "^3.13.1",
