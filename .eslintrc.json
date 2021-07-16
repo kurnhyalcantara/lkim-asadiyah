@@ -3,7 +3,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:jest/all",
-    "plugin:testing-library/dom",
+    "plugin:testing-library/recommended",
     "plugin:jest-dom/recommended",
     "google",
     "plugin:polymer/polymer-3",
