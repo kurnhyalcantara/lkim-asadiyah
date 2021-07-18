@@ -38,9 +38,8 @@ describe('user', () => {
 
   describe('unauthenticated', () => {
     it('matches the shape of the default data', () => {
-      const unauthenticatedCredentials: UnauthenticatedCredential[] = users.filter(
-        isUnauthenticated
-      );
+      const unauthenticatedCredentials: UnauthenticatedCredential[] =
+        users.filter(isUnauthenticated);
       const keys: Array<keyof UnauthenticatedCredential> = ['signedIn'];
       expect(unauthenticatedCredentials).toHaveLength(1);
       expect(allKeys(unauthenticatedCredentials)).toStrictEqual(keys);

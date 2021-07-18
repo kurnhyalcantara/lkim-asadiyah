@@ -15,22 +15,21 @@ const getPreviousSpeakers = async (): Promise<Pengurus[]> => {
   return docs.map<Pengurus>(mergeId);
 };
 
-export const fetchPreviousSpeakersList = () => async (
-  dispatch: Dispatch<PreviousSpeakersActions>
-) => {
-  dispatch({
-    type: FETCH_PREVIOUS_SPEAKERS,
-  });
+export const fetchPreviousSpeakersList =
+  () => async (dispatch: Dispatch<PreviousSpeakersActions>) => {
+    dispatch({
+      type: FETCH_PREVIOUS_SPEAKERS,
+    });
 
-  try {
-    dispatch({
-      type: FETCH_PREVIOUS_SPEAKERS_SUCCESS,
-      payload: await getPreviousSpeakers(),
-    });
-  } catch (error) {
-    dispatch({
-      type: FETCH_PREVIOUS_SPEAKERS_FAILURE,
-      payload: error,
-    });
-  }
-};
+    try {
+      dispatch({
+        type: FETCH_PREVIOUS_SPEAKERS_SUCCESS,
+        payload: await getPreviousSpeakers(),
+      });
+    } catch (error) {
+      dispatch({
+        type: FETCH_PREVIOUS_SPEAKERS_FAILURE,
+        payload: error,
+      });
+    }
+  };
