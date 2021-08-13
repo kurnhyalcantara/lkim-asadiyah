@@ -1,6 +1,6 @@
 {
   "name": "lkim-asadiyah",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Project LKIM Asadiyah Web App",
   "engines": {
@@ -117,7 +117,7 @@
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-recommended": "^3.0.0",
     "ts-jest": "^27.0.3",
-    "ts-node": "^10.1.0",
+    "ts-node": "^10.2.0",
     "typescript": "^4.1.5"
   },
   "contributors": [
