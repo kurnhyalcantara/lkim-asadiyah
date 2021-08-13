@@ -13,7 +13,7 @@
     "firestore:add": "ts-node-script ./scripts/firestore-init",
     "firestore:copy": "ts-node-script ./scripts/firestore-copy",
     "firestore:delete": "firebase firestore:delete --recursive --all-collections -y",
-    "firestore:init": "firebase firestore:delete --recursive --all-collections -y && firebase functions:config:set schedule.enabled=true && firebase deploy --except hosting && ts-node-script ./scripts/firestore-init",
+    "firestore:init": "firebase functions:config:set schedule.enabled=true && firebase deploy --except hosting && ts-node-script ./scripts/firestore-init",
     "fix": "concurrently npm:fix:*",
     "fix:eslint": "eslint . --ext .ts --ext .js --fix",
     "fix:prettier": "prettier . --write",
