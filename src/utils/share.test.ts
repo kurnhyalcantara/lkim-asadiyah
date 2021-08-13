@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { TempAny } from '../temp-any';
 import { share } from './share';
 
