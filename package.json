@@ -75,7 +75,7 @@
     "@testing-library/dom": "^8.1.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@types/google.analytics": "0.0.42",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.1",
     "@types/jest-dev-server": "^4.2.1",
     "@types/node": "^16.6.1",
     "@types/polymer": "^1.2.11",
