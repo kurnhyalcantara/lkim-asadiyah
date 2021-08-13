@@ -98,7 +98,7 @@
     "eslint-plugin-testing-library": "^4.9.0",
     "firebase": "^8.7.1",
     "firebase-admin": "^9.5.0",
-    "firebase-tools": "^9.16.0",
+    "firebase-tools": "^9.16.3",
     "jest": "^27.0.6",
     "jest-dev-server": "^4.4.0",
     "jest-runner-eslint": "^0.10.1",
