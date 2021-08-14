@@ -146,7 +146,8 @@ service cloud.firestore {
     match /users/{userId} {
       allow list: if false;
 
-      allow get: if request.auth.uid == userId;
+      allow get;
+      allow read, write: if request.auth.uid == userId;
 
       allow create, delete: if false;
       allow update: if request.auth.uid == userId;
