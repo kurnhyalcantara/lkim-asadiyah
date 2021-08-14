@@ -4,7 +4,6 @@ import { mailchimpSubscribe } from './mailchimp-subscribe';
 import { sendGeneralNotification } from './notifications';
 import { optimizeImages } from './optimize-images';
 import { prerender } from './prerender';
-import { saveUserData } from './save-user-data';
 import { scheduleNotifications } from './schedule-notifications';
 
 // TODO: Update `tsconfig.json`
@@ -14,7 +13,6 @@ import { scheduleNotifications } from './schedule-notifications';
 admin.initializeApp();
 
 export {
-  saveUserData,
   sendGeneralNotification,
   scheduleNotifications,
   optimizeImages,
