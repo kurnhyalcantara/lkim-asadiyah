@@ -1,0 +1,30 @@
+{
+  "users": {
+    "3WxQ24BWc3ciNY7NzZFZi347hUY2": {
+      "tanggalLahir": "1999-03-12",
+      "semester": "6",
+      "fakultas": "Fakultas Tarbiyah dan Keguruan",
+      "whatsapp": "082372527221",
+      "nama_lengkap": "Kurniawan",
+      "jurusan": "Pendidikan Agama Islam",
+      "alamatSekarang": "Lajokka",
+      "email": "kurnhyalcantara@gmail.com",
+      "tempatLahir": "Lapao",
+      "jenisKelamin": "Pria",
+      "instagram": "@kurnhyalcantara24"
+    },
+    "SO3a7vdV2LNoO3n2cx2QjqjVWi02": {
+      "fakultas": "Fakultas Syariah dan Hukum",
+      "jenisKelamin": "Pria",
+      "tempatLahir": "Lapao",
+      "nama_lengkap": "Kurniawan",
+      "jurusan": "Ahwalusy Syakhsiyyah",
+      "tanggalLahir": "1999-03-12",
+      "whatsapp": "082372527221",
+      "semester": "1",
+      "alamatSekarang": "Lajokka",
+      "email": "kurnhyalcantara24@gmail.com",
+      "instagram": "@kurnhyalcantara24"
+    }
+  }
+}
