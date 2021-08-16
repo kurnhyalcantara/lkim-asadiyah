@@ -197,6 +197,11 @@ export const theme = css`
     font-weight: 600;
   }
 
+  mwc-fab {
+    --mdc-theme-secondary: var(--accent-color);
+    --mdc-theme-on-secondary: var(--text-primary-color);
+  }
+
   .container,
   .container-narrow {
     margin: 0 auto;

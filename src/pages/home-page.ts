@@ -13,7 +13,8 @@ import { ReduxMixin } from '../mixins/redux-mixin';
 import { RootState } from '../store';
 import { Viewport } from '../store/ui/types';
 import { scrollToY } from '../utils/scrolling';
-
+import { openDialog } from '../store/dialogs/actions';
+import { DIALOGS } from '../store/dialogs/types'
 @customElement('home-page')
 export class HomePage extends ReduxMixin(PolymerElement) {
   static get template() {
@@ -152,7 +153,7 @@ export class HomePage extends ReduxMixin(PolymerElement) {
                 {$ infoKegiatan $}
               </paper-button>
             </a>
-            <paper-button on-click="" primary>
+            <paper-button on-click="_openSignUpDialog" primary>
               <iron-icon icon="lkim:ticket"></iron-icon>
               {$ registerNewAccount $}
             </paper-button>
@@ -245,5 +246,9 @@ export class HomePage extends ReduxMixin(PolymerElement) {
   _scrollNextBlock() {
     const heroHeight = this.$.hero.getBoundingClientRect().height - 55;
     scrollToY(heroHeight, 600, 'easeInOutSine');
+  }
+
+  _openSignUpDialog() {
+    openDialog(DIALOGS.SIGNUP);
   }
 }

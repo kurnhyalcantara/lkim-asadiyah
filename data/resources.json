@@ -10,7 +10,7 @@
   "logIn": "Login",
   "signUp": "Buat Akun",
   "infoKegiatan": "Info Kegiatan",
-  "registerNewAccount": "Pendaftaran Anggota",
+  "registerNewAccount": "Buat Akun Baru",
   "share": "Bagikan",
   "followOur": "Follow our",
   "followUs": "Follow Akun",
@@ -201,7 +201,7 @@
   "daftarProviders": {
     "logo": "/images/manifest/icon-114.png",
     "header": "Buat Akun Baru",
-    "info": "Silahkan buat akun baru untuk bisa login dan melanjutkan proses pendaftaran",
+    "info": "Silahkan buat akun baru untuk bisa login dan melanjutkan proses pendaftaran kegiatan",
     "title": {
       "informasidiri": {
         "icon": "account-circle",
@@ -284,7 +284,7 @@
     "cancel": "Batal",
     "submit": "Buat Akun",
     "generalError": "Terjadi masalah, harap coba lagi nanti :(",
-    "success": "Pembuatan akun berhasil dan telah login otomatis, silahkan lanjutkan pendaftaran kegiatan"
+    "success": "Pembuatan akun berhasil dan telah login otomatis, silahkan lanjutkan pendaftaran kegiatan pada menu agenda"
   },
 
   "signInProviders": {

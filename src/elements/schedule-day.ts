@@ -36,25 +36,6 @@ export class ScheduleDay extends PolymerElement {
           text-transform: uppercase;
         }
 
-        .add-session {
-          padding: 8px;
-          grid-column-end: -1 !important;
-          background-color: var(--primary-background-color);
-          border-bottom: 1px solid var(--border-light-color);
-          font-size: 14px;
-          color: var(--secondary-text-color);
-          text-transform: uppercase;
-        }
-
-        .add-session:hover {
-          background-color: var(--additional-background-color);
-        }
-
-        .add-session-icon {
-          --iron-icon-width: 14px;
-          margin-right: 8px;
-        }
-
         @media (min-width: 812px) {
           :host {
             margin-left: auto;
@@ -89,9 +70,6 @@ export class ScheduleDay extends PolymerElement {
             margin-bottom: 16px;
           }
 
-          .add-session {
-            border: 1px solid var(--border-light-color);
-          }
         }
       </style>
 
@@ -128,18 +106,6 @@ export class ScheduleDay extends PolymerElement {
                     featured-sessions="[[featuredSessions]]"
                     query-params="[[queryParams]]"
                   ></session-element>
-                  <a
-                    class="add-session"
-                    href$="[[subSession.link]]"
-                    style$="grid-area: [[timeslot.sessions.0.gridArea]]"
-                    layout
-                    horizontal
-                    center-center
-                    hidden$="[[!subSession.featured]]"
-                  >
-                    <iron-icon class="add-session-icon" icon="lkim:add-circle-outline"></iron-icon>
-                    <span>{$ schedule.registerSchedule $}</span>
-                  </a>
                 </template>
               </div>
             </template>

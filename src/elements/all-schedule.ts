@@ -80,18 +80,6 @@ export class AllSchedule extends ReduxMixin(PolymerElement) {
               featured-sessions="[[featuredSessions]]"
               query-params="[[queryParams]]"
             ></session-element>
-            <a
-              class="add-session"
-              href$="[[subSession.link]]"
-              style$="grid-area: [[timeslot.sessions.0.gridArea]]"
-              layout
-              horizontal
-              center-center
-              hidden$="[[!subSession.featured]]"
-            >
-              <iron-icon class="add-session-icon" icon="lkim:add-circle-outline"></iron-icon>
-              <span>{$ schedule.registerSchedule $}</span>
-            </a>
           </div>
         </template>
       </div>

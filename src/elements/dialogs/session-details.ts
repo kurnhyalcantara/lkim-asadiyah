@@ -4,7 +4,7 @@ import '@polymer/app-layout/app-toolbar/app-toolbar';
 import '@polymer/iron-icon';
 import { IronOverlayBehavior } from '@polymer/iron-overlay-behavior';
 import '@polymer/marked-element';
-import '@polymer/paper-fab';
+import '@material/mwc-fab';
 import { html, PolymerElement } from '@polymer/polymer';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import 'plastic-image';
@@ -116,25 +116,18 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
                 <span class="session-city">[[session.city]]</span>
                 <span class="session-track"> - [[session.address]]</span>
               </div>
-
-              <div class="float-button">
-                <paper-fab
-                  icon="lkim:[[_getFeaturedSessionIcon(featuredSessions, session.id)]]"
-                  hidden$="[[!viewport.isLaptopPlus]]"
-                  on-click="_toggleFeaturedSession"
-                ></paper-fab>
-              </div>
             </div>
           </app-toolbar>
         </app-header>
 
         <div class="dialog-container content">
           <div class="float-button">
-            <paper-fab
-              icon="lkim:[[_getFeaturedSessionIcon(featuredSessions, session.id)]]"
-              hidden$="[[viewport.isLaptopPlus]]"
+            <mwc-fab
+              extended
+              hidden$="[[!session.featured]]"
               on-click="_toggleFeaturedSession"
-            ></paper-fab>
+              label="Isi Formulir"
+            ></mwc-fab>
           </div>
 
           <div class="details">{$ sessionDetails.detail $}</div>

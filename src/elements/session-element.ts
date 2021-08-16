@@ -123,7 +123,7 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
         .session-details,
         .session-description {
           display: inline-block;
-          color: var(--disabled-text-color);
+          color: var(--secondary-text-color);
           margin-top: 8px;
         }
 
@@ -179,6 +179,25 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
           line-height: 1;
         }
 
+        .add-session {
+          padding: 8px;
+          grid-column-end: -1 !important;
+          background-color: var(--primary-background-color);
+          border-bottom: 1px solid var(--border-light-color);
+          font-size: 14px;
+          color: var(--secondary-text-color);
+          text-transform: uppercase;
+        }
+
+        .add-session:hover {
+          background-color: var(--additional-background-color);
+        }
+
+        .add-session-icon {
+          --iron-icon-width: 14px;
+          margin-right: 8px;
+        }
+
         @media (min-width: 640px) {
           :host {
             border: 1px solid var(--border-light-color);
@@ -192,6 +211,10 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
 
         @media (min-width: 812px) {
           :host {
+            border: 1px solid var(--border-light-color);
+          }
+
+          .add-session {
             border: 1px solid var(--border-light-color);
           }
         }
@@ -263,6 +286,17 @@ export class SessionElement extends ReduxMixin(PolymerElement) {
               on-click="_toggleFeedback"
             ></iron-icon>
           </div>
+        </div>
+        <div
+          class="add-session"
+          style$="grid-area: [[timeslot.sessions.0.gridArea]]"
+          layout
+          horizontal
+          center-center
+          hidden$="[[!session.featured]]"
+        >
+          <iron-icon class="add-session-icon" icon="lkim:add-circle-outline"></iron-icon>
+          <span>{$ schedule.registerSchedule $}</span>
         </div>
       </a>
     `;
