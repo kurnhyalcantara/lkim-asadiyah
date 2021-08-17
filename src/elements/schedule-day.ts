@@ -69,7 +69,6 @@ export class ScheduleDay extends PolymerElement {
           .subsession:not(:last-of-type) {
             margin-bottom: 16px;
           }
-
         }
       </style>
 

@@ -14,7 +14,7 @@ import { RootState } from '../store';
 import { Viewport } from '../store/ui/types';
 import { scrollToY } from '../utils/scrolling';
 import { openDialog } from '../store/dialogs/actions';
-import { DIALOGS } from '../store/dialogs/types'
+import { DIALOGS } from '../store/dialogs/types';
 @customElement('home-page')
 export class HomePage extends ReduxMixin(PolymerElement) {
   static get template() {
