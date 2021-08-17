@@ -230,9 +230,9 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
     event.stopPropagation();
     if (!this.credential.signedIn) {
       showToast({
-        message: '{$ schedule.saveSessionsSignedOut $}',
+        message: '{$ schedule.printFormSignedOut $}',
         action: {
-          title: 'Sign in',
+          title: 'Login',
           callback: () => openDialog(DIALOGS.SIGNIN),
         },
       });
