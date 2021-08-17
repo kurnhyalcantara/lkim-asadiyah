@@ -249,6 +249,6 @@ export class HomePage extends ReduxMixin(PolymerElement) {
   }
 
   _openSignUpDialog() {
-    openDialog(DIALOGS.SIGNUP);
+    openDialog(DIALOGS.SIGNUP, { submitLabel: 'Buat Akun' });
   }
 }

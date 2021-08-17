@@ -125,26 +125,14 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
             <mwc-fab
               extended
               hidden$="[[!session.featured]]"
-              on-click="_toggleFeaturedSession"
-              label="Isi Formulir"
+              on-click="_togglePrintForm"
+              label="{$ sessionDetails.printRegistCard $}"
             ></mwc-fab>
           </div>
-
           <div class="details">{$ sessionDetails.detail $}</div>
           <marked-element class="description" markdown="[[session.description]]">
             <div slot="markdown-html"></div>
           </marked-element>
-
-          <div id="feedback" class="additional-sections">
-            <h3>{$ feedback.headline $}</h3>
-
-            <auth-required hidden="[[!acceptingFeedback]]">
-              <slot slot="prompt">{$ feedback.leaveFeedback $}</slot>
-              <feedback-block session-id="[[session.id]]"></feedback-block>
-            </auth-required>
-
-            <p hidden="[[acceptingFeedback]]">{$ feedback.sessionClosed $}</p>
-          </div>
         </div>
       </app-header-layout>
     `;

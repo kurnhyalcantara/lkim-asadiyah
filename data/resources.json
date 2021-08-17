@@ -188,7 +188,8 @@
   },
   "sessionDetails": {
     "pesertaKegiatan": "Peserta",
-    "detail": "Detail Kegiatan"
+    "detail": "Detail Kegiatan",
+    "printRegistCard": "Cetak Kartu Pendaftaran"
   },
   "filters": {
     "title": "Filter",
