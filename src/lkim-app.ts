@@ -37,6 +37,7 @@ import './elements/dialogs/editprofile-dialog';
 import './elements/dialogs/changepass-dialog';
 import './elements/dialogs/forgotpass-dialog';
 import './elements/dialogs/video-dialog';
+import './elements/dialogs/print-form';
 import './elements/footer-block';
 import './elements/header-toolbar';
 import './elements/lkim-icons';
@@ -385,6 +386,13 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
         no-cancel-on-outside-click="[[viewport.isPhone]]"
       ></forgotpass-dialog>
 
+      <print-form
+        opened="[[isPrintFormDialogOpen]]"
+        data="[[dialogs.data.data]]"
+        with-backdrop
+        no-cancel-on-outside-click="[[viewport.isPhone]]"
+      ></print-form>
+
       <toast-element></toast-element>
     `;
   }
@@ -441,6 +449,8 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
   private isSessionDialogOpen = false;
   @property({ type: Boolean })
   private isFeedbackDialogOpen = false;
+  @property({ type: Boolean })
+  private isPrintFormDialogOpen = false;
 
   stateChanged(state: RootState) {
     this.dialogs = state.dialogs;
@@ -453,6 +463,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
     this.isSpeakerDialogOpen = isDialogOpen(this.dialogs, DIALOGS.PENGURUS);
     this.isSessionDialogOpen = isDialogOpen(this.dialogs, DIALOGS.SESSION);
     this.isFeedbackDialogOpen = isDialogOpen(this.dialogs, DIALOGS.FEEDBACK);
+    this.isPrintFormDialogOpen = isDialogOpen(this.dialogs, DIALOGS.PRINTFORM);
     this.notifications = state.notifications;
     this.route = state.routing;
     this.ui = state.ui;
