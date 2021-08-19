@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { IronOverlayBehavior } from '@polymer/iron-overlay-behavior';
 import { PolymerElement, html } from '@polymer/polymer';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
@@ -142,13 +143,24 @@ class PrintForm extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Polymer
               <div class="value">[[user.email]]</div>
             </div>
           </div>
-          <div class="statement"></div>
-          <div class="action-button">
-            <paper-button primary on-click="_printPdf">Unduh</paper-button>
+          <div class="statement">
+            <h4 style="font-weight: 600; text-decoration: underline; text-align: center;">Pernyataan</h4>
+            <p>Yang bertanda tangan dibawah ini, calon peserta Pelatihan Karya Tulis Ilmiah yang diselenggarakan oleh LKIM IAI As'adiyah dengan ini menyatakan setuju terhadap beberapa ketentuan berikut ini :</p>
+            <ol>
+              <li>Hadir pada waktu pada hari dan waktu yang telah ditentukan</li>
+              <li>Pada waktu pelatihan sedang berlangsung wajib men-silent-kan ponsel</li>
+            </ol>
+          </div>
+          <div class="signplace" style="text-align: right; margin-top: 32px;">
+            <div class="tanggal">Sengkang..................................................</div>
+            <div class="label" style="margin: 38px 0;">Calon peserta</div>
+            <div class="name" style="margin-top: 89px;">[[user.nama_lengkap]]</div>
           </div>
         </div>
-        <app-header-layout> </app-header-layout
-      ></app-header-layout>
+        <div class="action-button">
+          <paper-button primary on-click="_printPdf">Unduh</paper-button>
+        </div>
+      </app-header-layout>
     `;
   }
   static get is() {

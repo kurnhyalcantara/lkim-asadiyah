@@ -198,7 +198,7 @@ export const theme = css`
   mwc-fab {
     --mdc-theme-secondary: var(--accent-color);
     --mdc-theme-on-secondary: var(--text-primary-color);
-    --mdc-fab-extended-label-padding: 26px;
+    --mdc-fab-extended-label-padding: 32px;
   }
 
   .container,
