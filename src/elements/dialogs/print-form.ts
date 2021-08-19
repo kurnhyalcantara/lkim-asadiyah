@@ -57,7 +57,6 @@ class PrintForm extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Polymer
         iron-icon {
           margin-right: 12px;
         }
-
       </style>
       <app-header-layout has-scrolling-region>
         <app-header slot="header" class="header" fixed="[[viewport.isTabletPlus]]">
@@ -163,8 +162,14 @@ class PrintForm extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Polymer
             </div>
           </div>
           <div class="statement">
-            <h4 style="font-weight: 600; text-decoration: underline; text-align: center;">Pernyataan</h4>
-            <p>Yang bertanda tangan dibawah ini, calon peserta Pelatihan Karya Tulis Ilmiah yang diselenggarakan oleh LKIM IAI As'adiyah dengan ini menyatakan setuju terhadap beberapa ketentuan berikut ini :</p>
+            <h4 style="font-weight: 600; text-decoration: underline; text-align: center;">
+              Pernyataan
+            </h4>
+            <p>
+              Yang bertanda tangan dibawah ini, calon peserta Pelatihan Karya Tulis Ilmiah yang
+              diselenggarakan oleh LKIM IAI As'adiyah dengan ini menyatakan setuju terhadap beberapa
+              ketentuan berikut ini :
+            </p>
             <ol>
               <li>Hadir pada waktu pada hari dan waktu yang telah ditentukan</li>
               <li>Pada waktu pelatihan sedang berlangsung wajib men-silent-kan ponsel</li>
@@ -177,7 +182,9 @@ class PrintForm extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Polymer
           </div>
         </div>
         <div class="action-button" layout vertical center>
-          <paper-button class="change-data" primary stroke on-click="_changeData">Ubah Data</paper-button>
+          <paper-button class="change-data" primary stroke on-click="_changeData"
+            >Ubah Data</paper-button
+          >
           <paper-button primary on-click="_printPdf">
             <iron-icon icon="icons:print"></iron-icon>
             <span>Download</span>
