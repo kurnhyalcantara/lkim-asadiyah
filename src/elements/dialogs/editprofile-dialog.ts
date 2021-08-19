@@ -11,13 +11,12 @@ import { html, PolymerElement } from '@polymer/polymer';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import { ReduxMixin } from '../../mixins/redux-mixin';
 import { RootState } from '../../store';
-import { openDialog } from '../../store/dialogs/actions';
+import { closeDialog } from '../../store/dialogs/actions';
 import { updateDataUser } from '../../store/signup/actions';
 import '../lkim-icons';
 import '../shared-styles';
 import './dialog-styles';
 import { showToast } from '../../store/toast/actions';
-import { DIALOGS } from '../../store/dialogs/types';
 class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], PolymerElement)) {
   static get template() {
     return html`
@@ -413,7 +412,7 @@ class EditProfileDialog extends ReduxMixin(mixinBehaviors([IronOverlayBehavior],
   }
 
   _closeDialog() {
-    openDialog(DIALOGS.PROFILE);
+    closeDialog();
   }
 
   _saveData() {
