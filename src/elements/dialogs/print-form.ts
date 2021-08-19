@@ -4,7 +4,8 @@ import { PolymerElement, html } from '@polymer/polymer';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import { ReduxMixin } from '../../mixins/redux-mixin';
 import { RootState } from '../../store';
-import { closeDialog } from '../../store/dialogs/actions';
+import { closeDialog, openDialog } from '../../store/dialogs/actions';
+import { DIALOGS } from '../../store/dialogs/types';
 import 'plastic-image';
 import '@polymer/paper-button';
 import '@polymer/app-layout/app-header-layout/app-header-layout';
@@ -16,6 +17,11 @@ class PrintForm extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Polymer
   static get template() {
     return html`
       <style include="shared-styles dialog-styles flex flex-alignment">
+
+        :host {
+          padding: 16px;
+        }
+
         app-header {
           background: var(--primary-background-color);
         }
@@ -39,6 +45,19 @@ class PrintForm extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Polymer
           grid-template-columns: 121px auto;
           margin: 24px 0;
         }
+
+        paper-button {
+          width: 100%;
+        }
+
+        .change-data {
+          margin-bottom: 12px;
+        }
+
+        iron-icon {
+          margin-right: 12px;
+        }
+
       </style>
       <app-header-layout has-scrolling-region>
         <app-header slot="header" class="header" fixed="[[viewport.isTabletPlus]]">
@@ -157,8 +176,12 @@ class PrintForm extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Polymer
             <div class="name" style="margin-top: 89px;">[[user.nama_lengkap]]</div>
           </div>
         </div>
-        <div class="action-button">
-          <paper-button primary on-click="_printPdf">Unduh</paper-button>
+        <div class="action-button" layout vertical center>
+          <paper-button class="change-data" primary stroke on-click="_changeData">Ubah Data</paper-button>
+          <paper-button primary on-click="_printPdf">
+            <iron-icon icon="icons:print"></iron-icon>
+            <span>Download</span>
+          </paper-button>
         </div>
       </app-header-layout>
     `;
@@ -221,6 +244,22 @@ class PrintForm extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Polymer
   _printPdf() {
     const domElement = this.shadowRoot.querySelector('#dialog-content');
     printPdf(domElement);
+  }
+
+  _changeData() {
+    openDialog(DIALOGS.EDITPROFILE, {
+      email: this.user.email,
+      namaLengkap: this.user.nama_lengkap,
+      tanggalLahir: this.user.tanggalLahir,
+      tempatLahir: this.user.tempatLahir,
+      alamatSekarang: this.user.alamatSekarang,
+      jenisKelamin: this.user.jenisKelamin,
+      noWa: this.user.whatsapp,
+      instagram: this.user.instagram,
+      fakultas: this.user.fakultas,
+      jurusan: this.user.jurusan,
+      semester: this.user.semester,
+    });
   }
 
   _resize(e) {
