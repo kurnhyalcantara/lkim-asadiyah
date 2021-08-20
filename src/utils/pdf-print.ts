@@ -7,7 +7,7 @@ export const printPdf = (dom: HTMLElement) => {
     .then((canvas) => {
       const img = canvas.toDataURL('image/jpeg', 1.0);
       const pdf = new jsPDF();
-      pdf.addImage(img, 'JPEG', 10, 10, 190, 275);
+      pdf.addImage(img, 'JPEG', 30, 10, 150, 275);
       return pdf.save('Kartu_Pendaftaran_LKIM.pdf');
     })
     .catch((err) => {
