@@ -12,6 +12,7 @@ import '@polymer/app-layout/app-header-layout/app-header-layout';
 import '@polymer/iron-icon';
 import '../shared-styles';
 import { printPdf } from '../../utils/pdf-print';
+import { showToast } from '../../store/toast/actions';
 
 class PrintForm extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], PolymerElement)) {
   static get template() {
@@ -250,7 +251,12 @@ class PrintForm extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Polymer
 
   _printPdf() {
     const domElement = this.shadowRoot.querySelector('#dialog-content');
-    printPdf(domElement);
+    setTimeout(() => {
+      printPdf(domElement);
+    }, 10);
+    showToast({
+      message: 'Sedang memproses dokumen',
+    });
   }
 
   _changeData() {
