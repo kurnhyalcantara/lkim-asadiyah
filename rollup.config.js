@@ -5,7 +5,6 @@ import merge from 'deepmerge';
 import copy from 'rollup-plugin-copy';
 import replace from 'rollup-plugin-re';
 import { workboxConfig } from './workbox-config';
-import commonjs from 'rollup-plugin-commonjs';
 const { production, compileTemplate, compileBufferTemplate } = require('./build-utils.js');
 
 if (!production) {
@@ -22,7 +21,6 @@ const baseConfig = createSpaConfig({
 export default merge(baseConfig, {
   input: './index.html',
   plugins: [
-    commonjs(),
     replace({
       exclude: 'node_modules/**',
       patterns: [

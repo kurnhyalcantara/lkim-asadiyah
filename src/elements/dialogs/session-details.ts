@@ -10,13 +10,14 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import 'plastic-image';
 import '../../components/auth-required';
 import { ReduxMixin } from '../../mixins/redux-mixin';
-import { RootState } from '../../store';
+import { RootState, store } from '../../store';
 import { closeDialog, openDialog } from '../../store/dialogs/actions';
 import { DIALOGS } from '../../store/dialogs/types';
 import {
   FeaturedSessionsState,
   initialFeaturedSessionsState,
 } from '../../store/featured-sessions/state';
+import { setUserFeaturedSessions } from '../../store/featured-sessions/actions';
 import { showToast } from '../../store/toast/actions';
 import { getVariableColor, getDate } from '../../utils/functions';
 import '../feedback-block';
@@ -237,12 +238,12 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
       });
       return;
     }
-    openDialog(DIALOGS.PRINTFORM);
-    // const sessions = Object.assign({}, this.featuredSessions.data, {
-    //   [this.session.id]: !this.featuredSessions.data[this.session.id] ? true : null,
-    // });
 
-    // store.dispatch(setUserFeaturedSessions(this.credential.uid, sessions));
+    const sessions = Object.assign({}, this.featuredSessions.data, {
+      [this.session.id]: !this.featuredSessions.data[this.session.id] ? true : null,
+    });
+
+    store.dispatch(setUserFeaturedSessions(this.credential.uid, sessions));
   }
 
   _getFeaturedSessionIcon(featuredSessions: FeaturedSessionsState, sessionId?: string) {
