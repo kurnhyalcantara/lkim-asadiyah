@@ -10,10 +10,9 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import 'plastic-image';
 import '../../components/auth-required';
 import { ReduxMixin } from '../../mixins/redux-mixin';
-import { RootState, store } from '../../store';
+import { RootState } from '../../store';
 import { closeDialog, openDialog } from '../../store/dialogs/actions';
 import { DIALOGS } from '../../store/dialogs/types';
-import { setUserFeaturedSessions } from '../../store/featured-sessions/actions';
 import {
   FeaturedSessionsState,
   initialFeaturedSessionsState,
@@ -225,7 +224,7 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
     }
   }
 
-  _toggleFeaturedSession(event: Event) {
+  _togglePrintForm(event: Event) {
     event.preventDefault();
     event.stopPropagation();
     if (!this.credential.signedIn) {
@@ -233,16 +232,17 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
         message: '{$ schedule.printFormSignedOut $}',
         action: {
           title: 'Login',
-          callback: () => openDialog(DIALOGS.SIGNIN),
+          callback: () => openDialog(DIALOGS.SIGNIN, { submitLogin: 'Login' }),
         },
       });
       return;
     }
-    const sessions = Object.assign({}, this.featuredSessions.data, {
-      [this.session.id]: !this.featuredSessions.data[this.session.id] ? true : null,
-    });
+    openDialog(DIALOGS.PRINTFORM);
+    // const sessions = Object.assign({}, this.featuredSessions.data, {
+    //   [this.session.id]: !this.featuredSessions.data[this.session.id] ? true : null,
+    // });
 
-    store.dispatch(setUserFeaturedSessions(this.credential.uid, sessions));
+    // store.dispatch(setUserFeaturedSessions(this.credential.uid, sessions));
   }
 
   _getFeaturedSessionIcon(featuredSessions: FeaturedSessionsState, sessionId?: string) {
@@ -259,15 +259,12 @@ class SessionDetails extends ReduxMixin(mixinBehaviors([IronOverlayBehavior], Po
 
   _sessionUpdate() {
     const { day } = this.session;
-    console.log(day);
     if (day) {
       const now = new Date();
       const currentTime = new Date(`${day}`).getTime();
       const timezoneOffset = parseInt('{$ timezoneOffset $}') - now.getTimezoneOffset();
-      console.log(now.getTimezoneOffset());
       const convertedTimezoneDate = new Date(currentTime + timezoneOffset * ONE_MINUTE_MS);
       const diff = now.getTime() - convertedTimezoneDate.getTime();
-      console.log(diff);
       this.acceptingFeedback = diff > 0 && diff < ONE_WEEK_MS;
     } else {
       this.acceptingFeedback = false;

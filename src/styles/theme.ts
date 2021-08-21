@@ -83,14 +83,12 @@ export const theme = css`
   h5,
   h6 {
     margin: 0;
-    font-weight: normal;
   }
 
   h1 {
-    padding: 8px 8px 24px 14px;
+    padding: 8px 8px;
     font-size: 24px;
-    line-height: 30px;
-    font-weight: 500;
+    line-height: 24px;
   }
 
   a {
@@ -200,7 +198,7 @@ export const theme = css`
   mwc-fab {
     --mdc-theme-secondary: var(--accent-color);
     --mdc-theme-on-secondary: var(--text-primary-color);
-    --mdc-fab-extended-label-padding: 26px;
+    --mdc-fab-extended-label-padding: 32px;
   }
 
   .container,
