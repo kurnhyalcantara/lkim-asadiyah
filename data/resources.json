@@ -165,8 +165,7 @@
     "toast": "Successfully subscribed!"
   },
   "schedule": {
-    "registerSchedule": "Saya ingin ikuti kegiatan ini",
-    "printFormSignedOut": "Anda harus login sebelum mendaftar kegiatan"
+    "registerSchedule": "Saya ingin ikuti kegiatan ini"
   },
   "session": {
     "pendaftaran": "Pendaftaran",
