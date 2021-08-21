@@ -81,7 +81,7 @@
     "@types/node": "^16.7.1",
     "@types/polymer": "^1.2.11",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
-    "@typescript-eslint/parser": "^4.28.3",
+    "@typescript-eslint/parser": "^4.29.2",
     "concurrently": "^6.2.1",
     "core-js": "^3.16.2",
     "cross-env": "^7.0.3",
