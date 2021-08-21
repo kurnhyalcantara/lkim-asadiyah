@@ -12,7 +12,7 @@
 
 Project LKIM As'adiyah Web App is the organization website for portofolio and user managements. The template is created based on [Hoverboard Project](https://github.com/gdg-x/hoverboard) team experience
 
-Our goal is to allow organizers to set up a professional website with minimum resources. To get started you need only basic knowledge of web technologies and a free Firebase account.
+Our concern is to allow organizers to set up a professional website with minimum resources. To get started you need only basic knowledge of web technologies and a free Firebase account.
 
 ## Features
 
