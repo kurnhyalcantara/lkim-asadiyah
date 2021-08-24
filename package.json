@@ -13,7 +13,6 @@
     "firestore:delete": "firebase firestore:delete --recursive --all-collections -y",
     "firestore:export": "ts-node-script ./scripts/firestore-init",
     "firestore:init": "firebase functions:config:set schedule.enabled=true && firebase deploy --except hosting && ts-node-script ./scripts/firestore-init",
-    A
     "fix": "concurrently npm:fix:*",
     "fix:eslint": "eslint . --ext .ts --ext .js --fix",
     "fix:prettier": "prettier . --write",
@@ -29,7 +28,6 @@
     "watch:es-dev-server": "es-dev-server --open --watch",
     "watch:tsc": "tsc --watch"
   },
-  A
   "dependencies": {
     "@abraham/remotedata": "^0.8.0",
     "@justinribeiro/lite-youtube": "^0.9.1",

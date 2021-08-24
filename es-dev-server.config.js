@@ -20,14 +20,13 @@ module.exports = {
         return { body };
       }
     },
-  ],
+  ], 
   middlewares: [
     function rewriteIndex(context, next) {
       // node_modules are deployed as node_assets
       if (context.url.startsWith('/node_assets/')) {
         context.url = context.url.replace('/node_assets/', '/node_modules/');
       }
-
       return next();
     },
   ],
