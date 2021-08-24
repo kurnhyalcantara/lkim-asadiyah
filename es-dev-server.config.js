@@ -20,7 +20,7 @@ module.exports = {
         return { body };
       }
     },
-  ], 
+  ],
   middlewares: [
     function rewriteIndex(context, next) {
       // node_modules are deployed as node_assets
