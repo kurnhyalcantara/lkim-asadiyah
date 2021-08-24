@@ -27,7 +27,6 @@ module.exports = {
       if (context.url.startsWith('/node_assets/')) {
         context.url = context.url.replace('/node_assets/', '/node_modules/');
       }
-
       return next();
     },
   ],
