@@ -25,7 +25,7 @@
     "start:emulators": "firebase emulators:start",
     "test": "jest",
     "watch": "concurrently --kill-others npm:watch:*",
-    "watch:es-dev-server": "es-dev-server --open --watch",
+    "watch:es-dev-server": "es-dev-server --watch --open",
     "watch:tsc": "tsc --watch"
   },
   "dependencies": {
@@ -81,6 +81,7 @@
     "@types/polymer": "^1.2.11",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
+    "@web/dev-server": "^0.1.21",
     "concurrently": "^6.2.1",
     "core-js": "^3.16.2",
     "cross-env": "^7.0.3",
