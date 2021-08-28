@@ -161,7 +161,7 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
 
         .drawer-list {
           padding: 16px 0;
-          margin: 0
+          margin: 0;
           display: block;
         }
 
