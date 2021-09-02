@@ -211,7 +211,6 @@ export class LkimApp extends ReduxMixin(PolymerElement) {
           font-size: 14px;
         }
 
-
         @media (min-width: 640px) {
           app-toolbar {
             padding: 0 36px;
