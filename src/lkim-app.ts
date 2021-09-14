@@ -38,7 +38,7 @@ import './elements/dialogs/changepass-dialog';
 import './elements/dialogs/forgotpass-dialog';
 import './elements/dialogs/video-dialog';
 import './elements/footer-block';
-import './elements/header-toolbar';
+import './components/header-toolbar';
 import './elements/lkim-icons';
 import './elements/polymer-helmet';
 import './elements/shared-styles';
