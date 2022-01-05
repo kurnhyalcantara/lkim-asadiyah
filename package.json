@@ -99,7 +99,7 @@
     "firebase": "^9.6.1",
     "firebase-admin": "^9.11.1",
     "firebase-tools": "^10.0.1",
-    "firestore-export-import": "^0.16.0",
+    "firestore-export-import": "^0.17.0",
     "jest": "^27.4.6",
     "jest-dev-server": "^4.4.0",
     "jest-runner-eslint": "^1.0.0",
