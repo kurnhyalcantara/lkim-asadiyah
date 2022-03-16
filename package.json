@@ -63,7 +63,7 @@
     "@webcomponents/webcomponentsjs": "^2.6.0",
     "clamp-js-main": "github:abraham/clamp-js-main#export",
     "lit-element": "^3.1.1",
-    "lit-html": "^2.0.2",
+    "lit-html": "^2.2.1",
     "plastic-image": "^3.0.2",
     "pwa-helpers": "^0.9.1",
     "redux": "^4.1.2",
