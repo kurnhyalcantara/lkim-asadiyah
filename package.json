@@ -96,7 +96,7 @@
     "eslint-plugin-jest-dom": "^4.0.1",
     "eslint-plugin-polymer": "^0.4.0",
     "eslint-plugin-testing-library": "^5.0.3",
-    "firebase": "^9.6.1",
+    "firebase": "^9.6.10",
     "firebase-admin": "^9.11.1",
     "firebase-tools": "^10.0.1",
     "firestore-export-import": "^0.17.0",
