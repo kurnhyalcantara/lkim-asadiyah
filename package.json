@@ -101,7 +101,7 @@
     "firebase-tools": "^10.0.1",
     "firestore-export-import": "^0.17.0",
     "jest": "^27.4.6",
-    "jest-dev-server": "^4.4.0",
+    "jest-dev-server": "^6.1.1",
     "jest-runner-eslint": "^1.0.0",
     "jest-runner-prettier": "^0.3.7",
     "jest-runner-stylelint": "^2.3.7",
